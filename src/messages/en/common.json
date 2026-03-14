@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "title": "Swish Deutschland – Professional Cleaning Solutions",
+    "description": "Experts in professional cleaning products and hygiene solutions in Germany. Since 1956."
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "productAdvisor": "Product Advisor",
+    "about": "About Us",
+    "hygienePlans": "Hygiene Plans",
+    "downloads": "Downloads",
+    "contact": "Contact",
+    "allProducts": "All Products",
+    "requestQuote": "Request Quote"
+  },
+  "hero": {
+    "title": "Cleanliness is Our Mission",
+    "subtitle": "Professional cleaning solutions for your business – proven since 1956",
+    "cta": "Discover Products",
+    "ctaSecondary": "Request Quote"
+  },
+  "categories": {
+    "title": "Product Categories",
+    "subtitle": "Find the perfect solution for every cleaning need",
+    "floors": "Floors",
+    "sanitary": "Sanitary Facilities",
+    "odor": "Odor Neutralization",
+    "special": "Special Cleaners",
+    "carpets": "Carpets & Rugs",
+    "disinfection": "Disinfection",
+    "food": "Food Service & Gastronomy",
+    "industry": "Industry",
+    "transport": "Transport",
+    "economy": "Economy Line",
+    "green": "Clean Green",
+    "dosing": "Dosing Systems"
+  },
+  "products": {
+    "title": "Our Products",
+    "bestsellers": "Bestsellers",
+    "viewAll": "View All Products",
+    "viewProduct": "View Product",
+    "ph": "pH Value",
+    "application": "Application",
+    "dosage": "Dosage",
+    "sizes": "Available Sizes",
+    "dataSheet": "Technical Data Sheet",
+    "safetySheet": "Safety Data Sheet",
+    "filterBy": "Filter by",
+    "sortBy": "Sort by",
+    "category": "Category",
+    "search": "Search products...",
+    "noResults": "No products found"
+  },
+  "advisor": {
+    "title": "Product Advisor",
+    "subtitle": "Find the right cleaning product in just a few steps",
+    "step1": "Choose Surface",
+    "step2": "Choose Room",
+    "step3": "Type of Dirt",
+    "step4": "Intensity",
+    "step5": "Your Recommendations",
+    "surface": "What surface do you want to clean?",
+    "room": "In which room?",
+    "dirt": "What type of dirt?",
+    "intensity": "How heavy is the soiling?",
+    "light": "Light",
+    "medium": "Medium",
+    "heavy": "Heavy",
+    "results": "Recommended Products",
+    "resultsDesc": "Based on your selections, we recommend the following products:",
+    "back": "Back",
+    "next": "Next",
+    "restart": "Start Over",
+    "why": "Why this product?"
+  },
+  "about": {
+    "title": "About Us",
+    "history": "Our History",
+    "historyText": "Swish Maintenance Ltd was founded in 1956 in Peterborough, Ontario, Canada. From a small family business with two employees, Swish grew into a leading manufacturer of professional cleaning products.",
+    "mission": "Our Mission",
+    "missionText": "To create better outcomes for clean, safe and healthy living and working spaces.",
+    "values": "Our Values",
+    "trust": "Deep Trust",
+    "expertise": "Deep Expertise",
+    "innovation": "Innovation",
+    "quality": "Quality",
+    "environment": "Environmental Protection"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "We are here for you",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "company": "Company",
+      "phone": "Phone",
+      "message": "Message",
+      "submit": "Send Message",
+      "success": "Thank you! Your message has been sent."
+    }
+  },
+  "hygiene": {
+    "title": "Hygiene Plans",
+    "subtitle": "Professional hygiene plans for various industries",
+    "download": "Download",
+    "sanitary": "Sanitary Facilities",
+    "kitchen": "Restaurant – Kitchen",
+    "dining": "Restaurant – Dining Room"
+  },
+  "downloads": {
+    "title": "Downloads",
+    "subtitle": "Technical documents and materials",
+    "catalogs": "Catalogs & Brochures",
+    "certificates": "Certificates",
+    "descriptions": "Product Descriptions",
+    "safetySheets": "Safety Data Sheets",
+    "images": "Product Images",
+    "dosageTables": "Dosage Tables"
+  },
+  "footer": {
+    "company": "Swish Deutschland",
+    "address": "Ottostr. 14, 50170 Kerpen",
+    "phone": "+49 (0) 2273 951 55 77",
+    "rights": "All rights reserved",
+    "privacy": "Privacy Policy",
+    "imprint": "Imprint",
+    "tagline": "Experts in professional cleaning solutions"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "readMore": "Read More",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "An error occurred"
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "title": "Swish Deutschland – Profesyonel Temizlik Çözümleri",
+    "description": "Almanya'da profesyonel temizlik ürünleri ve hijyen çözümlerinde uzmanlar. 1956'dan beri."
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "products": "Ürünler",
+    "productAdvisor": "Ürün Danışmanı",
+    "about": "Hakkımızda",
+    "hygienePlans": "Hijyen Planları",
+    "downloads": "İndirmeler",
+    "contact": "İletişim",
+    "allProducts": "Tüm Ürünler",
+    "requestQuote": "Teklif İste"
+  },
+  "hero": {
+    "title": "Temizlik Bizim Misyonumuz",
+    "subtitle": "İşletmeniz için profesyonel temizlik çözümleri – 1956'dan beri kanıtlanmış",
+    "cta": "Ürünleri Keşfet",
+    "ctaSecondary": "Teklif İste"
+  },
+  "categories": {
+    "title": "Ürün Kategorileri",
+    "subtitle": "Her temizlik ihtiyacı için mükemmel çözümü bulun",
+    "floors": "Zeminler",
+    "sanitary": "Sanitasyon",
+    "odor": "Koku Giderme",
+    "special": "Özel Temizleyiciler",
+    "carpets": "Halılar",
+    "disinfection": "Dezenfeksiyon",
+    "food": "Gastronomi ve Gıda",
+    "industry": "Endüstri",
+    "transport": "Ulaşım",
+    "economy": "Economy Serisi",
+    "green": "Clean Green",
+    "dosing": "Dozaj Sistemleri"
+  },
+  "products": {
+    "title": "Ürünlerimiz",
+    "bestsellers": "Çok Satanlar",
+    "viewAll": "Tüm Ürünleri Gör",
+    "viewProduct": "Ürünü İncele",
+    "ph": "pH Değeri",
+    "application": "Uygulama",
+    "dosage": "Dozaj",
+    "sizes": "Mevcut Boyutlar",
+    "dataSheet": "Teknik Veri Sayfası",
+    "safetySheet": "Güvenlik Veri Sayfası",
+    "filterBy": "Filtrele",
+    "sortBy": "Sırala",
+    "category": "Kategori",
+    "search": "Ürün ara...",
+    "noResults": "Ürün bulunamadı"
+  },
+  "advisor": {
+    "title": "Ürün Danışmanı",
+    "subtitle": "Birkaç adımda doğru temizlik ürününü bulun",
+    "step1": "Yüzey Seçin",
+    "step2": "Oda Seçin",
+    "step3": "Kirlilik Türü",
+    "step4": "Yoğunluk",
+    "step5": "Önerileriniz",
+    "surface": "Hangi yüzeyi temizlemek istiyorsunuz?",
+    "room": "Hangi odada?",
+    "dirt": "Ne tür bir kirlilik?",
+    "intensity": "Kirlilik ne kadar yoğun?",
+    "light": "Hafif",
+    "medium": "Orta",
+    "heavy": "Ağır",
+    "results": "Önerilen Ürünler",
+    "resultsDesc": "Seçimlerinize göre aşağıdaki ürünleri öneriyoruz:",
+    "back": "Geri",
+    "next": "İleri",
+    "restart": "Yeniden Başla",
+    "why": "Neden bu ürün?"
+  },
+  "about": {
+    "title": "Hakkımızda",
+    "history": "Tarihçemiz",
+    "historyText": "Swish Maintenance Ltd, 1956 yılında Kanada'nın Ontario eyaletindeki Peterborough'da kuruldu. İki çalışanlı küçük bir aile şirketinden profesyonel temizlik ürünlerinin önde gelen üreticisine dönüştü.",
+    "mission": "Misyonumuz",
+    "missionText": "Temiz, güvenli ve sağlıklı yaşam ve çalışma alanları için daha iyi sonuçlar yaratmak.",
+    "values": "Değerlerimiz",
+    "trust": "Derin Güven",
+    "expertise": "Derin Uzmanlık",
+    "innovation": "İnovasyon",
+    "quality": "Kalite",
+    "environment": "Çevre Koruma"
+  },
+  "contact": {
+    "title": "İletişim",
+    "subtitle": "Sizin için buradayız",
+    "address": "Adres",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "form": {
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "email": "E-posta",
+      "company": "Firma",
+      "phone": "Telefon",
+      "message": "Mesaj",
+      "submit": "Mesaj Gönder",
+      "success": "Teşekkürler! Mesajınız gönderildi."
+    }
+  },
+  "hygiene": {
+    "title": "Hijyen Planları",
+    "subtitle": "Çeşitli sektörler için profesyonel hijyen planları",
+    "download": "İndir",
+    "sanitary": "Sanitasyon",
+    "kitchen": "Restoran – Mutfak",
+    "dining": "Restoran – Yemek Salonu"
+  },
+  "downloads": {
+    "title": "İndirmeler",
+    "subtitle": "Teknik belgeler ve malzemeler",
+    "catalogs": "Kataloglar ve Broşürler",
+    "certificates": "Sertifikalar",
+    "descriptions": "Ürün Açıklamaları",
+    "safetySheets": "Güvenlik Veri Sayfaları",
+    "images": "Ürün Görselleri",
+    "dosageTables": "Dozaj Tabloları"
+  },
+  "footer": {
+    "company": "Swish Deutschland",
+    "address": "Ottostr. 14, 50170 Kerpen",
+    "phone": "+49 (0) 2273 951 55 77",
+    "rights": "Tüm hakları saklıdır",
+    "privacy": "Gizlilik Politikası",
+    "imprint": "Künye",
+    "tagline": "Profesyonel temizlik çözümlerinde uzmanlar"
+  },
+  "common": {
+    "learnMore": "Daha Fazla Bilgi",
+    "readMore": "Devamını Oku",
+    "close": "Kapat",
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu"
+  }
+}

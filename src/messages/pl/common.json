@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "title": "Swish Deutschland – Profesjonalne rozwiązania czyszczące",
+    "description": "Eksperci w profesjonalnych środkach czystości i rozwiązaniach higienicznych w Niemczech. Od 1956 roku."
+  },
+  "nav": {
+    "home": "Strona główna",
+    "products": "Produkty",
+    "productAdvisor": "Doradca produktowy",
+    "about": "O nas",
+    "hygienePlans": "Plany higieny",
+    "downloads": "Do pobrania",
+    "contact": "Kontakt",
+    "allProducts": "Wszystkie produkty",
+    "requestQuote": "Zapytaj o ofertę"
+  },
+  "hero": {
+    "title": "Czystość to nasza misja",
+    "subtitle": "Profesjonalne rozwiązania czyszczące dla Twojej firmy – sprawdzone od 1956 roku",
+    "cta": "Odkryj produkty",
+    "ctaSecondary": "Zapytaj o ofertę"
+  },
+  "categories": {
+    "title": "Kategorie produktów",
+    "subtitle": "Znajdź idealne rozwiązanie dla każdej potrzeby czyszczenia",
+    "floors": "Posadzki",
+    "sanitary": "Sanitariaty",
+    "odor": "Neutralizacja zapachów",
+    "special": "Preparaty specjalne",
+    "carpets": "Dywany i wykładziny",
+    "disinfection": "Dezynfekcja",
+    "food": "Gastronomia i przemysł spożywczy",
+    "industry": "Przemysł",
+    "transport": "Transport",
+    "economy": "Linia Economy",
+    "green": "Clean Green",
+    "dosing": "Systemy dozowania"
+  },
+  "products": {
+    "title": "Nasze produkty",
+    "bestsellers": "Bestsellery",
+    "viewAll": "Zobacz wszystkie produkty",
+    "viewProduct": "Zobacz produkt",
+    "ph": "Wartość pH",
+    "application": "Zastosowanie",
+    "dosage": "Dozowanie",
+    "sizes": "Dostępne pojemności",
+    "dataSheet": "Karta techniczna",
+    "safetySheet": "Karta charakterystyki",
+    "filterBy": "Filtruj według",
+    "sortBy": "Sortuj według",
+    "category": "Kategoria",
+    "search": "Szukaj produktu...",
+    "noResults": "Nie znaleziono produktów"
+  },
+  "advisor": {
+    "title": "Doradca produktowy",
+    "subtitle": "Znajdź odpowiedni środek czystości w kilku krokach",
+    "step1": "Wybierz powierzchnię",
+    "step2": "Wybierz pomieszczenie",
+    "step3": "Rodzaj zabrudzenia",
+    "step4": "Intensywność",
+    "step5": "Twoje rekomendacje",
+    "surface": "Jaką powierzchnię chcesz wyczyścić?",
+    "room": "W jakim pomieszczeniu?",
+    "dirt": "Jaki rodzaj zabrudzenia?",
+    "intensity": "Jak silne jest zabrudzenie?",
+    "light": "Lekkie",
+    "medium": "Średnie",
+    "heavy": "Silne",
+    "results": "Polecane produkty",
+    "resultsDesc": "Na podstawie Twoich odpowiedzi polecamy następujące produkty:",
+    "back": "Wstecz",
+    "next": "Dalej",
+    "restart": "Zacznij od nowa",
+    "why": "Dlaczego ten produkt?"
+  },
+  "about": {
+    "title": "O nas",
+    "history": "Nasza historia",
+    "historyText": "Swish Maintenance Ltd została założona w 1956 roku w Peterborough, Ontario, Kanada. Z małej rodzinnej firmy z dwoma pracownikami, Swish wyrósł na wiodącego producenta profesjonalnych środków czystości.",
+    "mission": "Nasza misja",
+    "missionText": "Tworzenie lepszych warunków dla czystych, bezpiecznych i zdrowych przestrzeni życiowych i roboczych.",
+    "values": "Nasze wartości",
+    "trust": "Głębokie zaufanie",
+    "expertise": "Głęboka wiedza",
+    "innovation": "Innowacja",
+    "quality": "Jakość",
+    "environment": "Ochrona środowiska"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Jesteśmy do Twojej dyspozycji",
+    "address": "Adres",
+    "phone": "Telefon",
+    "email": "E-mail",
+    "form": {
+      "firstName": "Imię",
+      "lastName": "Nazwisko",
+      "email": "E-mail",
+      "company": "Firma",
+      "phone": "Telefon",
+      "message": "Wiadomość",
+      "submit": "Wyślij wiadomość",
+      "success": "Dziękujemy! Twoja wiadomość została wysłana."
+    }
+  },
+  "hygiene": {
+    "title": "Plany higieny",
+    "subtitle": "Profesjonalne plany higieny dla różnych branż",
+    "download": "Pobierz",
+    "sanitary": "Sanitariaty",
+    "kitchen": "Restauracja – Kuchnia",
+    "dining": "Restauracja – Sala"
+  },
+  "downloads": {
+    "title": "Do pobrania",
+    "subtitle": "Dokumenty techniczne i materiały",
+    "catalogs": "Katalogi i ulotki",
+    "certificates": "Certyfikaty",
+    "descriptions": "Opisy produktów",
+    "safetySheets": "Karty charakterystyki",
+    "images": "Zdjęcia produktów",
+    "dosageTables": "Tabele dozowania"
+  },
+  "footer": {
+    "company": "Swish Deutschland",
+    "address": "Ottostr. 14, 50170 Kerpen",
+    "phone": "+49 (0) 2273 951 55 77",
+    "rights": "Wszelkie prawa zastrzeżone",
+    "privacy": "Polityka prywatności",
+    "imprint": "Impressum",
+    "tagline": "Eksperci w profesjonalnych rozwiązaniach czyszczących"
+  },
+  "common": {
+    "learnMore": "Dowiedz się więcej",
+    "readMore": "Czytaj dalej",
+    "close": "Zamknij",
+    "loading": "Ładowanie...",
+    "error": "Wystąpił błąd"
+  }
+}
