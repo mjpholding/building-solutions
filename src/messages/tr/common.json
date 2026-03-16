@@ -51,7 +51,11 @@
     "sortBy": "Sırala",
     "category": "Kategori",
     "search": "Ürün ara...",
-    "noResults": "Ürün bulunamadı"
+    "noResults": "Ürün bulunamadı",
+    "productsCount": "Ürün",
+    "allCategories": "Tümü",
+    "relatedProducts": "Benzer Ürünler",
+    "requestQuote": "Teklif İste"
   },
   "advisor": {
     "title": "Ürün Danışmanı",

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Send, CheckCircle2 } from "lucide-react";
+import contactData from "@/data/contact.json";
 
 export default function ContactPage() {
   const t = useTranslations("contact");
@@ -38,7 +39,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-swish-gray-900">{t("address")}</h3>
-                  <p className="mt-1 text-sm text-swish-gray-500">Swish Deutschland<br />Ottostr. 14<br />50170 Kerpen</p>
+                  <p className="mt-1 text-sm text-swish-gray-500">{contactData.company}<br />{contactData.address}<br />{contactData.zip} {contactData.city}</p>
                 </div>
               </div>
             </motion.div>
@@ -51,8 +52,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-swish-gray-900">{t("phone")}</h3>
-                  <a href="tel:+4922739515577" className="mt-1 text-sm text-swish-gray-500 hover:text-swish-red transition-colors block">
-                    +49 (0) 2273 951 55 77
+                  <a href={`tel:${contactData.phone.replace(/[\s()]/g, "")}`} className="mt-1 text-sm text-swish-gray-500 hover:text-swish-red transition-colors block">
+                    {contactData.phone}
                   </a>
                 </div>
               </div>
@@ -66,8 +67,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-swish-gray-900">{t("email")}</h3>
-                  <a href="mailto:info@swish-deutschland.de" className="mt-1 text-sm text-swish-gray-500 hover:text-swish-red transition-colors block">
-                    info@swish-deutschland.de
+                  <a href={`mailto:${contactData.email}`} className="mt-1 text-sm text-swish-gray-500 hover:text-swish-red transition-colors block">
+                    {contactData.email}
                   </a>
                 </div>
               </div>

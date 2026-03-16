@@ -51,7 +51,11 @@
     "sortBy": "Sort by",
     "category": "Category",
     "search": "Search products...",
-    "noResults": "No products found"
+    "noResults": "No products found",
+    "productsCount": "Products",
+    "allCategories": "All",
+    "relatedProducts": "Related Products",
+    "requestQuote": "Request Quote"
   },
   "advisor": {
     "title": "Product Advisor",

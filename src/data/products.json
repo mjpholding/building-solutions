@@ -1,0 +1,3075 @@
+[
+  {
+    "id": 1,
+    "slug": "poly-lock-ultra",
+    "name": "POLY LOCK ULTRA",
+    "category": "floors",
+    "description": "2-in-1 Spezialmittel zur Imprägnierung und Glanzverleihung. Erzeugt eine sehr haltbare Schutzschicht mit hohem Glanz. Patentierte Rezeptur, resistent gegen Desinfektionsmittel, rutschhemmend.",
+    "ph": "8.0 - 9.0",
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "Kunststein",
+      "Naturstein"
+    ],
+    "isBestseller": true,
+    "sizes": [
+      "3,78 L",
+      "18,9 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum",
+      "stone"
+    ],
+    "roomTypes": [
+      "hallway",
+      "office",
+      "hospital"
+    ],
+    "dirtTypes": [
+      "polymer",
+      "general"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "/products/poly-lock-ultra.png",
+    "prices": {
+      "3,78 L": 37,
+      "18,9 L": 105
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 2,
+    "slug": "super-clean",
+    "name": "SUPER CLEAN",
+    "category": "special",
+    "description": "Universeller alkalischer Kraftreiniger für alle wasserbeständigen Oberflächen. Entfernt hartnäckige Verschmutzungen wie Fett, Ruß und Nikotinbeläge.",
+    "ph": "11.0 - 12.0",
+    "applications": [
+      "Alle wasserbeständigen Oberflächen"
+    ],
+    "isBestseller": true,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "stone",
+      "ceramic",
+      "metal",
+      "concrete"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "office",
+      "production",
+      "warehouse"
+    ],
+    "dirtTypes": [
+      "grease",
+      "general",
+      "organic"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "/products/super-clean.png",
+    "prices": {
+      "1 L": 13,
+      "5 L": 46.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 3,
+    "slug": "office-clean",
+    "name": "OFFICE CLEAN",
+    "category": "special",
+    "description": "Schonender Reiniger für Bürooberflächen, Schreibtische, Telefone und Bildschirme. Antistatische Wirkung, streifenfrei.",
+    "ph": "9.0 - 10.0",
+    "applications": [
+      "Büromöbel",
+      "Bildschirme",
+      "Telefone",
+      "Kunststoffoberflächen"
+    ],
+    "isBestseller": true,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "glass",
+      "metal"
+    ],
+    "roomTypes": [
+      "office"
+    ],
+    "dirtTypes": [
+      "general",
+      "stains"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "/products/office-clean.png",
+    "prices": {
+      "1 L": 10.5,
+      "5 L": 41.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 4,
+    "slug": "glass-clean",
+    "name": "GLASS CLEAN",
+    "category": "special",
+    "description": "Streifenfreier Glasreiniger für Fenster, Spiegel, Vitrinen und alle Glasflächen. Schnelltrocknend mit Antischlierenformel.",
+    "ph": "9.0 - 10.0",
+    "applications": [
+      "Fenster",
+      "Spiegel",
+      "Glasflächen",
+      "Vitrinen"
+    ],
+    "isBestseller": true,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "glass"
+    ],
+    "roomTypes": [
+      "office",
+      "bathroom",
+      "hallway",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "general",
+      "stains"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "/products/glass-clean.png",
+    "prices": {
+      "1 L": 12.5,
+      "5 L": 26.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 5,
+    "slug": "kling",
+    "name": "KLING",
+    "category": "sanitary",
+    "description": "Kraftvoller Badreiniger mit spezieller Haftformel für vertikale Flächen. Haftet an Wänden und Armaturen für maximale Einwirkzeit.",
+    "ph": "8.0 - 10.0",
+    "applications": [
+      "Fliesen",
+      "Armaturen",
+      "Duschkabinen",
+      "Waschbecken"
+    ],
+    "isBestseller": true,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "ceramic",
+      "glass",
+      "metal"
+    ],
+    "roomTypes": [
+      "bathroom"
+    ],
+    "dirtTypes": [
+      "limescale",
+      "general"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "/products/kling.png",
+    "prices": {
+      "1 L": 10,
+      "5 L": 26
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 6,
+    "slug": "scale-remover",
+    "name": "SCALE REMOVER",
+    "category": "sanitary",
+    "description": "Hochkonzentrierter saurer Reiniger zur Entfernung hartnäckiger Kalk- und Mineralablagerungen. Für Sanitäranlagen und Küchengeräte.",
+    "ph": "0.5 - 1.0",
+    "applications": [
+      "Armaturen",
+      "Duschköpfe",
+      "WC",
+      "Fliesen"
+    ],
+    "isBestseller": true,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "ceramic",
+      "metal",
+      "glass"
+    ],
+    "roomTypes": [
+      "bathroom",
+      "kitchen"
+    ],
+    "dirtTypes": [
+      "limescale",
+      "rust"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/scale-remover.png",
+    "prices": {
+      "1 L": 10.5,
+      "5 L": 45.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 7,
+    "slug": "sp-105-nano-clean-shine",
+    "name": "SP-105 NANO CLEAN & SHINE",
+    "category": "floors",
+    "description": "Nano-Technologie Bodenpflege mit Reinigungs- und Glanzeffekt in einem Arbeitsgang.",
+    "ph": "7.0 - 8.0",
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "Steinböden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum",
+      "stone"
+    ],
+    "roomTypes": [
+      "hallway",
+      "office"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "/products/sp-105-nano-clean-shine.png",
+    "prices": {
+      "5 L": 36.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 8,
+    "slug": "sun-up",
+    "name": "SUN UP",
+    "category": "floors",
+    "description": "Täglicher Bodenreiniger mit frischem Duft. Hinterlässt saubere, glänzende Böden ohne Rückstände.",
+    "ph": "8.0 - 9.0",
+    "applications": [
+      "Alle Hartböden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum",
+      "stone"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/sun-up.png",
+    "prices": {
+      "1 L": 11.5,
+      "5 L": 45
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 9,
+    "slug": "sunbeam",
+    "name": "SUNBEAM",
+    "category": "floors",
+    "description": "Neutraler pH-Bodenreiniger für empfindliche Oberflächen. Schonende Reinigung ohne Beschichtung anzugreifen.",
+    "ph": "6.5 - 7.5",
+    "applications": [
+      "Empfindliche Böden",
+      "Marmor",
+      "Terrazzo"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L",
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "stone",
+      "pvc",
+      "linoleum"
+    ],
+    "roomTypes": [
+      "hallway",
+      "office",
+      "hospital"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/sunbeam.png",
+    "prices": {
+      "5 L": 38.5,
+      "10 L": 50
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 10,
+    "slug": "jet",
+    "name": "JET",
+    "category": "floors",
+    "description": "Stark alkalischer Bodenreiniger für hartnäckige Verschmutzungen. Entfernt Fett, Öl und eingetretenen Schmutz.",
+    "ph": "12.0 - 13.0",
+    "applications": [
+      "Industrieböden",
+      "Werkstätten",
+      "Garagen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L",
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "concrete",
+      "stone",
+      "pvc"
+    ],
+    "roomTypes": [
+      "production",
+      "warehouse"
+    ],
+    "dirtTypes": [
+      "grease",
+      "general"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/jet.png",
+    "prices": {
+      "5 L": 47,
+      "10 L": 45.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 11,
+    "slug": "duration",
+    "name": "DURATION",
+    "category": "floors",
+    "description": "Hochglanz-Bodenbeschichtung mit langer Haltbarkeit. Widerstandsfähig gegen hohe Beanspruchung.",
+    "ph": "8.0 - 9.0",
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "VCT"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "3,78 L",
+      "18,9 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum"
+    ],
+    "roomTypes": [
+      "hallway",
+      "office",
+      "hospital"
+    ],
+    "dirtTypes": [
+      "polymer"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "/products/duration.png",
+    "prices": {
+      "3,78 L": 20.5,
+      "18,9 L": 90
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 12,
+    "slug": "dynasty",
+    "name": "DYNASTY",
+    "category": "floors",
+    "description": "Premium-Bodenbeschichtung für höchste Ansprüche. Extrem widerstandsfähig und glänzend.",
+    "ph": "7.0 - 8.0",
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "Hartböden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "3,78 L",
+      "18,9 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum"
+    ],
+    "roomTypes": [
+      "hallway",
+      "office"
+    ],
+    "dirtTypes": [
+      "polymer"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "",
+    "prices": {
+      "3,78 L": 37,
+      "18,9 L": 66.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 13,
+    "slug": "duke",
+    "name": "DUKE",
+    "category": "floors",
+    "description": "Leistungsstarker alkalischer Grundreiniger und Beschichtungsentferner für Böden.",
+    "ph": "12.0 - 13.0",
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "Stein"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L",
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum",
+      "stone"
+    ],
+    "roomTypes": [
+      "hallway",
+      "office"
+    ],
+    "dirtTypes": [
+      "polymer",
+      "general"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "",
+    "prices": {
+      "5 L": 28.5,
+      "10 L": 74
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 14,
+    "slug": "wash-and-shine",
+    "name": "WASH & SHINE",
+    "category": "floors",
+    "description": "Wischpflege mit Glanzeffekt. Reinigt und pflegt in einem Arbeitsgang.",
+    "ph": "6.0 - 7.0",
+    "applications": [
+      "Alle Hartböden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L",
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum",
+      "stone"
+    ],
+    "roomTypes": [
+      "hallway",
+      "office"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/wash-and-shine.png",
+    "prices": {
+      "5 L": 37,
+      "10 L": 53
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 15,
+    "slug": "stone-and-tile",
+    "name": "STONE & TILE",
+    "category": "floors",
+    "description": "Spezialreiniger für Feinsteinzeug, Naturstein und Fliesen. Materialschonend mit Tiefenwirkung.",
+    "ph": "7.5 - 8.5",
+    "applications": [
+      "Feinsteinzeug",
+      "Naturstein",
+      "Fliesen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "stone",
+      "ceramic"
+    ],
+    "roomTypes": [
+      "hallway",
+      "bathroom"
+    ],
+    "dirtTypes": [
+      "general",
+      "limescale"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "/products/stone-and-tile.png",
+    "prices": {
+      "5 L": 29.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 16,
+    "slug": "sp-120-floor-active",
+    "name": "SP-120 FLOOR ACTIVE",
+    "category": "floors",
+    "description": "Aktiver Bodenreiniger für stark beanspruchte Flächen mit intensiver Reinigungskraft.",
+    "ph": "10.5 - 11.5",
+    "applications": [
+      "Alle Hartböden",
+      "Stark verschmutzte Böden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L",
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "stone",
+      "concrete"
+    ],
+    "roomTypes": [
+      "production",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "grease",
+      "general"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "/products/sp-120-floor-active.png",
+    "prices": {
+      "5 L": 36.5,
+      "10 L": 72.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 17,
+    "slug": "sp-110-wood-floor-cleaner",
+    "name": "SP-110 WOOD FLOOR CLEANER",
+    "category": "floors",
+    "description": "Spezialreiniger für Holzböden und Parkett. Pflegt und schützt die natürliche Holzoberfläche.",
+    "ph": "6.0 - 8.0",
+    "applications": [
+      "Parkett",
+      "Holzböden",
+      "Laminat"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "wood"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/sp-110-wood-floor-cleaner.png",
+    "prices": {
+      "5 L": 34.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 18,
+    "slug": "sp-100-floral",
+    "name": "SP-100 FLORAL",
+    "category": "floors",
+    "description": "Neutraler Unterhaltsreiniger mit angenehmem Blumenduft für die tägliche Bodenpflege.",
+    "ph": "6.0 - 8.0",
+    "applications": [
+      "Alle Hartböden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L",
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum",
+      "stone"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway",
+      "hospital"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/sp-100-floral.png",
+    "prices": {
+      "5 L": 44,
+      "10 L": 42
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 19,
+    "slug": "sp-100-citro",
+    "name": "SP-100 CITRO",
+    "category": "floors",
+    "description": "Neutraler Unterhaltsreiniger mit frischem Zitrusduft für die tägliche Bodenpflege.",
+    "ph": "6.0 - 8.0",
+    "applications": [
+      "Alle Hartböden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L",
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum",
+      "stone"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway",
+      "hospital"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/sp-100-citro.png",
+    "prices": {
+      "5 L": 41,
+      "10 L": 63.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 20,
+    "slug": "sp-150-gres-cleaner",
+    "name": "SP-150 GRES CLEANER",
+    "category": "floors",
+    "description": "Saurer Reiniger speziell für Feinsteinzeug und Gres-Fliesen. Entfernt Zementschleier und Kalkablagerungen.",
+    "ph": "1.0 - 2.0",
+    "applications": [
+      "Feinsteinzeug",
+      "Gres",
+      "Fliesen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "stone",
+      "ceramic"
+    ],
+    "roomTypes": [
+      "hallway",
+      "bathroom"
+    ],
+    "dirtTypes": [
+      "limescale"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "/products/sp-150-gres-cleaner.png",
+    "prices": {
+      "1 L": 11.5,
+      "5 L": 30.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 21,
+    "slug": "extreme",
+    "name": "EXTREME",
+    "category": "floors",
+    "description": "Extrem stark alkalischer Reiniger für die Grundreinigung stark verschmutzter Industrieböden.",
+    "ph": "12.5 - 13.5",
+    "applications": [
+      "Industrieböden",
+      "Werkstätten"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "concrete",
+      "stone"
+    ],
+    "roomTypes": [
+      "production",
+      "warehouse"
+    ],
+    "dirtTypes": [
+      "grease",
+      "general"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/extreme.png",
+    "prices": {
+      "5 L": 36.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 22,
+    "slug": "winterinse",
+    "name": "WINTERINSE",
+    "category": "floors",
+    "description": "Spezialreiniger zur Entfernung von Salzrückständen und Winterverschmutzungen. Schützt Böden vor Salzschäden.",
+    "ph": "12.0 - 13.0",
+    "applications": [
+      "Eingangsbereiche",
+      "Flure",
+      "Alle Hartböden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L",
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum",
+      "stone",
+      "ceramic"
+    ],
+    "roomTypes": [
+      "hallway"
+    ],
+    "dirtTypes": [
+      "salt",
+      "general"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "/products/winterinse.png",
+    "prices": {
+      "5 L": 46,
+      "10 L": 60
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 23,
+    "slug": "tried-n-true",
+    "name": "TRIED'nTRUE",
+    "category": "floors",
+    "description": "Bewährter Universal-Bodenreiniger für die tägliche Unterhaltsreinigung aller Hartböden.",
+    "ph": "8.0 - 9.0",
+    "applications": [
+      "Alle Hartböden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "3,78 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum",
+      "stone"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "/products/tried-n-true.png",
+    "prices": {
+      "3,78 L": 23.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 24,
+    "slug": "swish-strip",
+    "name": "SWISH-STRIP",
+    "category": "floors",
+    "description": "Leistungsstarker Beschichtungsentferner für Polymerbeschichtungen auf Böden.",
+    "ph": "11.5 - 13.5",
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "VCT"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum"
+    ],
+    "roomTypes": [
+      "hallway",
+      "office"
+    ],
+    "dirtTypes": [
+      "polymer"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/swish-strip.png",
+    "prices": {
+      "5 L": 27.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 25,
+    "slug": "liberty",
+    "name": "LIBERTY",
+    "category": "floors",
+    "description": "Alkalischer Grundreiniger mit starker Fettlösekraft für Böden und Oberflächen.",
+    "ph": "11.5 - 12.5",
+    "applications": [
+      "Alle Hartböden",
+      "Fettbeschmutzung"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "stone",
+      "concrete"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "production"
+    ],
+    "dirtTypes": [
+      "grease",
+      "general"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/liberty.png",
+    "prices": {
+      "5 L": 40.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 26,
+    "slug": "es99-impregnator-sealer",
+    "name": "ES99 IMPREGNATOR SEALER",
+    "category": "floors",
+    "description": "Imprägnierung und Versiegelung für poröse Böden. Schützt vor Eindringen von Schmutz und Feuchtigkeit.",
+    "ph": "7.0 - 8.0",
+    "applications": [
+      "Beton",
+      "Naturstein",
+      "Terrazzo"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "3,78 L"
+    ],
+    "surfaceTypes": [
+      "concrete",
+      "stone"
+    ],
+    "roomTypes": [
+      "warehouse",
+      "production"
+    ],
+    "dirtTypes": [
+      "polymer"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "/products/es99-impregnator-sealer.png",
+    "prices": {
+      "3,78 L": 33.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 27,
+    "slug": "anti-stat-floor-finish",
+    "name": "ANTI-STAT FLOOR FINISH",
+    "category": "floors",
+    "description": "Antistatische Bodenbeschichtung zur Vermeidung elektrostatischer Aufladung.",
+    "ph": "8.5 - 9.5",
+    "applications": [
+      "Serverräume",
+      "Labore",
+      "Elektronikfertigung"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "3,78 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum"
+    ],
+    "roomTypes": [
+      "office",
+      "production"
+    ],
+    "dirtTypes": [
+      "polymer"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "",
+    "prices": {
+      "3,78 L": 37
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 28,
+    "slug": "es89-blockade-concrete-sealer",
+    "name": "ES89 BLOCKADE CONCRETE SEALER",
+    "category": "floors",
+    "description": "Betonversiegelung zum Schutz und zur Staubfreiheit von Betonböden.",
+    "ph": "8.0 - 9.0",
+    "applications": [
+      "Beton",
+      "Garagen",
+      "Lagerhallen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "18,9 L"
+    ],
+    "surfaceTypes": [
+      "concrete"
+    ],
+    "roomTypes": [
+      "warehouse",
+      "production"
+    ],
+    "dirtTypes": [
+      "polymer"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "",
+    "prices": {
+      "18,9 L": 91
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 29,
+    "slug": "eternity",
+    "name": "ETERNITY",
+    "category": "floors",
+    "description": "Langlebige Premium-Bodenbeschichtung mit extremer Kratz- und Abriebfestigkeit.",
+    "ph": "8.0 - 9.0",
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "VCT"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "3,78 L",
+      "18,9 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum"
+    ],
+    "roomTypes": [
+      "hallway",
+      "hospital"
+    ],
+    "dirtTypes": [
+      "polymer"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "/products/eternity.png",
+    "prices": {
+      "3,78 L": 36,
+      "18,9 L": 87
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 30,
+    "slug": "es94-burnishing-cream",
+    "name": "ES94+ BURNISHING CREAM",
+    "category": "floors",
+    "description": "Poliercreme zur Hochglanzpflege von Polymer-beschichteten Böden mit Highspeed-Maschinen.",
+    "ph": "6.5 - 7.5",
+    "applications": [
+      "Polymer-beschichtete Böden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "450 g"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "linoleum"
+    ],
+    "roomTypes": [
+      "hallway",
+      "office"
+    ],
+    "dirtTypes": [
+      "polymer"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "",
+    "prices": {
+      "450 g": 9
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 31,
+    "slug": "sp-350-acid-cleaner",
+    "name": "SP-350 ACID CLEANER",
+    "category": "floors",
+    "description": "Saurer Reiniger für Feinsteinzeug und säurebeständige Fliesen. Entfernt Kalk und Zementreste.",
+    "ph": "0.5 - 1.5",
+    "applications": [
+      "Feinsteinzeug",
+      "Fliesen",
+      "Säurebeständige Oberflächen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "stone",
+      "ceramic"
+    ],
+    "roomTypes": [
+      "bathroom",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "limescale"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/sp-350-acid-cleaner.png",
+    "prices": {
+      "1 L": 12,
+      "5 L": 37
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 32,
+    "slug": "sani-clean",
+    "name": "SANI CLEAN",
+    "category": "sanitary",
+    "description": "Saurer Sanitärreiniger für die tägliche Pflege von WC, Waschbecken und Fliesen im Sanitärbereich.",
+    "ph": "2.5 - 3.5",
+    "applications": [
+      "WC",
+      "Waschbecken",
+      "Fliesen",
+      "Duschen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "ceramic",
+      "glass",
+      "metal"
+    ],
+    "roomTypes": [
+      "bathroom"
+    ],
+    "dirtTypes": [
+      "limescale",
+      "general"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "/products/sani-clean.png",
+    "prices": {
+      "1 L": 12,
+      "5 L": 43.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 33,
+    "slug": "sani-foam",
+    "name": "SANI FOAM",
+    "category": "sanitary",
+    "description": "Schaumreiniger für Sanitäranlagen. Haftet an vertikalen Flächen für intensive Einwirkung.",
+    "ph": "2.0 - 3.0",
+    "applications": [
+      "WC",
+      "Duschwände",
+      "Fliesen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [
+      "ceramic",
+      "glass"
+    ],
+    "roomTypes": [
+      "bathroom"
+    ],
+    "dirtTypes": [
+      "limescale",
+      "general"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "/products/sani-foam.jpg",
+    "prices": {
+      "1 L": 9
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 34,
+    "slug": "sp-360-action-bowl-cleaner",
+    "name": "SP-360 ACTION BOWL CLEANER",
+    "category": "sanitary",
+    "description": "Stark saurer WC-Reiniger mit Unterkantenwirkung. Entfernt Urinstein und Kalkablagerungen.",
+    "ph": "0.5 - 1.5",
+    "applications": [
+      "WC-Becken",
+      "Urinale"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [
+      "ceramic"
+    ],
+    "roomTypes": [
+      "bathroom"
+    ],
+    "dirtTypes": [
+      "limescale",
+      "organic"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/sp-360-action-bowl-cleaner.png",
+    "prices": {
+      "1 L": 8
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 35,
+    "slug": "sp-300-washroom-cleaner",
+    "name": "SP-300 WASHROOM CLEANER",
+    "category": "sanitary",
+    "description": "Saurer Waschraum-Reiniger für tägliche Sanitärhygiene. Wirkt gegen Kalk und Seifenreste.",
+    "ph": "1.0 - 2.0",
+    "applications": [
+      "Waschräume",
+      "Duschen",
+      "Armaturen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "ceramic",
+      "metal",
+      "glass"
+    ],
+    "roomTypes": [
+      "bathroom"
+    ],
+    "dirtTypes": [
+      "limescale",
+      "general"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "/products/sp-300-washroom-cleaner.png",
+    "prices": {
+      "1 L": 9,
+      "5 L": 40
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 36,
+    "slug": "tuby",
+    "name": "TUBY",
+    "category": "sanitary",
+    "description": "Spezieller WC-Reiniger in praktischer Squeeze-Flasche. Säurebasiert für Urinstein und Kalk.",
+    "ph": "2.0 - 3.0",
+    "applications": [
+      "WC-Becken",
+      "Urinale"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [
+      "ceramic"
+    ],
+    "roomTypes": [
+      "bathroom"
+    ],
+    "dirtTypes": [
+      "limescale",
+      "organic"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "/products/tuby.png",
+    "prices": {
+      "1 L": 10
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 37,
+    "slug": "descaler",
+    "name": "DESCALER",
+    "category": "sanitary",
+    "description": "Professioneller Entkalker für Geschirrspüler, Kaffeemaschinen und Warmwassergeräte.",
+    "ph": "1.0 - 2.0",
+    "applications": [
+      "Geschirrspüler",
+      "Kaffeemaschinen",
+      "Boiler"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "metal"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "limescale"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/descaler.png",
+    "prices": {
+      "10 L": 50
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 38,
+    "slug": "fresh-air-nectarine",
+    "name": "FRESH AIR NECTARINE",
+    "category": "odor",
+    "description": "Lufterfrischer mit natürlichem Nektarinenduft. Neutralisiert unangenehme Gerüche langanhaltend.",
+    "ph": "7.5",
+    "applications": [
+      "Alle Räume",
+      "Sanitäranlagen",
+      "Büros"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [],
+    "roomTypes": [
+      "bathroom",
+      "office",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "odor"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "/products/fresh-air-nectarine.png",
+    "prices": {
+      "1 L": 8.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 39,
+    "slug": "aromx-35",
+    "name": "AROMX 35",
+    "category": "odor",
+    "description": "Geruchsneutralisator mit angenehmem Duft. Beseitigt Gerüche statt sie nur zu überdecken.",
+    "ph": "6.0 - 8.0",
+    "applications": [
+      "Alle Räume"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [],
+    "roomTypes": [
+      "bathroom",
+      "office",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "odor"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/aromx-35.png",
+    "prices": {
+      "1 L": 9.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 40,
+    "slug": "aromx-60",
+    "name": "AROMX 60",
+    "category": "odor",
+    "description": "Hochkonzentrierter Geruchsvernichter für starke Geruchsbelastungen in gewerblichen Bereichen.",
+    "ph": "9.0 - 10.0",
+    "applications": [
+      "Gewerbliche Bereiche",
+      "Abfallräume"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [],
+    "roomTypes": [
+      "warehouse",
+      "production"
+    ],
+    "dirtTypes": [
+      "odor"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "/products/aromx-60.png",
+    "prices": {
+      "1 L": 8,
+      "5 L": 29
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 41,
+    "slug": "aromx-76",
+    "name": "AROMX 76",
+    "category": "odor",
+    "description": "Allzweckreiniger mit Geruchsneutralisierung. Reinigt und erfrischt in einem Arbeitsgang.",
+    "ph": "11.5 - 12.5",
+    "applications": [
+      "Böden",
+      "Oberflächen",
+      "Sanitär"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "stone",
+      "ceramic"
+    ],
+    "roomTypes": [
+      "bathroom",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "odor",
+      "general"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "",
+    "prices": {
+      "1 L": 8.5,
+      "5 L": 30.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 42,
+    "slug": "aromx-80",
+    "name": "AROMX 80",
+    "category": "odor",
+    "description": "Teppichreiniger mit Geruchsneutralisierung. Entfernt Flecken und neutralisiert Gerüche.",
+    "ph": "11.0 - 12.0",
+    "applications": [
+      "Teppiche",
+      "Textilbeläge"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "carpet"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "odor",
+      "stains"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "/products/aromx-80.jpg",
+    "prices": {
+      "5 L": 28
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 43,
+    "slug": "aromx-81",
+    "name": "AROMX 81",
+    "category": "odor",
+    "description": "Sprühextraktion-Reiniger für Teppiche mit Geruchsneutralisierung und Fleckenentfernung.",
+    "ph": "10.5 - 11.5",
+    "applications": [
+      "Teppiche",
+      "Polster"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "carpet"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "odor",
+      "stains"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "/products/aromx-81.png",
+    "prices": {
+      "5 L": 42.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 44,
+    "slug": "essence-magic-garden",
+    "name": "SWISH ESSENCE MAGIC GARDEN",
+    "category": "odor",
+    "description": "Duftessenz mit frischem Gartenduft für professionelle Raumbeduftungssysteme.",
+    "ph": "6.5 - 7.5",
+    "applications": [
+      "Raumbeduftung",
+      "Lobby",
+      "Eingangsbereiche"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [],
+    "roomTypes": [
+      "office",
+      "hallway",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "odor"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/essence-magic-garden.png",
+    "prices": {
+      "1 L": 7.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 45,
+    "slug": "essence-magic-fruit",
+    "name": "SWISH ESSENCE MAGIC FRUIT",
+    "category": "odor",
+    "description": "Duftessenz mit fruchtiger Note für professionelle Raumbeduftungssysteme.",
+    "ph": "6.5 - 7.5",
+    "applications": [
+      "Raumbeduftung",
+      "Büros",
+      "Hotels"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [],
+    "roomTypes": [
+      "office",
+      "hallway",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "odor"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/essence-magic-fruit.png",
+    "prices": {
+      "1 L": 10
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 46,
+    "slug": "essence-herbal-therapy",
+    "name": "SWISH ESSENCE HERBAL THERAPY",
+    "category": "odor",
+    "description": "Duftessenz mit Kräutertherapie-Duft für professionelle Raumbeduftung.",
+    "ph": "6.5 - 7.5",
+    "applications": [
+      "Raumbeduftung",
+      "Wellness",
+      "Wartezimmer"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [],
+    "roomTypes": [
+      "hospital",
+      "office"
+    ],
+    "dirtTypes": [
+      "odor"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/essence-herbal-therapy.jpg",
+    "prices": {
+      "1 L": 11
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 47,
+    "slug": "de-grease",
+    "name": "DE-GREASE",
+    "category": "special",
+    "description": "Kraftvoller Fettlöser als Sprühapplikation. Entfernt hartnäckige Fett- und Ölablagerungen sofort.",
+    "ph": "10.4 - 11.4",
+    "applications": [
+      "Küche",
+      "Dunstabzugshauben",
+      "Grill",
+      "Industrieoberflächen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [
+      "metal",
+      "ceramic",
+      "stone"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "restaurant",
+      "production"
+    ],
+    "dirtTypes": [
+      "grease"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "/products/de-grease.jpg",
+    "prices": {
+      "1 L": 9.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 48,
+    "slug": "nano-glass",
+    "name": "NANO GLASS",
+    "category": "special",
+    "description": "Nano-Glasschutz für langanhaltende Sauberkeit. Bildet unsichtbare Schutzschicht auf Glas.",
+    "ph": "7.0",
+    "applications": [
+      "Duschkabinen",
+      "Fenster",
+      "Glasfassaden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [
+      "glass"
+    ],
+    "roomTypes": [
+      "bathroom",
+      "office"
+    ],
+    "dirtTypes": [
+      "limescale",
+      "general"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/nano-glass.png",
+    "prices": {
+      "1 L": 13
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 49,
+    "slug": "stainless-steel-cleaner",
+    "name": "STAINLESS STEEL CLEANER",
+    "category": "special",
+    "description": "Spezialreiniger für Edelstahloberflächen. Entfernt Fingerabdrücke und Wasserflecken.",
+    "ph": "4.0 - 5.0",
+    "applications": [
+      "Edelstahlgeräte",
+      "Aufzüge",
+      "Gastrogeräte"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [
+      "metal"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "restaurant",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "stains",
+      "general"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "/products/stainless-steel-cleaner.jpg",
+    "prices": {
+      "1 L": 13.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 50,
+    "slug": "stainless-steel-polish",
+    "name": "STAINLESS STEEL POLISH",
+    "category": "special",
+    "description": "Edelstahlpolitur für glänzende, geschützte Oberflächen. Bildet schmutzabweisende Schutzschicht.",
+    "ph": "7.0",
+    "applications": [
+      "Edelstahl",
+      "Chrom",
+      "Aluminium"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [
+      "metal"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "stains"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/stainless-steel-polish.png",
+    "prices": {
+      "1 L": 7.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 51,
+    "slug": "powerhouse",
+    "name": "POWERHOUSE",
+    "category": "special",
+    "description": "Allzweck-Kraftreiniger für hartnäckigste Verschmutzungen auf allen wasserbeständigen Flächen.",
+    "ph": "11.0 - 12.0",
+    "applications": [
+      "Alle Oberflächen",
+      "Industriereinigung"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "stone",
+      "metal",
+      "concrete"
+    ],
+    "roomTypes": [
+      "production",
+      "warehouse"
+    ],
+    "dirtTypes": [
+      "grease",
+      "general"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/powerhouse.png",
+    "prices": {
+      "5 L": 32.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 52,
+    "slug": "powershine",
+    "name": "POWERSHINE",
+    "category": "special",
+    "description": "Reiniger mit Glanzeffekt für alle Oberflächen. Reinigt und verleiht Glanz in einem Arbeitsgang.",
+    "ph": "8.0 - 9.0",
+    "applications": [
+      "Möbel",
+      "Kunststoff",
+      "Edelstahl"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "metal",
+      "glass"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "",
+    "prices": {
+      "5 L": 39.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 53,
+    "slug": "sparkle",
+    "name": "SPARKLE",
+    "category": "special",
+    "description": "Universeller Sprühreiniger für Glas, Spiegel und glatte Oberflächen. Streifenfreie Sauberkeit.",
+    "ph": "9.0 - 11.0",
+    "applications": [
+      "Glas",
+      "Spiegel",
+      "Glatte Oberflächen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "glass",
+      "metal"
+    ],
+    "roomTypes": [
+      "office",
+      "bathroom"
+    ],
+    "dirtTypes": [
+      "general",
+      "stains"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "/products/sparkle.png",
+    "prices": {
+      "1 L": 9.5,
+      "5 L": 30.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 54,
+    "slug": "citro-gleam",
+    "name": "CITRO GLEAM",
+    "category": "special",
+    "description": "Stark alkalischer Reiniger mit Zitrusduft. Löst Fett und hartnäckige Verschmutzungen.",
+    "ph": "12.5 - 13.0",
+    "applications": [
+      "Küche",
+      "Industrieoberflächen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [
+      "metal",
+      "ceramic",
+      "stone"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "production"
+    ],
+    "dirtTypes": [
+      "grease"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/citro-gleam.png",
+    "prices": {
+      "1 L": 8
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 55,
+    "slug": "miracle",
+    "name": "MIRACLE",
+    "category": "special",
+    "description": "Mehrzweck-Kraftreiniger für besonders hartnäckige Verschmutzungen wie Tinte, Klebstoff und Farbe.",
+    "ph": "12.0 - 12.5",
+    "applications": [
+      "Tinte",
+      "Klebstoff",
+      "Farbe",
+      "Graffiti"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "stone",
+      "metal",
+      "concrete"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway",
+      "production"
+    ],
+    "dirtTypes": [
+      "stains",
+      "general"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "",
+    "prices": {
+      "1 L": 9,
+      "5 L": 28.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 56,
+    "slug": "liquid-soap",
+    "name": "LIQUID SOAP",
+    "category": "special",
+    "description": "Milde Flüssigseife für Handwaschspender. Hautfreundlich und rückfettend.",
+    "ph": "5.5 - 6.5",
+    "applications": [
+      "Handwäsche",
+      "Waschräume"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [],
+    "roomTypes": [
+      "bathroom",
+      "kitchen",
+      "hospital"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "",
+    "prices": {
+      "5 L": 35
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 57,
+    "slug": "stain-remover",
+    "name": "STAIN REMOVER",
+    "category": "carpets",
+    "description": "Fleckenentferner für Teppiche und textile Bodenbeläge. Entfernt Kaffee, Wein, Tinte und mehr.",
+    "ph": "10.0 - 11.0",
+    "applications": [
+      "Teppiche",
+      "Polstermöbel",
+      "Textilien"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [
+      "carpet"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "stains"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "/products/stain-remover.png",
+    "prices": {
+      "1 L": 8
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 58,
+    "slug": "es93-encapsulation-cleaner",
+    "name": "ES93+ ENCAPSULATION CLEANER",
+    "category": "carpets",
+    "description": "Enkapsulierungs-Teppichreiniger. Umschließt Schmutzpartikel für einfaches Absaugen.",
+    "ph": "7.5 - 8.5",
+    "applications": [
+      "Teppiche",
+      "Teppichfliesen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "3,78 L"
+    ],
+    "surfaceTypes": [
+      "carpet"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "general",
+      "stains"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "",
+    "prices": {
+      "3,78 L": 23.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 59,
+    "slug": "plush",
+    "name": "PLUSH",
+    "category": "carpets",
+    "description": "Teppichshampoo für die Sprühextraktionsreinigung. Tiefenreinigung für stark verschmutzte Teppiche.",
+    "ph": "9.5 - 10.0",
+    "applications": [
+      "Teppiche",
+      "Teppichböden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "3,78 L"
+    ],
+    "surfaceTypes": [
+      "carpet"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "general",
+      "stains"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/plush.jpg",
+    "prices": {
+      "3,78 L": 37
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 60,
+    "slug": "quato-78-professional",
+    "name": "QUATO 78 PROFESSIONAL",
+    "category": "disinfection",
+    "description": "Professionelles Flächendesinfektionsmittel. Wirksam gegen Bakterien, Pilze und behüllte Viren.",
+    "ph": "7.0",
+    "applications": [
+      "Alle Oberflächen",
+      "Medizinische Einrichtungen",
+      "Gastronomie"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "stone",
+      "metal",
+      "ceramic",
+      "glass"
+    ],
+    "roomTypes": [
+      "hospital",
+      "kitchen",
+      "restaurant",
+      "bathroom"
+    ],
+    "dirtTypes": [
+      "bacteria"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "",
+    "prices": {
+      "5 L": 28.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 61,
+    "slug": "quato-78-professional-rtu",
+    "name": "QUATO 78 PROFESSIONAL RTU",
+    "category": "disinfection",
+    "description": "Gebrauchsfertiges Flächendesinfektionsmittel. Sofort einsatzbereit ohne Verdünnung.",
+    "ph": "7.0",
+    "applications": [
+      "Schnelldesinfektion",
+      "Kleinere Flächen",
+      "Touchpoints"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "stone",
+      "metal",
+      "ceramic",
+      "glass"
+    ],
+    "roomTypes": [
+      "hospital",
+      "office",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "bacteria"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "",
+    "prices": {
+      "1 L": 7
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 62,
+    "slug": "food-service-rtu",
+    "name": "FOOD SERVICE RTU",
+    "category": "food",
+    "description": "Gebrauchsfertiger Reiniger für den Lebensmittelbereich. Entfernt Fett und Eiweiß ohne Rückstände.",
+    "ph": "12.5 - 13.5",
+    "applications": [
+      "Küchenoberflächen",
+      "Schneidbretter",
+      "Arbeitsflächen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [
+      "metal",
+      "stone"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "grease",
+      "organic"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "",
+    "prices": {
+      "1 L": 12.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 63,
+    "slug": "food-service-concentrate",
+    "name": "FOOD SERVICE KONZENTRAT",
+    "category": "food",
+    "description": "Konzentrat zur Reinigung in Gastronomie und Lebensmittelindustrie. Hochwirksam gegen Fett und Eiweiß.",
+    "ph": "12.5 - 13.5",
+    "applications": [
+      "Großküchen",
+      "Lebensmittelproduktion"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "metal",
+      "stone",
+      "concrete"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "restaurant",
+      "production"
+    ],
+    "dirtTypes": [
+      "grease",
+      "organic"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/food-service-concentrate.png",
+    "prices": {
+      "5 L": 28.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 64,
+    "slug": "quato-44",
+    "name": "QUATO 44",
+    "category": "food",
+    "description": "Geschirrspülmittel mit Desinfektionswirkung für die gewerbliche Handspülung.",
+    "ph": "11.0 - 12.0",
+    "applications": [
+      "Geschirr",
+      "Gläser",
+      "Besteck"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "3,78 L"
+    ],
+    "surfaceTypes": [
+      "glass",
+      "metal",
+      "ceramic"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "grease",
+      "bacteria"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "/products/quato-44.jpg",
+    "prices": {
+      "3,78 L": 37
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 65,
+    "slug": "grill-and-oven",
+    "name": "GRILL & OVEN",
+    "category": "food",
+    "description": "Spezialreiniger für Grills, Backöfen und Fritteusen. Löst eingebranntes Fett und Verkrustungen.",
+    "ph": "13.0 - 14.0",
+    "applications": [
+      "Grills",
+      "Backöfen",
+      "Fritteusen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "metal"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "grease"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/grill-and-oven.png",
+    "prices": {
+      "1 L": 13.5,
+      "5 L": 48
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 66,
+    "slug": "facto-pm20",
+    "name": "FACTO PM20",
+    "category": "food",
+    "description": "Saurer Reiniger für die Lebensmittelindustrie. Entfernt Kalk und Milchstein aus Rohrleitungen.",
+    "ph": "0.5 - 1.0",
+    "applications": [
+      "Molkereien",
+      "Brauereien",
+      "Rohrleitungen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L",
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "metal"
+    ],
+    "roomTypes": [
+      "production"
+    ],
+    "dirtTypes": [
+      "limescale"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/facto-pm20.png",
+    "prices": {
+      "5 L": 39.5,
+      "10 L": 70
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 67,
+    "slug": "hardwater-rinse",
+    "name": "HARDWATER RINSE",
+    "category": "food",
+    "description": "Saurer Klarspüler für gewerbliche Geschirrspülmaschinen bei hartem Wasser.",
+    "ph": "1.0 - 1.5",
+    "applications": [
+      "Geschirrspülmaschinen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "glass",
+      "ceramic",
+      "metal"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "limescale"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "/products/hardwater-rinse.png",
+    "prices": {
+      "10 L": 69.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 68,
+    "slug": "hardwater-detergent",
+    "name": "HARDWATER DETERGENT",
+    "category": "food",
+    "description": "Hochalkalisches Geschirrspülmittel für gewerbliche Maschinen bei hartem Wasser.",
+    "ph": "13.0 - 14.0",
+    "applications": [
+      "Geschirrspülmaschinen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "glass",
+      "ceramic",
+      "metal"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "grease",
+      "organic"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/hardwater-detergent.png",
+    "prices": {
+      "10 L": 50
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 69,
+    "slug": "facto-hd40",
+    "name": "FACTO HD40",
+    "category": "industry",
+    "description": "Industrieller Kraftreiniger für stark verschmutzte Maschinen, Böden und Werkstattbereiche.",
+    "ph": "12.0 - 13.0",
+    "applications": [
+      "Maschinen",
+      "Werkstätten",
+      "Industrieböden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L",
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "metal",
+      "concrete"
+    ],
+    "roomTypes": [
+      "production",
+      "warehouse"
+    ],
+    "dirtTypes": [
+      "grease",
+      "general"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/facto-hd40.png",
+    "prices": {
+      "5 L": 45,
+      "10 L": 70.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 70,
+    "slug": "facto-hd41-cleanmax",
+    "name": "FACTO HD41 CLEANMAX",
+    "category": "industry",
+    "description": "Extrem starker Industriereiniger für schwerste Verschmutzungen in der Produktion.",
+    "ph": "13.0 - 14.0",
+    "applications": [
+      "Schwere Industriereinigung"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "metal",
+      "concrete"
+    ],
+    "roomTypes": [
+      "production"
+    ],
+    "dirtTypes": [
+      "grease"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/facto-hd41-cleanmax.png",
+    "prices": {
+      "5 L": 45
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 71,
+    "slug": "facto-hd43",
+    "name": "FACTO HD43",
+    "category": "industry",
+    "description": "Schonender Industriereiniger für empfindliche Maschinenteile und leichtere Verschmutzungen.",
+    "ph": "8.0 - 9.0",
+    "applications": [
+      "Maschinenteile",
+      "Elektronik",
+      "Empfindliche Oberflächen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "metal"
+    ],
+    "roomTypes": [
+      "production"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "/products/facto-hd43.png",
+    "prices": {
+      "5 L": 36
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 72,
+    "slug": "facto-at31",
+    "name": "FACTO AT31",
+    "category": "industry",
+    "description": "Alkalischer Teilereiniger für die industrielle Teilewaschung. Entfettet gründlich.",
+    "ph": "12.5 - 13.0",
+    "applications": [
+      "Teilewaschung",
+      "Ultraschallreinigung"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L",
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "metal"
+    ],
+    "roomTypes": [
+      "production"
+    ],
+    "dirtTypes": [
+      "grease"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "",
+    "prices": {
+      "5 L": 46.5,
+      "10 L": 68
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 73,
+    "slug": "facto-at30",
+    "name": "FACTO AT30",
+    "category": "transport",
+    "description": "Spezialreiniger für Fahrzeuge und Transportmittel. Entfernt Straßenschmutz, Insekten und Ölfilm.",
+    "ph": "12.0 - 12.5",
+    "applications": [
+      "LKW",
+      "PKW",
+      "Busse",
+      "Bahnen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L",
+      "10 L"
+    ],
+    "surfaceTypes": [
+      "metal",
+      "glass"
+    ],
+    "roomTypes": [],
+    "dirtTypes": [
+      "grease",
+      "general"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "",
+    "prices": {
+      "5 L": 28.5,
+      "10 L": 68
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 74,
+    "slug": "e10-neutral",
+    "name": "E10 NEUTRAL",
+    "category": "economy",
+    "description": "Neutraler Universalreiniger der Economy-Linie. Kostengünstige Lösung für die tägliche Reinigung.",
+    "ph": "6.0 - 8.0",
+    "applications": [
+      "Alle Oberflächen",
+      "Böden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "stone",
+      "ceramic",
+      "glass"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/e10-neutral.png",
+    "prices": {
+      "1 L": 12,
+      "5 L": 43.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 75,
+    "slug": "e11-orange",
+    "name": "E11 ORANGE",
+    "category": "economy",
+    "description": "Universalreiniger mit Orangenduft. Angenehmer Frischeeffekt bei kostengünstiger Reinigung.",
+    "ph": "7.0 - 9.0",
+    "applications": [
+      "Alle Oberflächen",
+      "Böden"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "stone"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "/products/e11-orange.png",
+    "prices": {
+      "1 L": 12,
+      "5 L": 45
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 76,
+    "slug": "e20-alkali",
+    "name": "E20 ALKALI",
+    "category": "economy",
+    "description": "Alkalischer Reiniger der Economy-Linie. Für stärkere Verschmutzungen und Fettentfernung.",
+    "ph": "11.0 - 12.0",
+    "applications": [
+      "Fettbeschmutzung",
+      "Industrieoberflächen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "pvc",
+      "stone",
+      "metal",
+      "concrete"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "production"
+    ],
+    "dirtTypes": [
+      "grease",
+      "general"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "/products/e20-alkali.png",
+    "prices": {
+      "1 L": 12,
+      "5 L": 28.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 77,
+    "slug": "e30-acid",
+    "name": "E30 ACID",
+    "category": "economy",
+    "description": "Saurer Reiniger der Economy-Linie. Für Sanitärbereiche und Kalkentfernung.",
+    "ph": "0.5 - 2.0",
+    "applications": [
+      "Sanitäranlagen",
+      "Fliesen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "ceramic",
+      "metal"
+    ],
+    "roomTypes": [
+      "bathroom"
+    ],
+    "dirtTypes": [
+      "limescale"
+    ],
+    "intensityLevels": [
+      "medium",
+      "heavy"
+    ],
+    "image": "/products/e30-acid.png",
+    "prices": {
+      "1 L": 11,
+      "5 L": 38
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 78,
+    "slug": "e35-gel",
+    "name": "E35 GEL",
+    "category": "economy",
+    "description": "Saures WC-Gel der Economy-Linie. Haftet an der WC-Schüssel für intensive Reinigung.",
+    "ph": "0.5 - 2.0",
+    "applications": [
+      "WC-Becken"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L"
+    ],
+    "surfaceTypes": [
+      "ceramic"
+    ],
+    "roomTypes": [
+      "bathroom"
+    ],
+    "dirtTypes": [
+      "limescale",
+      "organic"
+    ],
+    "intensityLevels": [
+      "medium"
+    ],
+    "image": "/products/e35-gel.png",
+    "prices": {
+      "1 L": 7
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 79,
+    "slug": "e40-glass",
+    "name": "E40 GLASS",
+    "category": "economy",
+    "description": "Glasreiniger der Economy-Linie. Streifenfreie Reinigung für Fenster und Glasflächen.",
+    "ph": "7.0 - 8.0",
+    "applications": [
+      "Fenster",
+      "Spiegel",
+      "Glas"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "glass"
+    ],
+    "roomTypes": [
+      "office",
+      "hallway"
+    ],
+    "dirtTypes": [
+      "general"
+    ],
+    "intensityLevels": [
+      "light"
+    ],
+    "image": "/products/e40-glass.png",
+    "prices": {
+      "1 L": 10,
+      "5 L": 27.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 80,
+    "slug": "e50-strong",
+    "name": "E50 STRONG",
+    "category": "economy",
+    "description": "Stark alkalischer Reiniger der Economy-Linie. Für hartnäckige Verschmutzungen und Entfettung.",
+    "ph": "12.5 - 13.5",
+    "applications": [
+      "Industriebereiche",
+      "Küchen"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "1 L",
+      "5 L"
+    ],
+    "surfaceTypes": [
+      "metal",
+      "concrete",
+      "stone"
+    ],
+    "roomTypes": [
+      "kitchen",
+      "production",
+      "warehouse"
+    ],
+    "dirtTypes": [
+      "grease",
+      "general"
+    ],
+    "intensityLevels": [
+      "heavy"
+    ],
+    "image": "/products/e50-strong.png",
+    "prices": {
+      "1 L": 10.5,
+      "5 L": 34.5
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  }
+]

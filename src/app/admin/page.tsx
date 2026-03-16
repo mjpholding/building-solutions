@@ -1,0 +1,66 @@
+"use client";
+
+import Link from "next/link";
+import { Globe, Package, Layers, Mail, ArrowRight } from "lucide-react";
+
+const stats = [
+  { label: "Sprachen", value: "9", icon: Globe, color: "bg-blue-50 text-blue-600" },
+  { label: "Produkte", value: "80", icon: Package, color: "bg-green-50 text-green-600" },
+  { label: "Kategorien", value: "12", icon: Layers, color: "bg-purple-50 text-purple-600" },
+  { label: "Kontaktdaten", value: "1", icon: Mail, color: "bg-amber-50 text-amber-600" },
+];
+
+const quickLinks = [
+  { href: "/admin/contact", label: "Kontaktdaten bearbeiten", desc: "Adresse, Telefon, E-Mail" },
+  { href: "/admin/texts", label: "Texte bearbeiten", desc: "Alle Sprachversionen verwalten" },
+  { href: "/admin/products", label: "Produkte verwalten", desc: "Hinzufugen, bearbeiten, loschen" },
+];
+
+export default function AdminDashboard() {
+  return (
+    <div>
+      <h1 className="text-2xl font-bold text-gray-900">Admin Panel</h1>
+      <p className="mt-1 text-gray-500 text-sm">Swish Deutschland Verwaltung</p>
+
+      {/* Stats */}
+      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {stats.map((s) => {
+          const Icon = s.icon;
+          return (
+            <div key={s.label} className="bg-white rounded-xl border border-gray-200 p-5">
+              <div className="flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${s.color}`}>
+                  <Icon size={20} />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-gray-900">{s.value}</p>
+                  <p className="text-xs text-gray-500">{s.label}</p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Quick Links */}
+      <h2 className="mt-10 text-lg font-semibold text-gray-900">Schnellzugriff</h2>
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+        {quickLinks.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className="group bg-white rounded-xl border border-gray-200 p-5 hover:border-red-200 hover:shadow-sm transition-all"
+          >
+            <h3 className="font-medium text-gray-900 group-hover:text-red-600 transition-colors">
+              {link.label}
+            </h3>
+            <p className="mt-1 text-sm text-gray-500">{link.desc}</p>
+            <div className="mt-3 flex items-center gap-1 text-red-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+              Offnen <ArrowRight size={14} />
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}

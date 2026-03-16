@@ -51,7 +51,11 @@
     "sortBy": "Sortieren nach",
     "category": "Kategorie",
     "search": "Produkt suchen...",
-    "noResults": "Keine Produkte gefunden"
+    "noResults": "Keine Produkte gefunden",
+    "productsCount": "Produkte",
+    "allCategories": "Alle",
+    "relatedProducts": "Ähnliche Produkte",
+    "requestQuote": "Angebot anfordern"
   },
   "advisor": {
     "title": "Produktberater",

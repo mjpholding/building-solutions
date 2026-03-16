@@ -51,7 +51,11 @@
     "sortBy": "Сортировка",
     "category": "Категория",
     "search": "Поиск продукта...",
-    "noResults": "Продукты не найдены"
+    "noResults": "Продукты не найдены",
+    "productsCount": "Продуктов",
+    "allCategories": "Все",
+    "relatedProducts": "Похожие продукты",
+    "requestQuote": "Запросить цену"
   },
   "advisor": {
     "title": "Подбор продукта",

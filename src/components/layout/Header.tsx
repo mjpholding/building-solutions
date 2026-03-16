@@ -4,8 +4,10 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { useCart } from "@/lib/cart-context";
 
 const navItems = [
   { href: "/", labelKey: "home" },
@@ -21,6 +23,7 @@ export default function Header() {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { totalItems, setIsOpen: setCartOpen } = useCart();
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-swish-gray-200 shadow-sm">
@@ -28,14 +31,14 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <div className="flex items-center gap-1">
-              <span className="text-3xl lg:text-4xl font-bold text-swish-red italic tracking-tight" style={{ fontFamily: "cursive" }}>
-                Swish
-              </span>
-              <span className="text-sm lg:text-base font-medium text-swish-gray-800 leading-tight">
-                Deutschland
-              </span>
-            </div>
+            <Image
+              src="/logo-swish-deutschland.png"
+              alt="Swish Deutschland"
+              width={180}
+              height={80}
+              className="h-12 lg:h-14 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -58,9 +61,21 @@ export default function Header() {
             })}
           </nav>
 
-          {/* Right side: Language + CTA */}
+          {/* Right side: Language + Cart + CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher />
+            <button
+              onClick={() => setCartOpen(true)}
+              className="relative p-2 rounded-lg text-swish-gray-700 hover:bg-swish-gray-100 transition-colors"
+              aria-label="Warenkorb"
+            >
+              <ShoppingBag size={20} />
+              {totalItems > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 bg-swish-red text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
             <Link
               href="/kontakt"
               className="bg-swish-red hover:bg-swish-red-dark text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
@@ -69,9 +84,21 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Mobile: Language + Hamburger */}
+          {/* Mobile: Language + Cart + Hamburger */}
           <div className="flex lg:hidden items-center gap-2">
             <LanguageSwitcher />
+            <button
+              onClick={() => setCartOpen(true)}
+              className="relative p-2 rounded-lg text-swish-gray-700 hover:bg-swish-gray-100 transition-colors"
+              aria-label="Warenkorb"
+            >
+              <ShoppingBag size={20} />
+              {totalItems > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 bg-swish-red text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="p-2 rounded-lg text-swish-gray-700 hover:bg-swish-gray-100 transition-colors"

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" fill="none">
+  <!-- Swish script text -->
+  <g transform="translate(50, 20)">
+    <path d="M30 120 C25 105, 35 85, 55 80 C75 75, 85 85, 80 95 C75 105, 55 108, 45 105 C35 102, 30 95, 35 88 C40 81, 55 78, 70 82" stroke="#e31837" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <text x="0" y="110" font-family="'Brush Script MT', 'Segoe Script', cursive" font-size="95" font-weight="bold" fill="#e31837" font-style="italic">Swish</text>
+    <text x="53" y="110" font-family="'Brush Script MT', 'Segoe Script', cursive" font-size="95" font-weight="bold" fill="#e31837" font-style="italic">.</text>
+  </g>
+  <!-- Registered mark -->
+  <text x="310" y="75" font-family="Arial, sans-serif" font-size="14" fill="#e31837">®</text>
+  <!-- Deutschland text -->
+  <text x="200" y="175" font-family="'Segoe UI', Arial, Helvetica, sans-serif" font-size="38" fill="#e31837" text-anchor="middle" font-weight="500">Deutschland</text>
+</svg>

@@ -5,6 +5,8 @@ import { Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { CartProvider } from "@/lib/cart-context";
+import CartDrawer from "@/components/cart/CartDrawer";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
@@ -31,9 +33,12 @@ export default async function LocaleLayout({
     <html lang={locale} className={inter.variable}>
       <body className="font-sans antialiased bg-background text-foreground">
         <NextIntlClientProvider messages={messages}>
-          <Header />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
+          <CartProvider>
+            <Header />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+            <CartDrawer />
+          </CartProvider>
         </NextIntlClientProvider>
       </body>
     </html>
