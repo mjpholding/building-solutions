@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Loader2, ChevronDown } from "lucide-react";
+import { ArrowLeft, Loader2, ChevronDown, FileText, Printer } from "lucide-react";
 
 interface Order {
   id: string;
@@ -41,12 +41,21 @@ const STATUS_COLORS: Record<string, string> = {
   cancelled: "bg-red-100 text-red-700",
 };
 
+interface DocRecord {
+  id: string;
+  type: "wz" | "invoice";
+  number: string;
+  date: string;
+}
+
 export default function OrderDetail() {
   const params = useParams();
   const orderId = params.id as string;
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
+  const [documents, setDocuments] = useState<DocRecord[]>([]);
+  const [generatingDoc, setGeneratingDoc] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/orders")
@@ -56,7 +65,30 @@ export default function OrderDetail() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
+    fetch("/api/admin/documents")
+      .then((r) => r.json())
+      .then((docs: DocRecord[]) => {
+        setDocuments(docs.filter((d) => d.id && d.type));
+      })
+      .catch(() => {});
   }, [orderId]);
+
+  const generateDocument = async (type: "wz" | "invoice") => {
+    setGeneratingDoc(type);
+    const res = await fetch("/api/admin/documents", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ orderId, type }),
+    });
+    const data = await res.json();
+    if (data.success) {
+      setDocuments((prev) => [...prev, data.document]);
+      // Open print view
+      const printUrl = `/admin/documents/print?type=${type}&orderId=${orderId}&number=${encodeURIComponent(data.document.number)}&date=${data.document.date}`;
+      window.open(printUrl, "_blank");
+    }
+    setGeneratingDoc(null);
+  };
 
   const updateStatus = async (status: string) => {
     setUpdating(true);
@@ -220,6 +252,47 @@ export default function OrderDetail() {
             <span className="text-lg font-bold text-gray-900">{total.toFixed(2)} &euro;</span>
           </div>
         </div>
+      </div>
+
+      {/* Documents */}
+      <div className="mt-6 bg-white rounded-xl border border-gray-200 p-6">
+        <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Dokumente</h2>
+        <div className="flex gap-3 mb-4">
+          <button
+            onClick={() => generateDocument("wz")}
+            disabled={generatingDoc === "wz"}
+            className="flex items-center gap-2 border border-gray-200 hover:border-blue-300 hover:bg-blue-50 text-gray-700 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+          >
+            {generatingDoc === "wz" ? <Loader2 size={16} className="animate-spin" /> : <FileText size={16} />}
+            WZ erstellen
+          </button>
+          <button
+            onClick={() => generateDocument("invoice")}
+            disabled={generatingDoc === "invoice"}
+            className="flex items-center gap-2 border border-gray-200 hover:border-green-300 hover:bg-green-50 text-gray-700 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+          >
+            {generatingDoc === "invoice" ? <Loader2 size={16} className="animate-spin" /> : <Printer size={16} />}
+            Rechnung erstellen
+          </button>
+        </div>
+        {documents.filter((d) => d.type && (d as DocRecord & { orderId?: string }).orderId === undefined || documents.length > 0).length > 0 ? (
+          <div className="space-y-2">
+            {documents.map((doc) => (
+              <div key={doc.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg text-sm">
+                <div className="flex items-center gap-3">
+                  {doc.type === "wz" ? <FileText size={16} className="text-blue-500" /> : <Printer size={16} className="text-green-500" />}
+                  <div>
+                    <span className="font-medium text-gray-900">{doc.number}</span>
+                    <span className="ml-2 text-gray-400">{doc.type === "wz" ? "Warenausgabe" : "Rechnung"}</span>
+                  </div>
+                </div>
+                <span className="text-gray-400">{doc.date}</span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-sm text-gray-400">Noch keine Dokumente erstellt</p>
+        )}
       </div>
     </div>
   );

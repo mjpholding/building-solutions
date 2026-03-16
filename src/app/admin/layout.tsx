@@ -3,13 +3,15 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Mail, Type, Package, LogOut, Loader2, ShoppingCart, Euro } from "lucide-react";
+import { LayoutDashboard, Mail, Type, Package, LogOut, Loader2, ShoppingCart, Euro, Users, Tag } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/orders", label: "Bestellungen", icon: ShoppingCart },
+  { href: "/admin/customers", label: "Kunden", icon: Users },
   { href: "/admin/products", label: "Produkte", icon: Package },
   { href: "/admin/prices", label: "Preise", icon: Euro },
+  { href: "/admin/discounts", label: "Rabatte", icon: Tag },
   { href: "/admin/contact", label: "Kontakt", icon: Mail },
   { href: "/admin/texts", label: "Texte", icon: Type },
 ];

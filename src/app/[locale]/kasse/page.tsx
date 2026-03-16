@@ -1,23 +1,52 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "@/lib/cart-context";
+import { useCustomer } from "@/lib/customer-context";
 import { Link } from "@/i18n/routing";
-import { ArrowLeft, ShoppingBag, Loader2, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Loader2, CheckCircle2, Tag } from "lucide-react";
 import Image from "next/image";
 
 const inputClass = "w-full px-4 py-2.5 rounded-lg border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm";
 
 export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCart();
+  const { customer } = useCustomer();
   const [submitting, setSubmitting] = useState(false);
   const [orderId, setOrderId] = useState<string | null>(null);
   const [error, setError] = useState("");
+  const [couponCode, setCouponCode] = useState("");
+  const [couponDiscount, setCouponDiscount] = useState(0);
+  const [couponApplied, setCouponApplied] = useState("");
+
+  // Customer discount
+  const customerDiscount = customer?.discountPercent || 0;
+  const totalDiscount = Math.min(customerDiscount + couponDiscount, 100);
+  const discountAmount = totalPrice * (totalDiscount / 100);
+  const discountedPrice = totalPrice - discountAmount;
 
   const [form, setForm] = useState({
     company: "", name: "", email: "", phone: "",
     address: "", zip: "", city: "", country: "Deutschland", taxId: "", notes: "",
   });
+
+  // Pre-fill form from customer data
+  useEffect(() => {
+    if (customer) {
+      setForm((prev) => ({
+        ...prev,
+        company: customer.company || prev.company,
+        name: customer.name || prev.name,
+        email: customer.email || prev.email,
+        phone: customer.phone || prev.phone,
+        address: customer.address || prev.address,
+        zip: customer.zip || prev.zip,
+        city: customer.city || prev.city,
+        country: customer.country || prev.country,
+        taxId: customer.taxId || prev.taxId,
+      }));
+    }
+  }, [customer]);
 
   const updateForm = (field: string, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -33,6 +62,7 @@ export default function CheckoutPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          customerId: customer?.id || null,
           customer: {
             company: form.company,
             name: form.name,
@@ -51,6 +81,8 @@ export default function CheckoutPage() {
             quantity: i.quantity,
             price: i.price,
           })),
+          discount: totalDiscount > 0 ? { percent: totalDiscount, amount: discountAmount } : null,
+          couponCode: couponApplied || null,
           notes: form.notes,
         }),
       });
@@ -173,6 +205,45 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
+              {/* Coupon code */}
+              <div className="bg-white rounded-2xl border border-swish-gray-100 p-6">
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">Gutscheincode</h2>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={couponCode}
+                    onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                    placeholder="Code eingeben"
+                    className={inputClass + " font-mono flex-1"}
+                  />
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      if (!couponCode) return;
+                      const res = await fetch(`/api/validate-coupon?code=${couponCode}&total=${totalPrice}`);
+                      const data = await res.json();
+                      if (data.valid) {
+                        setCouponDiscount(data.discount);
+                        setCouponApplied(couponCode);
+                      } else {
+                        setCouponDiscount(0);
+                        setCouponApplied("");
+                        setError(data.error || "Ungueltiger Code");
+                      }
+                    }}
+                    className="px-4 py-2.5 bg-swish-gray-100 hover:bg-swish-gray-200 text-swish-gray-700 rounded-lg text-sm font-medium transition-colors"
+                  >
+                    <Tag size={16} />
+                  </button>
+                </div>
+                {couponApplied && (
+                  <p className="mt-2 text-sm text-green-600">Code &quot;{couponApplied}&quot; angewendet: -{couponDiscount}%</p>
+                )}
+                {customerDiscount > 0 && (
+                  <p className="mt-2 text-sm text-blue-600">Kundenrabatt: -{customerDiscount}%</p>
+                )}
+              </div>
+
               {/* Notes */}
               <div className="bg-white rounded-2xl border border-swish-gray-100 p-6">
                 <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">Anmerkungen</h2>
@@ -217,9 +288,15 @@ export default function CheckoutPage() {
                     <span className="text-swish-gray-500">Zwischensumme (netto)</span>
                     <span className="font-medium">{totalPrice.toFixed(2)} &euro;</span>
                   </div>
+                  {totalDiscount > 0 && (
+                    <div className="flex justify-between text-sm text-green-600">
+                      <span>Rabatt ({totalDiscount}%)</span>
+                      <span className="font-medium">-{discountAmount.toFixed(2)} &euro;</span>
+                    </div>
+                  )}
                   <div className="flex justify-between text-sm">
                     <span className="text-swish-gray-500">MwSt. (19%)</span>
-                    <span className="font-medium">{(totalPrice * 0.19).toFixed(2)} &euro;</span>
+                    <span className="font-medium">{(discountedPrice * 0.19).toFixed(2)} &euro;</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-swish-gray-500">Versand</span>
@@ -227,7 +304,7 @@ export default function CheckoutPage() {
                   </div>
                   <div className="border-t border-swish-gray-100 pt-2 flex justify-between">
                     <span className="font-semibold text-swish-gray-900">Gesamt (brutto)</span>
-                    <span className="text-lg font-bold text-swish-gray-900">{(totalPrice * 1.19).toFixed(2)} &euro;</span>
+                    <span className="text-lg font-bold text-swish-gray-900">{(discountedPrice * 1.19).toFixed(2)} &euro;</span>
                   </div>
                 </div>
 

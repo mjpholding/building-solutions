@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { CartProvider } from "@/lib/cart-context";
+import { CustomerProvider } from "@/lib/customer-context";
 import CartDrawer from "@/components/cart/CartDrawer";
 
 const inter = Inter({
@@ -33,12 +34,14 @@ export default async function LocaleLayout({
     <html lang={locale} className={inter.variable}>
       <body className="font-sans antialiased bg-background text-foreground">
         <NextIntlClientProvider messages={messages}>
-          <CartProvider>
-            <Header />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
-            <CartDrawer />
-          </CartProvider>
+          <CustomerProvider>
+            <CartProvider>
+              <Header />
+              <main className="min-h-screen">{children}</main>
+              <Footer />
+              <CartDrawer />
+            </CartProvider>
+          </CustomerProvider>
         </NextIntlClientProvider>
       </body>
     </html>

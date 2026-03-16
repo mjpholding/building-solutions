@@ -4,10 +4,11 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import { Menu, X, ShoppingBag, UserCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useCart } from "@/lib/cart-context";
+import { useCustomer } from "@/lib/customer-context";
 
 const navItems = [
   { href: "/", labelKey: "home" },
@@ -24,6 +25,7 @@ export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { totalItems, setIsOpen: setCartOpen } = useCart();
+  const { customer } = useCustomer();
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-swish-gray-200 shadow-sm">
@@ -64,6 +66,16 @@ export default function Header() {
           {/* Right side: Language + Cart + CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher />
+            <Link
+              href={customer ? "/konto" : "/konto/login"}
+              className="relative p-2 rounded-lg text-swish-gray-700 hover:bg-swish-gray-100 transition-colors"
+              aria-label="Konto"
+            >
+              <UserCircle size={20} />
+              {customer && (
+                <span className="absolute -top-0.5 -right-0.5 bg-green-500 w-2.5 h-2.5 rounded-full border-2 border-white" />
+              )}
+            </Link>
             <button
               onClick={() => setCartOpen(true)}
               className="relative p-2 rounded-lg text-swish-gray-700 hover:bg-swish-gray-100 transition-colors"
@@ -87,6 +99,16 @@ export default function Header() {
           {/* Mobile: Language + Cart + Hamburger */}
           <div className="flex lg:hidden items-center gap-2">
             <LanguageSwitcher />
+            <Link
+              href={customer ? "/konto" : "/konto/login"}
+              className="relative p-2 rounded-lg text-swish-gray-700 hover:bg-swish-gray-100 transition-colors"
+              aria-label="Konto"
+            >
+              <UserCircle size={20} />
+              {customer && (
+                <span className="absolute -top-0.5 -right-0.5 bg-green-500 w-2.5 h-2.5 rounded-full border-2 border-white" />
+              )}
+            </Link>
             <button
               onClick={() => setCartOpen(true)}
               className="relative p-2 rounded-lg text-swish-gray-700 hover:bg-swish-gray-100 transition-colors"
