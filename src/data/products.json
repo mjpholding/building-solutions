@@ -1187,7 +1187,7 @@
     "id": 31,
     "slug": "sp-350-acid-cleaner",
     "name": "SP-350 ACID CLEANER",
-    "category": "floors",
+    "category": "sanitary",
     "description": "Saurer Reiniger für Feinsteinzeug und säurebeständige Fliesen. Entfernt Kalk und Zementreste.",
     "ph": "0.5 - 1.5",
     "applications": [
@@ -1416,7 +1416,7 @@
     "id": 37,
     "slug": "descaler",
     "name": "DESCALER",
-    "category": "sanitary",
+    "category": "food",
     "description": "Professioneller Entkalker für Geschirrspüler, Kaffeemaschinen und Warmwassergeräte.",
     "ph": "1.0 - 2.0",
     "applications": [
@@ -1598,7 +1598,7 @@
     "id": 42,
     "slug": "aromx-80",
     "name": "AROMX 80",
-    "category": "odor",
+    "category": "carpets",
     "description": "Teppichreiniger mit Geruchsneutralisierung. Entfernt Flecken und neutralisiert Gerüche.",
     "ph": "11.0 - 12.0",
     "applications": [
@@ -1634,7 +1634,7 @@
     "id": 43,
     "slug": "aromx-81",
     "name": "AROMX 81",
-    "category": "odor",
+    "category": "carpets",
     "description": "Sprühextraktion-Reiniger für Teppiche mit Geruchsneutralisierung und Fleckenentfernung.",
     "ph": "10.5 - 11.5",
     "applications": [
@@ -1775,7 +1775,7 @@
     "id": 47,
     "slug": "de-grease",
     "name": "DE-GREASE",
-    "category": "special",
+    "category": "industry",
     "description": "Kraftvoller Fettlöser als Sprühapplikation. Entfernt hartnäckige Fett- und Ölablagerungen sofort.",
     "ph": "10.4 - 11.4",
     "applications": [
@@ -2126,7 +2126,7 @@
     "id": 56,
     "slug": "liquid-soap",
     "name": "LIQUID SOAP",
-    "category": "special",
+    "category": "sanitary",
     "description": "Milde Flüssigseife für Handwaschspender. Hautfreundlich und rückfettend.",
     "ph": "5.5 - 6.5",
     "applications": [
@@ -2729,7 +2729,7 @@
     "id": 72,
     "slug": "facto-at31",
     "name": "FACTO AT31",
-    "category": "industry",
+    "category": "transport",
     "description": "Alkalischer Teilereiniger für die industrielle Teilewaschung. Entfettet gründlich.",
     "ph": "12.5 - 13.0",
     "applications": [
