@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Link } from "@/i18n/routing";
-import { useRouter } from "next/navigation";
+import { Link, useRouter } from "@/i18n/routing";
 import { Loader2, Building2, User } from "lucide-react";
 import { useCustomer } from "@/lib/customer-context";
 
