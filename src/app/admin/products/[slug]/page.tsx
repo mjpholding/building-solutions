@@ -322,7 +322,7 @@ export default function ProductEditor() {
             {/* Controls */}
             <div className="flex-1 space-y-3">
               <p className="text-sm text-gray-500">
-                PNG, JPEG oder WebP. Max. 2 MB. Das Bild wird unter dem Produkt-Slug gespeichert.
+                PNG, JPEG oder WebP. Max. 5 MB. Das Bild wird unter dem Produkt-Slug gespeichert.
               </p>
               <div className="flex items-center gap-3">
                 <input

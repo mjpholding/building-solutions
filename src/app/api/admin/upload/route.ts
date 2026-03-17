@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/admin-auth";
 import { storeGet, storeSet } from "@/lib/admin-store";
 
-const MAX_SIZE = 2 * 1024 * 1024; // 2 MB
+const MAX_SIZE = 5 * 1024 * 1024; // 5 MB
 const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/webp", "image/svg+xml"];
 
 export async function POST(request: NextRequest) {
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (file.size > MAX_SIZE) {
-      return NextResponse.json({ error: "Max 2 MB" }, { status: 400 });
+      return NextResponse.json({ error: "Max 5 MB" }, { status: 400 });
     }
 
     // Convert to base64 data URL
