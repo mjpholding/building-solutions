@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Mail, Type, Package, LogOut, Loader2, ShoppingCart, Euro, Users, Tag, AtSign, CreditCard, MessageCircle } from "lucide-react";
+import { LayoutDashboard, Mail, Type, Package, LogOut, Loader2, ShoppingCart, Euro, Users, Tag, AtSign, CreditCard, MessageCircle, ShieldCheck } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -17,11 +17,13 @@ const navItems = [
   { href: "/admin/email-signature", label: "E-Mail-Signatur", icon: AtSign },
   { href: "/admin/business-cards", label: "Visitenkarten", icon: CreditCard },
   { href: "/admin/chat", label: "Team-Chat", icon: MessageCircle },
+  { href: "/admin/users", label: "Benutzer", icon: ShieldCheck },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [auth, setAuth] = useState<boolean | null>(null);
+  const [adminUser, setAdminUser] = useState<{ name: string; role: string } | null>(null);
 
   useEffect(() => {
     fetch("/api/admin/check")
@@ -30,6 +32,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         setAuth(d.authenticated);
         if (!d.authenticated && pathname !== "/admin/login" && !pathname.startsWith("/admin/chat")) {
           window.location.href = "/admin/login";
+        }
+        if (d.authenticated) {
+          fetch("/api/admin/login").then((r) => r.json()).then((data) => {
+            if (data.user) setAdminUser(data.user);
+          });
         }
       })
       .catch(() => setAuth(false));
@@ -86,7 +93,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             );
           })}
         </nav>
-        <div className="p-4 border-t border-gray-800">
+        <div className="p-4 border-t border-gray-800 space-y-2">
+          {adminUser && (
+            <div className="px-4 py-2 text-xs text-gray-500">
+              <p className="text-gray-300 font-medium truncate">{adminUser.name}</p>
+              <p className="capitalize">{adminUser.role}</p>
+            </div>
+          )}
           <button
             onClick={handleLogout}
             className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-800 transition-colors w-full"

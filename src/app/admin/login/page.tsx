@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Lock, Loader2 } from "lucide-react";
+import { Lock, Loader2, User } from "lucide-react";
 
 export default function AdminLogin() {
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,7 +17,7 @@ export default function AdminLogin() {
       const res = await fetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ username: username || "admin", password }),
       });
       const data = await res.json();
       if (data.success) {
@@ -47,18 +48,37 @@ export default function AdminLogin() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1.5">
+                Benutzername
+              </label>
+              <div className="relative">
+                <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input
+                  id="username"
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+                  placeholder="admin"
+                  autoFocus
+                />
+              </div>
+            </div>
+            <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1.5">
                 Passwort
               </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
-                placeholder="Admin-Passwort eingeben"
-                autoFocus
-              />
+              <div className="relative">
+                <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+                <input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+                  placeholder="Passwort eingeben"
+                />
+              </div>
             </div>
 
             {error && (
@@ -77,9 +97,6 @@ export default function AdminLogin() {
             </button>
           </form>
         </div>
-        <p className="mt-4 text-center text-xs text-gray-400">
-          Standard-Passwort: admin123
-        </p>
       </div>
     </div>
   );

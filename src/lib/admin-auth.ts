@@ -1,38 +1,104 @@
 import { cookies } from "next/headers";
 import crypto from "crypto";
+import { storeGet, storeSet } from "./admin-store";
 
 const COOKIE_NAME = "admin_session";
 const SESSION_DURATION = 24 * 60 * 60 * 1000; // 24h
+const HMAC_SECRET = process.env.ADMIN_SECRET || "swish-admin-secret-2024";
 
-function getSecret(): string {
-  return process.env.ADMIN_PASSWORD || "admin123";
+export interface AdminUser {
+  id: string;
+  name: string;
+  username: string;
+  password: string;
+  role: "superadmin" | "admin" | "editor";
+  createdAt: string;
+}
+
+// ── User storage ──
+
+export async function getAdminUsers(): Promise<AdminUser[]> {
+  const data = await storeGet("admin-users");
+  return (data as AdminUser[]) || [];
+}
+
+export async function saveAdminUsers(users: AdminUser[]): Promise<void> {
+  await storeSet("admin-users", users);
+}
+
+// ── Password verification ──
+
+function hashPassword(password: string): string {
+  return crypto.createHash("sha256").update(password).digest("hex");
 }
 
 export function verifyPassword(password: string): boolean {
-  return password === getSecret();
+  // Legacy single-password mode (fallback when no users exist)
+  const legacyPw = process.env.ADMIN_PASSWORD || "admin123";
+  return password === legacyPw;
 }
 
-export async function createSessionToken(): Promise<string> {
+export async function verifyUserLogin(
+  username: string,
+  password: string
+): Promise<AdminUser | null> {
+  const users = await getAdminUsers();
+
+  // If no users exist, allow legacy single-password login
+  if (users.length === 0) {
+    if (verifyPassword(password)) {
+      // Auto-create default superadmin
+      const defaultUser: AdminUser = {
+        id: crypto.randomUUID(),
+        name: "Administrator",
+        username: "admin",
+        password: hashPassword(password),
+        role: "superadmin",
+        createdAt: new Date().toISOString(),
+      };
+      await saveAdminUsers([defaultUser]);
+      return defaultUser;
+    }
+    return null;
+  }
+
+  // Normal multi-user login
+  const hashed = hashPassword(password);
+  const user = users.find(
+    (u) => u.username === username && u.password === hashed
+  );
+  return user || null;
+}
+
+// ── Session management ──
+
+export async function createSessionToken(userId: string): Promise<string> {
   const timestamp = Date.now().toString();
+  const payload = `${userId}.${timestamp}`;
   const hmac = crypto
-    .createHmac("sha256", getSecret())
-    .update(timestamp)
+    .createHmac("sha256", HMAC_SECRET)
+    .update(payload)
     .digest("hex");
-  return `${timestamp}.${hmac}`;
+  return `${userId}.${timestamp}.${hmac}`;
 }
 
-export async function verifySessionToken(token: string): Promise<boolean> {
+export async function verifySessionToken(
+  token: string
+): Promise<{ valid: boolean; userId?: string }> {
   try {
-    const [timestamp, hmac] = token.split(".");
+    const parts = token.split(".");
+    if (parts.length !== 3) return { valid: false };
+    const [userId, timestamp, hmac] = parts;
     const expected = crypto
-      .createHmac("sha256", getSecret())
-      .update(timestamp)
+      .createHmac("sha256", HMAC_SECRET)
+      .update(`${userId}.${timestamp}`)
       .digest("hex");
-    if (hmac !== expected) return false;
+    if (hmac !== expected) return { valid: false };
     const age = Date.now() - parseInt(timestamp);
-    return age < SESSION_DURATION;
+    if (age > SESSION_DURATION) return { valid: false };
+    return { valid: true, userId };
   } catch {
-    return false;
+    return { valid: false };
   }
 }
 
@@ -40,11 +106,22 @@ export async function isAuthenticated(): Promise<boolean> {
   const cookieStore = await cookies();
   const token = cookieStore.get(COOKIE_NAME)?.value;
   if (!token) return false;
-  return verifySessionToken(token);
+  const { valid } = await verifySessionToken(token);
+  return valid;
 }
 
-export async function setSessionCookie(): Promise<string> {
-  const token = await createSessionToken();
+export async function getSessionUser(): Promise<AdminUser | null> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(COOKIE_NAME)?.value;
+  if (!token) return null;
+  const { valid, userId } = await verifySessionToken(token);
+  if (!valid || !userId) return null;
+  const users = await getAdminUsers();
+  return users.find((u) => u.id === userId) || null;
+}
+
+export async function setSessionCookie(userId: string): Promise<string> {
+  const token = await createSessionToken(userId);
   const cookieStore = await cookies();
   cookieStore.set(COOKIE_NAME, token, {
     httpOnly: true,
