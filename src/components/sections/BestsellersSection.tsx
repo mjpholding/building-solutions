@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Droplets } from "lucide-react";
 import { useProducts } from "@/lib/use-products";
 import { getTranslatedProducts } from "@/data/product-i18n";
-import Image from "next/image";
+
 
 function getPHColor(ph: string): string {
   const val = parseFloat(ph.split("-")[0].trim());
@@ -66,11 +66,9 @@ export default function BestsellersSection() {
               >
                 <div className="relative h-48 bg-gradient-to-br from-swish-gray-50 to-swish-gray-100 flex items-center justify-center overflow-hidden">
                   {product.image ? (
-                    <Image
+                    <img
                       src={product.image}
                       alt={product.name}
-                      width={180}
-                      height={180}
                       className="object-contain h-full w-auto p-4 group-hover:scale-105 transition-transform duration-300"
                     />
                   ) : (

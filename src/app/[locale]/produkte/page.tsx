@@ -9,7 +9,7 @@ import { useSearchParams } from "next/navigation";
 import { categories } from "@/data/products";
 import { useProducts } from "@/lib/use-products";
 import { getTranslatedProducts } from "@/data/product-i18n";
-import Image from "next/image";
+
 
 function getPHColor(ph: string): string {
   const val = parseFloat(ph.split("-")[0].trim());
@@ -134,11 +134,9 @@ export default function ProductsPage() {
                 >
                   <div className="h-40 bg-gradient-to-br from-swish-gray-50 to-swish-gray-100 flex items-center justify-center overflow-hidden">
                     {product.image ? (
-                      <Image
+                      <img
                         src={product.image}
                         alt={product.name}
-                        width={160}
-                        height={160}
                         className="object-contain h-full w-auto p-3 group-hover:scale-105 transition-transform duration-300"
                       />
                     ) : (

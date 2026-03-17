@@ -8,7 +8,7 @@ import { ArrowLeft, Droplets, FileText, ShieldCheck, Package, ShoppingBag, Check
 import { useProducts } from "@/lib/use-products";
 import { getTranslatedProduct, getTranslatedProducts } from "@/data/product-i18n";
 import { motion } from "framer-motion";
-import Image from "next/image";
+
 import { useCart } from "@/lib/cart-context";
 
 function getPHColor(ph: string): string {
@@ -104,11 +104,9 @@ export default function ProductDetailPage() {
             className="bg-gradient-to-br from-swish-gray-50 to-swish-gray-100 rounded-2xl flex items-center justify-center h-96 lg:h-[500px] relative overflow-hidden"
           >
             {product.image ? (
-              <Image
+              <img
                 src={product.image}
                 alt={product.name}
-                width={400}
-                height={500}
                 className="object-contain h-full w-auto p-8"
               />
             ) : (
@@ -271,7 +269,7 @@ export default function ProductDetailPage() {
                 >
                   <div className="h-32 bg-gradient-to-br from-swish-gray-50 to-swish-gray-100 flex items-center justify-center overflow-hidden">
                     {rp.image ? (
-                      <Image src={rp.image} alt={rp.name} width={120} height={120} className="object-contain h-full w-auto p-2" />
+                      <img src={rp.image} alt={rp.name} className="object-contain h-full w-auto p-2" />
                     ) : (
                       <Droplets size={24} className="text-swish-gray-300" />
                     )}
