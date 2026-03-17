@@ -1,0 +1,322 @@
+{
+  "poly-lock-ultra": {
+    "description": "Produkt special 2-në-1 për impregnim dhe shkëlqim.",
+    "applications": ["PVC", "Linoleum", "Gur artificial", "Gur natyral"]
+  },
+  "super-clean": {
+    "description": "Pastrues universal alkalin i fuqishëm për sipërfaqe rezistente ndaj ujit.",
+    "applications": ["Të gjitha sipërfaqet rezistente ndaj ujit"]
+  },
+  "office-clean": {
+    "description": "Pastrues i butë për sipërfaqet e zyrës dhe ekranet.",
+    "applications": ["Mobilje zyre", "Ekrane", "Telefona", "Sipërfaqe plastike"]
+  },
+  "glass-clean": {
+    "description": "Pastrues xhami pa vija për dritare dhe pasqyra.",
+    "applications": ["Dritare", "Pasqyra", "Sipërfaqe xhami", "Vitrina"]
+  },
+  "kling": {
+    "description": "Pastrues i fuqishëm banje me formulë ngjitëse.",
+    "applications": ["Pllaka", "Rubinete", "Kabina dushi", "Lavaman"]
+  },
+  "scale-remover": {
+    "description": "Pastrues acid për heqjen e gëlqeres.",
+    "applications": ["Rubinete", "Koka dushi", "WC", "Pllaka"]
+  },
+  "sp-105-nano-clean-shine": {
+    "description": "Kujdes për dysheme me nano-teknologji dhe efekt shkëlqimi.",
+    "applications": ["PVC", "Linoleum", "Dysheme guri"]
+  },
+  "sun-up": {
+    "description": "Pastrues i përditshëm dyshemeje me aromë të freskët.",
+    "applications": ["Të gjitha dyshemetë e forta"]
+  },
+  "sunbeam": {
+    "description": "Pastrues dyshemeje me pH neutral për sipërfaqe të ndjeshme.",
+    "applications": ["Dysheme të ndjeshme", "Mermer", "Teraco"]
+  },
+  "jet": {
+    "description": "Pastrues dyshemeje fuqimisht alkalin.",
+    "applications": ["Dysheme industriale", "Punishte", "Garazhe"]
+  },
+  "duration": {
+    "description": "Veshje dyshemeje me shkëlqim të lartë.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "dynasty": {
+    "description": "Veshje dyshemeje premium.",
+    "applications": ["PVC", "Linoleum", "Dysheme të forta"]
+  },
+  "duke": {
+    "description": "Pastrues bazë alkalin dhe heqës veshjeje.",
+    "applications": ["PVC", "Linoleum", "Gur"]
+  },
+  "wash-and-shine": {
+    "description": "Kujdes pastrimi me efekt shkëlqimi.",
+    "applications": ["Të gjitha dyshemetë e forta"]
+  },
+  "stone-and-tile": {
+    "description": "Pastrues special për gres porcelanat dhe gur natyral.",
+    "applications": ["Gres porcelanat", "Gur natyral", "Pllaka"]
+  },
+  "sp-120-floor-active": {
+    "description": "Pastrues aktiv dyshemeje për sipërfaqe të ngarkuara rëndë.",
+    "applications": ["Të gjitha dyshemetë e forta", "Dysheme shumë të ndotura"]
+  },
+  "sp-110-wood-floor-cleaner": {
+    "description": "Pastrues special për dysheme druri dhe parket.",
+    "applications": ["Parket", "Dysheme druri", "Laminat"]
+  },
+  "sp-100-floral": {
+    "description": "Pastrues neutral mirëmbajtjeje me aromë lulesh.",
+    "applications": ["Të gjitha dyshemetë e forta"]
+  },
+  "sp-100-citro": {
+    "description": "Pastrues neutral mirëmbajtjeje me aromë agrumesh.",
+    "applications": ["Të gjitha dyshemetë e forta"]
+  },
+  "sp-150-gres-cleaner": {
+    "description": "Pastrues acid për gres porcelanat.",
+    "applications": ["Gres porcelanat", "Gres", "Pllaka"]
+  },
+  "extreme": {
+    "description": "Pastrues bazë alkalin jashtëzakonisht i fortë.",
+    "applications": ["Dysheme industriale", "Punishte"]
+  },
+  "winterinse": {
+    "description": "Pastrues për heqjen e mbetjeve të kripës.",
+    "applications": ["Zona hyrjeje", "Korridore", "Të gjitha dyshemetë e forta"]
+  },
+  "tried-n-true": {
+    "description": "Pastrues universal i provuar dyshemeje.",
+    "applications": ["Të gjitha dyshemetë e forta"]
+  },
+  "swish-strip": {
+    "description": "Heqës veshjesh polimerike.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "liberty": {
+    "description": "Pastrues bazë alkalin me fuqi kundër yndyrës.",
+    "applications": ["Të gjitha dyshemetë e forta", "Ndotje yndyrore"]
+  },
+  "es99-impregnator-sealer": {
+    "description": "Impregnim për dysheme poroze.",
+    "applications": ["Beton", "Gur natyral", "Teraco"]
+  },
+  "anti-stat-floor-finish": {
+    "description": "Veshje dyshemeje antistatike.",
+    "applications": ["Dhoma serverash", "Laboratorë", "Prodhim elektronik"]
+  },
+  "es89-blockade-concrete-sealer": {
+    "description": "Vulosje betoni.",
+    "applications": ["Beton", "Garazhe", "Magazina"]
+  },
+  "eternity": {
+    "description": "Veshje dyshemeje premium me jetëgjatësi.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "es94-burnishing-cream": {
+    "description": "Krem lustrimi për dysheme me veshje polimerike.",
+    "applications": ["Dysheme me veshje polimerike"]
+  },
+  "sp-350-acid-cleaner": {
+    "description": "Pastrues acid për gres porcelanat.",
+    "applications": ["Gres porcelanat", "Pllaka", "Sipërfaqe rezistente ndaj acidit"]
+  },
+  "sani-clean": {
+    "description": "Pastrues acid sanitar.",
+    "applications": ["WC", "Lavaman", "Pllaka", "Dushe"]
+  },
+  "sani-foam": {
+    "description": "Pastrues me shkumë për instalime sanitare.",
+    "applications": ["WC", "Mure dushi", "Pllaka"]
+  },
+  "sp-360-action-bowl-cleaner": {
+    "description": "Pastrues WC fuqimisht acid.",
+    "applications": ["Tasa WC", "Pisuarë"]
+  },
+  "sp-300-washroom-cleaner": {
+    "description": "Pastrues acid për dhoma larjeje.",
+    "applications": ["Dhoma larjeje", "Dushe", "Rubinete"]
+  },
+  "tuby": {
+    "description": "Pastrues WC në shishe të shtrydhshme.",
+    "applications": ["Tasa WC", "Pisuarë"]
+  },
+  "descaler": {
+    "description": "Heqës profesional gëlqereje.",
+    "applications": ["Enëlarëse", "Makina kafeje", "Bojlerë"]
+  },
+  "fresh-air-nectarine": {
+    "description": "Freskues ajri me aromë nektarine.",
+    "applications": ["Të gjitha ambientet", "Instalime sanitare", "Zyra"]
+  },
+  "aromx-35": {
+    "description": "Neutralizues i erës.",
+    "applications": ["Të gjitha ambientet"]
+  },
+  "aromx-60": {
+    "description": "Eliminues i koncentruar i erërave të këqija.",
+    "applications": ["Zona komerciale", "Dhoma mbeturinash"]
+  },
+  "aromx-76": {
+    "description": "Pastrues universal me neutralizim ere.",
+    "applications": ["Dysheme", "Sipërfaqe", "Sanitar"]
+  },
+  "aromx-80": {
+    "description": "Pastrues tapetash me neutralizim ere.",
+    "applications": ["Tapeta", "Veshje tekstili"]
+  },
+  "aromx-81": {
+    "description": "Pastrues me ekstraktim spërkatës për tapeta.",
+    "applications": ["Tapeta", "Tapiceri"]
+  },
+  "essence-magic-garden": {
+    "description": "Esencë aromatike me aromë kopshti.",
+    "applications": ["Aromatizim ambienti", "Holl pritjeje", "Zona hyrjeje"]
+  },
+  "essence-magic-fruit": {
+    "description": "Esencë aromatike me notë frutash.",
+    "applications": ["Aromatizim ambienti", "Zyra", "Hotele"]
+  },
+  "essence-herbal-therapy": {
+    "description": "Esencë aromatike me aromë bimësh.",
+    "applications": ["Aromatizim ambienti", "Wellness", "Dhoma pritjeje"]
+  },
+  "de-grease": {
+    "description": "Heqës i fuqishëm yndyre.",
+    "applications": ["Kuzhinë", "Aspiratorë", "Skarë", "Sipërfaqe industriale"]
+  },
+  "nano-glass": {
+    "description": "Mbrojtje nano për xham.",
+    "applications": ["Kabina dushi", "Dritare", "Fasada xhami"]
+  },
+  "stainless-steel-cleaner": {
+    "description": "Pastrues çeliku inox.",
+    "applications": ["Pajisje inox", "Ashensorë", "Pajisje gastronomie"]
+  },
+  "stainless-steel-polish": {
+    "description": "Lustrim çeliku inox.",
+    "applications": ["Çelik inox", "Krom", "Alumin"]
+  },
+  "powerhouse": {
+    "description": "Pastrues universal i fuqishëm.",
+    "applications": ["Të gjitha sipërfaqet", "Pastrim industrial"]
+  },
+  "powershine": {
+    "description": "Pastrues me efekt shkëlqimi.",
+    "applications": ["Mobilje", "Plastikë", "Çelik inox"]
+  },
+  "sparkle": {
+    "description": "Pastrues me spërkatje për xham dhe sipërfaqe të lëmuara.",
+    "applications": ["Xham", "Pasqyra", "Sipërfaqe të lëmuara"]
+  },
+  "citro-gleam": {
+    "description": "Pastrues alkalin me aromë agrumesh.",
+    "applications": ["Kuzhinë", "Sipërfaqe industriale"]
+  },
+  "miracle": {
+    "description": "Pastrues shumëpërdorimësh për bojë, ngjitës, ngjyrë.",
+    "applications": ["Bojë", "Ngjitës", "Ngjyrë", "Grafiti"]
+  },
+  "liquid-soap": {
+    "description": "Sapun i butë i lëngshëm.",
+    "applications": ["Larje duarsh", "Dhoma larjeje"]
+  },
+  "stain-remover": {
+    "description": "Heqës njollash për tapeta.",
+    "applications": ["Tapeta", "Mobilje të tapicuara", "Tekstile"]
+  },
+  "es93-encapsulation-cleaner": {
+    "description": "Pastrues tapetash me enkapsulim.",
+    "applications": ["Tapeta", "Pllaka tapeti"]
+  },
+  "plush": {
+    "description": "Shampo tapetash për ekstraktim me spërkatje.",
+    "applications": ["Tapeta", "Dysheme me tapet"]
+  },
+  "quato-78-professional": {
+    "description": "Dezinfektues profesional sipërfaqesh.",
+    "applications": ["Të gjitha sipërfaqet", "Institucione mjekësore", "Gastronomia"]
+  },
+  "quato-78-professional-rtu": {
+    "description": "Dezinfektues i gatshëm për përdorim.",
+    "applications": ["Dezinfektim i shpejtë", "Sipërfaqe të vogla", "Pika kontakti"]
+  },
+  "food-service-rtu": {
+    "description": "Pastrues i gatshëm për sektorin ushqimor.",
+    "applications": ["Sipërfaqe kuzhine", "Dërrasa prerëse", "Sipërfaqe pune"]
+  },
+  "food-service-concentrate": {
+    "description": "Koncentrat pastrimi për gastronominë.",
+    "applications": ["Kuzhina të mëdha", "Prodhim ushqimor"]
+  },
+  "quato-44": {
+    "description": "Detergjent enësh me efekt dezinfektues.",
+    "applications": ["Enë", "Gota", "Takëme"]
+  },
+  "grill-and-oven": {
+    "description": "Pastrues për skara, furra dhe tiganisëse.",
+    "applications": ["Skara", "Furra", "Tiganisëse"]
+  },
+  "facto-pm20": {
+    "description": "Pastrues acid për industrinë ushqimore.",
+    "applications": ["Bulmetore", "Birrari", "Tubacione"]
+  },
+  "hardwater-rinse": {
+    "description": "Shpëlarës për enëlarëse profesionale.",
+    "applications": ["Enëlarëse"]
+  },
+  "hardwater-detergent": {
+    "description": "Detergjent për enëlarëse profesionale.",
+    "applications": ["Enëlarëse"]
+  },
+  "facto-hd40": {
+    "description": "Pastrues i fuqishëm industrial.",
+    "applications": ["Makineritë", "Punishte", "Dysheme industriale"]
+  },
+  "facto-hd41-cleanmax": {
+    "description": "Pastrues industrial jashtëzakonisht i fortë.",
+    "applications": ["Pastrim i rëndë industrial"]
+  },
+  "facto-hd43": {
+    "description": "Pastrues industrial i butë.",
+    "applications": ["Pjesë makinerie", "Elektronikë", "Sipërfaqe të ndjeshme"]
+  },
+  "facto-at31": {
+    "description": "Pastrues alkalin pjesësh.",
+    "applications": ["Larje pjesësh", "Pastrim me ultrazë"]
+  },
+  "facto-at30": {
+    "description": "Pastrues për automjete dhe mjete transporti.",
+    "applications": ["Kamionë", "Vetura", "Autobusë", "Trena"]
+  },
+  "e10-neutral": {
+    "description": "Pastrues universal neutral i linjës ekonomike.",
+    "applications": ["Të gjitha sipërfaqet", "Dysheme"]
+  },
+  "e11-orange": {
+    "description": "Pastrues universal me aromë portokalli i linjës ekonomike.",
+    "applications": ["Të gjitha sipërfaqet", "Dysheme"]
+  },
+  "e20-alkali": {
+    "description": "Pastrues alkalin i linjës ekonomike.",
+    "applications": ["Ndotje yndyrore", "Sipërfaqe industriale"]
+  },
+  "e30-acid": {
+    "description": "Pastrues acid i linjës ekonomike.",
+    "applications": ["Instalime sanitare", "Pllaka"]
+  },
+  "e35-gel": {
+    "description": "Xhel acid WC i linjës ekonomike.",
+    "applications": ["Tasa WC"]
+  },
+  "e40-glass": {
+    "description": "Pastrues xhami i linjës ekonomike.",
+    "applications": ["Dritare", "Pasqyra", "Xham"]
+  },
+  "e50-strong": {
+    "description": "Pastrues fuqimisht alkalin i linjës ekonomike.",
+    "applications": ["Zona industriale", "Kuzhina"]
+  }
+}

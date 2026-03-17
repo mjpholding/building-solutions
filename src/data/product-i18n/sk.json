@@ -1,0 +1,322 @@
+{
+  "poly-lock-ultra": {
+    "description": "Špeciálny prostriedok 2 v 1 na impregnáciu a leštenie.",
+    "applications": ["PVC", "Linoleum", "Umelý kameň", "Prírodný kameň"]
+  },
+  "super-clean": {
+    "description": "Univerzálny alkalický silný čistič na vodoodolné povrchy.",
+    "applications": ["Všetky vodoodolné povrchy"]
+  },
+  "office-clean": {
+    "description": "Šetrný čistič na kancelárske povrchy a obrazovky.",
+    "applications": ["Kancelársky nábytok", "Obrazovky", "Telefóny", "Plastové povrchy"]
+  },
+  "glass-clean": {
+    "description": "Čistič skla bez šmúh na okná a zrkadlá.",
+    "applications": ["Okná", "Zrkadlá", "Sklenené plochy", "Vitríny"]
+  },
+  "kling": {
+    "description": "Silný čistič kúpeľní s priľnavou formulou.",
+    "applications": ["Obkladačky", "Armatúry", "Sprchové kúty", "Umývadlá"]
+  },
+  "scale-remover": {
+    "description": "Kyslý čistič na odstraňovanie vodného kameňa.",
+    "applications": ["Armatúry", "Sprchové hlavice", "WC", "Obkladačky"]
+  },
+  "sp-105-nano-clean-shine": {
+    "description": "Ošetrenie podláh s nano technológiou a lesklým efektom.",
+    "applications": ["PVC", "Linoleum", "Kamenné podlahy"]
+  },
+  "sun-up": {
+    "description": "Denný čistič podláh so sviežou vôňou.",
+    "applications": ["Všetky tvrdé podlahy"]
+  },
+  "sunbeam": {
+    "description": "Podlahový čistič s neutrálnym pH pre citlivé povrchy.",
+    "applications": ["Citlivé podlahy", "Mramor", "Terazzo"]
+  },
+  "jet": {
+    "description": "Silne alkalický čistič podláh.",
+    "applications": ["Priemyselné podlahy", "Dielne", "Garáže"]
+  },
+  "duration": {
+    "description": "Vysokolesklý podlahový náter.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "dynasty": {
+    "description": "Prémiový podlahový náter.",
+    "applications": ["PVC", "Linoleum", "Tvrdé podlahy"]
+  },
+  "duke": {
+    "description": "Alkalický základný čistič a odstraňovač náterov.",
+    "applications": ["PVC", "Linoleum", "Kameň"]
+  },
+  "wash-and-shine": {
+    "description": "Čistiaca starostlivosť s lesklým efektom.",
+    "applications": ["Všetky tvrdé podlahy"]
+  },
+  "stone-and-tile": {
+    "description": "Špeciálny čistič na jemnú kameninu a prírodný kameň.",
+    "applications": ["Jemná kamenina", "Prírodný kameň", "Obkladačky"]
+  },
+  "sp-120-floor-active": {
+    "description": "Aktívny čistič podláh pre silno zaťažované plochy.",
+    "applications": ["Všetky tvrdé podlahy", "Silno znečistené podlahy"]
+  },
+  "sp-110-wood-floor-cleaner": {
+    "description": "Špeciálny čistič na drevené podlahy a parkety.",
+    "applications": ["Parkety", "Drevené podlahy", "Laminát"]
+  },
+  "sp-100-floral": {
+    "description": "Neutrálny údržbový čistič s kvetinovou vôňou.",
+    "applications": ["Všetky tvrdé podlahy"]
+  },
+  "sp-100-citro": {
+    "description": "Neutrálny údržbový čistič s citrónovou vôňou.",
+    "applications": ["Všetky tvrdé podlahy"]
+  },
+  "sp-150-gres-cleaner": {
+    "description": "Kyslý čistič na jemnú kameninu a gres.",
+    "applications": ["Jemná kamenina", "Gres", "Obkladačky"]
+  },
+  "extreme": {
+    "description": "Extrémne silný alkalický základný čistič.",
+    "applications": ["Priemyselné podlahy", "Dielne"]
+  },
+  "winterinse": {
+    "description": "Čistič na odstraňovanie zvyškov soli.",
+    "applications": ["Vstupné priestory", "Chodby", "Všetky tvrdé podlahy"]
+  },
+  "tried-n-true": {
+    "description": "Osvedčený univerzálny čistič podláh.",
+    "applications": ["Všetky tvrdé podlahy"]
+  },
+  "swish-strip": {
+    "description": "Odstraňovač polymérových náterov.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "liberty": {
+    "description": "Alkalický základný čistič s odmasťovacou silou.",
+    "applications": ["Všetky tvrdé podlahy", "Mastné znečistenie"]
+  },
+  "es99-impregnator-sealer": {
+    "description": "Impregnácia pre pórovité podlahy.",
+    "applications": ["Betón", "Prírodný kameň", "Terazzo"]
+  },
+  "anti-stat-floor-finish": {
+    "description": "Antistatický podlahový náter.",
+    "applications": ["Serverovne", "Laboratóriá", "Výroba elektroniky"]
+  },
+  "es89-blockade-concrete-sealer": {
+    "description": "Betónové tesnenie.",
+    "applications": ["Betón", "Garáže", "Skladové haly"]
+  },
+  "eternity": {
+    "description": "Dlhotrvajúci prémiový podlahový náter.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "es94-burnishing-cream": {
+    "description": "Leštiaci krém na polymérové podlahové nátery.",
+    "applications": ["Podlahy s polymérnym náterom"]
+  },
+  "sp-350-acid-cleaner": {
+    "description": "Kyslý čistič na jemnú kameninu.",
+    "applications": ["Jemná kamenina", "Obkladačky", "Kyselinovzdorné povrchy"]
+  },
+  "sani-clean": {
+    "description": "Kyslý sanitárny čistič.",
+    "applications": ["WC", "Umývadlá", "Obkladačky", "Sprchy"]
+  },
+  "sani-foam": {
+    "description": "Penový čistič pre sanitárne zariadenia.",
+    "applications": ["WC", "Sprchové steny", "Obkladačky"]
+  },
+  "sp-360-action-bowl-cleaner": {
+    "description": "Silne kyslý čistič WC.",
+    "applications": ["WC misy", "Pisoáre"]
+  },
+  "sp-300-washroom-cleaner": {
+    "description": "Kyslý čistič umyvární.",
+    "applications": ["Umyvárne", "Sprchy", "Armatúry"]
+  },
+  "tuby": {
+    "description": "WC čistič v stláčacej fľaši.",
+    "applications": ["WC misy", "Pisoáre"]
+  },
+  "descaler": {
+    "description": "Profesionálny odstraňovač vodného kameňa.",
+    "applications": ["Umývačky riadu", "Kávovary", "Bojlery"]
+  },
+  "fresh-air-nectarine": {
+    "description": "Osviežovač vzduchu s vôňou nektárinky.",
+    "applications": ["Všetky miestnosti", "Sanitárne zariadenia", "Kancelárie"]
+  },
+  "aromx-35": {
+    "description": "Neutralizátor zápachu.",
+    "applications": ["Všetky miestnosti"]
+  },
+  "aromx-60": {
+    "description": "Vysokokoncentrovaný ničiteľ zápachu.",
+    "applications": ["Komerčné priestory", "Miestnosti na odpad"]
+  },
+  "aromx-76": {
+    "description": "Univerzálny čistič s neutralizáciou zápachu.",
+    "applications": ["Podlahy", "Povrchy", "Sanitár"]
+  },
+  "aromx-80": {
+    "description": "Čistič kobercov s neutralizáciou zápachu.",
+    "applications": ["Koberce", "Textilné podlahoviny"]
+  },
+  "aromx-81": {
+    "description": "Čistič na sprchové extrakčné čistenie kobercov.",
+    "applications": ["Koberce", "Čalúnenie"]
+  },
+  "essence-magic-garden": {
+    "description": "Vonná esencia so záhradnou vôňou.",
+    "applications": ["Aromatizácia priestorov", "Lobby", "Vstupné priestory"]
+  },
+  "essence-magic-fruit": {
+    "description": "Vonná esencia s ovocnou notou.",
+    "applications": ["Aromatizácia priestorov", "Kancelárie", "Hotely"]
+  },
+  "essence-herbal-therapy": {
+    "description": "Vonná esencia s bylinnou vôňou.",
+    "applications": ["Aromatizácia priestorov", "Wellness", "Čakárne"]
+  },
+  "de-grease": {
+    "description": "Silný odmasťovač.",
+    "applications": ["Kuchyňa", "Digestory", "Gril", "Priemyselné povrchy"]
+  },
+  "nano-glass": {
+    "description": "Nano ochrana skla.",
+    "applications": ["Sprchové kúty", "Okná", "Sklenené fasády"]
+  },
+  "stainless-steel-cleaner": {
+    "description": "Čistič nehrdzavejúcej ocele.",
+    "applications": ["Nerezové spotrebiče", "Výťahy", "Gastro zariadenia"]
+  },
+  "stainless-steel-polish": {
+    "description": "Leštidlo na nehrdzavejúcu oceľ.",
+    "applications": ["Nehrdzavejúca oceľ", "Chróm", "Hliník"]
+  },
+  "powerhouse": {
+    "description": "Univerzálny silný čistič.",
+    "applications": ["Všetky povrchy", "Priemyselné čistenie"]
+  },
+  "powershine": {
+    "description": "Čistič s lesklým efektom.",
+    "applications": ["Nábytok", "Plast", "Nehrdzavejúca oceľ"]
+  },
+  "sparkle": {
+    "description": "Sprejový čistič na sklo a hladké povrchy.",
+    "applications": ["Sklo", "Zrkadlá", "Hladké povrchy"]
+  },
+  "citro-gleam": {
+    "description": "Alkalický čistič s citrónovou vôňou.",
+    "applications": ["Kuchyňa", "Priemyselné povrchy"]
+  },
+  "miracle": {
+    "description": "Viacúčelový silný čistič na atrament, lepidlo, farbu.",
+    "applications": ["Atrament", "Lepidlo", "Farba", "Graffiti"]
+  },
+  "liquid-soap": {
+    "description": "Jemné tekuté mydlo.",
+    "applications": ["Umývanie rúk", "Umyvárne"]
+  },
+  "stain-remover": {
+    "description": "Odstraňovač škvŕn na koberce.",
+    "applications": ["Koberce", "Čalúnený nábytok", "Textílie"]
+  },
+  "es93-encapsulation-cleaner": {
+    "description": "Enkapsulačný čistič kobercov.",
+    "applications": ["Koberce", "Kobercové dlaždice"]
+  },
+  "plush": {
+    "description": "Šampón na koberce pre sprchové extrakčné čistenie.",
+    "applications": ["Koberce", "Kobercové podlahy"]
+  },
+  "quato-78-professional": {
+    "description": "Profesionálny plošný dezinfekčný prostriedok.",
+    "applications": ["Všetky povrchy", "Zdravotnícke zariadenia", "Gastronómia"]
+  },
+  "quato-78-professional-rtu": {
+    "description": "Dezinfekčný prostriedok pripravený na použitie.",
+    "applications": ["Rýchla dezinfekcia", "Menšie plochy", "Kontaktné body"]
+  },
+  "food-service-rtu": {
+    "description": "Čistič pripravený na použitie pre potravinársky sektor.",
+    "applications": ["Kuchynské povrchy", "Dosky na krájanie", "Pracovné plochy"]
+  },
+  "food-service-concentrate": {
+    "description": "Čistiaci koncentrát pre gastronómiu.",
+    "applications": ["Veľkokuchyne", "Potravinárska výroba"]
+  },
+  "quato-44": {
+    "description": "Prostriedok na umývanie riadu s dezinfekčným účinkom.",
+    "applications": ["Riad", "Poháre", "Príbory"]
+  },
+  "grill-and-oven": {
+    "description": "Čistič na grily, rúry a fritézy.",
+    "applications": ["Grily", "Rúry", "Fritézy"]
+  },
+  "facto-pm20": {
+    "description": "Kyslý čistič pre potravinársky priemysel.",
+    "applications": ["Mliekarne", "Pivovary", "Potrubia"]
+  },
+  "hardwater-rinse": {
+    "description": "Oplachový prostriedok pre priemyselné umývačky riadu.",
+    "applications": ["Umývačky riadu"]
+  },
+  "hardwater-detergent": {
+    "description": "Umývací prostriedok pre priemyselné umývačky riadu.",
+    "applications": ["Umývačky riadu"]
+  },
+  "facto-hd40": {
+    "description": "Priemyselný silný čistič.",
+    "applications": ["Stroje", "Dielne", "Priemyselné podlahy"]
+  },
+  "facto-hd41-cleanmax": {
+    "description": "Extrémne silný priemyselný čistič.",
+    "applications": ["Ťažké priemyselné čistenie"]
+  },
+  "facto-hd43": {
+    "description": "Šetrný priemyselný čistič.",
+    "applications": ["Strojné diely", "Elektronika", "Citlivé povrchy"]
+  },
+  "facto-at31": {
+    "description": "Alkalický čistič dielov.",
+    "applications": ["Umývanie dielov", "Ultrazvukové čistenie"]
+  },
+  "facto-at30": {
+    "description": "Čistič na vozidlá a dopravné prostriedky.",
+    "applications": ["Nákladné vozidlá", "Osobné vozidlá", "Autobusy", "Vlaky"]
+  },
+  "e10-neutral": {
+    "description": "Neutrálny univerzálny čistič ekonomickej rady.",
+    "applications": ["Všetky povrchy", "Podlahy"]
+  },
+  "e11-orange": {
+    "description": "Univerzálny čistič s pomarančovou vôňou ekonomickej rady.",
+    "applications": ["Všetky povrchy", "Podlahy"]
+  },
+  "e20-alkali": {
+    "description": "Alkalický čistič ekonomickej rady.",
+    "applications": ["Mastné znečistenie", "Priemyselné povrchy"]
+  },
+  "e30-acid": {
+    "description": "Kyslý čistič ekonomickej rady.",
+    "applications": ["Sanitárne zariadenia", "Obkladačky"]
+  },
+  "e35-gel": {
+    "description": "Kyslý WC gél ekonomickej rady.",
+    "applications": ["WC misy"]
+  },
+  "e40-glass": {
+    "description": "Čistič skla ekonomickej rady.",
+    "applications": ["Okná", "Zrkadlá", "Sklo"]
+  },
+  "e50-strong": {
+    "description": "Silne alkalický čistič ekonomickej rady.",
+    "applications": ["Priemyselné priestory", "Kuchyne"]
+  }
+}

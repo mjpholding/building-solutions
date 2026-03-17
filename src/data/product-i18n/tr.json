@@ -1,0 +1,322 @@
+{
+  "poly-lock-ultra": {
+    "description": "Emprenye ve parlaklık kazandırma için 2'si 1 arada özel ürün. Yüksek parlaklıkta dayanıklı bir koruyucu tabaka oluşturur.",
+    "applications": ["PVC", "Linoleum", "Yapay taş", "Doğal taş"]
+  },
+  "super-clean": {
+    "description": "Suya dayanıklı tüm yüzeyler için universal alkalin güçlü temizleyici.",
+    "applications": ["Suya dayanıklı tüm yüzeyler"]
+  },
+  "office-clean": {
+    "description": "Ofis yüzeyleri, masalar, telefonlar ve ekranlar için nazik temizleyici.",
+    "applications": ["Ofis mobilyaları", "Ekranlar", "Telefonlar", "Plastik yüzeyler"]
+  },
+  "glass-clean": {
+    "description": "Pencereler, aynalar ve tüm cam yüzeyler için iz bırakmayan cam temizleyici.",
+    "applications": ["Pencereler", "Aynalar", "Cam yüzeyler", "Vitrinler"]
+  },
+  "kling": {
+    "description": "Dikey yüzeyler için yapışkan formüllü güçlü banyo temizleyici.",
+    "applications": ["Fayanslar", "Armatürler", "Duş kabinleri", "Lavabolar"]
+  },
+  "scale-remover": {
+    "description": "Kireç ve mineral birikintilerini gidermek için yüksek konsantrasyonlu asidik temizleyici.",
+    "applications": ["Armatürler", "Duş başlıkları", "Tuvalet", "Fayanslar"]
+  },
+  "sp-105-nano-clean-shine": {
+    "description": "Temizleme ve parlaklık etkili nano teknoloji zemin bakımı.",
+    "applications": ["PVC", "Linoleum", "Taş zeminler"]
+  },
+  "sun-up": {
+    "description": "Ferah kokulu günlük zemin temizleyici.",
+    "applications": ["Tüm sert zeminler"]
+  },
+  "sunbeam": {
+    "description": "Hassas yüzeyler için nötr pH zemin temizleyici.",
+    "applications": ["Hassas zeminler", "Mermer", "Terrazzo"]
+  },
+  "jet": {
+    "description": "İnatçı kirler için güçlü alkalin zemin temizleyici.",
+    "applications": ["Endüstriyel zeminler", "Atölyeler", "Garajlar"]
+  },
+  "duration": {
+    "description": "Uzun ömürlü yüksek parlaklıkta zemin kaplaması.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "dynasty": {
+    "description": "En yüksek talepler için premium zemin kaplaması.",
+    "applications": ["PVC", "Linoleum", "Sert zeminler"]
+  },
+  "duke": {
+    "description": "Zeminler için alkalin temel temizleyici ve kaplama sökücü.",
+    "applications": ["PVC", "Linoleum", "Taş"]
+  },
+  "wash-and-shine": {
+    "description": "Tek işlemde parlaklık etkili nemli silme bakımı.",
+    "applications": ["Tüm sert zeminler"]
+  },
+  "stone-and-tile": {
+    "description": "Porselen karo, doğal taş ve fayans için özel temizleyici.",
+    "applications": ["Porselen karo", "Doğal taş", "Fayanslar"]
+  },
+  "sp-120-floor-active": {
+    "description": "Yoğun kullanılan alanlar için aktif zemin temizleyici.",
+    "applications": ["Tüm sert zeminler", "Yoğun kirli zeminler"]
+  },
+  "sp-110-wood-floor-cleaner": {
+    "description": "Ahşap zeminler ve parke için özel temizleyici.",
+    "applications": ["Parke", "Ahşap zeminler", "Laminat"]
+  },
+  "sp-100-floral": {
+    "description": "Çiçek kokulu nötr bakım temizleyici.",
+    "applications": ["Tüm sert zeminler"]
+  },
+  "sp-100-citro": {
+    "description": "Narenciye kokulu nötr bakım temizleyici.",
+    "applications": ["Tüm sert zeminler"]
+  },
+  "sp-150-gres-cleaner": {
+    "description": "Porselen karo ve gres fayanslar için asidik temizleyici.",
+    "applications": ["Porselen karo", "Gres", "Fayanslar"]
+  },
+  "extreme": {
+    "description": "Endüstriyel zeminler için aşırı güçlü alkalin temel temizleyici.",
+    "applications": ["Endüstriyel zeminler", "Atölyeler"]
+  },
+  "winterinse": {
+    "description": "Tuz kalıntılarını gidermek için özel temizleyici.",
+    "applications": ["Giriş alanları", "Koridorlar", "Tüm sert zeminler"]
+  },
+  "tried-n-true": {
+    "description": "Günlük temizlik için kanıtlanmış universal zemin temizleyici.",
+    "applications": ["Tüm sert zeminler"]
+  },
+  "swish-strip": {
+    "description": "Polimer kaplamalar için kaplama sökücü.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "liberty": {
+    "description": "Güçlü yağ çözme gücüne sahip alkalin temel temizleyici.",
+    "applications": ["Tüm sert zeminler", "Yağlı kirler"]
+  },
+  "es99-impregnator-sealer": {
+    "description": "Gözenekli zeminler için emprenye ve mühürleme.",
+    "applications": ["Beton", "Doğal taş", "Terrazzo"]
+  },
+  "anti-stat-floor-finish": {
+    "description": "Antistatik zemin kaplaması.",
+    "applications": ["Sunucu odaları", "Laboratuvarlar", "Elektronik üretimi"]
+  },
+  "es89-blockade-concrete-sealer": {
+    "description": "Beton zeminlerin korunması için beton mühürleyici.",
+    "applications": ["Beton", "Garajlar", "Depolar"]
+  },
+  "eternity": {
+    "description": "Aşırı çizilme direncine sahip uzun ömürlü premium zemin kaplaması.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "es94-burnishing-cream": {
+    "description": "Polimer kaplamalı zeminler için cilalama kremi.",
+    "applications": ["Polimer kaplamalı zeminler"]
+  },
+  "sp-350-acid-cleaner": {
+    "description": "Porselen karo için asidik temizleyici. Kireç ve çimento kalıntılarını giderir.",
+    "applications": ["Porselen karo", "Fayanslar", "Aside dayanıklı yüzeyler"]
+  },
+  "sani-clean": {
+    "description": "Tuvalet, lavabo ve fayanslar için asidik banyo temizleyici.",
+    "applications": ["Tuvalet", "Lavabolar", "Fayanslar", "Duşlar"]
+  },
+  "sani-foam": {
+    "description": "Banyo tesisatı için köpük temizleyici.",
+    "applications": ["Tuvalet", "Duş kabinleri", "Fayanslar"]
+  },
+  "sp-360-action-bowl-cleaner": {
+    "description": "Kenar altı etkili güçlü asidik tuvalet temizleyici.",
+    "applications": ["Tuvalet taşları", "Pisuvarlar"]
+  },
+  "sp-300-washroom-cleaner": {
+    "description": "Günlük banyo hijyeni için asidik yıkama odası temizleyici.",
+    "applications": ["Yıkama odaları", "Duşlar", "Armatürler"]
+  },
+  "tuby": {
+    "description": "Sıkılabilir şişede özel tuvalet temizleyici.",
+    "applications": ["Tuvalet taşları", "Pisuvarlar"]
+  },
+  "descaler": {
+    "description": "Bulaşık makineleri ve kahve makineleri için profesyonel kireç çözücü.",
+    "applications": ["Bulaşık makineleri", "Kahve makineleri", "Boylerler"]
+  },
+  "fresh-air-nectarine": {
+    "description": "Nektarin kokulu oda spreyi.",
+    "applications": ["Tüm odalar", "Banyo tesisatı", "Ofisler"]
+  },
+  "aromx-35": {
+    "description": "Hoş kokulu koku nötrleştirici.",
+    "applications": ["Tüm odalar"]
+  },
+  "aromx-60": {
+    "description": "Ticari alanlar için yüksek konsantrasyonlu koku giderici.",
+    "applications": ["Ticari alanlar", "Çöp odaları"]
+  },
+  "aromx-76": {
+    "description": "Koku nötrleştirmeli çok amaçlı temizleyici.",
+    "applications": ["Zeminler", "Yüzeyler", "Banyo"]
+  },
+  "aromx-80": {
+    "description": "Koku nötrleştirmeli halı temizleyici.",
+    "applications": ["Halılar", "Tekstil kaplamalar"]
+  },
+  "aromx-81": {
+    "description": "Koku nötrleştirmeli halılar için sprey ekstraksiyon temizleyici.",
+    "applications": ["Halılar", "Döşemeler"]
+  },
+  "essence-magic-garden": {
+    "description": "Oda koku sistemleri için bahçe kokulu koku esansı.",
+    "applications": ["Oda kokulandırma", "Lobi", "Giriş alanları"]
+  },
+  "essence-magic-fruit": {
+    "description": "Oda koku sistemleri için meyvemsi notaya sahip koku esansı.",
+    "applications": ["Oda kokulandırma", "Ofisler", "Oteller"]
+  },
+  "essence-herbal-therapy": {
+    "description": "Bitkisel terapi kokulu koku esansı.",
+    "applications": ["Oda kokulandırma", "Wellness", "Bekleme odaları"]
+  },
+  "de-grease": {
+    "description": "Sprey uygulama olarak güçlü yağ çözücü.",
+    "applications": ["Mutfak", "Davlumbazlar", "Izgara", "Endüstriyel yüzeyler"]
+  },
+  "nano-glass": {
+    "description": "Uzun süreli temizlik için nano cam koruyucu.",
+    "applications": ["Duş kabinleri", "Pencereler", "Cam cepheler"]
+  },
+  "stainless-steel-cleaner": {
+    "description": "Paslanmaz çelik yüzeyler için özel temizleyici.",
+    "applications": ["Paslanmaz çelik cihazlar", "Asansörler", "Gastronomi cihazları"]
+  },
+  "stainless-steel-polish": {
+    "description": "Parlak yüzeyler için paslanmaz çelik cilası.",
+    "applications": ["Paslanmaz çelik", "Krom", "Alüminyum"]
+  },
+  "powerhouse": {
+    "description": "En inatçı kirler için çok amaçlı güçlü temizleyici.",
+    "applications": ["Tüm yüzeyler", "Endüstriyel temizlik"]
+  },
+  "powershine": {
+    "description": "Tüm yüzeyler için parlaklık etkili temizleyici.",
+    "applications": ["Mobilyalar", "Plastik", "Paslanmaz çelik"]
+  },
+  "sparkle": {
+    "description": "Cam ve pürüzsüz yüzeyler için universal sprey temizleyici.",
+    "applications": ["Cam", "Aynalar", "Pürüzsüz yüzeyler"]
+  },
+  "citro-gleam": {
+    "description": "Narenciye kokulu güçlü alkalin temizleyici.",
+    "applications": ["Mutfak", "Endüstriyel yüzeyler"]
+  },
+  "miracle": {
+    "description": "Mürekkep, yapıştırıcı ve boya için çok amaçlı güçlü temizleyici.",
+    "applications": ["Mürekkep", "Yapıştırıcı", "Boya", "Grafiti"]
+  },
+  "liquid-soap": {
+    "description": "El yıkama dispenserleri için yumuşak sıvı sabun.",
+    "applications": ["El yıkama", "Yıkama odaları"]
+  },
+  "stain-remover": {
+    "description": "Halılar ve tekstiller için leke çıkarıcı.",
+    "applications": ["Halılar", "Döşemeli mobilyalar", "Tekstiller"]
+  },
+  "es93-encapsulation-cleaner": {
+    "description": "Enkapsülasyon halı temizleyici.",
+    "applications": ["Halılar", "Halı karoları"]
+  },
+  "plush": {
+    "description": "Sprey ekstraksiyon temizliği için halı şampuanı.",
+    "applications": ["Halılar", "Halı zeminler"]
+  },
+  "quato-78-professional": {
+    "description": "Profesyonel yüzey dezenfektanı.",
+    "applications": ["Tüm yüzeyler", "Sağlık tesisleri", "Gastronomi"]
+  },
+  "quato-78-professional-rtu": {
+    "description": "Kullanıma hazır yüzey dezenfektanı.",
+    "applications": ["Hızlı dezenfeksiyon", "Küçük alanlar", "Temas noktaları"]
+  },
+  "food-service-rtu": {
+    "description": "Gıda alanı için kullanıma hazır temizleyici.",
+    "applications": ["Mutfak yüzeyleri", "Kesme tahtaları", "Çalışma yüzeyleri"]
+  },
+  "food-service-concentrate": {
+    "description": "Gastronomi ve gıda endüstrisi için temizlik konsantresi.",
+    "applications": ["Büyük mutfaklar", "Gıda üretimi"]
+  },
+  "quato-44": {
+    "description": "Dezenfeksiyon etkili bulaşık deterjanı.",
+    "applications": ["Tabaklar", "Bardaklar", "Çatal bıçaklar"]
+  },
+  "grill-and-oven": {
+    "description": "Izgaralar, fırınlar ve fritözler için özel temizleyici.",
+    "applications": ["Izgaralar", "Fırınlar", "Fritözler"]
+  },
+  "facto-pm20": {
+    "description": "Gıda endüstrisi için asidik temizleyici.",
+    "applications": ["Süt fabrikaları", "Bira fabrikaları", "Boru hatları"]
+  },
+  "hardwater-rinse": {
+    "description": "Ticari bulaşık makineleri için asidik parlaklaştırıcı.",
+    "applications": ["Bulaşık makineleri"]
+  },
+  "hardwater-detergent": {
+    "description": "Ticari makineler için yüksek alkalin bulaşık deterjanı.",
+    "applications": ["Bulaşık makineleri"]
+  },
+  "facto-hd40": {
+    "description": "Makineler ve atölye alanları için endüstriyel güçlü temizleyici.",
+    "applications": ["Makineler", "Atölyeler", "Endüstriyel zeminler"]
+  },
+  "facto-hd41-cleanmax": {
+    "description": "En ağır kirler için aşırı güçlü endüstriyel temizleyici.",
+    "applications": ["Ağır endüstriyel temizlik"]
+  },
+  "facto-hd43": {
+    "description": "Hassas makine parçaları için nazik endüstriyel temizleyici.",
+    "applications": ["Makine parçaları", "Elektronik", "Hassas yüzeyler"]
+  },
+  "facto-at31": {
+    "description": "Endüstriyel parça yıkama için alkalin parça temizleyici.",
+    "applications": ["Parça yıkama", "Ultrasonik temizlik"]
+  },
+  "facto-at30": {
+    "description": "Araçlar ve ulaşım araçları için özel temizleyici.",
+    "applications": ["Kamyonlar", "Otomobiller", "Otobüsler", "Trenler"]
+  },
+  "e10-neutral": {
+    "description": "Economy serisinin nötr universal temizleyicisi.",
+    "applications": ["Tüm yüzeyler", "Zeminler"]
+  },
+  "e11-orange": {
+    "description": "Economy serisinin portakal kokulu universal temizleyicisi.",
+    "applications": ["Tüm yüzeyler", "Zeminler"]
+  },
+  "e20-alkali": {
+    "description": "Economy serisinin alkalin temizleyicisi.",
+    "applications": ["Yağlı kirler", "Endüstriyel yüzeyler"]
+  },
+  "e30-acid": {
+    "description": "Economy serisinin asidik temizleyicisi.",
+    "applications": ["Banyo tesisatı", "Fayanslar"]
+  },
+  "e35-gel": {
+    "description": "Economy serisinin asidik tuvalet jeli.",
+    "applications": ["Tuvalet taşları"]
+  },
+  "e40-glass": {
+    "description": "Economy serisinin cam temizleyicisi.",
+    "applications": ["Pencereler", "Aynalar", "Cam"]
+  },
+  "e50-strong": {
+    "description": "Economy serisinin güçlü alkalin temizleyicisi.",
+    "applications": ["Endüstriyel alanlar", "Mutfaklar"]
+  }
+}

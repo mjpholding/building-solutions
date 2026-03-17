@@ -1,0 +1,322 @@
+{
+  "poly-lock-ultra": {
+    "description": "Preparat specjalistyczny 2w1 do impregnacji i nadawania połysku. Tworzy bardzo trwałą warstwę ochronną o wysokim połysku. Opatentowana formuła, odporna na środki dezynfekcyjne, właściwości antypoślizgowe.",
+    "applications": ["PVC", "Linoleum", "Kamień sztuczny", "Kamień naturalny"]
+  },
+  "super-clean": {
+    "description": "Uniwersalny alkaliczny środek czyszczący o dużej mocy do wszystkich powierzchni wodoodpornych. Usuwa uporczywe zabrudzenia, takie jak tłuszcz, sadza i osady nikotynowe.",
+    "applications": ["Wszystkie powierzchnie wodoodporne"]
+  },
+  "office-clean": {
+    "description": "Delikatny środek czyszczący do powierzchni biurowych, biurek, telefonów i ekranów. Działanie antystatyczne, nie pozostawia smug.",
+    "applications": ["Meble biurowe", "Ekrany", "Telefony", "Powierzchnie z tworzyw sztucznych"]
+  },
+  "glass-clean": {
+    "description": "Środek do mycia szkła nie pozostawiający smug, do okien, luster, witryn i wszystkich powierzchni szklanych. Szybkoschnący z formułą zapobiegającą powstawaniu zacieków.",
+    "applications": ["Okna", "Lustra", "Powierzchnie szklane", "Witryny"]
+  },
+  "kling": {
+    "description": "Silny środek do czyszczenia łazienek ze specjalną formułą przylegającą do powierzchni pionowych. Przylega do ścian i armatury, zapewniając maksymalny czas działania.",
+    "applications": ["Płytki", "Armatura", "Kabiny prysznicowe", "Umywalki"]
+  },
+  "scale-remover": {
+    "description": "Wysoko skoncentrowany kwaśny środek czyszczący do usuwania uporczywych osadów wapiennych i mineralnych. Do urządzeń sanitarnych i sprzętu kuchennego.",
+    "applications": ["Armatura", "Słuchawki prysznicowe", "WC", "Płytki"]
+  },
+  "sp-105-nano-clean-shine": {
+    "description": "Pielęgnacja podłóg w technologii nano z efektem czyszczenia i nabłyszczania w jednym cyklu roboczym.",
+    "applications": ["PVC", "Linoleum", "Podłogi kamienne"]
+  },
+  "sun-up": {
+    "description": "Codzienny środek do mycia podłóg o świeżym zapachu. Pozostawia czyste, lśniące podłogi bez osadów.",
+    "applications": ["Wszystkie podłogi twarde"]
+  },
+  "sunbeam": {
+    "description": "Środek do mycia podłóg o neutralnym pH do wrażliwych powierzchni. Delikatne czyszczenie bez naruszania powłoki.",
+    "applications": ["Wrażliwe podłogi", "Marmur", "Lastryko"]
+  },
+  "jet": {
+    "description": "Silnie alkaliczny środek do mycia podłóg do uporczywych zabrudzeń. Usuwa tłuszcz, olej i wdeptany brud.",
+    "applications": ["Podłogi przemysłowe", "Warsztaty", "Garaże"]
+  },
+  "duration": {
+    "description": "Wysokopołyskowa powłoka podłogowa o długiej trwałości. Odporna na intensywną eksploatację.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "dynasty": {
+    "description": "Powłoka podłogowa klasy premium o najwyższych parametrach. Ekstremalnie odporna i błyszcząca.",
+    "applications": ["PVC", "Linoleum", "Podłogi twarde"]
+  },
+  "duke": {
+    "description": "Wydajny alkaliczny środek do gruntownego czyszczenia i usuwania powłok polimerowych z podłóg.",
+    "applications": ["PVC", "Linoleum", "Kamień"]
+  },
+  "wash-and-shine": {
+    "description": "Środek myjąco-pielęgnujący z efektem połysku. Czyści i pielęgnuje w jednym cyklu roboczym.",
+    "applications": ["Wszystkie podłogi twarde"]
+  },
+  "stone-and-tile": {
+    "description": "Specjalistyczny środek czyszczący do gresu, kamienia naturalnego i płytek. Delikatny dla materiału z głębokim działaniem.",
+    "applications": ["Gres", "Kamień naturalny", "Płytki"]
+  },
+  "sp-120-floor-active": {
+    "description": "Aktywny środek do mycia podłóg do intensywnie eksploatowanych powierzchni o wzmożonej sile czyszczenia.",
+    "applications": ["Wszystkie podłogi twarde", "Silnie zabrudzone podłogi"]
+  },
+  "sp-110-wood-floor-cleaner": {
+    "description": "Specjalistyczny środek czyszczący do podłóg drewnianych i parkietu. Pielęgnuje i chroni naturalną powierzchnię drewna.",
+    "applications": ["Parkiet", "Podłogi drewniane", "Laminat"]
+  },
+  "sp-100-floral": {
+    "description": "Neutralny środek do bieżącego utrzymania czystości o przyjemnym kwiatowym zapachu do codziennej pielęgnacji podłóg.",
+    "applications": ["Wszystkie podłogi twarde"]
+  },
+  "sp-100-citro": {
+    "description": "Neutralny środek do bieżącego utrzymania czystości o świeżym cytrusowym zapachu do codziennej pielęgnacji podłóg.",
+    "applications": ["Wszystkie podłogi twarde"]
+  },
+  "sp-150-gres-cleaner": {
+    "description": "Kwaśny środek czyszczący przeznaczony specjalnie do gresu i płytek gresowych. Usuwa zamleczenia cementowe i osady wapienne.",
+    "applications": ["Gres", "Gres porcelanowy", "Płytki"]
+  },
+  "extreme": {
+    "description": "Ekstremalnie silny alkaliczny środek do gruntownego czyszczenia silnie zabrudzonych podłóg przemysłowych.",
+    "applications": ["Podłogi przemysłowe", "Warsztaty"]
+  },
+  "winterinse": {
+    "description": "Specjalistyczny środek do usuwania osadów solnych i zabrudzeń zimowych. Chroni podłogi przed uszkodzeniami solnymi.",
+    "applications": ["Strefy wejściowe", "Korytarze", "Wszystkie podłogi twarde"]
+  },
+  "tried-n-true": {
+    "description": "Sprawdzony uniwersalny środek do mycia podłóg do codziennego bieżącego utrzymania czystości wszystkich podłóg twardych.",
+    "applications": ["Wszystkie podłogi twarde"]
+  },
+  "swish-strip": {
+    "description": "Wydajny środek do usuwania powłok polimerowych z podłóg.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "liberty": {
+    "description": "Alkaliczny środek do gruntownego czyszczenia o silnym działaniu odtłuszczającym do podłóg i powierzchni.",
+    "applications": ["Wszystkie podłogi twarde", "Zabrudzenia tłuszczowe"]
+  },
+  "es99-impregnator-sealer": {
+    "description": "Impregnat i uszczelniacz do porowatych podłóg. Chroni przed wnikaniem brudu i wilgoci.",
+    "applications": ["Beton", "Kamień naturalny", "Lastryko"]
+  },
+  "anti-stat-floor-finish": {
+    "description": "Antystatyczna powłoka podłogowa zapobiegająca ładunkom elektrostatycznym.",
+    "applications": ["Serwerownie", "Laboratoria", "Produkcja elektroniki"]
+  },
+  "es89-blockade-concrete-sealer": {
+    "description": "Uszczelniacz do betonu zapewniający ochronę i bezpyłowość podłóg betonowych.",
+    "applications": ["Beton", "Garaże", "Hale magazynowe"]
+  },
+  "eternity": {
+    "description": "Trwała powłoka podłogowa klasy premium o ekstremalnej odporności na zarysowania i ścieranie.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "es94-burnishing-cream": {
+    "description": "Krem polerski do pielęgnacji wysokopołyskowej podłóg z powłoką polimerową za pomocą maszyn wysokoobrotowych.",
+    "applications": ["Podłogi z powłoką polimerową"]
+  },
+  "sp-350-acid-cleaner": {
+    "description": "Kwaśny środek czyszczący do gresu i płytek kwasoodpornych. Usuwa wapień i resztki cementu.",
+    "applications": ["Gres", "Płytki", "Powierzchnie kwasoodporne"]
+  },
+  "sani-clean": {
+    "description": "Kwaśny środek do codziennej pielęgnacji WC, umywalek i płytek w strefach sanitarnych.",
+    "applications": ["WC", "Umywalki", "Płytki", "Prysznice"]
+  },
+  "sani-foam": {
+    "description": "Środek czyszczący w pianie do urządzeń sanitarnych. Przylega do powierzchni pionowych, zapewniając intensywne działanie.",
+    "applications": ["WC", "Ścianki prysznicowe", "Płytki"]
+  },
+  "sp-360-action-bowl-cleaner": {
+    "description": "Silnie kwaśny środek do WC z działaniem pod krawędzią muszli. Usuwa kamień moczowy i osady wapienne.",
+    "applications": ["Muszle WC", "Pisuary"]
+  },
+  "sp-300-washroom-cleaner": {
+    "description": "Kwaśny środek do mycia sanitariatów do codziennej higieny. Działa przeciwko wapieniowi i osadowi z mydła.",
+    "applications": ["Sanitariaty", "Prysznice", "Armatura"]
+  },
+  "tuby": {
+    "description": "Specjalny środek do WC w praktycznej butelce z aplikatorem. Na bazie kwasu do usuwania kamienia moczowego i wapienia.",
+    "applications": ["Muszle WC", "Pisuary"]
+  },
+  "descaler": {
+    "description": "Profesjonalny odkamieniacz do zmywarek, ekspresów do kawy i podgrzewaczy wody.",
+    "applications": ["Zmywarki", "Ekspresy do kawy", "Bojlery"]
+  },
+  "fresh-air-nectarine": {
+    "description": "Odświeżacz powietrza o naturalnym zapachu nektarynki. Długotrwale neutralizuje nieprzyjemne zapachy.",
+    "applications": ["Wszystkie pomieszczenia", "Sanitariaty", "Biura"]
+  },
+  "aromx-35": {
+    "description": "Neutralizator zapachów o przyjemnym zapachu. Eliminuje zapachy zamiast je tylko maskować.",
+    "applications": ["Wszystkie pomieszczenia"]
+  },
+  "aromx-60": {
+    "description": "Wysoko skoncentrowany eliminator zapachów do silnych obciążeń zapachowych w obiektach komercyjnych.",
+    "applications": ["Obiekty komercyjne", "Pomieszczenia na odpady"]
+  },
+  "aromx-76": {
+    "description": "Środek czyszczący ogólnego przeznaczenia z neutralizacją zapachów. Czyści i odświeża w jednym cyklu roboczym.",
+    "applications": ["Podłogi", "Powierzchnie", "Sanitariaty"]
+  },
+  "aromx-80": {
+    "description": "Środek do czyszczenia dywanów z neutralizacją zapachów. Usuwa plamy i neutralizuje zapachy.",
+    "applications": ["Dywany", "Wykładziny tekstylne"]
+  },
+  "aromx-81": {
+    "description": "Środek do ekstrakcji natryskowej dywanów z neutralizacją zapachów i usuwaniem plam.",
+    "applications": ["Dywany", "Tapicerka"]
+  },
+  "essence-magic-garden": {
+    "description": "Esencja zapachowa o świeżym zapachu ogrodu do profesjonalnych systemów aromatyzacji pomieszczeń.",
+    "applications": ["Aromatyzacja pomieszczeń", "Lobby", "Strefy wejściowe"]
+  },
+  "essence-magic-fruit": {
+    "description": "Esencja zapachowa o owocowej nucie do profesjonalnych systemów aromatyzacji pomieszczeń.",
+    "applications": ["Aromatyzacja pomieszczeń", "Biura", "Hotele"]
+  },
+  "essence-herbal-therapy": {
+    "description": "Esencja zapachowa o zapachu terapii ziołowej do profesjonalnej aromatyzacji pomieszczeń.",
+    "applications": ["Aromatyzacja pomieszczeń", "Wellness", "Poczekalnie"]
+  },
+  "de-grease": {
+    "description": "Silny odtłuszczacz w aplikacji natryskowej. Natychmiast usuwa uporczywe osady tłuszczu i oleju.",
+    "applications": ["Kuchnia", "Okapy", "Grille", "Powierzchnie przemysłowe"]
+  },
+  "nano-glass": {
+    "description": "Nano-ochrona szkła zapewniająca długotrwałą czystość. Tworzy niewidoczną warstwę ochronną na szkle.",
+    "applications": ["Kabiny prysznicowe", "Okna", "Fasady szklane"]
+  },
+  "stainless-steel-cleaner": {
+    "description": "Specjalistyczny środek do czyszczenia powierzchni ze stali nierdzewnej. Usuwa odciski palców i ślady wody.",
+    "applications": ["Urządzenia ze stali nierdzewnej", "Windy", "Urządzenia gastronomiczne"]
+  },
+  "stainless-steel-polish": {
+    "description": "Środek do polerowania stali nierdzewnej zapewniający lśniące, chronione powierzchnie. Tworzy warstwę ochronną odpychającą brud.",
+    "applications": ["Stal nierdzewna", "Chrom", "Aluminium"]
+  },
+  "powerhouse": {
+    "description": "Uniwersalny środek czyszczący o dużej mocy do najuporczywszych zabrudzeń na wszystkich powierzchniach wodoodpornych.",
+    "applications": ["Wszystkie powierzchnie", "Czyszczenie przemysłowe"]
+  },
+  "powershine": {
+    "description": "Środek czyszczący z efektem połysku do wszystkich powierzchni. Czyści i nadaje połysk w jednym cyklu roboczym.",
+    "applications": ["Meble", "Tworzywa sztuczne", "Stal nierdzewna"]
+  },
+  "sparkle": {
+    "description": "Uniwersalny środek czyszczący w sprayu do szkła, luster i gładkich powierzchni. Czystość bez smug.",
+    "applications": ["Szkło", "Lustra", "Gładkie powierzchnie"]
+  },
+  "citro-gleam": {
+    "description": "Silnie alkaliczny środek czyszczący o cytrusowym zapachu. Rozpuszcza tłuszcz i uporczywe zabrudzenia.",
+    "applications": ["Kuchnia", "Powierzchnie przemysłowe"]
+  },
+  "miracle": {
+    "description": "Wielofunkcyjny środek czyszczący o dużej mocy do szczególnie uporczywych zabrudzeń, takich jak tusz, klej i farba.",
+    "applications": ["Tusz", "Klej", "Farba", "Graffiti"]
+  },
+  "liquid-soap": {
+    "description": "Delikatne mydło w płynie do dozowników. Przyjazne dla skóry i natłuszczające.",
+    "applications": ["Mycie rąk", "Sanitariaty"]
+  },
+  "stain-remover": {
+    "description": "Odplamiacz do dywanów i tekstylnych wykładzin podłogowych. Usuwa kawę, wino, tusz i inne plamy.",
+    "applications": ["Dywany", "Meble tapicerowane", "Tekstylia"]
+  },
+  "es93-encapsulation-cleaner": {
+    "description": "Środek do czyszczenia dywanów metodą enkapsulacji. Otacza cząsteczki brudu, ułatwiając ich odkurzenie.",
+    "applications": ["Dywany", "Płytki dywanowe"]
+  },
+  "plush": {
+    "description": "Szampon do dywanów do czyszczenia metodą ekstrakcji natryskowej. Głębokie czyszczenie silnie zabrudzonych dywanów.",
+    "applications": ["Dywany", "Wykładziny dywanowe"]
+  },
+  "quato-78-professional": {
+    "description": "Profesjonalny środek do dezynfekcji powierzchni. Skuteczny przeciwko bakteriom, grzybom i wirusom osłonkowym.",
+    "applications": ["Wszystkie powierzchnie", "Placówki medyczne", "Gastronomia"]
+  },
+  "quato-78-professional-rtu": {
+    "description": "Gotowy do użycia środek do dezynfekcji powierzchni. Natychmiast gotowy do zastosowania bez rozcieńczania.",
+    "applications": ["Szybka dezynfekcja", "Mniejsze powierzchnie", "Punkty dotykowe"]
+  },
+  "food-service-rtu": {
+    "description": "Gotowy do użycia środek czyszczący do strefy gastronomicznej. Usuwa tłuszcz i białko bez pozostawiania osadów.",
+    "applications": ["Powierzchnie kuchenne", "Deski do krojenia", "Blaty robocze"]
+  },
+  "food-service-concentrate": {
+    "description": "Koncentrat do czyszczenia w gastronomii i przemyśle spożywczym. Wysoce skuteczny przeciwko tłuszczowi i białku.",
+    "applications": ["Kuchnie przemysłowe", "Produkcja spożywcza"]
+  },
+  "quato-44": {
+    "description": "Środek do ręcznego mycia naczyń o działaniu dezynfekującym do profesjonalnego zmywania ręcznego.",
+    "applications": ["Naczynia", "Szklanki", "Sztućce"]
+  },
+  "grill-and-oven": {
+    "description": "Specjalistyczny środek do czyszczenia grilli, piekarników i frytkownic. Rozpuszcza przypalony tłuszcz i przylegające resztki.",
+    "applications": ["Grille", "Piekarniki", "Frytkownice"]
+  },
+  "facto-pm20": {
+    "description": "Kwaśny środek czyszczący do przemysłu spożywczego. Usuwa kamień wodny i osad mleczny z rurociągów.",
+    "applications": ["Mleczarnie", "Browary", "Rurociągi"]
+  },
+  "hardwater-rinse": {
+    "description": "Kwaśny środek nabłyszczający do przemysłowych zmywarek do naczyń przy twardej wodzie.",
+    "applications": ["Zmywarki przemysłowe"]
+  },
+  "hardwater-detergent": {
+    "description": "Wysoko alkaliczny środek do mycia naczyń w zmywarkach przemysłowych przy twardej wodzie.",
+    "applications": ["Zmywarki przemysłowe"]
+  },
+  "facto-hd40": {
+    "description": "Przemysłowy środek czyszczący o dużej mocy do silnie zabrudzonych maszyn, podłóg i stref warsztatowych.",
+    "applications": ["Maszyny", "Warsztaty", "Podłogi przemysłowe"]
+  },
+  "facto-hd41-cleanmax": {
+    "description": "Ekstremalnie silny środek czyszczący przemysłowy do najcięższych zabrudzeń w produkcji.",
+    "applications": ["Ciężkie czyszczenie przemysłowe"]
+  },
+  "facto-hd43": {
+    "description": "Delikatny środek czyszczący przemysłowy do wrażliwych części maszyn i lżejszych zabrudzeń.",
+    "applications": ["Części maszyn", "Elektronika", "Wrażliwe powierzchnie"]
+  },
+  "facto-at31": {
+    "description": "Alkaliczny środek do mycia części w przemysłowych myjkach. Dokładne odtłuszczanie.",
+    "applications": ["Mycie części", "Czyszczenie ultradźwiękowe"]
+  },
+  "facto-at30": {
+    "description": "Specjalistyczny środek do mycia pojazdów i środków transportu. Usuwa brud drogowy, owady i osad olejowy.",
+    "applications": ["Ciężarówki", "Samochody osobowe", "Autobusy", "Pojazdy szynowe"]
+  },
+  "e10-neutral": {
+    "description": "Neutralny uniwersalny środek czyszczący z linii Economy. Ekonomiczne rozwiązanie do codziennego sprzątania.",
+    "applications": ["Wszystkie powierzchnie", "Podłogi"]
+  },
+  "e11-orange": {
+    "description": "Uniwersalny środek czyszczący o pomarańczowym zapachu. Przyjemny efekt świeżości przy ekonomicznym sprzątaniu.",
+    "applications": ["Wszystkie powierzchnie", "Podłogi"]
+  },
+  "e20-alkali": {
+    "description": "Alkaliczny środek czyszczący z linii Economy. Do silniejszych zabrudzeń i odtłuszczania.",
+    "applications": ["Zabrudzenia tłuszczowe", "Powierzchnie przemysłowe"]
+  },
+  "e30-acid": {
+    "description": "Kwaśny środek czyszczący z linii Economy. Do stref sanitarnych i usuwania kamienia.",
+    "applications": ["Sanitariaty", "Płytki"]
+  },
+  "e35-gel": {
+    "description": "Kwaśny żel do WC z linii Economy. Przylega do muszli WC, zapewniając intensywne czyszczenie.",
+    "applications": ["Muszle WC"]
+  },
+  "e40-glass": {
+    "description": "Środek do mycia szkła z linii Economy. Czyszczenie bez smug okien i powierzchni szklanych.",
+    "applications": ["Okna", "Lustra", "Szkło"]
+  },
+  "e50-strong": {
+    "description": "Silnie alkaliczny środek czyszczący z linii Economy. Do uporczywych zabrudzeń i odtłuszczania.",
+    "applications": ["Obiekty przemysłowe", "Kuchnie"]
+  }
+}

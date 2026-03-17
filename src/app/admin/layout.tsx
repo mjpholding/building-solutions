@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Mail, Type, Package, LogOut, Loader2, ShoppingCart, Euro, Users, Tag, AtSign, CreditCard } from "lucide-react";
+import { LayoutDashboard, Mail, Type, Package, LogOut, Loader2, ShoppingCart, Euro, Users, Tag, AtSign, CreditCard, MessageCircle } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -16,6 +16,7 @@ const navItems = [
   { href: "/admin/texts", label: "Texte", icon: Type },
   { href: "/admin/email-signature", label: "E-Mail-Signatur", icon: AtSign },
   { href: "/admin/business-cards", label: "Visitenkarten", icon: CreditCard },
+  { href: "/admin/chat", label: "Team-Chat", icon: MessageCircle },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -27,14 +28,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       .then((r) => r.json())
       .then((d) => {
         setAuth(d.authenticated);
-        if (!d.authenticated && pathname !== "/admin/login") {
+        if (!d.authenticated && pathname !== "/admin/login" && !pathname.startsWith("/admin/chat")) {
           window.location.href = "/admin/login";
         }
       })
       .catch(() => setAuth(false));
   }, [pathname]);
 
-  if (pathname === "/admin/login") return <>{children}</>;
+  if (pathname === "/admin/login" || pathname === "/admin/chat/login") return <>{children}</>;
 
   if (auth === null) {
     return (
@@ -42,6 +43,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <Loader2 className="w-8 h-8 animate-spin text-gray-400" />
       </div>
     );
+  }
+
+  // Chat pages have their own auth - render without admin sidebar if not admin-authed
+  if (!auth && pathname.startsWith("/admin/chat")) {
+    return <>{children}</>;
   }
 
   if (!auth) return null;

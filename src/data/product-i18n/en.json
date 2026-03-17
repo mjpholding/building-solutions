@@ -1,0 +1,322 @@
+{
+  "poly-lock-ultra": {
+    "description": "2-in-1 specialty product for impregnation and gloss enhancement. Creates a highly durable protective layer with a high-gloss finish. Patented formula, resistant to disinfectants, slip-inhibiting.",
+    "applications": ["PVC", "Linoleum", "Artificial stone", "Natural stone"]
+  },
+  "super-clean": {
+    "description": "Universal alkaline heavy-duty cleaner for all water-resistant surfaces. Removes stubborn soiling such as grease, soot, and nicotine deposits.",
+    "applications": ["All water-resistant surfaces"]
+  },
+  "office-clean": {
+    "description": "Gentle cleaner for office surfaces, desks, telephones, and screens. Antistatic effect, streak-free.",
+    "applications": ["Office furniture", "Screens", "Telephones", "Plastic surfaces"]
+  },
+  "glass-clean": {
+    "description": "Streak-free glass cleaner for windows, mirrors, display cases, and all glass surfaces. Fast-drying with anti-smear formula.",
+    "applications": ["Windows", "Mirrors", "Glass surfaces", "Display cases"]
+  },
+  "kling": {
+    "description": "Powerful bathroom cleaner with a special clinging formula for vertical surfaces. Adheres to walls and fixtures for maximum contact time.",
+    "applications": ["Tiles", "Fixtures", "Shower cabins", "Sinks"]
+  },
+  "scale-remover": {
+    "description": "Highly concentrated acidic cleaner for removing stubborn limescale and mineral deposits. For sanitary facilities and kitchen appliances.",
+    "applications": ["Fixtures", "Shower heads", "Toilets", "Tiles"]
+  },
+  "sp-105-nano-clean-shine": {
+    "description": "Nano-technology floor care with cleaning and gloss effect in a single operation.",
+    "applications": ["PVC", "Linoleum", "Stone floors"]
+  },
+  "sun-up": {
+    "description": "Daily floor cleaner with a fresh fragrance. Leaves clean, glossy floors without residue.",
+    "applications": ["All hard floors"]
+  },
+  "sunbeam": {
+    "description": "Neutral pH floor cleaner for sensitive surfaces. Gentle cleaning without attacking floor coatings.",
+    "applications": ["Sensitive floors", "Marble", "Terrazzo"]
+  },
+  "jet": {
+    "description": "Strongly alkaline floor cleaner for stubborn soiling. Removes grease, oil, and ground-in dirt.",
+    "applications": ["Industrial floors", "Workshops", "Garages"]
+  },
+  "duration": {
+    "description": "High-gloss floor finish with long-lasting durability. Resistant to heavy traffic and wear.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "dynasty": {
+    "description": "Premium floor finish for the highest demands. Extremely durable and glossy.",
+    "applications": ["PVC", "Linoleum", "Hard floors"]
+  },
+  "duke": {
+    "description": "High-performance alkaline deep cleaner and coating remover for floors.",
+    "applications": ["PVC", "Linoleum", "Stone"]
+  },
+  "wash-and-shine": {
+    "description": "Mop care with gloss effect. Cleans and maintains in a single operation.",
+    "applications": ["All hard floors"]
+  },
+  "stone-and-tile": {
+    "description": "Specialty cleaner for porcelain stoneware, natural stone, and tiles. Material-safe with deep-cleaning action.",
+    "applications": ["Porcelain stoneware", "Natural stone", "Tiles"]
+  },
+  "sp-120-floor-active": {
+    "description": "Active floor cleaner for heavily used areas with intensive cleaning power.",
+    "applications": ["All hard floors", "Heavily soiled floors"]
+  },
+  "sp-110-wood-floor-cleaner": {
+    "description": "Specialty cleaner for wooden floors and parquet. Cares for and protects the natural wood surface.",
+    "applications": ["Parquet", "Wooden floors", "Laminate"]
+  },
+  "sp-100-floral": {
+    "description": "Neutral maintenance cleaner with a pleasant floral fragrance for daily floor care.",
+    "applications": ["All hard floors"]
+  },
+  "sp-100-citro": {
+    "description": "Neutral maintenance cleaner with a fresh citrus fragrance for daily floor care.",
+    "applications": ["All hard floors"]
+  },
+  "sp-150-gres-cleaner": {
+    "description": "Acidic cleaner specially formulated for porcelain stoneware and gres tiles. Removes cement haze and limescale deposits.",
+    "applications": ["Porcelain stoneware", "Gres", "Tiles"]
+  },
+  "extreme": {
+    "description": "Extremely strong alkaline cleaner for deep cleaning of heavily soiled industrial floors.",
+    "applications": ["Industrial floors", "Workshops"]
+  },
+  "winterinse": {
+    "description": "Specialty cleaner for removing salt residues and winter soiling. Protects floors from salt damage.",
+    "applications": ["Entrance areas", "Hallways", "All hard floors"]
+  },
+  "tried-n-true": {
+    "description": "Proven universal floor cleaner for daily maintenance cleaning of all hard floors.",
+    "applications": ["All hard floors"]
+  },
+  "swish-strip": {
+    "description": "High-performance coating remover for polymer finishes on floors.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "liberty": {
+    "description": "Alkaline deep cleaner with strong grease-dissolving power for floors and surfaces.",
+    "applications": ["All hard floors", "Grease soiling"]
+  },
+  "es99-impregnator-sealer": {
+    "description": "Impregnation and sealer for porous floors. Protects against penetration of dirt and moisture.",
+    "applications": ["Concrete", "Natural stone", "Terrazzo"]
+  },
+  "anti-stat-floor-finish": {
+    "description": "Antistatic floor finish to prevent electrostatic discharge.",
+    "applications": ["Server rooms", "Laboratories", "Electronics manufacturing"]
+  },
+  "es89-blockade-concrete-sealer": {
+    "description": "Concrete sealer for protection and dust-proofing of concrete floors.",
+    "applications": ["Concrete", "Garages", "Warehouses"]
+  },
+  "eternity": {
+    "description": "Long-lasting premium floor finish with extreme scratch and abrasion resistance.",
+    "applications": ["PVC", "Linoleum", "VCT"]
+  },
+  "es94-burnishing-cream": {
+    "description": "Burnishing cream for high-gloss maintenance of polymer-coated floors using high-speed machines.",
+    "applications": ["Polymer-coated floors"]
+  },
+  "sp-350-acid-cleaner": {
+    "description": "Acidic cleaner for porcelain stoneware and acid-resistant tiles. Removes limescale and cement residues.",
+    "applications": ["Porcelain stoneware", "Tiles", "Acid-resistant surfaces"]
+  },
+  "sani-clean": {
+    "description": "Acidic sanitary cleaner for daily care of toilets, sinks, and tiles in sanitary areas.",
+    "applications": ["Toilets", "Sinks", "Tiles", "Showers"]
+  },
+  "sani-foam": {
+    "description": "Foam cleaner for sanitary facilities. Clings to vertical surfaces for intensive contact time.",
+    "applications": ["Toilets", "Shower walls", "Tiles"]
+  },
+  "sp-360-action-bowl-cleaner": {
+    "description": "Strongly acidic toilet bowl cleaner with under-rim action. Removes urine scale and limescale deposits.",
+    "applications": ["Toilet bowls", "Urinals"]
+  },
+  "sp-300-washroom-cleaner": {
+    "description": "Acidic washroom cleaner for daily sanitary hygiene. Effective against limescale and soap residues.",
+    "applications": ["Washrooms", "Showers", "Fixtures"]
+  },
+  "tuby": {
+    "description": "Specialty toilet cleaner in a practical squeeze bottle. Acid-based for urine scale and limescale.",
+    "applications": ["Toilet bowls", "Urinals"]
+  },
+  "descaler": {
+    "description": "Professional descaler for dishwashers, coffee machines, and hot water appliances.",
+    "applications": ["Dishwashers", "Coffee machines", "Boilers"]
+  },
+  "fresh-air-nectarine": {
+    "description": "Air freshener with natural nectarine fragrance. Neutralizes unpleasant odors with long-lasting effect.",
+    "applications": ["All rooms", "Sanitary facilities", "Offices"]
+  },
+  "aromx-35": {
+    "description": "Odor neutralizer with a pleasant fragrance. Eliminates odors rather than just masking them.",
+    "applications": ["All rooms"]
+  },
+  "aromx-60": {
+    "description": "Highly concentrated odor eliminator for strong odor problems in commercial areas.",
+    "applications": ["Commercial areas", "Waste rooms"]
+  },
+  "aromx-76": {
+    "description": "All-purpose cleaner with odor neutralization. Cleans and freshens in a single operation.",
+    "applications": ["Floors", "Surfaces", "Sanitary"]
+  },
+  "aromx-80": {
+    "description": "Carpet cleaner with odor neutralization. Removes stains and neutralizes odors.",
+    "applications": ["Carpets", "Textile coverings"]
+  },
+  "aromx-81": {
+    "description": "Spray extraction cleaner for carpets with odor neutralization and stain removal.",
+    "applications": ["Carpets", "Upholstery"]
+  },
+  "essence-magic-garden": {
+    "description": "Fragrance essence with a fresh garden scent for professional room scenting systems.",
+    "applications": ["Room scenting", "Lobby", "Entrance areas"]
+  },
+  "essence-magic-fruit": {
+    "description": "Fragrance essence with a fruity note for professional room scenting systems.",
+    "applications": ["Room scenting", "Offices", "Hotels"]
+  },
+  "essence-herbal-therapy": {
+    "description": "Fragrance essence with an herbal therapy scent for professional room scenting.",
+    "applications": ["Room scenting", "Wellness", "Waiting rooms"]
+  },
+  "de-grease": {
+    "description": "Powerful degreaser in spray application. Instantly removes stubborn grease and oil deposits.",
+    "applications": ["Kitchen", "Range hoods", "Grill", "Industrial surfaces"]
+  },
+  "nano-glass": {
+    "description": "Nano glass protection for long-lasting cleanliness. Forms an invisible protective layer on glass.",
+    "applications": ["Shower cabins", "Windows", "Glass facades"]
+  },
+  "stainless-steel-cleaner": {
+    "description": "Specialty cleaner for stainless steel surfaces. Removes fingerprints and water spots.",
+    "applications": ["Stainless steel appliances", "Elevators", "Catering equipment"]
+  },
+  "stainless-steel-polish": {
+    "description": "Stainless steel polish for glossy, protected surfaces. Forms a dirt-repellent protective layer.",
+    "applications": ["Stainless steel", "Chrome", "Aluminum"]
+  },
+  "powerhouse": {
+    "description": "All-purpose heavy-duty cleaner for the most stubborn soiling on all water-resistant surfaces.",
+    "applications": ["All surfaces", "Industrial cleaning"]
+  },
+  "powershine": {
+    "description": "Cleaner with gloss effect for all surfaces. Cleans and adds shine in a single operation.",
+    "applications": ["Furniture", "Plastic", "Stainless steel"]
+  },
+  "sparkle": {
+    "description": "Universal spray cleaner for glass, mirrors, and smooth surfaces. Streak-free cleanliness.",
+    "applications": ["Glass", "Mirrors", "Smooth surfaces"]
+  },
+  "citro-gleam": {
+    "description": "Strongly alkaline cleaner with citrus fragrance. Dissolves grease and stubborn soiling.",
+    "applications": ["Kitchen", "Industrial surfaces"]
+  },
+  "miracle": {
+    "description": "Multi-purpose heavy-duty cleaner for particularly stubborn soiling such as ink, adhesive, and paint.",
+    "applications": ["Ink", "Adhesive", "Paint", "Graffiti"]
+  },
+  "liquid-soap": {
+    "description": "Mild liquid soap for hand wash dispensers. Skin-friendly and moisturizing.",
+    "applications": ["Hand washing", "Washrooms"]
+  },
+  "stain-remover": {
+    "description": "Stain remover for carpets and textile floor coverings. Removes coffee, wine, ink, and more.",
+    "applications": ["Carpets", "Upholstered furniture", "Textiles"]
+  },
+  "es93-encapsulation-cleaner": {
+    "description": "Encapsulation carpet cleaner. Encapsulates dirt particles for easy vacuuming.",
+    "applications": ["Carpets", "Carpet tiles"]
+  },
+  "plush": {
+    "description": "Carpet shampoo for spray extraction cleaning. Deep cleaning for heavily soiled carpets.",
+    "applications": ["Carpets", "Carpeted floors"]
+  },
+  "quato-78-professional": {
+    "description": "Professional surface disinfectant. Effective against bacteria, fungi, and enveloped viruses.",
+    "applications": ["All surfaces", "Medical facilities", "Food service"]
+  },
+  "quato-78-professional-rtu": {
+    "description": "Ready-to-use surface disinfectant. Immediately ready for use without dilution.",
+    "applications": ["Quick disinfection", "Small areas", "Touchpoints"]
+  },
+  "food-service-rtu": {
+    "description": "Ready-to-use cleaner for the food service area. Removes grease and protein without residue.",
+    "applications": ["Kitchen surfaces", "Cutting boards", "Work surfaces"]
+  },
+  "food-service-concentrate": {
+    "description": "Concentrate for cleaning in food service and the food industry. Highly effective against grease and protein.",
+    "applications": ["Commercial kitchens", "Food production"]
+  },
+  "quato-44": {
+    "description": "Dishwashing detergent with disinfecting action for commercial hand dishwashing.",
+    "applications": ["Dishes", "Glasses", "Cutlery"]
+  },
+  "grill-and-oven": {
+    "description": "Specialty cleaner for grills, ovens, and deep fryers. Dissolves baked-on grease and encrustations.",
+    "applications": ["Grills", "Ovens", "Deep fryers"]
+  },
+  "facto-pm20": {
+    "description": "Acidic cleaner for the food industry. Removes limescale and milk stone from pipelines.",
+    "applications": ["Dairies", "Breweries", "Pipelines"]
+  },
+  "hardwater-rinse": {
+    "description": "Acidic rinse aid for commercial dishwashers in hard water conditions.",
+    "applications": ["Commercial dishwashers"]
+  },
+  "hardwater-detergent": {
+    "description": "Highly alkaline dishwashing detergent for commercial machines in hard water conditions.",
+    "applications": ["Commercial dishwashers"]
+  },
+  "facto-hd40": {
+    "description": "Industrial heavy-duty cleaner for heavily soiled machines, floors, and workshop areas.",
+    "applications": ["Machines", "Workshops", "Industrial floors"]
+  },
+  "facto-hd41-cleanmax": {
+    "description": "Extremely strong industrial cleaner for the heaviest soiling in production environments.",
+    "applications": ["Heavy industrial cleaning"]
+  },
+  "facto-hd43": {
+    "description": "Gentle industrial cleaner for sensitive machine parts and lighter soiling.",
+    "applications": ["Machine parts", "Electronics", "Sensitive surfaces"]
+  },
+  "facto-at31": {
+    "description": "Alkaline parts cleaner for industrial parts washing. Thoroughly degreases.",
+    "applications": ["Parts washing", "Ultrasonic cleaning"]
+  },
+  "facto-at30": {
+    "description": "Specialty cleaner for vehicles and transport equipment. Removes road grime, insects, and oil film.",
+    "applications": ["Trucks", "Cars", "Buses", "Trains"]
+  },
+  "e10-neutral": {
+    "description": "Neutral universal cleaner from the Economy line. Cost-effective solution for daily cleaning.",
+    "applications": ["All surfaces", "Floors"]
+  },
+  "e11-orange": {
+    "description": "Universal cleaner with orange fragrance. Pleasant freshness effect with cost-effective cleaning.",
+    "applications": ["All surfaces", "Floors"]
+  },
+  "e20-alkali": {
+    "description": "Alkaline cleaner from the Economy line. For heavier soiling and grease removal.",
+    "applications": ["Grease soiling", "Industrial surfaces"]
+  },
+  "e30-acid": {
+    "description": "Acidic cleaner from the Economy line. For sanitary areas and limescale removal.",
+    "applications": ["Sanitary facilities", "Tiles"]
+  },
+  "e35-gel": {
+    "description": "Acidic toilet gel from the Economy line. Clings to the toilet bowl for intensive cleaning.",
+    "applications": ["Toilet bowls"]
+  },
+  "e40-glass": {
+    "description": "Glass cleaner from the Economy line. Streak-free cleaning for windows and glass surfaces.",
+    "applications": ["Windows", "Mirrors", "Glass"]
+  },
+  "e50-strong": {
+    "description": "Strongly alkaline cleaner from the Economy line. For stubborn soiling and degreasing.",
+    "applications": ["Industrial areas", "Kitchens"]
+  }
+}
