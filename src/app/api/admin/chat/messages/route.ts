@@ -1,8 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getChatUser } from "@/lib/chat-auth";
+import { getSessionUser } from "@/lib/admin-auth";
 import { storeGet, storeSet } from "@/lib/admin-store";
 
 const MAX_MESSAGES = 200;
+
+// Simple hash to generate consistent color from user ID
+function userColor(id: string): string {
+  const colors = ["#dc2626","#2563eb","#16a34a","#9333ea","#ea580c","#0891b2","#be185d","#4f46e5"];
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) hash = ((hash << 5) - hash + id.charCodeAt(i)) | 0;
+  return colors[Math.abs(hash) % colors.length];
+}
 
 export interface ChatMessage {
   id: string;
@@ -17,84 +25,48 @@ export interface ChatMessage {
 }
 
 export async function GET(request: NextRequest) {
-  const user = await getChatUser();
-  if (!user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const user = await getSessionUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { searchParams } = new URL(request.url);
   const channel = searchParams.get("channel");
   const after = searchParams.get("after");
-
-  if (!channel) {
-    return NextResponse.json(
-      { error: "Channel-Parameter erforderlich" },
-      { status: 400 }
-    );
-  }
+  if (!channel) return NextResponse.json({ error: "Channel required" }, { status: 400 });
 
   const messages = ((await storeGet(`chat-messages-${channel}`)) as ChatMessage[] | null) || [];
 
   if (after) {
-    const afterTs = parseInt(after);
-    const newMessages = messages.filter((m) => m.timestamp > afterTs);
-    return NextResponse.json(newMessages);
+    return NextResponse.json(messages.filter((m) => m.timestamp > parseInt(after)));
   }
-
   return NextResponse.json(messages);
 }
 
 export async function POST(request: NextRequest) {
-  const user = await getChatUser();
-  if (!user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const user = await getSessionUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const { channel, text, file, fileName, fileType } = await request.json();
+  if (!channel) return NextResponse.json({ error: "Channel required" }, { status: 400 });
+  if (!text && !file) return NextResponse.json({ error: "Message or file required" }, { status: 400 });
+
+  const message: ChatMessage = {
+    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
+    userId: user.id,
+    userName: user.name,
+    userColor: userColor(user.id),
+    text: text || "",
+    timestamp: Date.now(),
+  };
+
+  if (file) {
+    message.file = file;
+    message.fileName = fileName;
+    message.fileType = fileType;
   }
 
-  try {
-    const { channel, text, file, fileName, fileType } = await request.json();
+  const messages = ((await storeGet(`chat-messages-${channel}`)) as ChatMessage[] | null) || [];
+  messages.push(message);
+  await storeSet(`chat-messages-${channel}`, messages.slice(-MAX_MESSAGES));
 
-    if (!channel) {
-      return NextResponse.json(
-        { error: "Channel erforderlich" },
-        { status: 400 }
-      );
-    }
-
-    if (!text && !file) {
-      return NextResponse.json(
-        { error: "Nachricht oder Datei erforderlich" },
-        { status: 400 }
-      );
-    }
-
-    const message: ChatMessage = {
-      id: Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
-      userId: user.id,
-      userName: user.name,
-      userColor: user.color,
-      text: text || "",
-      timestamp: Date.now(),
-    };
-
-    if (file) {
-      message.file = file;
-      message.fileName = fileName;
-      message.fileType = fileType;
-    }
-
-    const messages =
-      ((await storeGet(`chat-messages-${channel}`)) as ChatMessage[] | null) || [];
-    messages.push(message);
-
-    // Keep only last MAX_MESSAGES
-    const trimmed = messages.slice(-MAX_MESSAGES);
-    await storeSet(`chat-messages-${channel}`, trimmed);
-
-    return NextResponse.json(message, { status: 201 });
-  } catch {
-    return NextResponse.json(
-      { error: "Interner Fehler" },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json(message, { status: 201 });
 }

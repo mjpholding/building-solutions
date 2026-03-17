@@ -30,7 +30,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       .then((r) => r.json())
       .then((d) => {
         setAuth(d.authenticated);
-        if (!d.authenticated && pathname !== "/admin/login" && !pathname.startsWith("/admin/chat")) {
+        if (!d.authenticated && pathname !== "/admin/login") {
           window.location.href = "/admin/login";
         }
         if (d.authenticated) {
@@ -42,7 +42,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       .catch(() => setAuth(false));
   }, [pathname]);
 
-  if (pathname === "/admin/login" || pathname === "/admin/chat/login") return <>{children}</>;
+  if (pathname === "/admin/login") return <>{children}</>;
 
   if (auth === null) {
     return (
@@ -50,11 +50,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <Loader2 className="w-8 h-8 animate-spin text-gray-400" />
       </div>
     );
-  }
-
-  // Chat pages have their own auth - render without admin sidebar if not admin-authed
-  if (!auth && pathname.startsWith("/admin/chat")) {
-    return <>{children}</>;
   }
 
   if (!auth) return null;

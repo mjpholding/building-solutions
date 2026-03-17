@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import {
   MessageCircle,
   Send,
@@ -10,7 +9,6 @@ import {
   Hash,
   Users,
   Plus,
-  LogOut,
   Shield,
   Trash2,
   X,
@@ -24,8 +22,7 @@ interface ChatUser {
   id: string;
   name: string;
   username: string;
-  color: string;
-  isAdmin: boolean;
+  role: string;
 }
 
 interface Channel {
@@ -43,6 +40,13 @@ interface Message {
   fileName?: string;
   fileType?: string;
   timestamp: number;
+}
+
+function userColor(id: string): string {
+  const colors = ["#dc2626","#2563eb","#16a34a","#9333ea","#ea580c","#0891b2","#be185d","#4f46e5"];
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) hash = ((hash << 5) - hash + id.charCodeAt(i)) | 0;
+  return colors[Math.abs(hash) % colors.length];
 }
 
 export default function ChatPage() {
@@ -94,58 +98,21 @@ export default function ChatPage() {
     } catch { /* ignore */ }
   }, []);
 
-  // Verify session
+  // Verify session via admin auth
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch("/api/admin/chat/users");
+        const res = await fetch("/api/admin/chat/me");
         if (!res.ok) {
-          router.push("/admin/chat/login");
+          router.push("/admin/login");
           return;
         }
-        const users: ChatUser[] = await res.json();
-        setMembers(users);
-
-        // Get current user from login endpoint cookie check
-        const loginRes = await fetch("/api/admin/chat/channels");
-        if (!loginRes.ok) {
-          router.push("/admin/chat/login");
-          return;
-        }
-
-        // We need to identify the current user. Let's check via a dedicated request.
-        // Since getChatUser reads the cookie, we'll get user info from the messages endpoint.
-        // Actually, let's parse from the session cookie approach -- we store user info after login.
-        // Simplest: call login check that returns current user.
-        // For now, use a workaround: try sending to identify.
-        // Better approach: store in sessionStorage after login.
-        // Let's use a lightweight approach: check who we are via a test message.
-
-        // Actually let's call the users API which works with chat auth too,
-        // and identify ourselves by trying each approach.
-        // Best: add a /me endpoint or use session storage.
-        // For simplicity, let's store user data in sessionStorage on login page.
-
-        const storedUser = sessionStorage.getItem("chat-user");
-        if (storedUser) {
-          const parsed = JSON.parse(storedUser);
-          // Verify user still exists
-          const found = users.find((u: ChatUser) => u.id === parsed.id);
-          if (found) {
-            setCurrenUser(found);
-          } else {
-            router.push("/admin/chat/login");
-            return;
-          }
-        } else {
-          // No session storage - redirect to login to get user info
-          router.push("/admin/chat/login");
-          return;
-        }
-
+        const data = await res.json();
+        setCurrenUser(data.user);
+        setMembers(data.members);
         setLoading(false);
       } catch {
-        router.push("/admin/chat/login");
+        router.push("/admin/login");
       }
     };
 
@@ -351,13 +318,6 @@ export default function ChatPage() {
     } catch { /* ignore */ }
   };
 
-  // Logout
-  const handleLogout = async () => {
-    await fetch("/api/admin/chat/login", { method: "DELETE" });
-    sessionStorage.removeItem("chat-user");
-    router.push("/admin/chat/login");
-  };
-
   // Format time
   const formatTime = (ts: number) => {
     const d = new Date(ts);
@@ -416,27 +376,11 @@ export default function ChatPage() {
           <h2 className="font-semibold text-gray-900">{activeChannelName}</h2>
         </div>
         <div className="flex items-center gap-2">
-          {currentUser?.isAdmin && (
-            <Link
-              href="/admin/chat/users"
-              className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
-            >
-              <Shield size={16} />
-              <span className="hidden sm:inline">Benutzer verwalten</span>
-            </Link>
-          )}
           <button
             onClick={() => setRightOpen(!rightOpen)}
             className="lg:hidden p-1.5 hover:bg-gray-100 rounded-lg"
           >
             <Users size={20} className="text-gray-600" />
-          </button>
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm text-gray-600 hover:text-red-600 hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            <LogOut size={16} />
-            <span className="hidden sm:inline">Abmelden</span>
           </button>
         </div>
       </div>
@@ -486,7 +430,7 @@ export default function ChatPage() {
                     </span>
                   )}
                 </div>
-                {currentUser?.isAdmin && activeChannel !== ch.id && (
+                {currentUser?.role !== "editor" && activeChannel !== ch.id && (
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -501,7 +445,7 @@ export default function ChatPage() {
             ))}
           </div>
 
-          {currentUser?.isAdmin && (
+          {currentUser?.role !== "editor" && (
             <div className="p-3 border-t border-gray-800">
               {showNewChannel ? (
                 <div className="flex gap-2">
@@ -734,7 +678,7 @@ export default function ChatPage() {
               >
                 <div
                   className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: m.color }}
+                  style={{ backgroundColor: userColor(m.id) }}
                 >
                   <span className="text-white text-xs font-semibold">
                     {getInitial(m.name)}
@@ -743,7 +687,7 @@ export default function ChatPage() {
                 <div className="min-w-0">
                   <div className="text-sm font-medium text-gray-900 truncate flex items-center gap-1.5">
                     {m.name}
-                    {m.isAdmin && (
+                    {m.role === "superadmin" && (
                       <Shield size={12} className="text-red-500 flex-shrink-0" />
                     )}
                   </div>
