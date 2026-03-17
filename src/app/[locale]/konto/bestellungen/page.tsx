@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCustomer } from "@/lib/customer-context";
+import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { Loader2, ArrowLeft, ShoppingBag } from "lucide-react";
 
@@ -26,6 +28,8 @@ const STATUS_COLORS: Record<string, string> = {
 
 export default function OrderHistoryPage() {
   const router = useRouter();
+  const t = useTranslations("account");
+  const locale = useLocale();
   const { customer, loading } = useCustomer();
   const [orders, setOrders] = useState<Order[]>([]);
   const [ordersLoading, setOrdersLoading] = useState(true);
@@ -51,18 +55,18 @@ export default function OrderHistoryPage() {
     <div className="min-h-screen bg-swish-gray-50">
       <div className="max-w-4xl mx-auto px-4 py-10">
         <Link href="/konto" className="inline-flex items-center gap-2 text-swish-gray-500 hover:text-swish-red text-sm font-medium mb-6">
-          <ArrowLeft size={16} /> Zurueck zum Konto
+          <ArrowLeft size={16} /> {t("backToAccount")}
         </Link>
-        <h1 className="text-2xl font-bold text-swish-gray-900 mb-6">Meine Bestellungen</h1>
+        <h1 className="text-2xl font-bold text-swish-gray-900 mb-6">{t("myOrders")}</h1>
 
         {ordersLoading ? (
           <div className="flex items-center justify-center py-20"><Loader2 className="w-6 h-6 animate-spin text-swish-gray-300" /></div>
         ) : orders.length === 0 ? (
           <div className="bg-white rounded-2xl border border-swish-gray-100 p-12 text-center">
             <ShoppingBag size={48} className="mx-auto text-swish-gray-200 mb-4" />
-            <p className="text-swish-gray-500">Noch keine Bestellungen vorhanden</p>
+            <p className="text-swish-gray-500">{t("noOrdersYet")}</p>
             <Link href="/produkte" className="inline-block mt-4 text-swish-red font-medium text-sm hover:underline">
-              Jetzt einkaufen
+              {t("shopNow")}
             </Link>
           </div>
         ) : (
@@ -73,7 +77,7 @@ export default function OrderHistoryPage() {
                   <div>
                     <p className="font-mono font-bold text-swish-gray-900">{order.id}</p>
                     <p className="text-xs text-swish-gray-400">
-                      {new Date(order.date).toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" })}
+                      {new Date(order.date).toLocaleDateString(locale, { day: "2-digit", month: "long", year: "numeric" })}
                     </p>
                   </div>
                   <span className={`px-3 py-1.5 rounded-full text-xs font-semibold ${STATUS_COLORS[order.status] || "bg-gray-100"}`}>
@@ -89,7 +93,7 @@ export default function OrderHistoryPage() {
                   ))}
                 </div>
                 <div className="border-t border-swish-gray-100 pt-3 flex justify-between">
-                  <span className="text-sm text-swish-gray-500">Summe (netto)</span>
+                  <span className="text-sm text-swish-gray-500">{t("subtotalNet")}</span>
                   <span className="font-bold text-swish-gray-900">{order.subtotal.toFixed(2)} &euro;</span>
                 </div>
               </div>

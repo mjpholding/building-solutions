@@ -8,6 +8,7 @@ import contactData from "@/data/contact.json";
 
 export default function Footer() {
   const t = useTranslations("footer");
+  const tL = useTranslations("legal");
   const tNav = useTranslations("nav");
 
   return (
@@ -36,7 +37,7 @@ export default function Footer() {
           {/* Navigation */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-400 mb-4">
-              Navigation
+              {tL("navigation")}
             </h3>
             <ul className="space-y-2.5">
               {[
@@ -90,7 +91,7 @@ export default function Footer() {
           {/* Legal */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-400 mb-4">
-              Legal
+              {tL("legalSection")}
             </h3>
             <ul className="space-y-2.5">
               <li>
@@ -113,7 +114,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} {t("company")}. {t("rights")}.
           </p>
           <p className="text-swish-gray-600 text-xs">
-            Experts in complete cleaning solutions
+            {tL("expertTagline")}
           </p>
         </div>
       </div>

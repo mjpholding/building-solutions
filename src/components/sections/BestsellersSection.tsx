@@ -20,6 +20,7 @@ function getPHColor(ph: string): string {
 
 export default function BestsellersSection() {
   const t = useTranslations("products");
+  const td = useTranslations("productDetail");
 
   return (
     <section className="py-20 lg:py-28 bg-swish-gray-50">
@@ -35,7 +36,7 @@ export default function BestsellersSection() {
               {t("bestsellers")}
             </h2>
             <p className="mt-3 text-swish-gray-500">
-              Die beliebtesten Produkte unserer Kunden
+              {t("bestsellersSubtitle")}
             </p>
           </div>
           <Link
@@ -73,7 +74,7 @@ export default function BestsellersSection() {
                     <Droplets size={32} className="text-swish-gray-400" />
                   )}
                   <span className="absolute top-3 right-3 bg-swish-red text-white text-[10px] font-bold uppercase px-2 py-1 rounded-md">
-                    Bestseller
+                    {td("bestseller")}
                   </span>
                 </div>
 

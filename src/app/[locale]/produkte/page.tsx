@@ -20,6 +20,7 @@ function getPHColor(ph: string): string {
 
 export default function ProductsPage() {
   const t = useTranslations("products");
+  const tD = useTranslations("productDetail");
   const tCat = useTranslations("categories");
   const searchParams = useSearchParams();
   const [search, setSearch] = useState("");
@@ -158,14 +159,14 @@ export default function ProductsPage() {
                     <div className="mt-2 flex items-center justify-between">
                       {product.prices && Object.values(product.prices)[0] ? (
                         <span className="text-sm font-bold text-swish-gray-900">
-                          ab {(Object.values(product.prices)[0] as number).toFixed(2)} &euro;
+                          {tD("from")} {(Object.values(product.prices)[0] as number).toFixed(2)} &euro;
                         </span>
                       ) : (
-                        <span className="text-xs text-swish-gray-400">Preis auf Anfrage</span>
+                        <span className="text-xs text-swish-gray-400">{tD("priceOnRequest")}</span>
                       )}
                       {product.isBestseller && (
                         <span className="text-[10px] font-semibold text-swish-red bg-red-50 px-2 py-0.5 rounded-full">
-                          Bestseller
+                          {tD("bestseller")}
                         </span>
                       )}
                     </div>

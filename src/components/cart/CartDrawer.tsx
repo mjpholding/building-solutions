@@ -5,9 +5,11 @@ import { Link } from "@/i18n/routing";
 import { X, Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export default function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, totalPrice, totalItems } = useCart();
+  const t = useTranslations("cart");
 
   return (
     <AnimatePresence>
@@ -33,7 +35,7 @@ export default function CartDrawer() {
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
                 <ShoppingBag size={20} />
-                Warenkorb
+                {t("title")}
                 <span className="text-sm font-normal text-gray-400">({totalItems})</span>
               </h2>
               <button onClick={() => setIsOpen(false)} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
@@ -46,7 +48,7 @@ export default function CartDrawer() {
               {items.length === 0 ? (
                 <div className="text-center py-16">
                   <ShoppingBag size={48} className="mx-auto text-gray-200 mb-4" />
-                  <p className="text-gray-400">Ihr Warenkorb ist leer</p>
+                  <p className="text-gray-400">{t("empty")}</p>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -97,22 +99,22 @@ export default function CartDrawer() {
             {items.length > 0 && (
               <div className="border-t border-gray-100 px-6 py-4 space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-500">Zwischensumme (netto)</span>
+                  <span className="text-sm text-gray-500">{t("subtotalNet")}</span>
                   <span className="text-lg font-bold text-gray-900">{totalPrice.toFixed(2)} &euro;</span>
                 </div>
-                <p className="text-xs text-gray-400">zzgl. MwSt. und Versandkosten</p>
+                <p className="text-xs text-gray-400">{t("vatNote")}</p>
                 <Link
                   href="/kasse"
                   onClick={() => setIsOpen(false)}
                   className="block w-full bg-red-600 hover:bg-red-700 text-white text-center py-3 rounded-xl text-sm font-semibold transition-colors"
                 >
-                  Zur Kasse
+                  {t("toCheckout")}
                 </Link>
                 <button
                   onClick={() => setIsOpen(false)}
                   className="block w-full text-center text-sm text-gray-500 hover:text-gray-700 py-2 transition-colors"
                 >
-                  Weiter einkaufen
+                  {t("continueShopping")}
                 </button>
               </div>
             )}

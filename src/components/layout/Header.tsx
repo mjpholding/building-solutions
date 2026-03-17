@@ -20,6 +20,7 @@ const navItems = [
 
 export default function Header() {
   const t = useTranslations("nav");
+  const tA = useTranslations("account");
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { totalItems, setIsOpen: setCartOpen } = useCart();
@@ -70,7 +71,7 @@ export default function Header() {
             >
               <UserCircle size={18} />
               <span className="text-[13px] font-medium">
-                {customer ? customer.name.split(" ")[0] : "Anmelden"}
+                {customer ? customer.name.split(" ")[0] : tA("login")}
               </span>
               {customer && (
                 <span className="w-2 h-2 bg-green-500 rounded-full" />
@@ -177,7 +178,7 @@ export default function Header() {
                   className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-swish-gray-700 hover:bg-swish-gray-50"
                 >
                   <UserCircle size={18} />
-                  {customer ? `Mein Konto (${customer.name.split(" ")[0]})` : "Anmelden / Registrieren"}
+                  {customer ? `${tA("myAccount")} (${customer.name.split(" ")[0]})` : tA("loginRegister")}
                 </Link>
                 <Link
                   href="/kontakt"

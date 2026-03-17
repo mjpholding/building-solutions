@@ -21,15 +21,16 @@ function getPHColor(ph: string): string {
 
 function getPHLabel(ph: string): string {
   const val = parseFloat(ph.split("-")[0].trim());
-  if (val < 3) return "Stark sauer";
-  if (val < 6) return "Sauer";
-  if (val < 8) return "Neutral";
-  if (val < 10) return "Leicht alkalisch";
-  return "Stark alkalisch";
+  if (val < 3) return "strongAcid";
+  if (val < 6) return "acid";
+  if (val < 8) return "neutral";
+  if (val < 10) return "slightlyAlkaline";
+  return "strongAlkaline";
 }
 
 export default function ProductDetailPage() {
   const t = useTranslations("products");
+  const tD = useTranslations("productDetail");
   const tCat = useTranslations("categories");
   const params = useParams();
   const slug = params.slug as string;
@@ -46,7 +47,7 @@ export default function ProductDetailPage() {
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-swish-gray-900 mb-4">
-            Produkt nicht gefunden
+            {tD("notFound")}
           </h1>
           <Link
             href="/produkte"
@@ -112,7 +113,7 @@ export default function ProductDetailPage() {
             )}
             {product.isBestseller && (
               <span className="absolute top-4 right-4 bg-swish-red text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
-                Bestseller
+                {tD("bestseller")}
               </span>
             )}
           </motion.div>
@@ -165,10 +166,10 @@ export default function ProductDetailPage() {
                   <span className="text-3xl font-bold text-swish-gray-900">
                     {currentPrice.toFixed(2)} &euro;
                   </span>
-                  <span className="text-sm text-swish-gray-400 mb-1">netto</span>
+                  <span className="text-sm text-swish-gray-400 mb-1">{tD("net")}</span>
                 </div>
                 <p className="text-xs text-swish-gray-400 mb-4">
-                  zzgl. MwSt. und Versandkosten
+                  {tD("vatNote")}
                 </p>
 
                 {/* Quantity + Add to cart */}
@@ -204,7 +205,7 @@ export default function ProductDetailPage() {
                     }`}
                   >
                     {added ? <Check size={18} /> : <ShoppingBag size={18} />}
-                    {added ? "Hinzugefugt!" : "In den Warenkorb"}
+                    {added ? tD("added") : tD("addToCart")}
                   </button>
                 </div>
               </div>
@@ -219,7 +220,7 @@ export default function ProductDetailPage() {
                 <div>
                   <span className="text-sm font-medium text-swish-gray-900">{t("ph")}</span>
                   <span className="ml-2 text-sm text-swish-gray-500">{product.ph}</span>
-                  <span className="ml-2 text-xs text-swish-gray-400">({getPHLabel(product.ph)})</span>
+                  <span className="ml-2 text-xs text-swish-gray-400">({tD(getPHLabel(product.ph))})</span>
                 </div>
               </div>
 
@@ -240,7 +241,7 @@ export default function ProductDetailPage() {
                 href="/kontakt"
                 className="inline-flex items-center justify-center border border-swish-gray-200 hover:border-swish-red/30 text-swish-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all"
               >
-                {t("requestQuote") || "Angebot anfordern"}
+                {t("requestQuote")}
               </Link>
               <button className="inline-flex items-center justify-center gap-2 border border-swish-gray-200 hover:border-swish-red/30 text-swish-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all">
                 <FileText size={16} />
@@ -254,7 +255,7 @@ export default function ProductDetailPage() {
         {related.length > 0 && (
           <div className="mt-20">
             <h2 className="text-2xl font-bold text-swish-gray-900 mb-8">
-              {t("relatedProducts") || "Ahnliche Produkte"}
+              {t("relatedProducts")}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {related.map((rp) => (
@@ -279,7 +280,7 @@ export default function ProductDetailPage() {
                     </h3>
                     {rp.prices && Object.values(rp.prices)[0] && (
                       <p className="mt-1 text-sm font-semibold text-swish-gray-900">
-                        ab {(Object.values(rp.prices)[0] as number).toFixed(2)} &euro;
+                        {tD("from")} {(Object.values(rp.prices)[0] as number).toFixed(2)} &euro;
                       </p>
                     )}
                   </div>

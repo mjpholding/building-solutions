@@ -2,26 +2,27 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Award, Leaf, Shield, Lightbulb, Users, Heart } from "lucide-react";
+import { Award, Leaf, Shield, Lightbulb, Heart } from "lucide-react";
 
 const values = [
-  { icon: Shield, titleKey: "trust", desc: "Wir liefern, was der Kunde bestellt hat – pünktlich und zuverlässig." },
-  { icon: Award, titleKey: "expertise", desc: "Wir entwickeln tiefgreifendes Wissen über die Einrichtungen und Bedürfnisse unserer Kunden." },
-  { icon: Lightbulb, titleKey: "innovation", desc: "Wir entwickeln Produkte und Programme, die einfacher, schneller und nützlicher sind." },
-  { icon: Award, titleKey: "quality", desc: "Modernste Technologien und hochwertige Rohstoffe für professionelle Ergebnisse." },
-  { icon: Leaf, titleKey: "environment", desc: "Biologisch abbaubare Rohstoffe, die europäische Standards erfüllen." },
-  { icon: Heart, titleKey: "trust", desc: "Höchste ethische Standards und Respekt gegenüber allen Beteiligten." },
+  { icon: Shield, titleKey: "trust", descKey: "trustDesc" },
+  { icon: Award, titleKey: "expertise", descKey: "expertiseDesc" },
+  { icon: Lightbulb, titleKey: "innovation", descKey: "innovationDesc" },
+  { icon: Award, titleKey: "quality", descKey: "qualityDesc" },
+  { icon: Leaf, titleKey: "environment", descKey: "environmentDesc" },
+  { icon: Heart, titleKey: "trust", descKey: "ethicsDesc" },
 ];
 
 const timeline = [
-  { year: "1956", title: "Gründung", desc: "Swish Maintenance Ltd wird in Peterborough, Ontario, Kanada gegründet." },
-  { year: "2001", title: "Expansion nach Polen", desc: "Swish Polska beginnt als Importeur auf dem polnischen Markt." },
-  { year: "2010", title: "Eigene Produktion", desc: "Eröffnung der Produktionsstätte in Ożarów Mazowiecki, Polen." },
-  { year: "2024", title: "Swish Deutschland", desc: "Gründung von Swish Deutschland in Kerpen zur Bedienung des deutschen Marktes." },
+  { year: "1956", titleKey: "timeline1956", descKey: "timeline1956Desc" },
+  { year: "2001", titleKey: "timeline1997", descKey: "timeline1997Desc" },
+  { year: "2010", titleKey: "timeline2003", descKey: "timeline2003Desc" },
+  { year: "2024", titleKey: "timeline2020", descKey: "timeline2020Desc" },
 ];
 
 export default function AboutPage() {
   const t = useTranslations("about");
+  const tP = useTranslations("aboutPage");
 
   return (
     <div className="min-h-screen">
@@ -66,8 +67,8 @@ export default function AboutPage() {
                   {i < timeline.length - 1 && <div className="w-0.5 flex-1 bg-swish-gray-200 mt-2" />}
                 </div>
                 <div className="pb-8">
-                  <h3 className="font-bold text-lg text-swish-gray-900">{item.title}</h3>
-                  <p className="mt-1 text-swish-gray-500">{item.desc}</p>
+                  <h3 className="font-bold text-lg text-swish-gray-900">{tP(item.titleKey)}</h3>
+                  <p className="mt-1 text-swish-gray-500">{tP(item.descKey)}</p>
                 </div>
               </motion.div>
             ))}
@@ -93,7 +94,7 @@ export default function AboutPage() {
                 >
                   <Icon size={28} className="text-swish-red mb-4" />
                   <h3 className="font-semibold text-lg text-swish-gray-900">{t(val.titleKey)}</h3>
-                  <p className="mt-2 text-sm text-swish-gray-500 leading-relaxed">{val.desc}</p>
+                  <p className="mt-2 text-sm text-swish-gray-500 leading-relaxed">{tP(val.descKey)}</p>
                 </motion.div>
               );
             })}

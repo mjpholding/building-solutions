@@ -4,8 +4,10 @@ import { useState } from "react";
 import { Link, useRouter } from "@/i18n/routing";
 import { Loader2 } from "lucide-react";
 import { useCustomer } from "@/lib/customer-context";
+import { useTranslations } from "next-intl";
 
 export default function CustomerLoginPage() {
+  const t = useTranslations("account");
   const router = useRouter();
   const { login } = useCustomer();
   const [email, setEmail] = useState("");
@@ -21,7 +23,7 @@ export default function CustomerLoginPage() {
     if (result.success) {
       router.push("/konto");
     } else {
-      setError(result.error || "Anmeldung fehlgeschlagen");
+      setError(result.error || t("loginFailed"));
     }
     setLoading(false);
   };
@@ -30,9 +32,9 @@ export default function CustomerLoginPage() {
     <div className="min-h-screen bg-swish-gray-50 flex items-center justify-center px-4">
       <div className="max-w-md w-full">
         <div className="bg-white rounded-2xl border border-swish-gray-100 p-8 shadow-sm">
-          <h1 className="text-2xl font-bold text-swish-gray-900 mb-2">Anmelden</h1>
+          <h1 className="text-2xl font-bold text-swish-gray-900 mb-2">{t("login")}</h1>
           <p className="text-sm text-swish-gray-500 mb-6">
-            Melden Sie sich in Ihrem Kundenkonto an
+            {t("loginSubtitle")}
           </p>
 
           {error && (
@@ -41,7 +43,7 @@ export default function CustomerLoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-swish-gray-700 mb-1">E-Mail</label>
+              <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("email")}</label>
               <input
                 type="email"
                 required
@@ -51,7 +53,7 @@ export default function CustomerLoginPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-swish-gray-700 mb-1">Passwort</label>
+              <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("password")}</label>
               <input
                 type="password"
                 required
@@ -66,14 +68,14 @@ export default function CustomerLoginPage() {
               className="w-full flex items-center justify-center gap-2 bg-swish-red hover:bg-swish-red-dark disabled:bg-swish-red/50 text-white py-3 rounded-xl text-sm font-semibold transition-colors"
             >
               {loading && <Loader2 size={16} className="animate-spin" />}
-              Anmelden
+              {t("login")}
             </button>
           </form>
 
           <p className="mt-6 text-center text-sm text-swish-gray-500">
-            Noch kein Konto?{" "}
+            {t("noAccount")}{" "}
             <Link href="/konto/registrieren" className="text-swish-red font-medium hover:underline">
-              Jetzt registrieren
+              {t("registerNow")}
             </Link>
           </p>
         </div>

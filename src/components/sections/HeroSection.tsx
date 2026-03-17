@@ -7,6 +7,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function HeroSection() {
   const t = useTranslations("hero");
+  const tS = useTranslations("heroStats");
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-swish-gray-900 via-swish-gray-800 to-swish-gray-900 text-white">
@@ -27,7 +28,7 @@ export default function HeroSection() {
           >
             <span className="inline-flex items-center gap-1.5 bg-swish-red/10 border border-swish-red/20 text-swish-red-light px-3 py-1 rounded-full text-xs font-medium">
               <Sparkles size={12} />
-              Seit 1956
+              {tS("since")}
             </span>
           </motion.div>
 
@@ -87,10 +88,10 @@ export default function HeroSection() {
           className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {[
-            { value: "1956", label: "Gegründet" },
-            { value: "70+", label: "Produkte" },
-            { value: "15+", label: "Standorte" },
-            { value: "300+", label: "Mitarbeiter" },
+            { value: "1956", label: tS("founded") },
+            { value: "70+", label: tS("products") },
+            { value: "15+", label: tS("locations") },
+            { value: "300+", label: tS("employees") },
           ].map((stat) => (
             <div key={stat.label} className="text-center lg:text-left">
               <div className="text-2xl sm:text-3xl font-bold text-swish-red">{stat.value}</div>

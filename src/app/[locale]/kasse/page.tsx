@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { useCart } from "@/lib/cart-context";
 import { useCustomer } from "@/lib/customer-context";
 import { Link } from "@/i18n/routing";
@@ -10,6 +11,7 @@ import Image from "next/image";
 const inputClass = "w-full px-4 py-2.5 rounded-lg border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm";
 
 export default function CheckoutPage() {
+  const t = useTranslations("checkout");
   const { items, totalPrice, clearCart } = useCart();
   const { customer } = useCustomer();
   const [submitting, setSubmitting] = useState(false);
@@ -91,10 +93,10 @@ export default function CheckoutPage() {
         setOrderId(data.orderId);
         clearCart();
       } else {
-        setError("Bestellung fehlgeschlagen. Bitte versuchen Sie es erneut.");
+        setError(t("orderFailed"));
       }
     } catch {
-      setError("Verbindungsfehler. Bitte versuchen Sie es erneut.");
+      setError(t("connectionError"));
     } finally {
       setSubmitting(false);
     }
@@ -106,22 +108,22 @@ export default function CheckoutPage() {
       <div className="min-h-screen bg-swish-gray-50 flex items-center justify-center px-4">
         <div className="max-w-md w-full bg-white rounded-2xl border border-swish-gray-100 p-10 text-center shadow-sm">
           <CheckCircle2 size={64} className="text-green-500 mx-auto mb-6" />
-          <h1 className="text-2xl font-bold text-swish-gray-900">Bestellung eingegangen!</h1>
+          <h1 className="text-2xl font-bold text-swish-gray-900">{t("orderReceived")}</h1>
           <p className="mt-3 text-swish-gray-500">
-            Vielen Dank fur Ihre Bestellung. Wir werden uns in Kurze bei Ihnen melden.
+            {t("orderThankYou")}
           </p>
           <div className="mt-6 bg-swish-gray-50 rounded-xl p-4">
-            <p className="text-sm text-swish-gray-400">Bestellnummer</p>
+            <p className="text-sm text-swish-gray-400">{t("orderNumber")}</p>
             <p className="text-lg font-mono font-bold text-swish-gray-900">{orderId}</p>
           </div>
           <p className="mt-4 text-sm text-swish-gray-400">
-            Eine Bestatigung wurde an {form.email} gesendet.
+            {t("confirmationSent", { email: form.email })}
           </p>
           <Link
             href="/produkte"
             className="inline-block mt-8 bg-swish-red hover:bg-swish-red-dark text-white px-6 py-3 rounded-xl text-sm font-semibold transition-colors"
           >
-            Weiter einkaufen
+            {t("continueShopping")}
           </Link>
         </div>
       </div>
@@ -133,9 +135,9 @@ export default function CheckoutPage() {
       <div className="min-h-screen bg-swish-gray-50 flex items-center justify-center px-4">
         <div className="text-center">
           <ShoppingBag size={64} className="text-swish-gray-200 mx-auto mb-4" />
-          <h1 className="text-xl font-bold text-swish-gray-900">Ihr Warenkorb ist leer</h1>
+          <h1 className="text-xl font-bold text-swish-gray-900">{t("emptyCart")}</h1>
           <Link href="/produkte" className="inline-flex items-center gap-2 mt-4 text-swish-red text-sm font-medium">
-            <ArrowLeft size={14} /> Zu den Produkten
+            <ArrowLeft size={14} /> {t("toProducts")}
           </Link>
         </div>
       </div>
@@ -146,10 +148,10 @@ export default function CheckoutPage() {
     <div className="min-h-screen bg-swish-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <Link href="/produkte" className="inline-flex items-center gap-2 text-swish-gray-500 hover:text-swish-red text-sm font-medium mb-8 transition-colors">
-          <ArrowLeft size={16} /> Weiter einkaufen
+          <ArrowLeft size={16} /> {t("continueShopping")}
         </Link>
 
-        <h1 className="text-3xl font-bold text-swish-gray-900 mb-8">Kasse</h1>
+        <h1 className="text-3xl font-bold text-swish-gray-900 mb-8">{t("title")}</h1>
 
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -157,26 +159,26 @@ export default function CheckoutPage() {
             <div className="lg:col-span-2 space-y-6">
               {/* Company info */}
               <div className="bg-white rounded-2xl border border-swish-gray-100 p-6">
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">Firmendaten</h2>
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">{t("companyData")}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="sm:col-span-2">
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">Firma *</label>
+                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("company")} *</label>
                     <input type="text" required value={form.company} onChange={(e) => updateForm("company", e.target.value)} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">Ansprechpartner *</label>
+                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("contactPerson")} *</label>
                     <input type="text" required value={form.name} onChange={(e) => updateForm("name", e.target.value)} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">USt-IdNr.</label>
+                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("taxId")}</label>
                     <input type="text" value={form.taxId} onChange={(e) => updateForm("taxId", e.target.value)} className={inputClass} placeholder="DE123456789" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">E-Mail *</label>
+                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("email")} *</label>
                     <input type="email" required value={form.email} onChange={(e) => updateForm("email", e.target.value)} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">Telefon</label>
+                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("phone")}</label>
                     <input type="tel" value={form.phone} onChange={(e) => updateForm("phone", e.target.value)} className={inputClass} />
                   </div>
                 </div>
@@ -184,22 +186,22 @@ export default function CheckoutPage() {
 
               {/* Delivery address */}
               <div className="bg-white rounded-2xl border border-swish-gray-100 p-6">
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">Lieferadresse</h2>
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">{t("deliveryAddress")}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="sm:col-span-2">
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">Strasse *</label>
+                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("street")} *</label>
                     <input type="text" required value={form.address} onChange={(e) => updateForm("address", e.target.value)} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">PLZ *</label>
+                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("zip")} *</label>
                     <input type="text" required value={form.zip} onChange={(e) => updateForm("zip", e.target.value)} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">Stadt *</label>
+                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("city")} *</label>
                     <input type="text" required value={form.city} onChange={(e) => updateForm("city", e.target.value)} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">Land</label>
+                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("country")}</label>
                     <input type="text" value={form.country} onChange={(e) => updateForm("country", e.target.value)} className={inputClass} />
                   </div>
                 </div>
@@ -207,13 +209,13 @@ export default function CheckoutPage() {
 
               {/* Coupon code */}
               <div className="bg-white rounded-2xl border border-swish-gray-100 p-6">
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">Gutscheincode</h2>
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">{t("couponCode")}</h2>
                 <div className="flex gap-2">
                   <input
                     type="text"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-                    placeholder="Code eingeben"
+                    placeholder={t("enterCode")}
                     className={inputClass + " font-mono flex-1"}
                   />
                   <button
@@ -228,7 +230,7 @@ export default function CheckoutPage() {
                       } else {
                         setCouponDiscount(0);
                         setCouponApplied("");
-                        setError(data.error || "Ungueltiger Code");
+                        setError(data.error || t("invalidCode"));
                       }
                     }}
                     className="px-4 py-2.5 bg-swish-gray-100 hover:bg-swish-gray-200 text-swish-gray-700 rounded-lg text-sm font-medium transition-colors"
@@ -237,21 +239,21 @@ export default function CheckoutPage() {
                   </button>
                 </div>
                 {couponApplied && (
-                  <p className="mt-2 text-sm text-green-600">Code &quot;{couponApplied}&quot; angewendet: -{couponDiscount}%</p>
+                  <p className="mt-2 text-sm text-green-600">{t("codeApplied", { code: couponApplied, discount: couponDiscount })}</p>
                 )}
                 {customerDiscount > 0 && (
-                  <p className="mt-2 text-sm text-blue-600">Kundenrabatt: -{customerDiscount}%</p>
+                  <p className="mt-2 text-sm text-blue-600">{t("customerDiscount", { discount: customerDiscount })}</p>
                 )}
               </div>
 
               {/* Notes */}
               <div className="bg-white rounded-2xl border border-swish-gray-100 p-6">
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">Anmerkungen</h2>
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">{t("notes")}</h2>
                 <textarea
                   value={form.notes}
                   onChange={(e) => updateForm("notes", e.target.value)}
                   rows={3}
-                  placeholder="Besondere Wunsche oder Hinweise..."
+                  placeholder={t("notesPlaceholder")}
                   className={inputClass + " resize-y"}
                 />
               </div>
@@ -261,7 +263,7 @@ export default function CheckoutPage() {
             <div>
               <div className="bg-white rounded-2xl border border-swish-gray-100 p-6 sticky top-24">
                 <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">
-                  Bestellubersicht
+                  {t("orderSummary")}
                 </h2>
                 <div className="space-y-3 mb-4">
                   {items.map((item) => (
@@ -285,25 +287,25 @@ export default function CheckoutPage() {
                 </div>
                 <div className="border-t border-swish-gray-100 pt-4 space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-swish-gray-500">Zwischensumme (netto)</span>
+                    <span className="text-swish-gray-500">{t("subtotalNet")}</span>
                     <span className="font-medium">{totalPrice.toFixed(2)} &euro;</span>
                   </div>
                   {totalDiscount > 0 && (
                     <div className="flex justify-between text-sm text-green-600">
-                      <span>Rabatt ({totalDiscount}%)</span>
+                      <span>{t("discount", { percent: totalDiscount })}</span>
                       <span className="font-medium">-{discountAmount.toFixed(2)} &euro;</span>
                     </div>
                   )}
                   <div className="flex justify-between text-sm">
-                    <span className="text-swish-gray-500">MwSt. (19%)</span>
+                    <span className="text-swish-gray-500">{t("vat")}</span>
                     <span className="font-medium">{(discountedPrice * 0.19).toFixed(2)} &euro;</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-swish-gray-500">Versand</span>
-                    <span className="font-medium text-swish-gray-400">auf Anfrage</span>
+                    <span className="text-swish-gray-500">{t("shipping")}</span>
+                    <span className="font-medium text-swish-gray-400">{t("shippingOnRequest")}</span>
                   </div>
                   <div className="border-t border-swish-gray-100 pt-2 flex justify-between">
-                    <span className="font-semibold text-swish-gray-900">Gesamt (brutto)</span>
+                    <span className="font-semibold text-swish-gray-900">{t("totalGross")}</span>
                     <span className="text-lg font-bold text-swish-gray-900">{(discountedPrice * 1.19).toFixed(2)} &euro;</span>
                   </div>
                 </div>
@@ -318,10 +320,10 @@ export default function CheckoutPage() {
                   className="mt-6 w-full flex items-center justify-center gap-2 bg-swish-red hover:bg-swish-red-dark disabled:bg-swish-red/50 text-white py-3.5 rounded-xl text-sm font-semibold transition-colors"
                 >
                   {submitting ? <Loader2 size={18} className="animate-spin" /> : null}
-                  {submitting ? "Wird gesendet..." : "Bestellung absenden"}
+                  {submitting ? t("submitting") : t("submitOrder")}
                 </button>
                 <p className="mt-3 text-xs text-swish-gray-400 text-center">
-                  Mit der Bestellung akzeptieren Sie unsere AGB
+                  {t("termsNotice")}
                 </p>
               </div>
             </div>

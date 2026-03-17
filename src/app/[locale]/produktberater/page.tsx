@@ -10,37 +10,37 @@ import {
   Building2, UtensilsCrossed, Stethoscope, DoorOpen, Factory, Warehouse,
 } from "lucide-react";
 
-const surfaces = [
-  { id: "pvc", label: "PVC / Linoleum", icon: Layers },
-  { id: "stone", label: "Stein / Fliesen", icon: Layers },
-  { id: "wood", label: "Holzboden", icon: Layers },
-  { id: "glass", label: "Glas / Spiegel", icon: Layers },
-  { id: "metal", label: "Edelstahl / Metall", icon: Layers },
-  { id: "ceramic", label: "Keramik / Sanitär", icon: DropIcon },
-  { id: "carpet", label: "Teppich", icon: Layers },
-  { id: "concrete", label: "Beton", icon: Layers },
+const surfaceItems = [
+  { id: "pvc", icon: Layers },
+  { id: "stone", icon: Layers },
+  { id: "wood", icon: Layers },
+  { id: "glass", icon: Layers },
+  { id: "metal", icon: Layers },
+  { id: "ceramic", icon: DropIcon },
+  { id: "carpet", icon: Layers },
+  { id: "concrete", icon: Layers },
 ];
 
-const rooms = [
-  { id: "bathroom", label: "Bad / WC", icon: DropIcon },
-  { id: "kitchen", label: "Küche", icon: UtensilsCrossed },
-  { id: "office", label: "Büro", icon: Building2 },
-  { id: "hallway", label: "Flur / Eingang", icon: DoorOpen },
-  { id: "production", label: "Produktion", icon: Factory },
-  { id: "warehouse", label: "Lager", icon: Warehouse },
-  { id: "restaurant", label: "Restaurant", icon: UtensilsCrossed },
-  { id: "hospital", label: "Krankenhaus", icon: Stethoscope },
+const roomItems = [
+  { id: "bathroom", icon: DropIcon },
+  { id: "kitchen", icon: UtensilsCrossed },
+  { id: "office", icon: Building2 },
+  { id: "hallway", icon: DoorOpen },
+  { id: "production", icon: Factory },
+  { id: "warehouse", icon: Warehouse },
+  { id: "restaurant", icon: UtensilsCrossed },
+  { id: "hospital", icon: Stethoscope },
 ];
 
-const dirtTypes = [
-  { id: "general", label: "Allgemeine Verschmutzung", icon: Sparkles },
-  { id: "grease", label: "Fett / Öl", icon: Flame },
-  { id: "limescale", label: "Kalk / Mineral", icon: Droplets },
-  { id: "organic", label: "Organisch", icon: Bug },
-  { id: "salt", label: "Salz (Winter)", icon: Snowflake },
-  { id: "stains", label: "Flecken", icon: Sparkles },
-  { id: "polymer", label: "Alte Beschichtung", icon: Layers },
-  { id: "bacteria", label: "Keime / Desinfektion", icon: Bug },
+const dirtItems = [
+  { id: "general", icon: Sparkles },
+  { id: "grease", icon: Flame },
+  { id: "limescale", icon: Droplets },
+  { id: "organic", icon: Bug },
+  { id: "salt", icon: Snowflake },
+  { id: "stains", icon: Sparkles },
+  { id: "polymer", icon: Layers },
+  { id: "bacteria", icon: Bug },
 ];
 
 const intensityLevels = [
@@ -49,60 +49,60 @@ const intensityLevels = [
   { id: "heavy", color: "bg-red-100 border-red-300 text-red-700" },
 ];
 
-// Recommendation logic
+// Recommendation logic — uses reasonKey instead of hardcoded German strings
 function getRecommendations(surface: string, room: string, dirt: string, intensity: string) {
-  const results: { slug: string; name: string; reason: string; ph: string }[] = [];
+  const results: { slug: string; name: string; reasonKey: string; ph: string }[] = [];
 
   if (dirt === "limescale") {
-    results.push({ slug: "scale-remover", name: "SCALE REMOVER", ph: "0.5 - 1.0", reason: "Speziell entwickelt zur Entfernung hartnäckiger Kalkablagerungen" });
-    results.push({ slug: "sani-clean", name: "SANI CLEAN", ph: "2.5 - 3.5", reason: "Saurer Sanitärreiniger für tägliche Kalkentfernung" });
+    results.push({ slug: "scale-remover", name: "SCALE REMOVER", ph: "0.5 - 1.0", reasonKey: "reasonScaleRemover" });
+    results.push({ slug: "sani-clean", name: "SANI CLEAN", ph: "2.5 - 3.5", reasonKey: "reasonSaniClean" });
   }
   if (dirt === "grease") {
-    results.push({ slug: "de-grease", name: "DE-GREASE", ph: "10.4 - 11.4", reason: "Kraftvoller Fettlöser für hartnäckige Fettablagerungen" });
-    results.push({ slug: "super-clean", name: "SUPER CLEAN", ph: "11.0 - 12.0", reason: "Universeller Kraftreiniger für alle fettigen Verschmutzungen" });
+    results.push({ slug: "de-grease", name: "DE-GREASE", ph: "10.4 - 11.4", reasonKey: "reasonDeGrease" });
+    results.push({ slug: "super-clean", name: "SUPER CLEAN", ph: "11.0 - 12.0", reasonKey: "reasonSuperCleanGrease" });
   }
   if (dirt === "bacteria") {
-    results.push({ slug: "quato-78-professional", name: "QUATO 78 PROFESSIONAL", ph: "7.0", reason: "Professionelles Desinfektionsmittel für hygienische Sicherheit" });
+    results.push({ slug: "quato-78-professional", name: "QUATO 78 PROFESSIONAL", ph: "7.0", reasonKey: "reasonQuato" });
   }
   if (surface === "glass") {
-    results.push({ slug: "glass-clean", name: "GLASS CLEAN", ph: "9.0 - 10.0", reason: "Streifenfreie Reinigung für alle Glasoberflächen" });
+    results.push({ slug: "glass-clean", name: "GLASS CLEAN", ph: "9.0 - 10.0", reasonKey: "reasonGlassClean" });
   }
   if (surface === "carpet") {
-    results.push({ slug: "stain-remover", name: "STAIN REMOVER", ph: "10.0 - 11.0", reason: "Speziell für Fleckenentfernung auf Teppichen" });
+    results.push({ slug: "stain-remover", name: "STAIN REMOVER", ph: "10.0 - 11.0", reasonKey: "reasonStainRemover" });
   }
   if (surface === "metal") {
-    results.push({ slug: "stainless-steel-cleaner", name: "STAINLESS STEEL CLEANER", ph: "4.0 - 5.0", reason: "Spezialpflege für Edelstahloberflächen" });
+    results.push({ slug: "stainless-steel-cleaner", name: "STAINLESS STEEL CLEANER", ph: "4.0 - 5.0", reasonKey: "reasonStainlessSteel" });
   }
   if (surface === "ceramic" || room === "bathroom") {
     if (!results.some(r => r.slug === "kling")) {
-      results.push({ slug: "kling", name: "KLING", ph: "8.0 - 10.0", reason: "Haftformel für vertikale Sanitärflächen" });
+      results.push({ slug: "kling", name: "KLING", ph: "8.0 - 10.0", reasonKey: "reasonKling" });
     }
   }
   if (dirt === "salt") {
-    results.push({ slug: "winterinse", name: "WINTERINSE", ph: "12.0 - 13.0", reason: "Entfernt Salzrückstände und Winterverschmutzungen" });
+    results.push({ slug: "winterinse", name: "WINTERINSE", ph: "12.0 - 13.0", reasonKey: "reasonWinterinse" });
   }
   if (dirt === "polymer") {
-    results.push({ slug: "swish-strip", name: "SWISH-STRIP", ph: "11.5 - 13.5", reason: "Entfernt alte Polymerbeschichtungen gründlich" });
-    results.push({ slug: "poly-lock-ultra", name: "POLY LOCK ULTRA", ph: "8.0 - 9.0", reason: "Für die anschließende Neuversiegelung des Bodens" });
+    results.push({ slug: "swish-strip", name: "SWISH-STRIP", ph: "11.5 - 13.5", reasonKey: "reasonSwishStrip" });
+    results.push({ slug: "poly-lock-ultra", name: "POLY LOCK ULTRA", ph: "8.0 - 9.0", reasonKey: "reasonPolyLock" });
   }
   if (room === "restaurant" || room === "kitchen") {
     if (!results.some(r => r.slug === "food-service-concentrate")) {
-      results.push({ slug: "food-service-concentrate", name: "FOOD SERVICE", ph: "12.5 - 13.5", reason: "Speziell für Gastronomie und Lebensmittelbereiche zugelassen" });
+      results.push({ slug: "food-service-concentrate", name: "FOOD SERVICE", ph: "12.5 - 13.5", reasonKey: "reasonFoodService" });
     }
   }
   if ((surface === "pvc" || surface === "stone") && dirt === "general") {
-    results.push({ slug: "sp-100-citro", name: "SP-100 CITRO", ph: "6.0 - 8.0", reason: "Neutraler Bodenreiniger für tägliche Pflege" });
+    results.push({ slug: "sp-100-citro", name: "SP-100 CITRO", ph: "6.0 - 8.0", reasonKey: "reasonSp100" });
     if (intensity === "heavy") {
-      results.push({ slug: "jet", name: "JET", ph: "12.0 - 13.0", reason: "Stark alkalischer Reiniger für hartnäckige Bodenverschmutzungen" });
+      results.push({ slug: "jet", name: "JET", ph: "12.0 - 13.0", reasonKey: "reasonJet" });
     }
   }
   if (room === "office" && dirt === "general") {
-    results.push({ slug: "office-clean", name: "OFFICE CLEAN", ph: "9.0 - 10.0", reason: "Schonende Reinigung speziell für Büroumgebungen" });
+    results.push({ slug: "office-clean", name: "OFFICE CLEAN", ph: "9.0 - 10.0", reasonKey: "reasonOfficeClean" });
   }
 
   if (results.length === 0) {
-    results.push({ slug: "super-clean", name: "SUPER CLEAN", ph: "11.0 - 12.0", reason: "Universeller Kraftreiniger für vielfältige Anwendungen" });
-    results.push({ slug: "e10-neutral", name: "E10 NEUTRAL", ph: "6.0 - 8.0", reason: "Kostengünstiger Universalreiniger für leichte Verschmutzungen" });
+    results.push({ slug: "super-clean", name: "SUPER CLEAN", ph: "11.0 - 12.0", reasonKey: "reasonSuperCleanDefault" });
+    results.push({ slug: "e10-neutral", name: "E10 NEUTRAL", ph: "6.0 - 8.0", reasonKey: "reasonE10Neutral" });
   }
 
   return results.slice(0, 4);
@@ -175,7 +175,7 @@ export default function ProductAdvisorPage() {
               <div>
                 <h2 className="text-xl font-semibold text-swish-gray-900 mb-6 text-center">{t("surface")}</h2>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {surfaces.map((s) => {
+                  {surfaceItems.map((s) => {
                     const Icon = s.icon;
                     return (
                       <button
@@ -186,7 +186,7 @@ export default function ProductAdvisorPage() {
                         }`}
                       >
                         <Icon size={24} className="mx-auto mb-2 text-swish-gray-600" />
-                        <span className="text-sm font-medium text-swish-gray-700">{s.label}</span>
+                        <span className="text-sm font-medium text-swish-gray-700">{t(`surfaces.${s.id}`)}</span>
                       </button>
                     );
                   })}
@@ -198,7 +198,7 @@ export default function ProductAdvisorPage() {
               <div>
                 <h2 className="text-xl font-semibold text-swish-gray-900 mb-6 text-center">{t("room")}</h2>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {rooms.map((r) => {
+                  {roomItems.map((r) => {
                     const Icon = r.icon;
                     return (
                       <button
@@ -209,7 +209,7 @@ export default function ProductAdvisorPage() {
                         }`}
                       >
                         <Icon size={24} className="mx-auto mb-2 text-swish-gray-600" />
-                        <span className="text-sm font-medium text-swish-gray-700">{r.label}</span>
+                        <span className="text-sm font-medium text-swish-gray-700">{t(`rooms.${r.id}`)}</span>
                       </button>
                     );
                   })}
@@ -221,7 +221,7 @@ export default function ProductAdvisorPage() {
               <div>
                 <h2 className="text-xl font-semibold text-swish-gray-900 mb-6 text-center">{t("dirt")}</h2>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {dirtTypes.map((d) => {
+                  {dirtItems.map((d) => {
                     const Icon = d.icon;
                     return (
                       <button
@@ -232,7 +232,7 @@ export default function ProductAdvisorPage() {
                         }`}
                       >
                         <Icon size={24} className="mx-auto mb-2 text-swish-gray-600" />
-                        <span className="text-sm font-medium text-swish-gray-700">{d.label}</span>
+                        <span className="text-sm font-medium text-swish-gray-700">{t(`dirtTypes.${d.id}`)}</span>
                       </button>
                     );
                   })}
@@ -282,9 +282,9 @@ export default function ProductAdvisorPage() {
                             </h3>
                             <span className="text-xs font-mono text-swish-gray-400">pH {rec.ph}</span>
                           </div>
-                          <p className="mt-1 text-sm text-swish-gray-500">{rec.reason}</p>
+                          <p className="mt-1 text-sm text-swish-gray-500">{t(rec.reasonKey)}</p>
                           <div className="mt-2 flex items-center gap-1 text-swish-red text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                            Produkt ansehen <ArrowRight size={12} />
+                            {t("viewProduct")} <ArrowRight size={12} />
                           </div>
                         </div>
                       </div>

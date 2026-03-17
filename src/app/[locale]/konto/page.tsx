@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/routing";
 import { useRouter } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import { useCustomer } from "@/lib/customer-context";
 import { Package, User, LogOut, Loader2, ShoppingBag, Award, Building2 } from "lucide-react";
 
@@ -26,6 +27,8 @@ const STATUS_COLORS: Record<string, string> = {
 
 export default function AccountPage() {
   const router = useRouter();
+  const t = useTranslations("account");
+  const locale = useLocale();
   const { customer, loading, logout } = useCustomer();
   const [orders, setOrders] = useState<Order[]>([]);
   const [ordersLoading, setOrdersLoading] = useState(true);
@@ -64,16 +67,16 @@ export default function AccountPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-swish-gray-900">Mein Konto</h1>
+            <h1 className="text-3xl font-bold text-swish-gray-900">{t("myAccount")}</h1>
             <p className="mt-1 text-swish-gray-500">
-              Willkommen zurueck, {customer.name}
+              {t("welcomeBack", { name: customer.name })}
             </p>
           </div>
           <button
             onClick={handleLogout}
             className="flex items-center gap-2 text-swish-gray-500 hover:text-swish-red text-sm font-medium transition-colors"
           >
-            <LogOut size={16} /> Abmelden
+            <LogOut size={16} /> {t("logout")}
           </button>
         </div>
 
@@ -85,9 +88,9 @@ export default function AccountPage() {
                 {customer.type === "b2b" ? <Building2 size={18} className="text-blue-600" /> : <User size={18} className="text-blue-600" />}
               </div>
               <div>
-                <p className="text-xs text-swish-gray-400">Kontotyp</p>
+                <p className="text-xs text-swish-gray-400">{t("accountType")}</p>
                 <p className="font-semibold text-swish-gray-900">
-                  {customer.type === "b2b" ? "Geschaeftskunde" : "Privatkunde"}
+                  {customer.type === "b2b" ? t("businessCustomer") : t("privateCustomer")}
                 </p>
               </div>
             </div>
@@ -98,7 +101,7 @@ export default function AccountPage() {
                 <ShoppingBag size={18} className="text-green-600" />
               </div>
               <div>
-                <p className="text-xs text-swish-gray-400">Bestellungen</p>
+                <p className="text-xs text-swish-gray-400">{t("orders")}</p>
                 <p className="font-semibold text-swish-gray-900">{orders.length}</p>
               </div>
             </div>
@@ -109,7 +112,7 @@ export default function AccountPage() {
                 <Award size={18} className="text-red-600" />
               </div>
               <div>
-                <p className="text-xs text-swish-gray-400">Ihr Rabatt</p>
+                <p className="text-xs text-swish-gray-400">{t("yourDiscount")}</p>
                 <p className="font-semibold text-swish-gray-900">{customer.discountPercent}%</p>
               </div>
             </div>
@@ -120,7 +123,7 @@ export default function AccountPage() {
                 <Package size={18} className="text-purple-600" />
               </div>
               <div>
-                <p className="text-xs text-swish-gray-400">Treuepunkte</p>
+                <p className="text-xs text-swish-gray-400">{t("loyaltyPoints")}</p>
                 <p className="font-semibold text-swish-gray-900">{customer.loyaltyPoints}</p>
               </div>
             </div>
@@ -130,31 +133,31 @@ export default function AccountPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Profile card */}
           <div className="bg-white rounded-xl border border-swish-gray-100 p-6">
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">Profil</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">{t("profile")}</h2>
             <dl className="space-y-3 text-sm">
               {customer.company && (
                 <div>
-                  <dt className="text-swish-gray-400">Firma</dt>
+                  <dt className="text-swish-gray-400">{t("company")}</dt>
                   <dd className="font-medium text-swish-gray-900">{customer.company}</dd>
                 </div>
               )}
               <div>
-                <dt className="text-swish-gray-400">Name</dt>
+                <dt className="text-swish-gray-400">{t("name")}</dt>
                 <dd className="font-medium text-swish-gray-900">{customer.name}</dd>
               </div>
               <div>
-                <dt className="text-swish-gray-400">E-Mail</dt>
+                <dt className="text-swish-gray-400">{t("email")}</dt>
                 <dd className="font-medium text-swish-gray-900">{customer.email}</dd>
               </div>
               {customer.phone && (
                 <div>
-                  <dt className="text-swish-gray-400">Telefon</dt>
+                  <dt className="text-swish-gray-400">{t("phone")}</dt>
                   <dd className="font-medium text-swish-gray-900">{customer.phone}</dd>
                 </div>
               )}
               {customer.taxId && (
                 <div>
-                  <dt className="text-swish-gray-400">USt-IdNr.</dt>
+                  <dt className="text-swish-gray-400">{t("taxId")}</dt>
                   <dd className="font-medium text-swish-gray-900 font-mono">{customer.taxId}</dd>
                 </div>
               )}
@@ -163,16 +166,16 @@ export default function AccountPage() {
               href="/konto/profil"
               className="inline-block mt-4 text-sm text-swish-red font-medium hover:underline"
             >
-              Profil bearbeiten
+              {t("editProfile")}
             </Link>
           </div>
 
           {/* Recent orders */}
           <div className="lg:col-span-2 bg-white rounded-xl border border-swish-gray-100 p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900">Letzte Bestellungen</h2>
+              <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900">{t("lastOrders")}</h2>
               <Link href="/konto/bestellungen" className="text-sm text-swish-red font-medium hover:underline">
-                Alle anzeigen
+                {t("showAll")}
               </Link>
             </div>
             {ordersLoading ? (
@@ -182,9 +185,9 @@ export default function AccountPage() {
             ) : orders.length === 0 ? (
               <div className="text-center py-10">
                 <ShoppingBag size={40} className="mx-auto text-swish-gray-200 mb-3" />
-                <p className="text-swish-gray-400 text-sm">Noch keine Bestellungen</p>
+                <p className="text-swish-gray-400 text-sm">{t("noOrders")}</p>
                 <Link href="/produkte" className="inline-block mt-3 text-sm text-swish-red font-medium hover:underline">
-                  Jetzt einkaufen
+                  {t("shopNow")}
                 </Link>
               </div>
             ) : (
@@ -194,7 +197,7 @@ export default function AccountPage() {
                     <div>
                       <p className="text-sm font-medium text-swish-gray-900 font-mono">{order.id}</p>
                       <p className="text-xs text-swish-gray-400">
-                        {new Date(order.date).toLocaleDateString("de-DE")} - {order.items.length} Artikel
+                        {new Date(order.date).toLocaleDateString(locale)} - {order.items.length} {t("articles")}
                       </p>
                     </div>
                     <div className="flex items-center gap-3">

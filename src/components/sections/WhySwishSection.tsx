@@ -8,31 +8,32 @@ const features = [
   {
     icon: Award,
     titleKey: "quality",
-    desc: "Modernste Technologien und hochwertige Rohstoffe für professionelle Ergebnisse.",
+    descKey: "innovationDesc",
     color: "text-blue-600 bg-blue-50",
   },
   {
     icon: Leaf,
     titleKey: "environment",
-    desc: "Biologisch abbaubare Rohstoffe, die europäische und nordamerikanische Standards erfüllen.",
+    descKey: "environmentDesc",
     color: "text-green-600 bg-green-50",
   },
   {
     icon: Shield,
     titleKey: "trust",
-    desc: "Seit 1956 vertrauen Unternehmen weltweit auf unsere bewährten Reinigungslösungen.",
+    descKey: "trustDesc",
     color: "text-amber-600 bg-amber-50",
   },
   {
     icon: HeadphonesIcon,
     titleKey: "expertise",
-    desc: "Individuelle Beratung, Hygienepläne, Schulungen und Audits für Ihren Betrieb.",
+    descKey: "serviceDesc",
     color: "text-purple-600 bg-purple-50",
   },
 ];
 
 export default function WhySwishSection() {
   const t = useTranslations("about");
+  const tw = useTranslations("whySwish");
 
   return (
     <section className="py-20 lg:py-28 bg-white">
@@ -44,7 +45,7 @@ export default function WhySwishSection() {
           className="text-center mb-14"
         >
           <h2 className="text-3xl lg:text-4xl font-bold text-swish-gray-900">
-            Warum Swish?
+            {tw("title")}
           </h2>
           <p className="mt-4 text-lg text-swish-gray-500 max-w-2xl mx-auto">
             {t("missionText")}
@@ -70,7 +71,7 @@ export default function WhySwishSection() {
                   {t(feat.titleKey)}
                 </h3>
                 <p className="text-sm text-swish-gray-500 leading-relaxed">
-                  {feat.desc}
+                  {tw(feat.descKey)}
                 </p>
               </motion.div>
             );

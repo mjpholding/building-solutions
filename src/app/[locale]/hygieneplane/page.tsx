@@ -7,22 +7,22 @@ import { FileDown, Droplets, UtensilsCrossed, ChefHat } from "lucide-react";
 const plans = [
   {
     titleKey: "sanitary",
+    descKey: "sanitaryDesc",
     icon: Droplets,
-    desc: "Ein beispielhafter Hygieneplan für die professionelle Pflege von Sanitärbereichen mit Swish-Produkten.",
     pdf: "https://www.swishclean.pl/wp-content/uploads/2021/05/Plan-Higieny-Sanitariaty.pdf",
     color: "bg-cyan-50 text-cyan-600",
   },
   {
     titleKey: "kitchen",
+    descKey: "kitchenDesc",
     icon: ChefHat,
-    desc: "Hygieneplan für die Sauberhaltung im Restaurant-Küchenbereich mit professionellen Reinigungsmitteln.",
     pdf: "https://www.swishclean.pl/wp-content/uploads/2021/05/Plan-Higieny-HoReCa-Kuchnia.pdf",
     color: "bg-orange-50 text-orange-600",
   },
   {
     titleKey: "dining",
+    descKey: "diningDesc",
     icon: UtensilsCrossed,
-    desc: "Hygieneplan für die Reinigung und Pflege von Restaurantgasträumen und Speisesälen.",
     pdf: "https://www.swishclean.pl/wp-content/uploads/2021/05/Plan-Higieny-HoReCa-Sala-Restauracyjna.pdf",
     color: "bg-amber-50 text-amber-600",
   },
@@ -58,7 +58,7 @@ export default function HygienePlansPage() {
                   <Icon size={28} />
                 </div>
                 <h3 className="text-xl font-bold text-swish-gray-900 mb-3">{t(plan.titleKey)}</h3>
-                <p className="text-sm text-swish-gray-500 leading-relaxed mb-6">{plan.desc}</p>
+                <p className="text-sm text-swish-gray-500 leading-relaxed mb-6">{t(plan.descKey)}</p>
                 <a
                   href={plan.pdf}
                   target="_blank"
