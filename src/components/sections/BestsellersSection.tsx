@@ -5,7 +5,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { ArrowRight, Droplets } from "lucide-react";
-import { getBestsellers } from "@/data/products";
+import { useProducts } from "@/lib/use-products";
 import { getTranslatedProducts } from "@/data/product-i18n";
 import Image from "next/image";
 
@@ -22,7 +22,8 @@ export default function BestsellersSection() {
   const t = useTranslations("products");
   const td = useTranslations("productDetail");
   const locale = useLocale();
-  const bestsellers = useMemo(() => getTranslatedProducts(getBestsellers(), locale), [locale]);
+  const { products } = useProducts();
+  const bestsellers = useMemo(() => getTranslatedProducts(products.filter((p) => p.isBestseller), locale), [products, locale]);
 
   return (
     <section className="py-20 lg:py-28 bg-swish-gray-50">

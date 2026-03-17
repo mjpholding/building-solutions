@@ -6,7 +6,8 @@ import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { Search, Filter, ArrowRight, Droplets, X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { products, categories } from "@/data/products";
+import { categories } from "@/data/products";
+import { useProducts } from "@/lib/use-products";
 import { getTranslatedProducts } from "@/data/product-i18n";
 import Image from "next/image";
 
@@ -28,7 +29,8 @@ export default function ProductsPage() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
 
-  const translatedProducts = useMemo(() => getTranslatedProducts(products, locale), [locale]);
+  const { products } = useProducts();
+  const translatedProducts = useMemo(() => getTranslatedProducts(products, locale), [products, locale]);
 
   // Read category from URL query param (from CategoriesSection links)
   useEffect(() => {

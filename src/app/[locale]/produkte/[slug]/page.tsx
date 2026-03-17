@@ -5,7 +5,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 import { ArrowLeft, Droplets, FileText, ShieldCheck, Package, ShoppingBag, Check } from "lucide-react";
-import { getProductBySlug, getProductsByCategory } from "@/data/products";
+import { useProducts } from "@/lib/use-products";
 import { getTranslatedProduct, getTranslatedProducts } from "@/data/product-i18n";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -36,7 +36,8 @@ export default function ProductDetailPage() {
   const locale = useLocale();
   const params = useParams();
   const slug = params.slug as string;
-  const rawProduct = getProductBySlug(slug);
+  const { products } = useProducts();
+  const rawProduct = products.find((p) => p.slug === slug);
   const product = rawProduct ? getTranslatedProduct(rawProduct, locale) : undefined;
   const { addItem } = useCart();
 
@@ -68,7 +69,7 @@ export default function ProductDetailPage() {
   const currentPrice = prices[selectedSize] || 0;
 
   const related = getTranslatedProducts(
-    getProductsByCategory(product.category).filter((p) => p.slug !== product.slug).slice(0, 4),
+    products.filter((p) => p.category === product.category && p.slug !== product.slug).slice(0, 4),
     locale
   );
 
