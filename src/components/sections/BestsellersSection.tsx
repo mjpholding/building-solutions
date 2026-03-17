@@ -1,13 +1,13 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useMemo } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { ArrowRight, Droplets } from "lucide-react";
 import { getBestsellers } from "@/data/products";
+import { getTranslatedProducts } from "@/data/product-i18n";
 import Image from "next/image";
-
-const bestsellers = getBestsellers();
 
 function getPHColor(ph: string): string {
   const val = parseFloat(ph.split("-")[0].trim());
@@ -21,6 +21,8 @@ function getPHColor(ph: string): string {
 export default function BestsellersSection() {
   const t = useTranslations("products");
   const td = useTranslations("productDetail");
+  const locale = useLocale();
+  const bestsellers = useMemo(() => getTranslatedProducts(getBestsellers(), locale), [locale]);
 
   return (
     <section className="py-20 lg:py-28 bg-swish-gray-50">

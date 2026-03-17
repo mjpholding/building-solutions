@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { Search, Filter, ArrowRight, Droplets, X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { products, categories } from "@/data/products";
+import { getTranslatedProducts } from "@/data/product-i18n";
 import Image from "next/image";
 
 function getPHColor(ph: string): string {
@@ -22,9 +23,12 @@ export default function ProductsPage() {
   const t = useTranslations("products");
   const tD = useTranslations("productDetail");
   const tCat = useTranslations("categories");
+  const locale = useLocale();
   const searchParams = useSearchParams();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
+
+  const translatedProducts = useMemo(() => getTranslatedProducts(products, locale), [locale]);
 
   // Read category from URL query param (from CategoriesSection links)
   useEffect(() => {
@@ -33,14 +37,14 @@ export default function ProductsPage() {
   }, [searchParams]);
 
   const filtered = useMemo(() => {
-    return products.filter((p) => {
+    return translatedProducts.filter((p) => {
       const matchSearch =
         p.name.toLowerCase().includes(search.toLowerCase()) ||
         p.description.toLowerCase().includes(search.toLowerCase());
       const matchCategory = !category || p.category === category;
       return matchSearch && matchCategory;
     });
-  }, [search, category]);
+  }, [search, category, translatedProducts]);
 
   return (
     <div className="min-h-screen bg-swish-gray-50">

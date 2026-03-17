@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useState, useMemo } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 import { ArrowLeft, Droplets, FileText, ShieldCheck, Package, ShoppingBag, Check } from "lucide-react";
 import { getProductBySlug, getProductsByCategory } from "@/data/products";
+import { getTranslatedProduct, getTranslatedProducts } from "@/data/product-i18n";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useCart } from "@/lib/cart-context";
@@ -32,9 +33,11 @@ export default function ProductDetailPage() {
   const t = useTranslations("products");
   const tD = useTranslations("productDetail");
   const tCat = useTranslations("categories");
+  const locale = useLocale();
   const params = useParams();
   const slug = params.slug as string;
-  const product = getProductBySlug(slug);
+  const rawProduct = getProductBySlug(slug);
+  const product = rawProduct ? getTranslatedProduct(rawProduct, locale) : undefined;
   const { addItem } = useCart();
 
   const sizes = product?.sizes || [];
@@ -64,9 +67,10 @@ export default function ProductDetailPage() {
   const prices = product.prices || {};
   const currentPrice = prices[selectedSize] || 0;
 
-  const related = getProductsByCategory(product.category)
-    .filter((p) => p.slug !== product.slug)
-    .slice(0, 4);
+  const related = getTranslatedProducts(
+    getProductsByCategory(product.category).filter((p) => p.slug !== product.slug).slice(0, 4),
+    locale
+  );
 
   const handleAddToCart = () => {
     addItem({
