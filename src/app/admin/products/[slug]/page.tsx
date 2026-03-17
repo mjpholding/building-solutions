@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Save, Loader2, Check, Trash2 } from "lucide-react";
+import Image from "next/image";
+import { ArrowLeft, Save, Loader2, Check, Trash2, Upload, ImageIcon, X } from "lucide-react";
 
 interface Product {
   id: number;
@@ -20,6 +21,7 @@ interface Product {
   roomTypes: string[];
   dirtTypes: string[];
   intensityLevels: string[];
+  image?: string;
 }
 
 const CATEGORIES = [
@@ -40,7 +42,7 @@ const INTENSITY_LEVELS = ["light", "medium", "heavy"];
 const emptyProduct: Product = {
   id: 0, slug: "", name: "", category: "floors", description: "", ph: "",
   applications: [], isBestseller: false, sizes: [], prices: {}, surfaceTypes: [],
-  roomTypes: [], dirtTypes: [], intensityLevels: [],
+  roomTypes: [], dirtTypes: [], intensityLevels: [], image: "",
 };
 
 function slugify(text: string): string {
@@ -58,6 +60,9 @@ export default function ProductEditor() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Temp fields for comma-separated arrays
   const [applicationsText, setApplicationsText] = useState("");
@@ -120,6 +125,40 @@ export default function ProductEditor() {
     setTimeout(() => {
       router.push("/admin/products");
     }, 1000);
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!product.slug) {
+      setUploadError("Bitte zuerst einen Namen/Slug eingeben.");
+      return;
+    }
+    setUploading(true);
+    setUploadError("");
+    const fd = new FormData();
+    fd.append("file", file);
+    fd.append("slug", product.slug);
+    const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+    const data = await res.json();
+    if (res.ok) {
+      updateField("image", data.url);
+    } else {
+      setUploadError(data.error || "Upload fehlgeschlagen");
+    }
+    setUploading(false);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  const handleImageDelete = async () => {
+    if (!product.image) return;
+    if (!confirm("Produktbild wirklich loschen?")) return;
+    await fetch("/api/admin/upload", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url: product.image }),
+    });
+    updateField("image", "");
   };
 
   const handleDelete = async () => {
@@ -259,6 +298,64 @@ export default function ProductEditor() {
               <label htmlFor="bestseller" className="text-sm font-medium text-gray-700">
                 Bestseller
               </label>
+            </div>
+          </div>
+        </div>
+
+        {/* Product Image */}
+        <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Produktbild</h2>
+          {uploadError && (
+            <div className="mb-4 text-sm text-red-600 bg-red-50 p-3 rounded-lg flex items-center justify-between">
+              {uploadError}
+              <button onClick={() => setUploadError("")} className="text-red-400 hover:text-red-600"><X size={14} /></button>
+            </div>
+          )}
+          <div className="flex items-start gap-6">
+            {/* Preview */}
+            <div className="w-40 h-40 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden flex-shrink-0">
+              {product.image ? (
+                <Image src={product.image} alt={product.name || "Produkt"} width={160} height={160} className="object-contain w-full h-full p-2" />
+              ) : (
+                <ImageIcon size={32} className="text-gray-300" />
+              )}
+            </div>
+            {/* Controls */}
+            <div className="flex-1 space-y-3">
+              <p className="text-sm text-gray-500">
+                PNG, JPEG oder WebP. Max. 5 MB. Das Bild wird unter dem Produkt-Slug gespeichert.
+              </p>
+              <div className="flex items-center gap-3">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp,image/svg+xml"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                  id="product-image-input"
+                />
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={uploading || !product.slug}
+                  className="flex items-center gap-2 bg-gray-900 hover:bg-gray-800 disabled:bg-gray-300 text-white px-4 py-2.5 rounded-lg text-sm font-medium transition-colors"
+                >
+                  {uploading ? <Loader2 size={16} className="animate-spin" /> : <Upload size={16} />}
+                  {uploading ? "Wird hochgeladen..." : "Bild hochladen"}
+                </button>
+                {product.image && (
+                  <button
+                    type="button"
+                    onClick={handleImageDelete}
+                    className="flex items-center gap-2 border border-red-200 text-red-600 hover:bg-red-50 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors"
+                  >
+                    <Trash2 size={16} /> Bild entfernen
+                  </button>
+                )}
+              </div>
+              {product.image && (
+                <p className="text-xs text-gray-400 font-mono break-all">{product.image}</p>
+              )}
             </div>
           </div>
         </div>
