@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Mail, Type, Package, LogOut, Loader2, ShoppingCart, Euro, Users, Tag } from "lucide-react";
+import { LayoutDashboard, Mail, Type, Package, LogOut, Loader2, ShoppingCart, Euro, Users, Tag, AtSign, CreditCard } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -14,6 +14,8 @@ const navItems = [
   { href: "/admin/discounts", label: "Rabatte", icon: Tag },
   { href: "/admin/contact", label: "Kontakt", icon: Mail },
   { href: "/admin/texts", label: "Texte", icon: Type },
+  { href: "/admin/email-signature", label: "E-Mail-Signatur", icon: AtSign },
+  { href: "/admin/business-cards", label: "Visitenkarten", icon: CreditCard },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
