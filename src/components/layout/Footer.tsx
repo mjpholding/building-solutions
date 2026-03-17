@@ -94,12 +94,12 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2.5">
               <li>
-                <Link href="/kontakt" className="text-swish-gray-300 hover:text-swish-red transition-colors text-sm">
+                <Link href="/impressum" className="text-swish-gray-300 hover:text-swish-red transition-colors text-sm">
                   {t("imprint")}
                 </Link>
               </li>
               <li>
-                <Link href="/kontakt" className="text-swish-gray-300 hover:text-swish-red transition-colors text-sm">
+                <Link href="/datenschutz" className="text-swish-gray-300 hover:text-swish-red transition-colors text-sm">
                   {t("privacy")}
                 </Link>
               </li>
