@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowLeft, Save, Loader2, Check, Trash2, Upload, ImageIcon, X } from "lucide-react";
 
 interface Product {
@@ -315,7 +314,7 @@ export default function ProductEditor() {
             {/* Preview */}
             <div className="w-40 h-40 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden flex-shrink-0">
               {product.image ? (
-                <Image src={product.image} alt={product.name || "Produkt"} width={160} height={160} className="object-contain w-full h-full p-2" />
+                <img src={product.image} alt={product.name || "Produkt"} className="object-contain w-full h-full p-2" />
               ) : (
                 <ImageIcon size={32} className="text-gray-300" />
               )}
@@ -323,7 +322,7 @@ export default function ProductEditor() {
             {/* Controls */}
             <div className="flex-1 space-y-3">
               <p className="text-sm text-gray-500">
-                PNG, JPEG oder WebP. Max. 5 MB. Das Bild wird unter dem Produkt-Slug gespeichert.
+                PNG, JPEG oder WebP. Max. 2 MB. Das Bild wird unter dem Produkt-Slug gespeichert.
               </p>
               <div className="flex items-center gap-3">
                 <input
