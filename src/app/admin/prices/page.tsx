@@ -179,8 +179,10 @@ export default function PricingPage() {
   });
 
   // Stats
+  const VAT_RATE = 0.19;
   const totalPurchaseEUR = items.reduce((s, i) => s + i.purchasePriceEUR, 0);
   const totalSellEUR = items.reduce((s, i) => s + i.sellPriceEUR, 0);
+  const totalSellBruttoEUR = totalSellEUR * (1 + VAT_RATE);
   const globalDiscount = config?.globalPurchaseDiscount || 0;
   const globalMargin = config?.globalMargin || 30;
   const avgMargin = items.length > 0
@@ -326,21 +328,27 @@ export default function PricingPage() {
       </div>
 
       {/* Stats bar */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-6">
         <div className="bg-white rounded-lg border border-gray-200 p-3 text-center">
           <div className="text-xs text-gray-500">Produkte</div>
           <div className="text-lg font-bold text-gray-900">{items.length}</div>
         </div>
         <div className="bg-white rounded-lg border border-gray-200 p-3 text-center">
-          <div className="text-xs text-gray-500">Ø Einkauf EUR</div>
+          <div className="text-xs text-gray-500">Ø Einkauf</div>
           <div className="text-lg font-bold text-gray-900">
             {items.length > 0 ? (totalPurchaseEUR / items.length).toFixed(2) : "—"} €
           </div>
         </div>
         <div className="bg-white rounded-lg border border-gray-200 p-3 text-center">
-          <div className="text-xs text-gray-500">Ø Verkauf EUR</div>
+          <div className="text-xs text-gray-500">Ø VK netto</div>
           <div className="text-lg font-bold text-gray-900">
             {items.length > 0 ? (totalSellEUR / items.length).toFixed(2) : "—"} €
+          </div>
+        </div>
+        <div className="bg-white rounded-lg border border-gray-200 p-3 text-center">
+          <div className="text-xs text-gray-500">Ø VK brutto</div>
+          <div className="text-lg font-bold text-green-700">
+            {items.length > 0 ? (totalSellBruttoEUR / items.length).toFixed(2) : "—"} €
           </div>
         </div>
         <div className="bg-white rounded-lg border border-gray-200 p-3 text-center">
@@ -402,7 +410,9 @@ export default function PricingPage() {
                   <span className="flex items-center justify-end gap-1">Einkauf PLN <ArrowRight size={10} /> EUR</span>
                 </th>
                 <th className="text-right px-2 py-2.5">Marge %</th>
-                <th className="text-right px-3 py-2.5">VK EUR</th>
+                <th className="text-right px-2 py-2.5">VK netto</th>
+                <th className="text-right px-2 py-2.5">MwSt.</th>
+                <th className="text-right px-3 py-2.5">VK brutto</th>
               </tr>
             </thead>
             <tbody>
@@ -496,8 +506,8 @@ export default function PricingPage() {
                       )}
                     </td>
 
-                    {/* Sell price (editable override) */}
-                    <td className="px-3 py-2 text-right">
+                    {/* Sell price netto (editable override) */}
+                    <td className="px-2 py-2 text-right">
                       {editingCell === `sell-${realIdx}` ? (
                         <div className="flex items-center justify-end gap-1">
                           <input
@@ -529,13 +539,25 @@ export default function PricingPage() {
                       ) : (
                         <button
                           onClick={() => setEditingCell(`sell-${realIdx}`)}
-                          className={`text-xs cursor-pointer hover:bg-gray-100 px-1.5 py-0.5 rounded font-bold ${
-                            hasOverride ? "text-orange-600" : "text-gray-900"
+                          className={`text-xs cursor-pointer hover:bg-gray-100 px-1.5 py-0.5 rounded font-medium ${
+                            hasOverride ? "text-orange-600" : "text-gray-600"
                           }`}
                         >
-                          {item.sellPriceEUR.toFixed(2)} €
+                          {item.sellPriceEUR.toFixed(2)}
                         </button>
                       )}
+                    </td>
+
+                    {/* VAT 19% */}
+                    <td className="px-2 py-2 text-right text-gray-400 text-xs">
+                      {(item.sellPriceEUR * VAT_RATE).toFixed(2)}
+                    </td>
+
+                    {/* Sell price brutto */}
+                    <td className="px-3 py-2 text-right">
+                      <span className="text-xs font-bold text-green-700">
+                        {(item.sellPriceEUR * (1 + VAT_RATE)).toFixed(2)} €
+                      </span>
                     </td>
                   </tr>
                 );
