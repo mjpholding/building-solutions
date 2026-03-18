@@ -1,0 +1,1412 @@
+[
+  {
+    "name": "E10 NEUTRAL",
+    "size": 1,
+    "description": "Neutralny preparat do codziennej pielęgnacji powierzchni",
+    "dosage": "0,3% - 2%",
+    "packSize": 16,
+    "pricePerLiterPLN": 10.7,
+    "pricePerUnitPLN": 10.7,
+    "line": "economy"
+  },
+  {
+    "name": "E10 NEUTRAL",
+    "size": 5,
+    "description": "Neutralny preparat do codziennej pielęgnacji powierzchni",
+    "dosage": "0,3% - 2%",
+    "packSize": 4,
+    "pricePerLiterPLN": 8.84,
+    "pricePerUnitPLN": 44.2,
+    "line": "economy"
+  },
+  {
+    "name": "E11 ORANGE",
+    "size": 1,
+    "description": "Neutralny preparat do codziennej pielęgnacji powierzchni",
+    "dosage": "0,3% - 2%",
+    "packSize": 16,
+    "pricePerLiterPLN": 10.89,
+    "pricePerUnitPLN": 10.89,
+    "line": "economy"
+  },
+  {
+    "name": "E11 ORANGE",
+    "size": 5,
+    "description": "Neutralny preparat do codziennej pielęgnacji powierzchni",
+    "dosage": "0,3% - 2%",
+    "packSize": 4,
+    "pricePerLiterPLN": 9.06,
+    "pricePerUnitPLN": 45.28,
+    "line": "economy"
+  },
+  {
+    "name": "E20 ALKALI",
+    "size": 1,
+    "description": "Niskopieniący, zasadowy preparat myjący, nadający delikatny połysk",
+    "dosage": "0,3% - 2%",
+    "packSize": 16,
+    "pricePerLiterPLN": 10.66,
+    "pricePerUnitPLN": 10.66,
+    "line": "economy"
+  },
+  {
+    "name": "E20 ALKALI",
+    "size": 5,
+    "description": "Niskopieniący, zasadowy preparat myjący, nadający delikatny połysk",
+    "dosage": "0,3% - 2%",
+    "packSize": 4,
+    "pricePerLiterPLN": 8.92,
+    "pricePerUnitPLN": 44.61,
+    "line": "economy"
+  },
+  {
+    "name": "E30 ACID",
+    "size": 1,
+    "description": "Kwasowy preparat czyszczący do łazienek",
+    "dosage": "0,3% - 2%",
+    "packSize": 16,
+    "pricePerLiterPLN": 10.9,
+    "pricePerUnitPLN": 10.9,
+    "line": "economy"
+  },
+  {
+    "name": "E30 ACID",
+    "size": 5,
+    "description": "Kwasowy preparat czyszczący do łazienek",
+    "dosage": "0,3% - 2%",
+    "packSize": 4,
+    "pricePerLiterPLN": 9.17,
+    "pricePerUnitPLN": 45.86,
+    "line": "economy"
+  },
+  {
+    "name": "E35 GEL",
+    "size": 1,
+    "description": "Kwasowy preparat czyszczący do łazienek w formie żelu",
+    "dosage": "GOTOWY lub 0,5% - 10%",
+    "packSize": 16,
+    "pricePerLiterPLN": 11.79,
+    "pricePerUnitPLN": 11.79,
+    "line": "economy"
+  },
+  {
+    "name": "E35 GEL",
+    "size": 5,
+    "description": "Kwasowy preparat czyszczący do łazienek w formie żelu",
+    "dosage": "GOTOWY lub 0,5% - 10%",
+    "packSize": 4,
+    "pricePerLiterPLN": 9.65,
+    "pricePerUnitPLN": 48.25,
+    "line": "economy"
+  },
+  {
+    "name": "E40 GLASS",
+    "size": 1,
+    "description": "Preparat do mycia powierzchni szklanych",
+    "dosage": "0,7% - 10%",
+    "packSize": 16,
+    "pricePerLiterPLN": 10.56,
+    "pricePerUnitPLN": 10.56,
+    "line": "economy"
+  },
+  {
+    "name": "E40 GLASS",
+    "size": 5,
+    "description": "Preparat do mycia powierzchni szklanych",
+    "dosage": "0,7% - 10%",
+    "packSize": 4,
+    "pricePerLiterPLN": 8.72,
+    "pricePerUnitPLN": 43.6,
+    "line": "economy"
+  },
+  {
+    "name": "E50 STRONG CLEANER",
+    "size": 1,
+    "description": "Uniwersalny preparat odtłuszczający",
+    "dosage": "0,5% - 10%",
+    "packSize": 16,
+    "pricePerLiterPLN": 15.01,
+    "pricePerUnitPLN": 15.01,
+    "line": "economy"
+  },
+  {
+    "name": "E50 STRONG CLEANER",
+    "size": 5,
+    "description": "Uniwersalny preparat odtłuszczający",
+    "dosage": "0,5% - 10%",
+    "packSize": 4,
+    "pricePerLiterPLN": 12.66,
+    "pricePerUnitPLN": 63.29,
+    "line": "economy"
+  },
+  {
+    "name": "Extreme",
+    "size": 5,
+    "description": "Super silny stripper, usuwający warstwy UHS",
+    "dosage": "7,7% - 25%",
+    "packSize": 4,
+    "pricePerLiterPLN": 45.98,
+    "pricePerUnitPLN": 229.91,
+    "line": "professional"
+  },
+  {
+    "name": "Extreme",
+    "size": 20,
+    "description": "Super silny stripper, usuwający warstwy UHS",
+    "dosage": "7,7% - 25%",
+    "packSize": null,
+    "pricePerLiterPLN": 39.08,
+    "pricePerUnitPLN": 781.69,
+    "line": "professional"
+  },
+  {
+    "name": "Liberty",
+    "size": 5,
+    "description": "Silny, uniwersalny stripper usuwający warstwy UHS",
+    "dosage": "14% - 50%",
+    "packSize": "4",
+    "pricePerLiterPLN": 25.89,
+    "pricePerUnitPLN": 129.46,
+    "line": "professional"
+  },
+  {
+    "name": "Liberty",
+    "size": 20,
+    "description": "Silny, uniwersalny stripper usuwający warstwy UHS",
+    "dosage": "14% - 50%",
+    "packSize": "-",
+    "pricePerLiterPLN": 24.94,
+    "pricePerUnitPLN": 498.8,
+    "line": "professional"
+  },
+  {
+    "name": "Swish Strip",
+    "size": 5,
+    "description": "Uniwersalny stripper do czyszczenia gruntownego",
+    "dosage": "2,5% - 9%",
+    "packSize": "4",
+    "pricePerLiterPLN": 16.23,
+    "pricePerUnitPLN": 81.16,
+    "line": "professional"
+  },
+  {
+    "name": "Swish Strip",
+    "size": 20,
+    "description": "Uniwersalny stripper do czyszczenia gruntownego",
+    "dosage": "2,5% - 9%",
+    "packSize": "-",
+    "pricePerLiterPLN": 15.37,
+    "pricePerUnitPLN": 307.32,
+    "line": "professional"
+  },
+  {
+    "name": "Duration",
+    "size": 3.78,
+    "description": "Wzmocniona uretanem powłoka zabezpieczająca",
+    "dosage": "Gotowy do użytku",
+    "packSize": "4",
+    "pricePerLiterPLN": 44.4,
+    "pricePerUnitPLN": 167.83,
+    "line": "professional"
+  },
+  {
+    "name": "Duration",
+    "size": 18.9,
+    "description": "Wzmocniona uretanem powłoka zabezpieczająca",
+    "dosage": "Gotowy do użytku",
+    "packSize": "-",
+    "pricePerLiterPLN": 42.64,
+    "pricePerUnitPLN": 805.93,
+    "line": "professional"
+  },
+  {
+    "name": "Eternity",
+    "size": 3.78,
+    "description": "Uniwersalna powłoka zabezpieczająca o zwiększonej grubości",
+    "dosage": "Gotowy do użytku",
+    "packSize": "4",
+    "pricePerLiterPLN": 40.34,
+    "pricePerUnitPLN": 152.47,
+    "line": "professional"
+  },
+  {
+    "name": "Eternity",
+    "size": 18.9,
+    "description": "Uniwersalna powłoka zabezpieczająca o zwiększonej grubości",
+    "dosage": "Gotowy do użytku",
+    "packSize": "-",
+    "pricePerLiterPLN": 38.48,
+    "pricePerUnitPLN": 727.27,
+    "line": "professional"
+  },
+  {
+    "name": "Poly Lock",
+    "size": 3.78,
+    "description": "Powłoka zabezpieczająca o wysokim połysku",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 39.06,
+    "pricePerUnitPLN": 147.66,
+    "line": "professional"
+  },
+  {
+    "name": "Poly Lock",
+    "size": 18.9,
+    "description": "Powłoka zabezpieczająca o wysokim połysku",
+    "dosage": "Gotowy do użytku",
+    "packSize": null,
+    "pricePerLiterPLN": 35.74,
+    "pricePerUnitPLN": 675.5,
+    "line": "professional"
+  },
+  {
+    "name": "Tried & True",
+    "size": 3.78,
+    "description": "Uniwersalna powłoka zabezpieczająca",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 27.4,
+    "pricePerUnitPLN": 103.58,
+    "line": "professional"
+  },
+  {
+    "name": "ES89 - Blockade Concrete Sealer",
+    "size": 18.9,
+    "description": "Akrylowy preparat uszczelniający",
+    "dosage": "Gotowy do użytku",
+    "packSize": "-",
+    "pricePerLiterPLN": 59.38,
+    "pricePerUnitPLN": 1122.22,
+    "line": "professional"
+  },
+  {
+    "name": "ES99 - Impregnator Sealer",
+    "size": 3.78,
+    "description": "Preparat impregnująco-zabezpieczający do podłóg",
+    "dosage": "Gotowy do użytku",
+    "packSize": "4",
+    "pricePerLiterPLN": 56.96,
+    "pricePerUnitPLN": 215.32,
+    "line": "professional"
+  },
+  {
+    "name": "Stone & Tile",
+    "size": 3.78,
+    "description": "Preparat impregnująco-zabezpiaczający do podłóg",
+    "dosage": "Gotowy do użytku",
+    "packSize": "4",
+    "pricePerLiterPLN": 34.82,
+    "pricePerUnitPLN": 131.61,
+    "line": "professional"
+  },
+  {
+    "name": "Sun up",
+    "size": 0.946,
+    "description": "Preparat do regeneracji powłok polimerowych",
+    "dosage": "Gotowy do użytku",
+    "packSize": "6",
+    "pricePerLiterPLN": 44.8,
+    "pricePerUnitPLN": 42.38,
+    "line": "professional"
+  },
+  {
+    "name": "Tried & True",
+    "size": 3.78,
+    "description": "Uniwersalna powłoka zabezpieczająca o właściwościach regeneracyjnych",
+    "dosage": "1% - 20%",
+    "packSize": "4",
+    "pricePerLiterPLN": 27.4,
+    "pricePerUnitPLN": 103.58,
+    "line": "professional"
+  },
+  {
+    "name": "Poly Lock",
+    "size": 3.78,
+    "description": "Powłoka zabezpieczająca o wysokim połysku",
+    "dosage": "1% - 20%",
+    "packSize": 4,
+    "pricePerLiterPLN": 39.06,
+    "pricePerUnitPLN": 147.66,
+    "line": "professional"
+  },
+  {
+    "name": "SP-100 Floral",
+    "size": 1,
+    "description": "Preparat myjący do codziennej pielęgnacji powierzchni",
+    "dosage": "0,25% - 2,5%",
+    "packSize": "16",
+    "pricePerLiterPLN": 12.59,
+    "pricePerUnitPLN": 12.59,
+    "line": "professional"
+  },
+  {
+    "name": "SP-100 Floral",
+    "size": 5,
+    "description": "Preparat myjący do codziennej pielęgnacji powierzchni",
+    "dosage": "0,25% - 2,5%",
+    "packSize": "4",
+    "pricePerLiterPLN": 10.94,
+    "pricePerUnitPLN": 54.71,
+    "line": "professional"
+  },
+  {
+    "name": "SP-100 Citro",
+    "size": 1,
+    "description": "Preparat myjący z alkoholem do codziennej pielęgnacji powierzchni",
+    "dosage": "0,25% - 2,5%",
+    "packSize": "16",
+    "pricePerLiterPLN": 12.59,
+    "pricePerUnitPLN": 12.59,
+    "line": "professional"
+  },
+  {
+    "name": "SP-100 Citro",
+    "size": 5,
+    "description": "Preparat myjący z alkoholem do codziennej pielęgnacji powierzchni",
+    "dosage": "0,25% - 2,5%",
+    "packSize": "4",
+    "pricePerLiterPLN": 10.94,
+    "pricePerUnitPLN": 54.71,
+    "line": "professional"
+  },
+  {
+    "name": "SP-105 Nano Clean & Shine",
+    "size": 1,
+    "description": "Specjalistyczny preparat do mycia i nabłyszczania posadzek",
+    "dosage": "0,25% - 2,5%",
+    "packSize": "16",
+    "pricePerLiterPLN": 13.82,
+    "pricePerUnitPLN": 13.82,
+    "line": "professional"
+  },
+  {
+    "name": "SP-105 Nano Clean & Shine",
+    "size": 5,
+    "description": "Specjalistyczny preparat do mycia i nabłyszczania posadzek",
+    "dosage": "0,25% - 2,5%",
+    "packSize": "4",
+    "pricePerLiterPLN": 11.18,
+    "pricePerUnitPLN": 55.9,
+    "line": "professional"
+  },
+  {
+    "name": "SP-110 Wood Floor Cleaner",
+    "size": 1,
+    "description": "Preparat do mycia powierzchni drewnianych i laminowanych",
+    "dosage": "0,25% - 2,0%",
+    "packSize": "16",
+    "pricePerLiterPLN": 11.63,
+    "pricePerUnitPLN": 11.63,
+    "line": "professional"
+  },
+  {
+    "name": "SP-110 Wood Floor Cleaner",
+    "size": 5,
+    "description": "Preparat do mycia powierzchni drewnianych i laminowanych",
+    "dosage": "0,25% - 2,0%",
+    "packSize": "4",
+    "pricePerLiterPLN": 9.33,
+    "pricePerUnitPLN": 46.65,
+    "line": "professional"
+  },
+  {
+    "name": "Sunbeam",
+    "size": 1,
+    "description": "Neutralny, bezzapachowy środek do codziennego mycia posadzek",
+    "dosage": "0,6% - 2%",
+    "packSize": "6",
+    "pricePerLiterPLN": 17.05,
+    "pricePerUnitPLN": 17.05,
+    "line": "professional"
+  },
+  {
+    "name": "Sunbeam",
+    "size": 5,
+    "description": "Neutralny, bezzapachowy środek do codziennego mycia posadzek",
+    "dosage": "0,6% - 2%",
+    "packSize": "4",
+    "pricePerLiterPLN": 14.03,
+    "pricePerUnitPLN": 70.13,
+    "line": "professional"
+  },
+  {
+    "name": "Wash & Shine",
+    "size": 1,
+    "description": "Preparat do mycia i nabłyszczania posadzek",
+    "dosage": "1% - 2,5%",
+    "packSize": "6",
+    "pricePerLiterPLN": 20.03,
+    "pricePerUnitPLN": 20.03,
+    "line": "professional"
+  },
+  {
+    "name": "Wash & Shine",
+    "size": 5,
+    "description": "Preparat do mycia i nabłyszczania posadzek",
+    "dosage": "1% - 2,5%",
+    "packSize": "4",
+    "pricePerLiterPLN": 18.79,
+    "pricePerUnitPLN": 93.96,
+    "line": "professional"
+  },
+  {
+    "name": "Winterinse",
+    "size": 1,
+    "description": "Preparat do bieżącego mycia posadzek, usuwający osady z soli oraz zmiękczający wodę",
+    "dosage": "0,8% - 2,5%",
+    "packSize": "6",
+    "pricePerLiterPLN": 20.94,
+    "pricePerUnitPLN": 20.94,
+    "line": "professional"
+  },
+  {
+    "name": "Winterinse",
+    "size": 5,
+    "description": "Preparat do bieżącego mycia posadzek, usuwający osady z soli oraz zmiękczający wodę",
+    "dosage": "0,8% - 2,5%",
+    "packSize": "4",
+    "pricePerLiterPLN": 17.97,
+    "pricePerUnitPLN": 89.83,
+    "line": "professional"
+  },
+  {
+    "name": "Jet",
+    "size": 1,
+    "description": "Preparat do usuwania zabrudzeń tłuszczowych i olejowych",
+    "dosage": "0,7% - 1,7%",
+    "packSize": "6",
+    "pricePerLiterPLN": 19.02,
+    "pricePerUnitPLN": 19.02,
+    "line": "professional"
+  },
+  {
+    "name": "Jet",
+    "size": 5,
+    "description": "Preparat do usuwania zabrudzeń tłuszczowych i olejowych",
+    "dosage": "0,7% - 1,7%",
+    "packSize": "4",
+    "pricePerLiterPLN": 16.13,
+    "pricePerUnitPLN": 80.63,
+    "line": "professional"
+  },
+  {
+    "name": "SP-120",
+    "size": 1,
+    "description": "Uniwersalny płyn od mycia i pielęgnacji powierzchni w obiektach wielkopowierzchniowych",
+    "dosage": "0,25% - 2,5%",
+    "packSize": "16",
+    "pricePerLiterPLN": 14.26,
+    "pricePerUnitPLN": 14.26,
+    "line": "professional"
+  },
+  {
+    "name": "SP-120",
+    "size": 5,
+    "description": "Uniwersalny płyn od mycia i pielęgnacji powierzchni w obiektach wielkopowierzchniowych",
+    "dosage": "0,25% - 2,5%",
+    "packSize": "4",
+    "pricePerLiterPLN": 11.9,
+    "pricePerUnitPLN": 59.52,
+    "line": "professional"
+  },
+  {
+    "name": "SP-150",
+    "size": 1,
+    "description": "Specjalistyczny preparat do mycia posadzek gresowych",
+    "dosage": "0,25% - 2,5%",
+    "packSize": "16",
+    "pricePerLiterPLN": 23.08,
+    "pricePerUnitPLN": 23.08,
+    "line": "professional"
+  },
+  {
+    "name": "SP-150",
+    "size": 5,
+    "description": "Specjalistyczny preparat do mycia posadzek gresowych",
+    "dosage": "0,25% - 2,5%",
+    "packSize": "4",
+    "pricePerLiterPLN": 17.8,
+    "pricePerUnitPLN": 88.98,
+    "line": "professional"
+  },
+  {
+    "name": "SP-350",
+    "size": 1,
+    "description": "Kwasowy preparat do gruntownego czyszczenia posadzek mikroporowatych",
+    "dosage": "0,5% - 20%",
+    "packSize": "16",
+    "pricePerLiterPLN": 20.16,
+    "pricePerUnitPLN": 20.16,
+    "line": "professional"
+  },
+  {
+    "name": "SP-350",
+    "size": 5,
+    "description": "Kwasowy preparat do gruntownego czyszczenia posadzek mikroporowatych",
+    "dosage": "0,5% - 20%",
+    "packSize": "4",
+    "pricePerLiterPLN": 16.74,
+    "pricePerUnitPLN": 83.7,
+    "line": "professional"
+  },
+  {
+    "name": "ES99 - Impregnator Sealer",
+    "size": 3.78,
+    "description": "Preparat impregnująco-zabezpieczający do podłóg",
+    "dosage": "Gotowy do użytku",
+    "packSize": "4",
+    "pricePerLiterPLN": 56.96,
+    "pricePerUnitPLN": 215.32,
+    "line": "professional"
+  },
+  {
+    "name": "SP-300",
+    "size": 1,
+    "description": "Kwasowy preparat do czyszczenia sanitariatów",
+    "dosage": "0,25% - 2,5%",
+    "packSize": "16",
+    "pricePerLiterPLN": 12.75,
+    "pricePerUnitPLN": 12.75,
+    "line": "professional"
+  },
+  {
+    "name": "SP-300",
+    "size": 5,
+    "description": "Kwasowy preparat do czyszczenia sanitariatów",
+    "dosage": "0,25% - 2,5%",
+    "packSize": "4",
+    "pricePerLiterPLN": 11.24,
+    "pricePerUnitPLN": 56.18,
+    "line": "professional"
+  },
+  {
+    "name": "Tuby",
+    "size": 0.946,
+    "description": "Preparat czyszczący do sanitariatów wzbogacony o formułę ochronną",
+    "dosage": "10% - 50%",
+    "packSize": 6,
+    "pricePerLiterPLN": 27.55,
+    "pricePerUnitPLN": 26.06,
+    "line": "professional"
+  },
+  {
+    "name": "Sani Foam",
+    "size": 1,
+    "description": "Gotowa do użytku pianka do mycia sanitariatów",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 16.5,
+    "pricePerUnitPLN": 17.14,
+    "line": "professional"
+  },
+  {
+    "name": "Sani Clean",
+    "size": 1,
+    "description": "Gotowy do użycia preparat czyszczący do sanitariatów wzbogacony o formułę ochronną",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 12.59,
+    "pricePerUnitPLN": 12.59,
+    "line": "professional"
+  },
+  {
+    "name": "Sani Clean",
+    "size": 5,
+    "description": "Gotowy do użycia preparat czyszczący do sanitariatów wzbogacony o formułę ochronną",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 9.26,
+    "pricePerUnitPLN": 46.31,
+    "line": "professional"
+  },
+  {
+    "name": "Scale Remover",
+    "size": 1,
+    "description": "Odkamieniacz, preparat do gruntownego czyszczenia sanitariatów",
+    "dosage": "5,5% - 50%",
+    "packSize": 6,
+    "pricePerLiterPLN": 22.53,
+    "pricePerUnitPLN": 22.53,
+    "line": "professional"
+  },
+  {
+    "name": "Scale Remover",
+    "size": 5,
+    "description": "Odkamieniacz, preparat do gruntownego czyszczenia sanitariatów",
+    "dosage": "5,5% - 50%",
+    "packSize": 4,
+    "pricePerLiterPLN": 19.32,
+    "pricePerUnitPLN": 96.62,
+    "line": "professional"
+  },
+  {
+    "name": "SP-350",
+    "size": 1,
+    "description": "Kwasowy preparat czyszczący",
+    "dosage": "0,5% - 20%",
+    "packSize": 16,
+    "pricePerLiterPLN": 20.16,
+    "pricePerUnitPLN": 20.16,
+    "line": "professional"
+  },
+  {
+    "name": "SP-350",
+    "size": 5,
+    "description": "Kwasowy preparat czyszczący",
+    "dosage": "0,5% - 20%",
+    "packSize": 4,
+    "pricePerLiterPLN": 16.74,
+    "pricePerUnitPLN": 83.7,
+    "line": "professional"
+  },
+  {
+    "name": "Kling",
+    "size": 0.946,
+    "description": "Preparat z drobinami ściernymi do pielęgnacji powierzchni",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 35.55,
+    "pricePerUnitPLN": 33.63,
+    "line": "professional"
+  },
+  {
+    "name": "SP-360",
+    "size": 1,
+    "description": "Gotowy do użycia, bardzo silny preparat do czyszczenia powierzchni sedesów i pisuarów.",
+    "dosage": "Gotowy do użytku",
+    "packSize": 16,
+    "pricePerLiterPLN": 16.62,
+    "pricePerUnitPLN": 16.62,
+    "line": "professional"
+  },
+  {
+    "name": "Aromx 60",
+    "size": 0.946,
+    "description": "Silny eliminator przykrych zapachów",
+    "dosage": "0,7% - 50 %",
+    "packSize": 6,
+    "pricePerLiterPLN": 64.66,
+    "pricePerUnitPLN": 61.17,
+    "line": "professional"
+  },
+  {
+    "name": "Aromx 60",
+    "size": 3.78,
+    "description": "Silny eliminator przykrych zapachów",
+    "dosage": "0,7% - 50 %",
+    "packSize": 4,
+    "pricePerLiterPLN": 57.87,
+    "pricePerUnitPLN": 218.76,
+    "line": "professional"
+  },
+  {
+    "name": "Aromx 35",
+    "size": 0.946,
+    "description": "Bio-enzymatyczny neutralizator przykrych zapachów pochodzenia organicznego",
+    "dosage": "50% / Gotowy",
+    "packSize": 6,
+    "pricePerLiterPLN": 51.32,
+    "pricePerUnitPLN": 48.55,
+    "line": "professional"
+  },
+  {
+    "name": "Fresh Air",
+    "size": 1,
+    "description": "Preparat pokrywający przykre zapachy i odświeżający powietrze",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 21.02,
+    "pricePerUnitPLN": 21.02,
+    "line": "professional"
+  },
+  {
+    "name": "Essence Herbal Therapy",
+    "size": 0.5,
+    "description": "Preparat pokrywający przykre zapachy i odświeżający powietrze",
+    "dosage": "Gotowy do użytku",
+    "packSize": 10,
+    "pricePerLiterPLN": 72.64,
+    "pricePerUnitPLN": 36.32,
+    "line": "professional"
+  },
+  {
+    "name": "Essence Magic Fruit",
+    "size": 0.5,
+    "description": "Preparat pokrywający przykre zapachy i odświeżający powietrze",
+    "dosage": "Gotowy do użytku",
+    "packSize": 10,
+    "pricePerLiterPLN": 72.64,
+    "pricePerUnitPLN": 36.32,
+    "line": "professional"
+  },
+  {
+    "name": "Essence Magic Garden",
+    "size": 0.5,
+    "description": "Preparat pokrywający przykre zapachy i odświeżający powietrze",
+    "dosage": "Gotowy do użytku",
+    "packSize": 10,
+    "pricePerLiterPLN": 72.64,
+    "pricePerUnitPLN": 36.32,
+    "line": "professional"
+  },
+  {
+    "name": "Sparkle",
+    "size": 1,
+    "description": "Środek o działaniu odtłuszczającym do mycia szyb, luster i tworzyw sztucznych",
+    "dosage": "0,5% - 10%",
+    "packSize": 6,
+    "pricePerLiterPLN": 17.46,
+    "pricePerUnitPLN": 17.46,
+    "line": "professional"
+  },
+  {
+    "name": "Sparkle",
+    "size": 5,
+    "description": "Środek o działaniu odtłuszczającym do mycia szyb, luster i tworzyw sztucznych",
+    "dosage": "0,5% - 10%",
+    "packSize": 4,
+    "pricePerLiterPLN": 12.05,
+    "pricePerUnitPLN": 60.23,
+    "line": "professional"
+  },
+  {
+    "name": "Glass Clean",
+    "size": 1,
+    "description": "Gotowy do użytku środek o działaniu odtłuszczającym do mycia szyb, luster i tworzyw sztucznych",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 12.11,
+    "pricePerUnitPLN": 12.11,
+    "line": "professional"
+  },
+  {
+    "name": "Glass Clean",
+    "size": 5,
+    "description": "Gotowy do użytku środek o działaniu odtłuszczającym do mycia szyb, luster i tworzyw sztucznych",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 5.67,
+    "pricePerUnitPLN": 28.35,
+    "line": "professional"
+  },
+  {
+    "name": "Nano Glass",
+    "size": 1,
+    "description": "Gotowy do użytku, bezalkoholowy preparat do bieżącego mycia powierzchni szklanych i tworzyw sztucznych",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 12.36,
+    "pricePerUnitPLN": 12.36,
+    "line": "professional"
+  },
+  {
+    "name": "Nano Glass",
+    "size": 5,
+    "description": "Gotowy do użytku, bezalkoholowy preparat do bieżącego mycia powierzchni szklanych i tworzyw sztucznych",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 5.88,
+    "pricePerUnitPLN": 29.42,
+    "line": "professional"
+  },
+  {
+    "name": "Powershine",
+    "size": 0.946,
+    "description": "Preparat do czysczenia i nabłyszczania mebli oraz wyrobów skórzanych",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 38.37,
+    "pricePerUnitPLN": 36.3,
+    "line": "professional"
+  },
+  {
+    "name": "Office Clean",
+    "size": 1,
+    "description": "Preparat do codziennej pielęgnacji mebli",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 11.97,
+    "pricePerUnitPLN": 11.97,
+    "line": "professional"
+  },
+  {
+    "name": "Office Clean",
+    "size": 5,
+    "description": "Preparat do codziennej pielęgnacji mebli",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 8.51,
+    "pricePerUnitPLN": 42.53,
+    "line": "professional"
+  },
+  {
+    "name": "Citro Gleam",
+    "size": 0.946,
+    "description": "Uniwersalny preparat usuwający tłuszcz i olej",
+    "dosage": "5% - 20% / Gotowy",
+    "packSize": 6,
+    "pricePerLiterPLN": 45.59,
+    "pricePerUnitPLN": 43.13,
+    "line": "professional"
+  },
+  {
+    "name": "Powerhouse",
+    "size": 1,
+    "description": "Uniwersalny preparat do usuwania trudnych zabrudzeń",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 23.74,
+    "pricePerUnitPLN": 23.74,
+    "line": "professional"
+  },
+  {
+    "name": "Powerhouse",
+    "size": 5,
+    "description": "Uniwersalny preparat do usuwania trudnych zabrudzeń",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 20.46,
+    "pricePerUnitPLN": 102.28,
+    "line": "professional"
+  },
+  {
+    "name": "Swish De-Grease",
+    "size": 1,
+    "description": "Silny preparat myjąco-odtłuszczający",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 16.82,
+    "pricePerUnitPLN": 16.82,
+    "line": "professional"
+  },
+  {
+    "name": "Super Clean",
+    "size": 1,
+    "description": "Uniwersalny preparat do usuwania zabrudzeń tłuszczowych",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 15.51,
+    "pricePerUnitPLN": 15.51,
+    "line": "professional"
+  },
+  {
+    "name": "Super Clean",
+    "size": 5,
+    "description": "Uniwersalny preparat do usuwania zabrudzeń tłuszczowych",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 9.77,
+    "pricePerUnitPLN": 48.84,
+    "line": "professional"
+  },
+  {
+    "name": "Stainless Steel Polish",
+    "size": 1,
+    "description": "Preparat nabłyszczający i konserwujący powierzchnie ze stali nierdzewnej na bazie olejku",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 60.48,
+    "pricePerUnitPLN": 60.48,
+    "line": "professional"
+  },
+  {
+    "name": "Stainless Steel Cleaner",
+    "size": 0.946,
+    "description": "Preparat na bazie silikonu naturalnego, do konserwacji powierzchni ze stali nierdzewnej",
+    "dosage": "0.5",
+    "packSize": 6,
+    "pricePerLiterPLN": 67.29,
+    "pricePerUnitPLN": 63.66,
+    "line": "professional"
+  },
+  {
+    "name": "Kling",
+    "size": 0.946,
+    "description": "Preparat z drobinami ściernymi do pielęgnacji powierzchni",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 34.22,
+    "pricePerUnitPLN": 32.37,
+    "line": "professional"
+  },
+  {
+    "name": "Nano Glass",
+    "size": 1,
+    "description": "Gotowy do użytku, bezalkoholowy preparat do bieżącego mycia powierzchni szklanych i tworzyw sztucznych",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 12.36,
+    "pricePerUnitPLN": 12.36,
+    "line": "professional"
+  },
+  {
+    "name": "Nano Glass",
+    "size": 5,
+    "description": "Gotowy do użytku, bezalkoholowy preparat do bieżącego mycia powierzchni szklanych i tworzyw sztucznych",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 5.88,
+    "pricePerUnitPLN": 29.42,
+    "line": "professional"
+  },
+  {
+    "name": "Aromx 81",
+    "size": 0.946,
+    "description": "Preparat do usuwania plam z wykładzin dywanowych",
+    "dosage": "20% - 50%",
+    "packSize": 6,
+    "pricePerLiterPLN": 34.62,
+    "pricePerUnitPLN": 32.75,
+    "line": "professional"
+  },
+  {
+    "name": "Aromx 81",
+    "size": 3.78,
+    "description": "Preparat do usuwania plam z wykładzin dywanowych",
+    "dosage": "20% - 50%",
+    "packSize": 4,
+    "pricePerLiterPLN": 25.76,
+    "pricePerUnitPLN": 97.38,
+    "line": "professional"
+  },
+  {
+    "name": "Stain Remover",
+    "size": 1,
+    "description": "Odplamiacz do wykładzin i tapicerki",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 16.95,
+    "pricePerUnitPLN": 16.95,
+    "line": "professional"
+  },
+  {
+    "name": "Stain Remover",
+    "size": 5,
+    "description": "Odplamiacz do wykładzin i tapicerki",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 13.12,
+    "pricePerUnitPLN": 65.61,
+    "line": "professional"
+  },
+  {
+    "name": "Plush",
+    "size": 3.78,
+    "description": "Preparat do prania dywanów metodą pianową",
+    "dosage": "6% - 11%",
+    "packSize": 4,
+    "pricePerLiterPLN": 19.7,
+    "pricePerUnitPLN": 74.46,
+    "line": "professional"
+  },
+  {
+    "name": "Aromx 80",
+    "size": 3.78,
+    "description": "Preparat do ekstrakcyjnego czyszczenia dywanów",
+    "dosage": "1,6% - 2,5%",
+    "packSize": 4,
+    "pricePerLiterPLN": 25.66,
+    "pricePerUnitPLN": 97,
+    "line": "professional"
+  },
+  {
+    "name": "Quato 78 Plus",
+    "size": 5,
+    "description": "Skoncentrowany preparat myjąco-dezynfekujący",
+    "dosage": "0.008",
+    "packSize": 4,
+    "pricePerLiterPLN": 40.82,
+    "pricePerUnitPLN": 204.09,
+    "line": "professional"
+  },
+  {
+    "name": "Quato 78 Plus",
+    "size": 18.9,
+    "description": "Skoncentrowany preparat myjąco-dezynfekujący",
+    "dosage": "0.008",
+    "packSize": "-",
+    "pricePerLiterPLN": 38.16,
+    "pricePerUnitPLN": 721.28,
+    "line": "professional"
+  },
+  {
+    "name": "Quato 78 Plus - Gotowy do użytku",
+    "size": 1,
+    "description": "Gotowy do użytku preparat myjąco-dezynfekujący",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 14.27,
+    "pricePerUnitPLN": 14.27,
+    "line": "professional"
+  },
+  {
+    "name": "Quato 78 Plus - Gotowy do użytku",
+    "size": 5,
+    "description": "Gotowy do użytku preparat myjąco-dezynfekujący",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 12.14,
+    "pricePerUnitPLN": 60.71,
+    "line": "professional"
+  },
+  {
+    "name": "Quato 44",
+    "size": 5,
+    "description": "Skoncentrowany preparat myjąco-dezynfekujący",
+    "dosage": "0.016",
+    "packSize": 4,
+    "pricePerLiterPLN": 32.18,
+    "pricePerUnitPLN": 160.91,
+    "line": "professional"
+  },
+  {
+    "name": "Food Service Disinfectant",
+    "size": 5,
+    "description": "Skoncentrowany preparat myjąco-dezynfekujący",
+    "dosage": "0.04",
+    "packSize": 4,
+    "pricePerLiterPLN": 23.21,
+    "pricePerUnitPLN": 116.04,
+    "line": "professional"
+  },
+  {
+    "name": "Food Service Disinfectant - Gotowy do użytku",
+    "size": 1,
+    "description": "Gotowy do użytku preparat myjąco-dezynfekujący",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 14.11,
+    "pricePerUnitPLN": 14.11,
+    "line": "professional"
+  },
+  {
+    "name": "Food Service Disinfectant - Gotowy do użytku",
+    "size": 5,
+    "description": "Gotowy do użytku preparat myjąco-dezynfekujący",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 12.4,
+    "pricePerUnitPLN": 61.99,
+    "line": "professional"
+  },
+  {
+    "name": "Food Service 5000",
+    "size": 5,
+    "description": "Koncentrat myjący do piekarników i grilla",
+    "dosage": "2,5% - 50%",
+    "packSize": 4,
+    "pricePerLiterPLN": 19.53,
+    "pricePerUnitPLN": 97.63,
+    "line": "professional"
+  },
+  {
+    "name": "Grill & Oven",
+    "size": 1,
+    "description": "Gotowy do użytku preparat myjący do piekarników i grilla  NOWOŚĆ",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 16.5,
+    "pricePerUnitPLN": 16.5,
+    "line": "professional"
+  },
+  {
+    "name": "Grill & Oven",
+    "size": 5,
+    "description": "Gotowy do użytku preparat myjący do piekarników i grilla  NOWOŚĆ",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 12.8,
+    "pricePerUnitPLN": 64,
+    "line": "professional"
+  },
+  {
+    "name": "Hardwater Detergent",
+    "size": 10,
+    "description": "Płyn do mycia naczyń w zmhywarkach gastronomicznych",
+    "dosage": "0,1% - 0,5%",
+    "packSize": "-",
+    "pricePerLiterPLN": 20.27,
+    "pricePerUnitPLN": 202.67,
+    "line": "professional"
+  },
+  {
+    "name": "Hardwater Rinse",
+    "size": 10,
+    "description": "Płyn do płukania i nabłyszczania naczyń w zmywarkach gastronomicznych",
+    "dosage": "0,01% - 0,03%",
+    "packSize": "-",
+    "pricePerLiterPLN": 19.71,
+    "pricePerUnitPLN": 197.12,
+    "line": "professional"
+  },
+  {
+    "name": "Descaler",
+    "size": 10,
+    "description": "Odkamieniacz",
+    "dosage": "10% - 20%",
+    "packSize": "-",
+    "pricePerLiterPLN": 17.8,
+    "pricePerUnitPLN": 177.96,
+    "line": "professional"
+  },
+  {
+    "name": "Clean & Green Dish Detergent",
+    "size": 0.74,
+    "description": "Płyn do ręcznego mycia naczyń",
+    "dosage": "1% - 3,2%",
+    "packSize": 12,
+    "pricePerLiterPLN": 30.43,
+    "pricePerUnitPLN": 22.52,
+    "line": "professional"
+  },
+  {
+    "name": "Swish Dish Detergent",
+    "size": 5,
+    "description": "Płyn do ręcznego mycia naczyń",
+    "dosage": "1% - 3,2%",
+    "packSize": 4,
+    "pricePerLiterPLN": 5.43,
+    "pricePerUnitPLN": 27.16,
+    "line": "professional"
+  },
+  {
+    "name": "Scale Remover",
+    "size": 1,
+    "description": "Odkamieniacz",
+    "dosage": "5,5% - 50%",
+    "packSize": 6,
+    "pricePerLiterPLN": 22.53,
+    "pricePerUnitPLN": 22.53,
+    "line": "professional"
+  },
+  {
+    "name": "Scale Remover",
+    "size": 5,
+    "description": "Odkamieniacz",
+    "dosage": "5,5% - 50%",
+    "packSize": 4,
+    "pricePerLiterPLN": 19.32,
+    "pricePerUnitPLN": 96.62,
+    "line": "professional"
+  },
+  {
+    "name": "Facto PM20",
+    "size": 5,
+    "description": "Kwasowy preparat czyszczący",
+    "dosage": "1% - 50%",
+    "packSize": 4,
+    "pricePerLiterPLN": 30.26,
+    "pricePerUnitPLN": 151.29,
+    "line": "professional"
+  },
+  {
+    "name": "Swish De-Grease",
+    "size": 1,
+    "description": "Silny preparat myjąco-odtłuszczający",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 16.82,
+    "pricePerUnitPLN": 16.82,
+    "line": "professional"
+  },
+  {
+    "name": "Jet",
+    "size": 1,
+    "description": "Zasadowy preparat do usuwania tłuszczu i oleju",
+    "dosage": "0,1% - 1,6%",
+    "packSize": 6,
+    "pricePerLiterPLN": 19.02,
+    "pricePerUnitPLN": 19.02,
+    "line": "professional"
+  },
+  {
+    "name": "Jet",
+    "size": 5,
+    "description": "Zasadowy preparat do usuwania tłuszczu i oleju",
+    "dosage": "0,1% - 1,6%",
+    "packSize": 4,
+    "pricePerLiterPLN": 16.13,
+    "pricePerUnitPLN": 80.63,
+    "line": "professional"
+  },
+  {
+    "name": "Powerhouse",
+    "size": 1,
+    "description": "Uniwersalny preparat do usuwania trudnych zabrudzeń",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 23.74,
+    "pricePerUnitPLN": 23.74,
+    "line": "professional"
+  },
+  {
+    "name": "Powerhouse",
+    "size": 5,
+    "description": "Uniwersalny preparat do usuwania trudnych zabrudzeń",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 20.46,
+    "pricePerUnitPLN": 102.28,
+    "line": "professional"
+  },
+  {
+    "name": "Facto HD40",
+    "size": 5,
+    "description": "Silny, przemysłowy odtłuszczacz",
+    "dosage": "0,7% - 9%",
+    "packSize": 4,
+    "pricePerLiterPLN": 20.92,
+    "pricePerUnitPLN": 104.6,
+    "line": "professional"
+  },
+  {
+    "name": "Facto HD40",
+    "size": 20,
+    "description": "Silny, przemysłowy odtłuszczacz",
+    "dosage": "0,7% - 9%",
+    "packSize": "-",
+    "pricePerLiterPLN": 19.37,
+    "pricePerUnitPLN": 387.48,
+    "line": "professional"
+  },
+  {
+    "name": "Facto HD41",
+    "size": 5,
+    "description": "Skoncentrowany preparat usuwający tłuszcz, oleje i wielowarstwowy, nagromadzony brud - NOWOŚĆ",
+    "dosage": "0,25% - 10%",
+    "packSize": 4,
+    "pricePerLiterPLN": 18.14,
+    "pricePerUnitPLN": 90.71,
+    "line": "professional"
+  },
+  {
+    "name": "Facto HD43",
+    "size": 5,
+    "description": "Niskoalkaliczny preparat czyszczący usuwający ślady z gumy",
+    "dosage": "0,3% - 2%",
+    "packSize": 4,
+    "pricePerLiterPLN": 49.18,
+    "pricePerUnitPLN": 245.91,
+    "line": "professional"
+  },
+  {
+    "name": "Facto PM20",
+    "size": 5,
+    "description": "Kwasowy preparat czyszczący",
+    "dosage": "1% - 50%",
+    "packSize": 4,
+    "pricePerLiterPLN": 30.26,
+    "pricePerUnitPLN": 151.29,
+    "line": "professional"
+  },
+  {
+    "name": "Powerhouse",
+    "size": 1,
+    "description": "Uniwersalny preparat do usuwania trudnych zabrudzeń",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 23.74,
+    "pricePerUnitPLN": 23.74,
+    "line": "professional"
+  },
+  {
+    "name": "Powerhouse",
+    "size": 5,
+    "description": "Uniwersalny preparat do usuwania trudnych zabrudzeń",
+    "dosage": "Gotowy do użytku",
+    "packSize": 4,
+    "pricePerLiterPLN": 20.46,
+    "pricePerUnitPLN": 102.28,
+    "line": "professional"
+  },
+  {
+    "name": "Swish De-Grease",
+    "size": 1,
+    "description": "Silny preparat myjąco-odtłuszczający",
+    "dosage": "Gotowy do użytku",
+    "packSize": 6,
+    "pricePerLiterPLN": 16.82,
+    "pricePerUnitPLN": 16.82,
+    "line": "professional"
+  },
+  {
+    "name": "Jet",
+    "size": 1,
+    "description": "Preparat do usuwania zabrudzeń tłuszczowych i olejowych",
+    "dosage": "0,7% - 1,7%",
+    "packSize": 6,
+    "pricePerLiterPLN": 19.02,
+    "pricePerUnitPLN": 19.02,
+    "line": "professional"
+  },
+  {
+    "name": "Jet",
+    "size": 5,
+    "description": "Preparat do usuwania zabrudzeń tłuszczowych i olejowych",
+    "dosage": "0,7% - 1,7%",
+    "packSize": 4,
+    "pricePerLiterPLN": 16.13,
+    "pricePerUnitPLN": 80.63,
+    "line": "professional"
+  },
+  {
+    "name": "Facto AT31",
+    "size": 20,
+    "description": "Środek do pianowego czyszczenia środków transportu",
+    "dosage": "1% - 5%",
+    "packSize": "-",
+    "pricePerLiterPLN": 17.17,
+    "pricePerUnitPLN": 343.46,
+    "line": "professional"
+  },
+  {
+    "name": "Butelka 1L",
+    "size": "-",
+    "description": "Butelka z tworzywa HDPE - pojemność 1L",
+    "dosage": "-",
+    "packSize": "-",
+    "pricePerLiterPLN": null,
+    "pricePerUnitPLN": 1.55,
+    "line": "professional"
+  },
+  {
+    "name": "Spryskiwacz do butelki biały",
+    "size": "-",
+    "description": "Plastikowy spryskiwacz do butelki biały",
+    "dosage": "-",
+    "packSize": "-",
+    "pricePerLiterPLN": null,
+    "pricePerUnitPLN": 1.55,
+    "line": "professional"
+  },
+  {
+    "name": "Butelka 0,5L PET",
+    "size": "-",
+    "description": "Butelka z tworzywa PET 500ML",
+    "dosage": "-",
+    "packSize": "-",
+    "pricePerLiterPLN": null,
+    "pricePerUnitPLN": 1.55,
+    "line": "professional"
+  },
+  {
+    "name": "Dozownik 25 ml",
+    "size": "-",
+    "description": "Dozownik umożliwiający łatwe odmierzenie 25 ml preparatu (podziałka co 5 ml)",
+    "dosage": "-",
+    "packSize": "-",
+    "pricePerLiterPLN": null,
+    "pricePerUnitPLN": 4.07,
+    "line": "professional"
+  },
+  {
+    "name": "Pompka do kanistrów",
+    "size": "-",
+    "description": "Pompka ułatwiająca dozowanie z kanistrów. Doza ok 25-30 ml",
+    "dosage": "-",
+    "packSize": "-",
+    "pricePerLiterPLN": null,
+    "pricePerUnitPLN": 29.7,
+    "line": "professional"
+  }
+]
