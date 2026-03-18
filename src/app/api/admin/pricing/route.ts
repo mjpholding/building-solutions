@@ -128,7 +128,9 @@ async function publishToProducts(config: PricingConfig) {
     if (!slug) continue;
 
     const existing = slugPriceMap.get(slug) || {};
-    const sizeKey = `${item.size} L`;
+    // Format size with comma for German locale (3.78 → "3,78 L") to match products.json
+    const sizeStr = String(item.size).replace(".", ",");
+    const sizeKey = `${sizeStr} L`;
     existing[sizeKey] = item.sellPriceEUR;
     slugPriceMap.set(slug, existing);
   }
