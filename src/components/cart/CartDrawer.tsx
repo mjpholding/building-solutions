@@ -1,6 +1,7 @@
 "use client";
 
 import { useCart } from "@/lib/cart-context";
+import { useCustomer } from "@/lib/customer-context";
 import { Link } from "@/i18n/routing";
 import { X, Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import Image from "next/image";
@@ -10,6 +11,8 @@ import { useTranslations } from "next-intl";
 export default function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, totalPrice, totalItems } = useCart();
   const t = useTranslations("cart");
+  const { customer } = useCustomer();
+  const isB2B = customer?.type === "b2b";
 
   return (
     <AnimatePresence>
@@ -65,7 +68,7 @@ export default function CartDrawer() {
                         <h3 className="text-sm font-semibold text-gray-900 truncate">{item.name}</h3>
                         <p className="text-xs text-gray-400">{item.size}</p>
                         <p className="text-sm font-bold text-red-600 mt-0.5">
-                          {(item.price * item.quantity).toFixed(2)} &euro;
+                          {(isB2B ? item.price * item.quantity : item.price * item.quantity * 1.19).toFixed(2)} &euro;
                         </p>
                         <div className="flex items-center gap-2 mt-2">
                           <button
@@ -98,11 +101,23 @@ export default function CartDrawer() {
             {/* Footer */}
             {items.length > 0 && (
               <div className="border-t border-gray-100 px-6 py-4 space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-500">{t("subtotalNet")}</span>
-                  <span className="text-lg font-bold text-gray-900">{totalPrice.toFixed(2)} &euro;</span>
-                </div>
-                <p className="text-xs text-gray-400">{t("vatNote")}</p>
+                {isB2B ? (
+                  <>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-500">{t("subtotalNet")}</span>
+                      <span className="text-lg font-bold text-gray-900">{totalPrice.toFixed(2)} &euro;</span>
+                    </div>
+                    <p className="text-xs text-gray-400">{t("vatNote")}</p>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-500">{t("subtotalGross")}</span>
+                      <span className="text-lg font-bold text-gray-900">{(totalPrice * 1.19).toFixed(2)} &euro;</span>
+                    </div>
+                    <p className="text-xs text-gray-400">{t("vatIncluded")}</p>
+                  </>
+                )}
                 <Link
                   href="/kasse"
                   onClick={() => setIsOpen(false)}

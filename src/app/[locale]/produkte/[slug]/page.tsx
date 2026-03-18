@@ -11,6 +11,7 @@ import { useProductDescription } from "@/lib/use-product-descriptions";
 import { motion } from "framer-motion";
 
 import { useCart } from "@/lib/cart-context";
+import { useCustomer } from "@/lib/customer-context";
 
 function getPHColor(ph: string): string {
   const val = parseFloat(ph.split("-")[0].trim());
@@ -41,6 +42,8 @@ export default function ProductDetailPage() {
   const rawProduct = products.find((p) => p.slug === slug);
   const product = rawProduct ? getTranslatedProduct(rawProduct, locale) : undefined;
   const { addItem } = useCart();
+  const { customer } = useCustomer();
+  const isB2B = customer?.type === "b2b";
   const detailedDescription = useProductDescription(slug, locale);
 
   const sizes = product?.sizes || [];
@@ -167,15 +170,34 @@ export default function ProductDetailPage() {
                 </div>
 
                 {/* Price */}
-                <div className="flex items-end gap-2 mb-4">
-                  <span className="text-3xl font-bold text-swish-gray-900">
-                    {currentPrice.toFixed(2)} &euro;
-                  </span>
-                  <span className="text-sm text-swish-gray-400 mb-1">{tD("net")}</span>
-                </div>
-                <p className="text-xs text-swish-gray-400 mb-4">
-                  {tD("vatNote")}
-                </p>
+                {isB2B ? (
+                  <div className="mb-4 space-y-1">
+                    <div className="flex items-end gap-2">
+                      <span className="text-3xl font-bold text-swish-gray-900">
+                        {currentPrice.toFixed(2)} &euro;
+                      </span>
+                      <span className="text-sm text-swish-gray-400 mb-1">{tD("net")}</span>
+                    </div>
+                    <div className="text-sm text-swish-gray-500">
+                      {tD("vatLine")}: {(currentPrice * 0.19).toFixed(2)} &euro;
+                    </div>
+                    <div className="text-sm font-semibold text-swish-gray-700">
+                      {tD("gross")}: {(currentPrice * 1.19).toFixed(2)} &euro;
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mb-4">
+                    <div className="flex items-end gap-2">
+                      <span className="text-3xl font-bold text-swish-gray-900">
+                        {(currentPrice * 1.19).toFixed(2)} &euro;
+                      </span>
+                      <span className="text-sm text-swish-gray-400 mb-1">{tD("gross")}</span>
+                    </div>
+                    <p className="text-xs text-swish-gray-400 mt-1">
+                      {tD("vatIncluded")}
+                    </p>
+                  </div>
+                )}
 
                 {/* Quantity + Add to cart */}
                 <div className="flex items-center gap-3">

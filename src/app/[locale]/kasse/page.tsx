@@ -22,6 +22,7 @@ export default function CheckoutPage() {
   const [couponApplied, setCouponApplied] = useState("");
 
   // Customer discount
+  const isB2B = customer?.type === "b2b";
   const customerDiscount = customer?.discountPercent || 0;
   const totalDiscount = Math.min(customerDiscount + couponDiscount, 100);
   const discountAmount = totalPrice * (totalDiscount / 100);
@@ -280,34 +281,62 @@ export default function CheckoutPage() {
                         <p className="text-xs text-swish-gray-400">{item.size} x {item.quantity}</p>
                       </div>
                       <p className="text-sm font-semibold text-swish-gray-900 whitespace-nowrap">
-                        {(item.price * item.quantity).toFixed(2)} &euro;
+                        {(isB2B ? item.price * item.quantity : item.price * item.quantity * 1.19).toFixed(2)} &euro;
                       </p>
                     </div>
                   ))}
                 </div>
                 <div className="border-t border-swish-gray-100 pt-4 space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-swish-gray-500">{t("subtotalNet")}</span>
-                    <span className="font-medium">{totalPrice.toFixed(2)} &euro;</span>
-                  </div>
-                  {totalDiscount > 0 && (
-                    <div className="flex justify-between text-sm text-green-600">
-                      <span>{t("discount", { percent: totalDiscount })}</span>
-                      <span className="font-medium">-{discountAmount.toFixed(2)} &euro;</span>
-                    </div>
+                  {isB2B ? (
+                    <>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-swish-gray-500">{t("subtotalNet")}</span>
+                        <span className="font-medium">{discountedPrice.toFixed(2)} &euro;</span>
+                      </div>
+                      {totalDiscount > 0 && (
+                        <div className="flex justify-between text-sm text-green-600">
+                          <span>{t("discount", { percent: totalDiscount })}</span>
+                          <span className="font-medium">-{discountAmount.toFixed(2)} &euro;</span>
+                        </div>
+                      )}
+                      <div className="flex justify-between text-sm">
+                        <span className="text-swish-gray-500">{t("vat")}</span>
+                        <span className="font-medium">{(discountedPrice * 0.19).toFixed(2)} &euro;</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-swish-gray-500">{t("shipping")}</span>
+                        <span className="font-medium text-swish-gray-400">{t("shippingOnRequest")}</span>
+                      </div>
+                      <div className="border-t border-swish-gray-100 pt-2 flex justify-between">
+                        <span className="font-semibold text-swish-gray-900">{t("totalGross")}</span>
+                        <span className="text-lg font-bold text-swish-gray-900">{(discountedPrice * 1.19).toFixed(2)} &euro;</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-swish-gray-500">{t("subtotalGross")}</span>
+                        <span className="font-medium">{(discountedPrice * 1.19).toFixed(2)} &euro;</span>
+                      </div>
+                      {totalDiscount > 0 && (
+                        <div className="flex justify-between text-sm text-green-600">
+                          <span>{t("discount", { percent: totalDiscount })}</span>
+                          <span className="font-medium">-{(discountAmount * 1.19).toFixed(2)} &euro;</span>
+                        </div>
+                      )}
+                      <div className="text-xs text-swish-gray-400">
+                        {t("vatIncluded")}
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-swish-gray-500">{t("shipping")}</span>
+                        <span className="font-medium text-swish-gray-400">{t("shippingOnRequest")}</span>
+                      </div>
+                      <div className="border-t border-swish-gray-100 pt-2 flex justify-between">
+                        <span className="font-semibold text-swish-gray-900">{t("totalGross")}</span>
+                        <span className="text-lg font-bold text-swish-gray-900">{(discountedPrice * 1.19).toFixed(2)} &euro;</span>
+                      </div>
+                    </>
                   )}
-                  <div className="flex justify-between text-sm">
-                    <span className="text-swish-gray-500">{t("vat")}</span>
-                    <span className="font-medium">{(discountedPrice * 0.19).toFixed(2)} &euro;</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-swish-gray-500">{t("shipping")}</span>
-                    <span className="font-medium text-swish-gray-400">{t("shippingOnRequest")}</span>
-                  </div>
-                  <div className="border-t border-swish-gray-100 pt-2 flex justify-between">
-                    <span className="font-semibold text-swish-gray-900">{t("totalGross")}</span>
-                    <span className="text-lg font-bold text-swish-gray-900">{(discountedPrice * 1.19).toFixed(2)} &euro;</span>
-                  </div>
                 </div>
 
                 {error && (

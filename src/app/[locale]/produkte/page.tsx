@@ -9,6 +9,7 @@ import { useSearchParams } from "next/navigation";
 import { categories } from "@/data/products";
 import { useProducts } from "@/lib/use-products";
 import { getTranslatedProducts } from "@/data/product-i18n";
+import { useCustomer } from "@/lib/customer-context";
 
 
 function getPHColor(ph: string): string {
@@ -31,6 +32,8 @@ export default function ProductsPage() {
 
   const { products } = useProducts();
   const translatedProducts = useMemo(() => getTranslatedProducts(products, locale), [products, locale]);
+  const { customer } = useCustomer();
+  const isB2B = customer?.type === "b2b";
 
   // Read category from URL query param (from CategoriesSection links)
   useEffect(() => {
@@ -163,7 +166,11 @@ export default function ProductsPage() {
                     <div className="mt-2 flex items-center justify-between">
                       {product.prices && Object.values(product.prices)[0] ? (
                         <span className="text-sm font-bold text-swish-gray-900">
-                          {tD("from")} {(Object.values(product.prices)[0] as number).toFixed(2)} &euro;
+                          {tD("from")} {(isB2B
+                            ? (Object.values(product.prices)[0] as number)
+                            : (Object.values(product.prices)[0] as number) * 1.19
+                          ).toFixed(2)} &euro;
+                          {!isB2B && <span className="text-[10px] font-normal text-swish-gray-400 ml-1">{tD("gross")}</span>}
                         </span>
                       ) : (
                         <span className="text-xs text-swish-gray-400">{tD("priceOnRequest")}</span>
