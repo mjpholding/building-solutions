@@ -5,26 +5,34 @@ import staticProducts from "@/data/products.json";
 interface ProductData {
   slug: string;
   image?: string;
+  prices?: Record<string, number>;
   [key: string]: unknown;
 }
 
-// Build a lookup of static images by slug
-const staticImageMap = new Map<string, string>();
-for (const p of staticProducts as ProductData[]) {
-  if (p.image) staticImageMap.set(p.slug, p.image);
+// Build a lookup of static data by slug
+const staticMap = new Map<string, ProductData>();
+for (const p of staticProducts as unknown as ProductData[]) {
+  staticMap.set(p.slug, p);
 }
 
-// Public API — returns products from Redis, restoring missing image paths from static data
+// Public API — returns products from Redis, restoring missing fields from static data
 export async function GET() {
   const data = (await storeGet("products")) as ProductData[] | null;
   if (!data?.length) return NextResponse.json(staticProducts);
 
-  // Merge: if Redis product is missing image, restore from static file
+  // Merge: restore missing image and prices from static file
   const merged = data.map((p) => {
-    if (!p.image && staticImageMap.has(p.slug)) {
-      return { ...p, image: staticImageMap.get(p.slug) };
+    const staticP = staticMap.get(p.slug);
+    if (!staticP) return p;
+
+    const result = { ...p };
+    if (!result.image && staticP.image) {
+      result.image = staticP.image;
     }
-    return p;
+    if ((!result.prices || Object.keys(result.prices).length === 0) && staticP.prices) {
+      result.prices = staticP.prices;
+    }
+    return result;
   });
 
   return NextResponse.json(merged);

@@ -83,9 +83,25 @@ export async function PUT(request: NextRequest) {
 
   // Publish sell prices to public product catalog
   if (body.publishPrices) {
-    const staticProducts = (await import("@/data/products.json")).default;
+    const staticProducts = (await import("@/data/products.json")).default as Record<string, unknown>[];
     const redisProducts = ((await storeGet("products")) as Record<string, unknown>[] | null) || [];
-    const products = redisProducts.length > 0 ? redisProducts : [...staticProducts] as Record<string, unknown>[];
+
+    // Start from static products, merge Redis customizations on top
+    const staticMap = new Map<string, Record<string, unknown>>();
+    for (const sp of staticProducts) {
+      staticMap.set(sp.slug as string, { ...sp });
+    }
+    // Apply Redis overrides (admin edits) but keep static prices as fallback
+    for (const rp of redisProducts) {
+      const slug = rp.slug as string;
+      const base = staticMap.get(slug);
+      if (base) {
+        staticMap.set(slug, { ...base, ...rp, prices: rp.prices || base.prices });
+      } else {
+        staticMap.set(slug, rp);
+      }
+    }
+    const products = Array.from(staticMap.values());
 
     // Build price map: lowercase name → { "1 L": price, "5 L": price, ... }
     const priceMap = new Map<string, Record<string, number>>();
