@@ -308,7 +308,8 @@
     "neutral": "Neutral",
     "slightlyAlkaline": "Pak alkalin",
     "strongAlkaline": "Shumë alkalin",
-    "from": "nga"
+    "from": "nga",
+    "detailedDescription": "Përshkrimi i produktit"
   },
   "heroStats": {
     "since": "Që nga 1956",

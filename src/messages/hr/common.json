@@ -308,7 +308,8 @@
     "neutral": "Neutralno",
     "slightlyAlkaline": "Blago lužnato",
     "strongAlkaline": "Jako lužnato",
-    "from": "od"
+    "from": "od",
+    "detailedDescription": "Opis proizvoda"
   },
   "heroStats": {
     "since": "Od 1956.",

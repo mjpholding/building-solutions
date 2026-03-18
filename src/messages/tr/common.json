@@ -308,7 +308,8 @@
     "neutral": "Nötr",
     "slightlyAlkaline": "Hafif alkalin",
     "strongAlkaline": "Güçlü alkalin",
-    "from": "den"
+    "from": "den",
+    "detailedDescription": "Ürün Açıklaması"
   },
   "heroStats": {
     "since": "1956'dan beri",

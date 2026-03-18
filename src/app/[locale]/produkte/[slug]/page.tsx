@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import { ArrowLeft, Droplets, FileText, ShieldCheck, Package, ShoppingBag, Check } from "lucide-react";
 import { useProducts } from "@/lib/use-products";
 import { getTranslatedProduct, getTranslatedProducts } from "@/data/product-i18n";
+import { useProductDescription } from "@/lib/use-product-descriptions";
 import { motion } from "framer-motion";
 
 import { useCart } from "@/lib/cart-context";
@@ -40,6 +41,7 @@ export default function ProductDetailPage() {
   const rawProduct = products.find((p) => p.slug === slug);
   const product = rawProduct ? getTranslatedProduct(rawProduct, locale) : undefined;
   const { addItem } = useCart();
+  const detailedDescription = useProductDescription(slug, locale);
 
   const sizes = product?.sizes || [];
   const [selectedSize, setSelectedSize] = useState(sizes[0] || "");
@@ -253,6 +255,30 @@ export default function ProductDetailPage() {
             </div>
           </motion.div>
         </div>
+
+        {/* Detailed description */}
+        {detailedDescription && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mt-16"
+          >
+            <h2 className="text-2xl font-bold text-swish-gray-900 mb-6">
+              {tD("detailedDescription")}
+            </h2>
+            <div
+              className="prose prose-lg max-w-none text-swish-gray-700
+                prose-headings:text-swish-gray-900 prose-headings:font-bold
+                prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-4
+                prose-p:leading-relaxed prose-p:mb-4
+                prose-ul:my-4 prose-li:my-1
+                prose-strong:text-swish-gray-900
+                prose-a:text-swish-red prose-a:no-underline hover:prose-a:underline"
+              dangerouslySetInnerHTML={{ __html: detailedDescription }}
+            />
+          </motion.div>
+        )}
 
         {/* Related products */}
         {related.length > 0 && (

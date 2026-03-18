@@ -85,3 +85,24 @@ export async function PUT(request: NextRequest) {
   await saveOrders(orders);
   return NextResponse.json({ success: true });
 }
+
+// DELETE - remove order and its documents (admin only)
+export async function DELETE(request: NextRequest) {
+  if (!(await isAuthenticated())) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  const { id } = await request.json();
+  const orders = await getOrders();
+  const filtered = orders.filter((o) => o.id !== id);
+  if (filtered.length === orders.length) {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+  await saveOrders(filtered);
+
+  // Also remove related documents
+  const docs = ((await storeGet("documents")) || []) as Array<{ id: string; orderId: string }>;
+  const filteredDocs = docs.filter((d) => d.orderId !== id);
+  await storeSet("documents", filteredDocs);
+
+  return NextResponse.json({ success: true });
+}

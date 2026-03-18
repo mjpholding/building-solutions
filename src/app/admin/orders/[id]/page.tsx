@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Loader2, ChevronDown, FileText, Printer } from "lucide-react";
+import { ArrowLeft, Loader2, ChevronDown, FileText, Printer, Trash2 } from "lucide-react";
 
 interface Order {
   id: string;
@@ -44,18 +44,21 @@ const STATUS_COLORS: Record<string, string> = {
 interface DocRecord {
   id: string;
   type: "wz" | "invoice";
+  orderId: string;
   number: string;
   date: string;
 }
 
 export default function OrderDetail() {
   const params = useParams();
+  const router = useRouter();
   const orderId = params.id as string;
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [documents, setDocuments] = useState<DocRecord[]>([]);
   const [generatingDoc, setGeneratingDoc] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     fetch("/api/orders")
@@ -68,7 +71,7 @@ export default function OrderDetail() {
     fetch("/api/admin/documents")
       .then((r) => r.json())
       .then((docs: DocRecord[]) => {
-        setDocuments(docs.filter((d) => d.id && d.type));
+        setDocuments(docs.filter((d) => d.orderId === orderId));
       })
       .catch(() => {});
   }, [orderId]);
@@ -83,11 +86,31 @@ export default function OrderDetail() {
     const data = await res.json();
     if (data.success) {
       setDocuments((prev) => [...prev, data.document]);
-      // Open print view
       const printUrl = `/admin/documents/print?type=${type}&orderId=${orderId}&number=${encodeURIComponent(data.document.number)}&date=${data.document.date}`;
       window.open(printUrl, "_blank");
     }
     setGeneratingDoc(null);
+  };
+
+  const deleteDocument = async (docId: string) => {
+    if (!confirm("Dokument wirklich löschen?")) return;
+    await fetch("/api/admin/documents", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: docId }),
+    });
+    setDocuments((prev) => prev.filter((d) => d.id !== docId));
+  };
+
+  const deleteOrder = async () => {
+    if (!confirm("Bestellung und alle zugehörigen Dokumente wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.")) return;
+    setDeleting(true);
+    await fetch("/api/orders", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: orderId }),
+    });
+    router.push("/admin/orders");
   };
 
   const updateStatus = async (status: string) => {
@@ -113,7 +136,7 @@ export default function OrderDetail() {
     return (
       <div className="text-center py-20">
         <p className="text-gray-500">Bestellung nicht gefunden</p>
-        <Link href="/admin/orders" className="text-red-600 text-sm mt-2 inline-block">Zuruck</Link>
+        <Link href="/admin/orders" className="text-red-600 text-sm mt-2 inline-block">Zurück</Link>
       </div>
     );
   }
@@ -124,7 +147,7 @@ export default function OrderDetail() {
   return (
     <div>
       <Link href="/admin/orders" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 mb-6">
-        <ArrowLeft size={14} /> Zuruck zu Bestellungen
+        <ArrowLeft size={14} /> Zurück zu Bestellungen
       </Link>
 
       <div className="flex items-center justify-between mb-8">
@@ -136,18 +159,28 @@ export default function OrderDetail() {
             })}
           </p>
         </div>
-        <div className="relative">
-          <select
-            value={order.status}
-            onChange={(e) => updateStatus(e.target.value)}
-            disabled={updating}
-            className={`appearance-none pl-4 pr-10 py-2.5 rounded-xl text-sm font-semibold cursor-pointer outline-none ${STATUS_COLORS[order.status]}`}
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <select
+              value={order.status}
+              onChange={(e) => updateStatus(e.target.value)}
+              disabled={updating}
+              className={`appearance-none pl-4 pr-10 py-2.5 rounded-xl text-sm font-semibold cursor-pointer outline-none ${STATUS_COLORS[order.status]}`}
+            >
+              {Object.entries(STATUS_LABELS).map(([key, label]) => (
+                <option key={key} value={key}>{label}</option>
+              ))}
+            </select>
+            <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none opacity-50" />
+          </div>
+          <button
+            onClick={deleteOrder}
+            disabled={deleting}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 transition-colors"
           >
-            {Object.entries(STATUS_LABELS).map(([key, label]) => (
-              <option key={key} value={key}>{label}</option>
-            ))}
-          </select>
-          <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none opacity-50" />
+            {deleting ? <Loader2 size={14} className="animate-spin" /> : <Trash2 size={14} />}
+            Löschen
+          </button>
         </div>
       </div>
 
@@ -214,7 +247,7 @@ export default function OrderDetail() {
           <thead>
             <tr className="border-b border-gray-100 bg-gray-50">
               <th className="text-left px-6 py-3 font-medium text-gray-500">Produkt</th>
-              <th className="text-left px-6 py-3 font-medium text-gray-500">Grosse</th>
+              <th className="text-left px-6 py-3 font-medium text-gray-500">Größe</th>
               <th className="text-center px-6 py-3 font-medium text-gray-500">Menge</th>
               <th className="text-right px-6 py-3 font-medium text-gray-500">Einzelpreis</th>
               <th className="text-right px-6 py-3 font-medium text-gray-500">Gesamt</th>
@@ -275,7 +308,7 @@ export default function OrderDetail() {
             Rechnung erstellen
           </button>
         </div>
-        {documents.filter((d) => d.type && (d as DocRecord & { orderId?: string }).orderId === undefined || documents.length > 0).length > 0 ? (
+        {documents.length > 0 ? (
           <div className="space-y-2">
             {documents.map((doc) => (
               <div key={doc.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg text-sm">
@@ -286,7 +319,26 @@ export default function OrderDetail() {
                     <span className="ml-2 text-gray-400">{doc.type === "wz" ? "Warenausgabe" : "Rechnung"}</span>
                   </div>
                 </div>
-                <span className="text-gray-400">{doc.date}</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-gray-400">{doc.date}</span>
+                  <button
+                    onClick={() => {
+                      const printUrl = `/admin/documents/print?type=${doc.type}&orderId=${orderId}&number=${encodeURIComponent(doc.number)}&date=${doc.date}`;
+                      window.open(printUrl, "_blank");
+                    }}
+                    className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                    title="Drucken"
+                  >
+                    <Printer size={14} />
+                  </button>
+                  <button
+                    onClick={() => deleteDocument(doc.id)}
+                    className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                    title="Löschen"
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                </div>
               </div>
             ))}
           </div>

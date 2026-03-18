@@ -308,7 +308,8 @@
     "neutral": "Neutrálny",
     "slightlyAlkaline": "Mierne zásaditý",
     "strongAlkaline": "Silne zásaditý",
-    "from": "od"
+    "from": "od",
+    "detailedDescription": "Popis produktu"
   },
   "heroStats": {
     "since": "Od roku 1956",

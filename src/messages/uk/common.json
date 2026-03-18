@@ -308,7 +308,8 @@
     "neutral": "Нейтральний",
     "slightlyAlkaline": "Слабколужний",
     "strongAlkaline": "Сильнолужний",
-    "from": "від"
+    "from": "від",
+    "detailedDescription": "Опис продукту"
   },
   "heroStats": {
     "since": "З 1956 року",

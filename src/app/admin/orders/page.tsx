@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Loader2, Eye, ChevronDown } from "lucide-react";
+import { Loader2, Eye, ChevronDown, Trash2 } from "lucide-react";
 
 interface OrderItem {
   slug: string;
@@ -48,6 +48,7 @@ export default function OrdersAdmin() {
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState("");
   const [updating, setUpdating] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/orders")
@@ -67,6 +68,18 @@ export default function OrdersAdmin() {
       prev.map((o) => (o.id === id ? { ...o, status: status as Order["status"] } : o))
     );
     setUpdating(null);
+  };
+
+  const deleteOrder = async (id: string) => {
+    if (!confirm("Bestellung und alle zugehörigen Dokumente wirklich löschen?")) return;
+    setDeletingId(id);
+    await fetch("/api/orders", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
+    setOrders((prev) => prev.filter((o) => o.id !== id));
+    setDeletingId(null);
   };
 
   const filtered = statusFilter
@@ -172,12 +185,22 @@ export default function OrdersAdmin() {
                     </div>
                   </td>
                   <td className="px-5 py-3 text-right">
-                    <Link
-                      href={`/admin/orders/${order.id}`}
-                      className="inline-flex items-center gap-1.5 p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                    >
-                      <Eye size={14} />
-                    </Link>
+                    <div className="flex items-center justify-end gap-1">
+                      <Link
+                        href={`/admin/orders/${order.id}`}
+                        className="inline-flex items-center gap-1.5 p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                      >
+                        <Eye size={14} />
+                      </Link>
+                      <button
+                        onClick={() => deleteOrder(order.id)}
+                        disabled={deletingId === order.id}
+                        className="inline-flex items-center gap-1.5 p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        title="Löschen"
+                      >
+                        {deletingId === order.id ? <Loader2 size={14} className="animate-spin" /> : <Trash2 size={14} />}
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

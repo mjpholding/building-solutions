@@ -32,6 +32,27 @@ export async function GET() {
   return NextResponse.json(await getDocuments());
 }
 
+// DELETE - remove document
+export async function DELETE(request: NextRequest) {
+  if (!(await isAuthenticated())) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = await request.json();
+  if (!id) {
+    return NextResponse.json({ error: "Document id required" }, { status: 400 });
+  }
+
+  const docs = await getDocuments();
+  const filtered = docs.filter((d) => d.id !== id);
+  if (filtered.length === docs.length) {
+    return NextResponse.json({ error: "Document not found" }, { status: 404 });
+  }
+
+  await storeSet("documents", filtered);
+  return NextResponse.json({ success: true });
+}
+
 // POST - generate document (WZ or Invoice)
 export async function POST(request: NextRequest) {
   if (!(await isAuthenticated())) {

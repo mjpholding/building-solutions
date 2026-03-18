@@ -308,7 +308,8 @@
     "neutral": "Нейтральный",
     "slightlyAlkaline": "Слабощелочной",
     "strongAlkaline": "Сильнощелочной",
-    "from": "от"
+    "from": "от",
+    "detailedDescription": "Описание продукта"
   },
   "heroStats": {
     "since": "С 1956 года",

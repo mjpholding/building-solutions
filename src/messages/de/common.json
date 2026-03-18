@@ -308,7 +308,8 @@
     "neutral": "Neutral",
     "slightlyAlkaline": "Leicht alkalisch",
     "strongAlkaline": "Stark alkalisch",
-    "from": "ab"
+    "from": "ab",
+    "detailedDescription": "Produktbeschreibung"
   },
   "heroStats": {
     "since": "Seit 1956",
