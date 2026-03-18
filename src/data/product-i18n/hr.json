@@ -1,322 +1,624 @@
 {
   "poly-lock-ultra": {
     "description": "Specijalno sredstvo 2-u-1 za impregnaciju i sjaj.",
-    "applications": ["PVC", "Linoleum", "Umjetni kamen", "Prirodni kamen"]
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "Umjetni kamen",
+      "Prirodni kamen"
+    ]
   },
   "super-clean": {
     "description": "Univerzalni alkalni snažni čistač za vodonepropusne površine.",
-    "applications": ["Sve vodonepropusne površine"]
+    "applications": [
+      "Sve vodonepropusne površine"
+    ]
   },
   "office-clean": {
     "description": "Nježni čistač za uredske površine i zaslone.",
-    "applications": ["Uredski namještaj", "Zasloni", "Telefoni", "Plastične površine"]
+    "applications": [
+      "Uredski namještaj",
+      "Zasloni",
+      "Telefoni",
+      "Plastične površine"
+    ]
   },
   "glass-clean": {
     "description": "Sredstvo za čišćenje stakla bez tragova za prozore i ogledala.",
-    "applications": ["Prozori", "Ogledala", "Staklene površine", "Vitrine"]
+    "applications": [
+      "Prozori",
+      "Ogledala",
+      "Staklene površine",
+      "Vitrine"
+    ]
   },
   "kling": {
     "description": "Snažni čistač kupaonice s prianjajućom formulom.",
-    "applications": ["Pločice", "Armature", "Tuš kabine", "Umivaonici"]
+    "applications": [
+      "Pločice",
+      "Armature",
+      "Tuš kabine",
+      "Umivaonici"
+    ]
   },
   "scale-remover": {
     "description": "Kiseli čistač za uklanjanje kamenca.",
-    "applications": ["Armature", "Tuš glave", "WC", "Pločice"]
+    "applications": [
+      "Armature",
+      "Tuš glave",
+      "WC",
+      "Pločice"
+    ]
   },
   "sp-105-nano-clean-shine": {
     "description": "Njega podova nano tehnologijom s efektom sjaja.",
-    "applications": ["PVC", "Linoleum", "Kameni podovi"]
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "Kameni podovi"
+    ]
   },
   "sun-up": {
     "description": "Dnevni čistač podova sa svježim mirisom.",
-    "applications": ["Svi tvrdi podovi"]
+    "applications": [
+      "Svi tvrdi podovi"
+    ]
   },
   "sunbeam": {
     "description": "Čistač podova s neutralnim pH za osjetljive površine.",
-    "applications": ["Osjetljivi podovi", "Mramor", "Teraco"]
+    "applications": [
+      "Osjetljivi podovi",
+      "Mramor",
+      "Teraco"
+    ]
   },
   "jet": {
     "description": "Jako alkalni čistač podova.",
-    "applications": ["Industrijski podovi", "Radionice", "Garaže"]
+    "applications": [
+      "Industrijski podovi",
+      "Radionice",
+      "Garaže"
+    ]
   },
   "duration": {
     "description": "Visoko sjajna podna obloga.",
-    "applications": ["PVC", "Linoleum", "VCT"]
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "VCT"
+    ]
   },
   "dynasty": {
     "description": "Premium podna obloga.",
-    "applications": ["PVC", "Linoleum", "Tvrdi podovi"]
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "Tvrdi podovi"
+    ]
   },
   "duke": {
     "description": "Alkalni temeljni čistač i odstranjivač obloga.",
-    "applications": ["PVC", "Linoleum", "Kamen"]
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "Kamen"
+    ]
   },
   "wash-and-shine": {
     "description": "Njega brisanjem s efektom sjaja.",
-    "applications": ["Svi tvrdi podovi"]
+    "applications": [
+      "Svi tvrdi podovi"
+    ]
   },
   "stone-and-tile": {
     "description": "Specijalni čistač za gres porculan i prirodni kamen.",
-    "applications": ["Gres porculan", "Prirodni kamen", "Pločice"]
+    "applications": [
+      "Gres porculan",
+      "Prirodni kamen",
+      "Pločice"
+    ]
   },
   "sp-120-floor-active": {
     "description": "Aktivni čistač podova za jako opterećene površine.",
-    "applications": ["Svi tvrdi podovi", "Jako zaprljani podovi"]
+    "applications": [
+      "Svi tvrdi podovi",
+      "Jako zaprljani podovi"
+    ]
   },
   "sp-110-wood-floor-cleaner": {
     "description": "Specijalni čistač za drvene podove i parket.",
-    "applications": ["Parket", "Drveni podovi", "Laminat"]
+    "applications": [
+      "Parket",
+      "Drveni podovi",
+      "Laminat"
+    ]
   },
   "sp-100-floral": {
     "description": "Neutralni čistač za održavanje s cvjetnim mirisom.",
-    "applications": ["Svi tvrdi podovi"]
+    "applications": [
+      "Svi tvrdi podovi"
+    ]
   },
   "sp-100-citro": {
     "description": "Neutralni čistač za održavanje s mirisom citrusa.",
-    "applications": ["Svi tvrdi podovi"]
+    "applications": [
+      "Svi tvrdi podovi"
+    ]
   },
   "sp-150-gres-cleaner": {
     "description": "Kiseli čistač za gres porculan.",
-    "applications": ["Gres porculan", "Gres", "Pločice"]
+    "applications": [
+      "Gres porculan",
+      "Gres",
+      "Pločice"
+    ]
   },
   "extreme": {
     "description": "Ekstremno jaki alkalni temeljni čistač.",
-    "applications": ["Industrijski podovi", "Radionice"]
+    "applications": [
+      "Industrijski podovi",
+      "Radionice"
+    ]
   },
   "winterinse": {
     "description": "Čistač za uklanjanje ostataka soli.",
-    "applications": ["Ulazna područja", "Hodnici", "Svi tvrdi podovi"]
+    "applications": [
+      "Ulazna područja",
+      "Hodnici",
+      "Svi tvrdi podovi"
+    ]
   },
   "tried-n-true": {
     "description": "Provjereni univerzalni čistač podova.",
-    "applications": ["Svi tvrdi podovi"]
+    "applications": [
+      "Svi tvrdi podovi"
+    ]
   },
   "swish-strip": {
     "description": "Odstranjivač polimernih obloga.",
-    "applications": ["PVC", "Linoleum", "VCT"]
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "VCT"
+    ]
   },
   "liberty": {
     "description": "Alkalni temeljni čistač s moći otapanja masnoća.",
-    "applications": ["Svi tvrdi podovi", "Masna prljavština"]
+    "applications": [
+      "Svi tvrdi podovi",
+      "Masna prljavština"
+    ]
   },
   "es99-impregnator-sealer": {
     "description": "Impregnacija za porozne podove.",
-    "applications": ["Beton", "Prirodni kamen", "Teraco"]
+    "applications": [
+      "Beton",
+      "Prirodni kamen",
+      "Teraco"
+    ]
   },
   "anti-stat-floor-finish": {
     "description": "Antistatička podna obloga.",
-    "applications": ["Serverske sobe", "Laboratoriji", "Proizvodnja elektronike"]
+    "applications": [
+      "Serverske sobe",
+      "Laboratoriji",
+      "Proizvodnja elektronike"
+    ]
   },
   "es89-blockade-concrete-sealer": {
     "description": "Betonsko brtvljenje.",
-    "applications": ["Beton", "Garaže", "Skladišne hale"]
+    "applications": [
+      "Beton",
+      "Garaže",
+      "Skladišne hale"
+    ]
   },
   "eternity": {
     "description": "Dugotrajna premium podna obloga.",
-    "applications": ["PVC", "Linoleum", "VCT"]
+    "applications": [
+      "PVC",
+      "Linoleum",
+      "VCT"
+    ]
   },
   "es94-burnishing-cream": {
     "description": "Krema za poliranje podova s polimernom oblogom.",
-    "applications": ["Podovi s polimernom oblogom"]
+    "applications": [
+      "Podovi s polimernom oblogom"
+    ]
   },
   "sp-350-acid-cleaner": {
     "description": "Kiseli čistač za gres porculan.",
-    "applications": ["Gres porculan", "Pločice", "Površine otporne na kiseline"]
+    "applications": [
+      "Gres porculan",
+      "Pločice",
+      "Površine otporne na kiseline"
+    ]
   },
   "sani-clean": {
     "description": "Kiseli sanitarni čistač.",
-    "applications": ["WC", "Umivaonici", "Pločice", "Tuševi"]
+    "applications": [
+      "WC",
+      "Umivaonici",
+      "Pločice",
+      "Tuševi"
+    ]
   },
   "sani-foam": {
     "description": "Pjenasti čistač za sanitarne prostorije.",
-    "applications": ["WC", "Tuš stijenke", "Pločice"]
+    "applications": [
+      "WC",
+      "Tuš stijenke",
+      "Pločice"
+    ]
   },
   "sp-360-action-bowl-cleaner": {
     "description": "Jako kiseli WC čistač.",
-    "applications": ["WC školjke", "Pisoari"]
+    "applications": [
+      "WC školjke",
+      "Pisoari"
+    ]
   },
   "sp-300-washroom-cleaner": {
     "description": "Kiseli čistač sanitarnih prostorija.",
-    "applications": ["Sanitarne prostorije", "Tuševi", "Armature"]
+    "applications": [
+      "Sanitarne prostorije",
+      "Tuševi",
+      "Armature"
+    ]
   },
   "tuby": {
     "description": "WC čistač u boci za istiskivanje.",
-    "applications": ["WC školjke", "Pisoari"]
+    "applications": [
+      "WC školjke",
+      "Pisoari"
+    ]
   },
   "descaler": {
     "description": "Profesionalni odstranjivač kamenca.",
-    "applications": ["Perilice posuđa", "Aparati za kavu", "Bojleri"]
+    "applications": [
+      "Perilice posuđa",
+      "Aparati za kavu",
+      "Bojleri"
+    ]
   },
   "fresh-air-nectarine": {
     "description": "Osvježivač zraka s mirisom nektarine.",
-    "applications": ["Sve prostorije", "Sanitarni prostori", "Uredi"]
+    "applications": [
+      "Sve prostorije",
+      "Sanitarni prostori",
+      "Uredi"
+    ]
   },
   "aromx-35": {
     "description": "Neutralizator neugodnih mirisa.",
-    "applications": ["Sve prostorije"]
+    "applications": [
+      "Sve prostorije"
+    ]
   },
   "aromx-60": {
     "description": "Visoko koncentrirani uništavač neugodnih mirisa.",
-    "applications": ["Komercijalni prostori", "Prostorije za otpad"]
+    "applications": [
+      "Komercijalni prostori",
+      "Prostorije za otpad"
+    ]
   },
   "aromx-76": {
     "description": "Univerzalni čistač s neutralizacijom mirisa.",
-    "applications": ["Podovi", "Površine", "Sanitarije"]
+    "applications": [
+      "Podovi",
+      "Površine",
+      "Sanitarije"
+    ]
   },
   "aromx-80": {
     "description": "Čistač tepiha s neutralizacijom mirisa.",
-    "applications": ["Tepisi", "Tekstilne podne obloge"]
+    "applications": [
+      "Tepisi",
+      "Tekstilne podne obloge"
+    ]
   },
   "aromx-81": {
     "description": "Čistač za ekstrakcijsko prskanje tepiha.",
-    "applications": ["Tepisi", "Presvlake"]
+    "applications": [
+      "Tepisi",
+      "Presvlake"
+    ]
   },
   "essence-magic-garden": {
     "description": "Mirisna esencija s mirisom vrta.",
-    "applications": ["Aromatizacija prostora", "Predvorje", "Ulazna područja"]
+    "applications": [
+      "Aromatizacija prostora",
+      "Predvorje",
+      "Ulazna područja"
+    ]
   },
   "essence-magic-fruit": {
     "description": "Mirisna esencija s voćnom notom.",
-    "applications": ["Aromatizacija prostora", "Uredi", "Hoteli"]
+    "applications": [
+      "Aromatizacija prostora",
+      "Uredi",
+      "Hoteli"
+    ]
   },
   "essence-herbal-therapy": {
     "description": "Mirisna esencija s biljnim mirisom.",
-    "applications": ["Aromatizacija prostora", "Wellness", "Čekaonice"]
+    "applications": [
+      "Aromatizacija prostora",
+      "Wellness",
+      "Čekaonice"
+    ]
   },
   "de-grease": {
     "description": "Snažno sredstvo za odmašćivanje.",
-    "applications": ["Kuhinja", "Nape", "Roštilj", "Industrijske površine"]
+    "applications": [
+      "Kuhinja",
+      "Nape",
+      "Roštilj",
+      "Industrijske površine"
+    ]
   },
   "nano-glass": {
     "description": "Nano zaštita za staklo.",
-    "applications": ["Tuš kabine", "Prozori", "Staklene fasade"]
+    "applications": [
+      "Tuš kabine",
+      "Prozori",
+      "Staklene fasade"
+    ]
   },
   "stainless-steel-cleaner": {
     "description": "Čistač nehrđajućeg čelika.",
-    "applications": ["Uređaji od nehrđajućeg čelika", "Dizala", "Gastro oprema"]
+    "applications": [
+      "Uređaji od nehrđajućeg čelika",
+      "Dizala",
+      "Gastro oprema"
+    ]
   },
   "stainless-steel-polish": {
     "description": "Sredstvo za poliranje nehrđajućeg čelika.",
-    "applications": ["Nehrđajući čelik", "Krom", "Aluminij"]
+    "applications": [
+      "Nehrđajući čelik",
+      "Krom",
+      "Aluminij"
+    ]
   },
   "powerhouse": {
     "description": "Univerzalni snažni čistač.",
-    "applications": ["Sve površine", "Industrijsko čišćenje"]
+    "applications": [
+      "Sve površine",
+      "Industrijsko čišćenje"
+    ]
   },
   "powershine": {
     "description": "Čistač s efektom sjaja.",
-    "applications": ["Namještaj", "Plastika", "Nehrđajući čelik"]
+    "applications": [
+      "Namještaj",
+      "Plastika",
+      "Nehrđajući čelik"
+    ]
   },
   "sparkle": {
     "description": "Čistač u spreju za staklo i glatke površine.",
-    "applications": ["Staklo", "Ogledala", "Glatke površine"]
+    "applications": [
+      "Staklo",
+      "Ogledala",
+      "Glatke površine"
+    ]
   },
   "citro-gleam": {
     "description": "Alkalni čistač s mirisom citrusa.",
-    "applications": ["Kuhinja", "Industrijske površine"]
+    "applications": [
+      "Kuhinja",
+      "Industrijske površine"
+    ]
   },
   "miracle": {
     "description": "Višenamjenski snažni čistač za tintu, ljepilo, boju.",
-    "applications": ["Tinta", "Ljepilo", "Boja", "Grafiti"]
+    "applications": [
+      "Tinta",
+      "Ljepilo",
+      "Boja",
+      "Grafiti"
+    ]
   },
   "liquid-soap": {
     "description": "Blagi tekući sapun.",
-    "applications": ["Pranje ruku", "Sanitarne prostorije"]
+    "applications": [
+      "Pranje ruku",
+      "Sanitarne prostorije"
+    ]
   },
   "stain-remover": {
     "description": "Odstranjivač mrlja za tepihe.",
-    "applications": ["Tepisi", "Tapecirani namještaj", "Tekstil"]
+    "applications": [
+      "Tepisi",
+      "Tapecirani namještaj",
+      "Tekstil"
+    ]
   },
   "es93-encapsulation-cleaner": {
     "description": "Enkapsulacijski čistač tepiha.",
-    "applications": ["Tepisi", "Tepih pločice"]
+    "applications": [
+      "Tepisi",
+      "Tepih pločice"
+    ]
   },
   "plush": {
     "description": "Šampon za tepihe za ekstrakcijsko prskanje.",
-    "applications": ["Tepisi", "Tepih podovi"]
+    "applications": [
+      "Tepisi",
+      "Tepih podovi"
+    ]
   },
   "quato-78-professional": {
     "description": "Profesionalno sredstvo za dezinfekciju površina.",
-    "applications": ["Sve površine", "Medicinske ustanove", "Gastronomija"]
+    "applications": [
+      "Sve površine",
+      "Medicinske ustanove",
+      "Gastronomija"
+    ]
   },
   "quato-78-professional-rtu": {
     "description": "Dezinfekcijsko sredstvo spremno za upotrebu.",
-    "applications": ["Brza dezinfekcija", "Manje površine", "Dodirne točke"]
+    "applications": [
+      "Brza dezinfekcija",
+      "Manje površine",
+      "Dodirne točke"
+    ]
   },
   "food-service-rtu": {
     "description": "Čistač spreman za upotrebu za prehrambeni sektor.",
-    "applications": ["Kuhinjske površine", "Daske za rezanje", "Radne površine"]
+    "applications": [
+      "Kuhinjske površine",
+      "Daske za rezanje",
+      "Radne površine"
+    ]
   },
   "food-service-concentrate": {
     "description": "Koncentrat za čišćenje za gastronomiju.",
-    "applications": ["Velike kuhinje", "Prehrambena proizvodnja"]
+    "applications": [
+      "Velike kuhinje",
+      "Prehrambena proizvodnja"
+    ]
   },
   "quato-44": {
     "description": "Sredstvo za pranje posuđa s dezinfekcijskim učinkom.",
-    "applications": ["Posuđe", "Čaše", "Pribor za jelo"]
+    "applications": [
+      "Posuđe",
+      "Čaše",
+      "Pribor za jelo"
+    ]
   },
   "grill-and-oven": {
     "description": "Čistač za roštilj, pećnice i friteze.",
-    "applications": ["Roštilji", "Pećnice", "Friteze"]
+    "applications": [
+      "Roštilji",
+      "Pećnice",
+      "Friteze"
+    ]
   },
   "facto-pm20": {
     "description": "Kiseli čistač za prehrambenu industriju.",
-    "applications": ["Mljekare", "Pivovare", "Cjevovodi"]
+    "applications": [
+      "Mljekare",
+      "Pivovare",
+      "Cjevovodi"
+    ]
   },
   "hardwater-rinse": {
     "description": "Sredstvo za ispiranje za profesionalne perilice posuđa.",
-    "applications": ["Perilice posuđa"]
+    "applications": [
+      "Perilice posuđa"
+    ]
   },
   "hardwater-detergent": {
     "description": "Deterdžent za profesionalne perilice posuđa.",
-    "applications": ["Perilice posuđa"]
+    "applications": [
+      "Perilice posuđa"
+    ]
   },
   "facto-hd40": {
     "description": "Industrijski snažni čistač.",
-    "applications": ["Strojevi", "Radionice", "Industrijski podovi"]
+    "applications": [
+      "Strojevi",
+      "Radionice",
+      "Industrijski podovi"
+    ]
   },
   "facto-hd41-cleanmax": {
     "description": "Ekstremno jaki industrijski čistač.",
-    "applications": ["Teško industrijsko čišćenje"]
+    "applications": [
+      "Teško industrijsko čišćenje"
+    ]
   },
   "facto-hd43": {
     "description": "Nježni industrijski čistač.",
-    "applications": ["Strojni dijelovi", "Elektronika", "Osjetljive površine"]
+    "applications": [
+      "Strojni dijelovi",
+      "Elektronika",
+      "Osjetljive površine"
+    ]
   },
   "facto-at31": {
     "description": "Alkalni čistač dijelova.",
-    "applications": ["Pranje dijelova", "Ultrazvučno čišćenje"]
+    "applications": [
+      "Pranje dijelova",
+      "Ultrazvučno čišćenje"
+    ]
   },
   "facto-at30": {
     "description": "Čistač za vozila i prijevozna sredstva.",
-    "applications": ["Kamioni", "Osobni automobili", "Autobusi", "Vlakovi"]
+    "applications": [
+      "Kamioni",
+      "Osobni automobili",
+      "Autobusi",
+      "Vlakovi"
+    ]
   },
   "e10-neutral": {
     "description": "Neutralni univerzalni čistač ekonomske linije.",
-    "applications": ["Sve površine", "Podovi"]
+    "applications": [
+      "Sve površine",
+      "Podovi"
+    ]
   },
   "e11-orange": {
     "description": "Univerzalni čistač s mirisom naranče ekonomske linije.",
-    "applications": ["Sve površine", "Podovi"]
+    "applications": [
+      "Sve površine",
+      "Podovi"
+    ]
   },
   "e20-alkali": {
     "description": "Alkalni čistač ekonomske linije.",
-    "applications": ["Masna prljavština", "Industrijske površine"]
+    "applications": [
+      "Masna prljavština",
+      "Industrijske površine"
+    ]
   },
   "e30-acid": {
     "description": "Kiseli čistač ekonomske linije.",
-    "applications": ["Sanitarni prostori", "Pločice"]
+    "applications": [
+      "Sanitarni prostori",
+      "Pločice"
+    ]
   },
   "e35-gel": {
     "description": "Kiseli WC gel ekonomske linije.",
-    "applications": ["WC školjke"]
+    "applications": [
+      "WC školjke"
+    ]
   },
   "e40-glass": {
     "description": "Čistač stakla ekonomske linije.",
-    "applications": ["Prozori", "Ogledala", "Staklo"]
+    "applications": [
+      "Prozori",
+      "Ogledala",
+      "Staklo"
+    ]
   },
   "e50-strong": {
     "description": "Jako alkalni čistač ekonomske linije.",
-    "applications": ["Industrijska područja", "Kuhinje"]
+    "applications": [
+      "Industrijska područja",
+      "Kuhinje"
+    ]
+  },
+  "clean-green-dish": {
+    "description": "Ekološki deterdžent za ručno pranje posuđa. Biorazgradiv, nježan za ruke, učinkovit protiv masnoće.",
+    "applications": [
+      "Ručno pranje",
+      "Posuđe",
+      "Čaše"
+    ]
+  },
+  "dish-detergent": {
+    "description": "Profesionalni deterdžent za ručno pranje posuđa. Visoka moć otapanja masnoće, ekonomičan u uporabi, nježan za kožu.",
+    "applications": [
+      "Ručno pranje",
+      "Posuđe",
+      "Pribor za jelo",
+      "Kuhinjska oprema"
+    ]
   }
 }

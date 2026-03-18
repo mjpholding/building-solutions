@@ -57,8 +57,8 @@ const NAME_TO_SLUG: Record<string, string> = {
   "food service disinfectant - gotowy do użytku": "food-service-rtu",
   "food service 5000": "food-service-concentrate",
   "facto hd41": "facto-hd41-cleanmax",
-  "clean & green dish detergent": "liquid-soap",
-  "swish dish detergent": "liquid-soap",
+  "clean & green dish detergent": "clean-green-dish",
+  "swish dish detergent": "dish-detergent",
 };
 
 // Migrate old data: convert numeric discount/margin to null (= use global)

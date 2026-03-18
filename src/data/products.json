@@ -3071,5 +3071,78 @@
     },
     "minOrderQuantity": 1,
     "inStock": true
+  },
+  {
+    "id": 81,
+    "slug": "clean-green-dish",
+    "name": "CLEAN & GREEN DISH DETERGENT",
+    "category": "green",
+    "description": "Umweltfreundliches Handgeschirrspülmittel. Biologisch abbaubar, schonend zu Händen und effektiv gegen Fett.",
+    "ph": "6.0 - 7.0",
+    "applications": [
+      "Handspülung",
+      "Geschirr",
+      "Gläser"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "0,74 L"
+    ],
+    "surfaceTypes": [],
+    "roomTypes": [
+      "kitchen",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "grease",
+      "general"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "",
+    "prices": {
+      "0,74 L": 22.52
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
+  },
+  {
+    "id": 82,
+    "slug": "dish-detergent",
+    "name": "SWISH DISH DETERGENT",
+    "category": "food",
+    "description": "Professionelles Handgeschirrspülmittel. Hohe Fettlösekraft, sparsam im Verbrauch, hautschonend.",
+    "ph": "6.0 - 7.0",
+    "applications": [
+      "Handspülung",
+      "Geschirr",
+      "Besteck",
+      "Küchengeräte"
+    ],
+    "isBestseller": false,
+    "sizes": [
+      "5 L"
+    ],
+    "surfaceTypes": [],
+    "roomTypes": [
+      "kitchen",
+      "restaurant"
+    ],
+    "dirtTypes": [
+      "grease",
+      "general"
+    ],
+    "intensityLevels": [
+      "light",
+      "medium"
+    ],
+    "image": "",
+    "prices": {
+      "5 L": 27.16
+    },
+    "minOrderQuantity": 1,
+    "inStock": true
   }
 ]
