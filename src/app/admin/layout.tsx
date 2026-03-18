@@ -27,6 +27,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [auth, setAuth] = useState<boolean | null>(null);
   const [adminUser, setAdminUser] = useState<{ name: string; role: string } | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const isChat = pathname.startsWith("/admin/chat");
 
   useEffect(() => {
     fetch("/api/admin/check")
@@ -115,14 +116,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
           {/* Sidebar */}
           <aside
-            className={`fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 text-white flex flex-col flex-shrink-0 transform transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:z-auto ${
+            className={`fixed inset-y-0 left-0 z-50 bg-gray-900 text-white flex flex-col flex-shrink-0 transform transition-all duration-200 ease-in-out lg:translate-x-0 lg:static lg:z-auto ${
+              isChat ? "lg:w-16" : "lg:w-64"
+            } w-64 ${
               sidebarOpen ? "translate-x-0" : "-translate-x-full"
             }`}
           >
-            <div className="p-6 border-b border-gray-800 flex items-center justify-between">
-              <h1 className="text-lg font-bold tracking-tight">
+            <div className={`border-b border-gray-800 flex items-center justify-between ${isChat ? "lg:p-3 lg:justify-center p-6" : "p-6"}`}>
+              <h1 className={`text-lg font-bold tracking-tight ${isChat ? "lg:hidden" : ""}`}>
                 <span className="text-red-500">Swish</span> Admin
               </h1>
+              {isChat && (
+                <span className="text-red-500 font-bold text-lg hidden lg:block">S</span>
+              )}
               <button
                 onClick={() => setSidebarOpen(false)}
                 className="lg:hidden p-1 hover:bg-gray-800 rounded"
@@ -130,7 +136,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 <X size={18} />
               </button>
             </div>
-            <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+            <nav className={`flex-1 space-y-1 overflow-y-auto ${isChat ? "lg:p-2 p-4" : "p-4"}`}>
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(item.href));
@@ -138,20 +144,23 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                    title={isChat ? item.label : undefined}
+                    className={`flex items-center gap-3 rounded-lg text-sm font-medium transition-colors ${
+                      isChat ? "lg:justify-center lg:px-0 lg:py-2.5 px-4 py-3" : "px-4 py-3"
+                    } ${
                       isActive
                         ? "bg-red-600 text-white"
                         : "text-gray-400 hover:text-white hover:bg-gray-800"
                     }`}
                   >
                     <Icon size={18} />
-                    {item.label}
+                    <span className={isChat ? "lg:hidden" : ""}>{item.label}</span>
                   </Link>
                 );
               })}
             </nav>
-            <div className="p-4 border-t border-gray-800 space-y-2">
-              {adminUser && (
+            <div className={`border-t border-gray-800 space-y-2 ${isChat ? "lg:p-2 p-4" : "p-4"}`}>
+              {adminUser && !isChat && (
                 <div className="px-4 py-2 text-xs text-gray-500">
                   <p className="text-gray-300 font-medium truncate">{adminUser.name}</p>
                   <p className="capitalize">{adminUser.role}</p>
@@ -159,17 +168,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               )}
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-800 transition-colors w-full"
+                title={isChat ? "Abmelden" : undefined}
+                className={`flex items-center gap-3 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-800 transition-colors w-full ${
+                  isChat ? "lg:justify-center lg:px-0 lg:py-2.5 px-4 py-3" : "px-4 py-3"
+                }`}
               >
                 <LogOut size={18} />
-                Abmelden
+                <span className={isChat ? "lg:hidden" : ""}>Abmelden</span>
               </button>
             </div>
           </aside>
 
           {/* Main */}
           <main className="flex-1 overflow-auto pt-14 lg:pt-0">
-            <div className="p-4 sm:p-6 lg:p-8">{children}</div>
+            <div className={isChat ? "h-full" : "p-4 sm:p-6 lg:p-8"}>{children}</div>
           </main>
         </div>
       </body>
