@@ -10,7 +10,6 @@ import {
   Euro,
   Calculator,
   ArrowRight,
-  Globe,
 } from "lucide-react";
 
 interface PricingItem {
@@ -56,8 +55,8 @@ export default function PricingPage() {
   const [filter, setFilter] = useState<"all" | "economy" | "professional">("all");
   const [search, setSearch] = useState("");
   const [editingCell, setEditingCell] = useState<string | null>(null);
-  const [publishing, setPublishing] = useState(false);
-  const [publishResult, setPublishResult] = useState<{ published: number } | null>(null);
+  // Counter to force re-render of defaultValue inputs after fetch
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const fetchData = useCallback(async () => {
     const [configRes, rateRes] = await Promise.all([
@@ -68,6 +67,7 @@ export default function PricingPage() {
     const rateData = await rateRes.json();
     setConfig(configData);
     setRate(rateData);
+    setRefreshKey((k) => k + 1);
     setLoading(false);
   }, []);
 
@@ -80,12 +80,17 @@ export default function PricingPage() {
     try {
       const mod = await import("@/data/purchase-prices.json");
       const products = mod.default;
-      await fetch("/api/admin/pricing", {
+      const res = await fetch("/api/admin/pricing", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ products }),
       });
+      const data = await res.json();
       await fetchData();
+      if (data.published) {
+        setSaved(true);
+        setTimeout(() => setSaved(false), 2000);
+      }
     } finally {
       setImporting(false);
     }
@@ -102,7 +107,7 @@ export default function PricingPage() {
     await fetchData();
     setSaving(false);
     setSaved(true);
-    setTimeout(() => setSaved(false), 1500);
+    setTimeout(() => setSaved(false), 2000);
   };
 
   const handleItemUpdate = async (index: number, field: string, value: number | null) => {
@@ -117,20 +122,6 @@ export default function PricingPage() {
     setEditingCell(null);
   };
 
-  const handlePublish = async () => {
-    setPublishing(true);
-    setPublishResult(null);
-    const res = await fetch("/api/admin/pricing", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ publishPrices: true }),
-    });
-    const data = await res.json();
-    setPublishing(false);
-    setPublishResult({ published: data.published || 0 });
-    setTimeout(() => setPublishResult(null), 4000);
-  };
-
   const handleRecalculate = async () => {
     setRecalculating(true);
     await fetch("/api/admin/pricing", {
@@ -140,9 +131,12 @@ export default function PricingPage() {
     });
     await fetchData();
     setRecalculating(false);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
   };
 
   const handleAcceptRate = async () => {
+    setSaving(true);
     await fetch("/api/admin/exchange-rate", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -155,6 +149,9 @@ export default function PricingPage() {
       body: JSON.stringify({ recalculate: true }),
     });
     await fetchData();
+    setSaving(false);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
   };
 
   const handleThresholdUpdate = async (threshold: number) => {
@@ -198,6 +195,16 @@ export default function PricingPage() {
           </p>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
+          {saving && (
+            <span className="text-xs text-blue-500 flex items-center gap-1">
+              <Loader2 size={12} className="animate-spin" /> Aktualisiere...
+            </span>
+          )}
+          {saved && !saving && (
+            <span className="text-xs text-green-600 flex items-center gap-1">
+              <Check size={12} /> Preise aktualisiert
+            </span>
+          )}
           <button
             onClick={handleImport}
             disabled={importing}
@@ -213,14 +220,6 @@ export default function PricingPage() {
           >
             {recalculating ? <Loader2 size={16} className="animate-spin" /> : <Calculator size={16} />}
             Neu berechnen
-          </button>
-          <button
-            onClick={handlePublish}
-            disabled={publishing}
-            className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-          >
-            {publishing ? <Loader2 size={16} className="animate-spin" /> : <Globe size={16} />}
-            {publishResult ? `${publishResult.published} veröffentlicht ✓` : "Preise veröffentlichen"}
           </button>
         </div>
       </div>
@@ -260,6 +259,7 @@ export default function PricingPage() {
           <div className="mt-3 flex items-center gap-2">
             <label className="text-xs text-gray-500 whitespace-nowrap">Schwelle:</label>
             <input
+              key={`threshold-${refreshKey}`}
               type="number"
               step="1"
               min="1"
@@ -283,6 +283,7 @@ export default function PricingPage() {
           </div>
           <div className="flex items-center gap-3">
             <input
+              key={`discount-${refreshKey}`}
               type="number"
               step="0.5"
               min="0"
@@ -296,8 +297,6 @@ export default function PricingPage() {
           <p className="mt-2 text-xs text-gray-400">
             Wird auf alle Produkte ohne Einzelrabatt angewendet
           </p>
-          {saving && <div className="mt-2 text-xs text-blue-500 flex items-center gap-1"><Loader2 size={12} className="animate-spin" /> Speichern...</div>}
-          {saved && <div className="mt-2 text-xs text-green-600 flex items-center gap-1"><Check size={12} /> Gespeichert</div>}
         </div>
 
         {/* Global Margin */}
@@ -307,6 +306,7 @@ export default function PricingPage() {
           </div>
           <div className="flex items-center gap-3">
             <input
+              key={`margin-${refreshKey}`}
               type="number"
               step="0.5"
               min="0"
@@ -548,7 +548,7 @@ export default function PricingPage() {
         <div className="mt-4 flex flex-wrap gap-4 text-[10px] text-gray-400">
           <span><span className="inline-block w-2 h-2 rounded-full bg-blue-500 mr-1" /> Indywiduell angepasst</span>
           <span><span className="inline-block w-2 h-2 rounded-full bg-orange-500 mr-1" /> Preis manuell überschrieben</span>
-          <span>Klicken Sie auf Werte um sie zu bearbeiten</span>
+          <span>Klicken Sie auf Werte um sie zu bearbeiten • Änderungen werden automatisch veröffentlicht</span>
         </div>
       )}
 

@@ -32,6 +32,105 @@ const DEFAULT_CONFIG: PricingConfig = {
   lastImport: "",
 };
 
+// Manual name mapping: pricing name (lowercase) → product slug
+// For products where names differ between Excel price list and catalog
+const NAME_TO_SLUG: Record<string, string> = {
+  "e50 strong cleaner": "e50-strong",
+  "swish strip": "swish-strip",
+  "poly lock": "poly-lock-ultra",
+  "tried & true": "tried-n-true",
+  "es89 - blockade concrete sealer": "es89-blockade-concrete-sealer",
+  "es99 - impregnator sealer": "es99-impregnator-sealer",
+  "sp-120": "sp-120-floor-active",
+  "sp-150": "sp-150-gres-cleaner",
+  "sp-350": "sp-350-acid-cleaner",
+  "sp-300": "sp-300-washroom-cleaner",
+  "sp-360": "sp-360-action-bowl-cleaner",
+  "fresh air": "fresh-air-nectarine",
+  "essence herbal therapy": "essence-herbal-therapy",
+  "essence magic fruit": "essence-magic-fruit",
+  "essence magic garden": "essence-magic-garden",
+  "swish de-grease": "de-grease",
+  "quato 78 plus": "quato-78-professional",
+  "quato 78 plus - gotowy do użytku": "quato-78-professional-rtu",
+  "food service disinfectant": "food-service-concentrate",
+  "food service disinfectant - gotowy do użytku": "food-service-rtu",
+  "food service 5000": "food-service-concentrate",
+  "facto hd41": "facto-hd41-cleanmax",
+  "clean & green dish detergent": "liquid-soap",
+  "swish dish detergent": "liquid-soap",
+};
+
+function recalculateItems(config: PricingConfig, rate: number) {
+  for (const item of config.items) {
+    const discount = item.purchaseDiscountPercent ?? config.globalPurchaseDiscount;
+    const margin = item.marginPercent ?? config.globalMargin;
+
+    item.purchasePricePLN = Math.round(item.catalogPricePLN * (1 - discount / 100) * 100) / 100;
+    item.purchasePriceEUR = Math.round((item.purchasePricePLN / rate) * 100) / 100;
+
+    if (item.sellPriceOverride != null) {
+      item.sellPriceEUR = item.sellPriceOverride;
+    } else {
+      item.sellPriceEUR = Math.round(item.purchasePriceEUR * (1 + margin / 100) * 100) / 100;
+    }
+  }
+}
+
+async function publishToProducts(config: PricingConfig) {
+  const staticProducts = (await import("@/data/products.json")).default as Record<string, unknown>[];
+  const redisProducts = ((await storeGet("products")) as Record<string, unknown>[] | null) || [];
+
+  // Start from static products, merge Redis customizations on top
+  const staticMap = new Map<string, Record<string, unknown>>();
+  for (const sp of staticProducts) {
+    staticMap.set(sp.slug as string, { ...sp });
+  }
+  for (const rp of redisProducts) {
+    const slug = rp.slug as string;
+    const base = staticMap.get(slug);
+    if (base) {
+      staticMap.set(slug, { ...base, ...rp, prices: rp.prices || base.prices });
+    } else {
+      staticMap.set(slug, rp);
+    }
+  }
+  const products = Array.from(staticMap.values());
+
+  // Build name→slug lookup from products
+  const nameToSlug = new Map<string, string>();
+  for (const p of products) {
+    nameToSlug.set((p.name as string).toLowerCase(), p.slug as string);
+  }
+
+  // Build slug → prices map from pricing items
+  const slugPriceMap = new Map<string, Record<string, number>>();
+  for (const item of config.items) {
+    const nameLower = item.name.toLowerCase();
+    // Try direct name match first, then manual mapping
+    let slug = nameToSlug.get(nameLower) || NAME_TO_SLUG[nameLower];
+    if (!slug) continue;
+
+    const existing = slugPriceMap.get(slug) || {};
+    const sizeKey = `${item.size} L`;
+    existing[sizeKey] = item.sellPriceEUR;
+    slugPriceMap.set(slug, existing);
+  }
+
+  let updated = 0;
+  for (const product of products) {
+    const slug = product.slug as string;
+    const prices = slugPriceMap.get(slug);
+    if (prices) {
+      product.prices = prices;
+      updated++;
+    }
+  }
+
+  await storeSet("products", products);
+  return updated;
+}
+
 export async function GET() {
   const user = await getSessionUser();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -63,67 +162,14 @@ export async function PUT(request: NextRequest) {
   if (body.recalculate) {
     const rateData = await storeGet("exchange-rate") as { referenceRate: number } | null;
     const rate = rateData?.referenceRate || 4.3;
-
-    for (const item of config.items) {
-      const discount = item.purchaseDiscountPercent ?? config.globalPurchaseDiscount;
-      const margin = item.marginPercent ?? config.globalMargin;
-
-      item.purchasePricePLN = Math.round(item.catalogPricePLN * (1 - discount / 100) * 100) / 100;
-      item.purchasePriceEUR = Math.round((item.purchasePricePLN / rate) * 100) / 100;
-
-      if (item.sellPriceOverride != null) {
-        item.sellPriceEUR = item.sellPriceOverride;
-      } else {
-        item.sellPriceEUR = Math.round(item.purchasePriceEUR * (1 + margin / 100) * 100) / 100;
-      }
-    }
+    recalculateItems(config, rate);
   }
 
   await storeSet(STORE_KEY, config);
 
-  // Publish sell prices to public product catalog
-  if (body.publishPrices) {
-    const staticProducts = (await import("@/data/products.json")).default as Record<string, unknown>[];
-    const redisProducts = ((await storeGet("products")) as Record<string, unknown>[] | null) || [];
-
-    // Start from static products, merge Redis customizations on top
-    const staticMap = new Map<string, Record<string, unknown>>();
-    for (const sp of staticProducts) {
-      staticMap.set(sp.slug as string, { ...sp });
-    }
-    // Apply Redis overrides (admin edits) but keep static prices as fallback
-    for (const rp of redisProducts) {
-      const slug = rp.slug as string;
-      const base = staticMap.get(slug);
-      if (base) {
-        staticMap.set(slug, { ...base, ...rp, prices: rp.prices || base.prices });
-      } else {
-        staticMap.set(slug, rp);
-      }
-    }
-    const products = Array.from(staticMap.values());
-
-    // Build price map: lowercase name → { "1 L": price, "5 L": price, ... }
-    const priceMap = new Map<string, Record<string, number>>();
-    for (const item of config.items) {
-      const key = item.name.toLowerCase();
-      const existing = priceMap.get(key) || {};
-      const sizeKey = `${item.size} L`;
-      existing[sizeKey] = item.sellPriceEUR;
-      priceMap.set(key, existing);
-    }
-
-    let updated = 0;
-    for (const product of products) {
-      const name = (product.name as string || "").toLowerCase();
-      const prices = priceMap.get(name);
-      if (prices) {
-        product.prices = prices;
-        updated++;
-      }
-    }
-
-    await storeSet("products", products);
+  // Auto-publish: always sync to public catalog after recalculation
+  if (body.recalculate || body.publishPrices) {
+    const updated = await publishToProducts(config);
     return NextResponse.json({ ok: true, published: updated });
   }
 
@@ -182,5 +228,8 @@ export async function POST(request: NextRequest) {
   config.lastImport = new Date().toISOString();
   await storeSet(STORE_KEY, config);
 
-  return NextResponse.json({ ok: true, count: newItems.length });
+  // Auto-publish after import
+  const updated = await publishToProducts(config);
+
+  return NextResponse.json({ ok: true, count: newItems.length, published: updated });
 }
