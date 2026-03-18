@@ -61,10 +61,26 @@ const NAME_TO_SLUG: Record<string, string> = {
   "swish dish detergent": "liquid-soap",
 };
 
+// Migrate old data: convert numeric discount/margin to null (= use global)
+// Old imports stored concrete numbers; new logic uses null for "use global"
+function migrateItems(config: PricingConfig) {
+  for (const item of config.items) {
+    // If value is a number (old format), treat it as "use global" → set to null
+    // Only keep as individual override if it was explicitly set differently
+    if (typeof item.purchaseDiscountPercent === "number") {
+      item.purchaseDiscountPercent = null;
+    }
+    if (typeof item.marginPercent === "number") {
+      item.marginPercent = null;
+    }
+  }
+}
+
 function recalculateItems(config: PricingConfig, rate: number) {
   for (const item of config.items) {
-    const discount = item.purchaseDiscountPercent ?? config.globalPurchaseDiscount;
-    const margin = item.marginPercent ?? config.globalMargin;
+    // null = use global, number = individual override
+    const discount = item.purchaseDiscountPercent != null ? item.purchaseDiscountPercent : config.globalPurchaseDiscount;
+    const margin = item.marginPercent != null ? item.marginPercent : config.globalMargin;
 
     item.purchasePricePLN = Math.round(item.catalogPricePLN * (1 - discount / 100) * 100) / 100;
     item.purchasePriceEUR = Math.round((item.purchasePricePLN / rate) * 100) / 100;
@@ -160,6 +176,7 @@ export async function PUT(request: NextRequest) {
 
   // Recalculate all prices
   if (body.recalculate) {
+    migrateItems(config); // fix old data with concrete numbers → null
     const rateData = await storeGet("exchange-rate") as { referenceRate: number } | null;
     const rate = rateData?.referenceRate || 4.3;
     recalculateItems(config, rate);
