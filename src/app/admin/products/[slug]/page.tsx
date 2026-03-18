@@ -133,17 +133,27 @@ export default function ProductEditor() {
       setUploadError("Bitte zuerst einen Namen/Slug eingeben.");
       return;
     }
+    if (file.size > 4 * 1024 * 1024) {
+      setUploadError("Datei zu gross (max 4 MB)");
+      return;
+    }
     setUploading(true);
     setUploadError("");
-    const fd = new FormData();
-    fd.append("file", file);
-    fd.append("slug", product.slug);
-    const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
-    const data = await res.json();
-    if (res.ok) {
-      updateField("image", data.url);
-    } else {
-      setUploadError(data.error || "Upload fehlgeschlagen");
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      fd.append("slug", product.slug);
+      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      if (!res.ok) {
+        let msg = "Upload fehlgeschlagen";
+        try { const data = await res.json(); msg = data.error || msg; } catch { /* response wasn't JSON */ }
+        setUploadError(msg);
+      } else {
+        const data = await res.json();
+        updateField("image", data.url);
+      }
+    } catch (err) {
+      setUploadError("Upload fehlgeschlagen: " + (err instanceof Error ? err.message : "Netzwerkfehler"));
     }
     setUploading(false);
     if (fileInputRef.current) fileInputRef.current.value = "";
