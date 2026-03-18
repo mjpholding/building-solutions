@@ -8,10 +8,10 @@ export interface PricingItem {
   line: "economy" | "professional";
   catalogPricePLN: number; // cena katalogowa netto PLN per sztukę
   pricePerLiterPLN: number | null;
-  purchaseDiscountPercent: number; // rabat zakupowy (globalny lub indywidualny)
+  purchaseDiscountPercent: number | null; // null = użyj globalnego, liczba = indywidualny
   purchasePricePLN: number; // = catalogPrice * (1 - discount/100)
   purchasePriceEUR: number; // = purchasePricePLN / referenceRate
-  marginPercent: number; // marża sprzedażowa %
+  marginPercent: number | null; // null = użyj globalnego, liczba = indywidualna
   sellPriceEUR: number; // = purchasePriceEUR * (1 + margin/100)
   sellPriceOverride: number | null; // ręczna nadpisana cena
 }
@@ -199,8 +199,11 @@ export async function POST(request: NextRequest) {
   const newItems: PricingItem[] = products.map((p: Record<string, unknown>) => {
     const key = `${p.name}|${p.size}`;
     const existing = existingMap.get(key);
-    const discount = existing?.purchaseDiscountPercent ?? config.globalPurchaseDiscount;
-    const margin = existing?.marginPercent ?? config.globalMargin;
+    // null = use global, number = individual override
+    const customDiscount = existing?.purchaseDiscountPercent ?? null;
+    const customMargin = existing?.marginPercent ?? null;
+    const discount = customDiscount ?? config.globalPurchaseDiscount;
+    const margin = customMargin ?? config.globalMargin;
     const catalogPrice = p.pricePerUnitPLN as number;
     const purchasePricePLN = Math.round(catalogPrice * (1 - discount / 100) * 100) / 100;
     const purchasePriceEUR = Math.round((purchasePricePLN / rate) * 100) / 100;
@@ -215,10 +218,10 @@ export async function POST(request: NextRequest) {
       line: p.line as "economy" | "professional",
       catalogPricePLN: catalogPrice,
       pricePerLiterPLN: (p.pricePerLiterPLN as number) || null,
-      purchaseDiscountPercent: discount,
+      purchaseDiscountPercent: customDiscount,
       purchasePricePLN,
       purchasePriceEUR,
-      marginPercent: margin,
+      marginPercent: customMargin,
       sellPriceEUR,
       sellPriceOverride,
     };

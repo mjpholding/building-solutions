@@ -18,10 +18,10 @@ interface PricingItem {
   line: "economy" | "professional";
   catalogPricePLN: number;
   pricePerLiterPLN: number | null;
-  purchaseDiscountPercent: number;
+  purchaseDiscountPercent: number | null;
   purchasePricePLN: number;
   purchasePriceEUR: number;
-  marginPercent: number;
+  marginPercent: number | null;
   sellPriceEUR: number;
   sellPriceOverride: number | null;
 }
@@ -181,8 +181,10 @@ export default function PricingPage() {
   // Stats
   const totalPurchaseEUR = items.reduce((s, i) => s + i.purchasePriceEUR, 0);
   const totalSellEUR = items.reduce((s, i) => s + i.sellPriceEUR, 0);
+  const globalDiscount = config?.globalPurchaseDiscount || 0;
+  const globalMargin = config?.globalMargin || 30;
   const avgMargin = items.length > 0
-    ? items.reduce((s, i) => s + i.marginPercent, 0) / items.length
+    ? items.reduce((s, i) => s + (i.marginPercent ?? globalMargin), 0) / items.length
     : 0;
 
   return (
@@ -406,8 +408,8 @@ export default function PricingPage() {
             <tbody>
               {filteredItems.map((item, displayIdx) => {
                 const realIdx = items.indexOf(item);
-                const hasCustomDiscount = item.purchaseDiscountPercent !== (config?.globalPurchaseDiscount || 0);
-                const hasCustomMargin = item.marginPercent !== (config?.globalMargin || 30);
+                const hasCustomDiscount = item.purchaseDiscountPercent !== null;
+                const hasCustomMargin = item.marginPercent !== null;
                 const hasOverride = item.sellPriceOverride != null;
 
                 return (
@@ -432,7 +434,7 @@ export default function PricingPage() {
                           type="number"
                           step="0.5"
                           autoFocus
-                          defaultValue={item.purchaseDiscountPercent}
+                          defaultValue={item.purchaseDiscountPercent ?? globalDiscount}
                           onBlur={(e) => {
                             const v = parseFloat(e.target.value);
                             if (!isNaN(v)) handleItemUpdate(realIdx, "purchaseDiscountPercent", v);
@@ -451,7 +453,7 @@ export default function PricingPage() {
                             hasCustomDiscount ? "text-blue-600 font-medium" : "text-gray-600"
                           }`}
                         >
-                          {item.purchaseDiscountPercent.toFixed(1)}
+                          {(item.purchaseDiscountPercent ?? globalDiscount).toFixed(1)}
                         </button>
                       )}
                     </td>
@@ -470,7 +472,7 @@ export default function PricingPage() {
                           type="number"
                           step="0.5"
                           autoFocus
-                          defaultValue={item.marginPercent}
+                          defaultValue={item.marginPercent ?? globalMargin}
                           onBlur={(e) => {
                             const v = parseFloat(e.target.value);
                             if (!isNaN(v)) handleItemUpdate(realIdx, "marginPercent", v);
@@ -489,7 +491,7 @@ export default function PricingPage() {
                             hasCustomMargin ? "text-blue-600 font-medium" : "text-gray-600"
                           }`}
                         >
-                          {item.marginPercent.toFixed(1)}
+                          {(item.marginPercent ?? globalMargin).toFixed(1)}
                         </button>
                       )}
                     </td>

@@ -16,10 +16,10 @@ interface PricingItem {
   size: number | string;
   line: "economy" | "professional";
   catalogPricePLN: number;
-  purchaseDiscountPercent: number;
+  purchaseDiscountPercent: number | null;
   purchasePricePLN: number;
   purchasePriceEUR: number;
-  marginPercent: number;
+  marginPercent: number | null;
   sellPriceEUR: number;
   sellPriceOverride: number | null;
 }
@@ -93,7 +93,7 @@ export default function FinancePage() {
 
   // Lowest margin products
   const lowestMargin = [...items]
-    .sort((a, b) => a.marginPercent - b.marginPercent)
+    .sort((a, b) => (a.marginPercent ?? 30) - (b.marginPercent ?? 30))
     .slice(0, 5);
 
   const StatCard = ({ label, value, sub, icon: Icon, color = "gray" }: {
@@ -290,8 +290,8 @@ export default function FinancePage() {
                       <span className="text-[10px] text-gray-400 flex-shrink-0">{item.size}L</span>
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0 ml-2">
-                      <span className={`font-medium ${item.marginPercent < 15 ? "text-red-600" : "text-amber-600"}`}>
-                        {item.marginPercent.toFixed(1)}%
+                      <span className={`font-medium ${(item.marginPercent ?? 30) < 15 ? "text-red-600" : "text-amber-600"}`}>
+                        {(item.marginPercent ?? 30).toFixed(1)}%
                       </span>
                       <span className="text-xs text-gray-400">
                         ({(item.sellPriceEUR - item.purchasePriceEUR).toFixed(2)} €)
