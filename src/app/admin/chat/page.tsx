@@ -350,16 +350,20 @@ export default function ChatPage() {
   // Get initials
   const getInitial = (name: string) => name.charAt(0).toUpperCase();
 
-  // Translate message
+  // Translate message with timeout protection
   const handleTranslate = async (msgId: string, text: string) => {
     if (translations[msgId] || !text.trim()) return;
     setTranslating(msgId);
     try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 6000);
       const res = await fetch("/api/admin/chat/translate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text, targetLang: userLang }),
+        signal: controller.signal,
       });
+      clearTimeout(timeout);
       if (res.ok) {
         const data = await res.json();
         if (data.translation) {
@@ -367,8 +371,12 @@ export default function ChatPage() {
         } else {
           setTranslations((prev) => ({ ...prev, [msgId]: "—" }));
         }
+      } else {
+        setTranslations((prev) => ({ ...prev, [msgId]: "⚠ Fehler" }));
       }
-    } catch { /* ignore */ }
+    } catch {
+      setTranslations((prev) => ({ ...prev, [msgId]: "⚠ Timeout" }));
+    }
     setTranslating(null);
   };
 
@@ -597,16 +605,24 @@ export default function ChatPage() {
                             {msg.text}
                           </p>
                           {translations[msg.id] ? (
-                            <p className="text-sm text-blue-600 italic mt-0.5 whitespace-pre-wrap break-words">
-                              {translations[msg.id] !== "—" && translations[msg.id]}
-                            </p>
+                            translations[msg.id] !== "—" ? (
+                              <p className={`text-sm italic mt-0.5 whitespace-pre-wrap break-words ${
+                                translations[msg.id].startsWith("⚠") ? "text-amber-500" : "text-blue-600"
+                              }`}>
+                                {translations[msg.id]}
+                              </p>
+                            ) : null
                           ) : (
                             <button
                               onClick={() => handleTranslate(msg.id, msg.text)}
                               disabled={translating === msg.id}
-                              className="text-[11px] text-gray-400 hover:text-blue-500 mt-0.5 transition-colors"
+                              className="text-[11px] text-gray-400 hover:text-blue-500 mt-0.5 transition-colors flex items-center gap-1"
                             >
-                              {translating === msg.id ? "..." : userLang === "de" ? "Übersetzen" : "Tłumacz"}
+                              {translating === msg.id ? (
+                                <><span className="inline-block w-3 h-3 border border-gray-400 border-t-transparent rounded-full animate-spin" /> {userLang === "de" ? "Übersetze..." : "Tłumaczę..."}</>
+                              ) : (
+                                userLang === "de" ? "Übersetzen" : "Tłumacz"
+                              )}
                             </button>
                           )}
                         </div>

@@ -1,37 +1,62 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSessionUser } from "@/lib/admin-auth";
 
-// Simple dictionary-based translation DE <-> PL for common chat phrases
-// Falls back to label when no translation available
-const DE_PL: Record<string, string> = {};
-const PL_DE: Record<string, string> = {};
-
-function detectLanguage(text: string): "de" | "pl" | "unknown" {
+function detectLanguage(text: string): "de" | "pl" | "en" | "tr" | "ru" | "uk" | "unknown" {
   const lower = text.toLowerCase();
-  // Polish-specific characters and common words
-  const plIndicators = /[ąćęłńóśźż]|(\b(jest|nie|tak|się|jak|dla|ale|jestem|mam|będzie|już|tylko|bardzo|proszę|dziękuję|cześć|dobry|dzień|witam|pozdrawiam)\b)/i;
-  // German-specific characters and common words
-  const deIndicators = /[äöüß]|(\b(ist|nicht|das|die|der|und|ein|ich|habe|wird|schon|nur|sehr|bitte|danke|hallo|guten|tag|grüße)\b)/i;
 
-  const plScore = (lower.match(plIndicators) || []).length;
-  const deScore = (lower.match(deIndicators) || []).length;
+  const patterns: Record<string, RegExp> = {
+    pl: /[ąćęłńóśźż]|(\b(jest|nie|tak|się|jak|dla|ale|jestem|mam|będzie|już|tylko|bardzo|proszę|dziękuję|witam)\b)/i,
+    de: /[äöüß]|(\b(ist|nicht|das|die|der|und|ein|ich|habe|wird|schon|nur|sehr|bitte|danke|hallo|guten)\b)/i,
+    tr: /[çğışöü]|(\b(bir|bu|ve|için|ile|olan|var|ben|sen|evet|hayır|merhaba|teşekkür)\b)/i,
+    ru: /[а-яё].*[а-яё]|(\b(это|что|как|для|все|они|его|она|мне|вот|нет|да)\b)/i,
+    uk: /[іїєґ]|(\b(це|що|як|для|всі|його|вона|мені|так|ні)\b)/i,
+  };
 
-  if (plScore > deScore) return "pl";
-  if (deScore > plScore) return "de";
-  return "unknown";
+  let bestLang: "de" | "pl" | "en" | "tr" | "ru" | "uk" | "unknown" = "unknown";
+  let bestScore = 0;
+
+  for (const [lang, pattern] of Object.entries(patterns)) {
+    const matches = lower.match(new RegExp(pattern, "gi"));
+    const score = matches ? matches.length : 0;
+    if (score > bestScore) {
+      bestScore = score;
+      bestLang = lang as typeof bestLang;
+    }
+  }
+
+  return bestLang;
 }
 
-async function translateText(text: string, from: string, to: string): Promise<string | null> {
-  // Use MyMemory Translation API (free, no key needed, 5000 chars/day)
+async function translateWithLingva(text: string, from: string, to: string): Promise<string | null> {
+  // Lingva Translate - free Google Translate proxy
+  const instances = [
+    "lingva.ml",
+    "lingva.lunar.icu",
+    "translate.plausibility.cloud",
+  ];
+
+  for (const host of instances) {
+    try {
+      const url = `https://${host}/api/v1/${from}/${to}/${encodeURIComponent(text)}`;
+      const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
+      if (!res.ok) continue;
+      const data = await res.json();
+      if (data.translation) return data.translation;
+    } catch {
+      continue;
+    }
+  }
+  return null;
+}
+
+async function translateWithMyMemory(text: string, from: string, to: string): Promise<string | null> {
   try {
-    const langPair = `${from}|${to}`;
-    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${langPair}`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(5000) });
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
     if (!res.ok) return null;
     const data = await res.json();
     if (data.responseStatus === 200 && data.responseData?.translatedText) {
       const translated = data.responseData.translatedText;
-      // MyMemory returns uppercase when it can't translate — skip those
       if (translated === text.toUpperCase()) return null;
       return translated;
     }
@@ -55,6 +80,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ translation: null, detected });
   }
 
-  const translation = await translateText(text, detected, targetLang);
+  // Try Lingva first (faster, more reliable), fall back to MyMemory
+  let translation = await translateWithLingva(text, detected, targetLang);
+  if (!translation) {
+    translation = await translateWithMyMemory(text, detected, targetLang);
+  }
+
   return NextResponse.json({ translation, detected, targetLang });
 }
