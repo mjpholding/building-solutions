@@ -35,8 +35,8 @@ export async function POST(request: NextRequest) {
     // Store in Redis/file with key "image:{slug}"
     await storeSet(`image:${slug}`, dataUrl);
 
-    // Also return the API URL that serves this image
-    const url = `/api/admin/upload?slug=${encodeURIComponent(slug)}`;
+    // Return API URL with cache-busting timestamp
+    const url = `/api/admin/upload?slug=${encodeURIComponent(slug)}&t=${Date.now()}`;
     return NextResponse.json({ url });
   } catch (err) {
     console.error("Upload error:", err);
@@ -67,7 +67,7 @@ export async function GET(request: NextRequest) {
   return new NextResponse(buffer, {
     headers: {
       "Content-Type": contentType,
-      "Cache-Control": "public, max-age=31536000, immutable",
+      "Cache-Control": "public, max-age=60",
     },
   });
 }
