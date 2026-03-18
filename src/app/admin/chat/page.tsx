@@ -16,6 +16,7 @@ import {
   Loader2,
   Image as ImageIcon,
   FileText,
+  Languages,
 } from "lucide-react";
 
 interface ChatUser {
@@ -65,6 +66,9 @@ export default function ChatPage() {
   const [leftOpen, setLeftOpen] = useState(false);
   const [rightOpen, setRightOpen] = useState(false);
   const [unreadCounts, setUnreadCounts] = useState<Record<string, number>>({});
+  const [translations, setTranslations] = useState<Record<string, string>>({});
+  const [translating, setTranslating] = useState<string | null>(null);
+  const [userLang, setUserLang] = useState<"de" | "pl">("de");
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -346,6 +350,28 @@ export default function ChatPage() {
   // Get initials
   const getInitial = (name: string) => name.charAt(0).toUpperCase();
 
+  // Translate message
+  const handleTranslate = async (msgId: string, text: string) => {
+    if (translations[msgId] || !text.trim()) return;
+    setTranslating(msgId);
+    try {
+      const res = await fetch("/api/admin/chat/translate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text, targetLang: userLang }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.translation) {
+          setTranslations((prev) => ({ ...prev, [msgId]: data.translation }));
+        } else {
+          setTranslations((prev) => ({ ...prev, [msgId]: "—" }));
+        }
+      }
+    } catch { /* ignore */ }
+    setTranslating(null);
+  };
+
   // Check if file is an image
   const isImage = (fileType?: string) =>
     fileType?.startsWith("image/") || false;
@@ -376,6 +402,14 @@ export default function ChatPage() {
           <h2 className="font-semibold text-gray-900">{activeChannelName}</h2>
         </div>
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => setUserLang(userLang === "de" ? "pl" : "de")}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors"
+            title={userLang === "de" ? "Übersetze nach Deutsch" : "Tłumacz na polski"}
+          >
+            <Languages size={14} className="text-gray-500" />
+            {userLang === "de" ? "→ DE" : "→ PL"}
+          </button>
           <button
             onClick={() => setRightOpen(!rightOpen)}
             className="lg:hidden p-1.5 hover:bg-gray-100 rounded-lg"
@@ -558,9 +592,24 @@ export default function ChatPage() {
                       )}
 
                       {msg.text && (
-                        <p className="text-sm text-gray-700 whitespace-pre-wrap break-words">
-                          {msg.text}
-                        </p>
+                        <div>
+                          <p className="text-sm text-gray-700 whitespace-pre-wrap break-words">
+                            {msg.text}
+                          </p>
+                          {translations[msg.id] ? (
+                            <p className="text-sm text-blue-600 italic mt-0.5 whitespace-pre-wrap break-words">
+                              {translations[msg.id] !== "—" && translations[msg.id]}
+                            </p>
+                          ) : (
+                            <button
+                              onClick={() => handleTranslate(msg.id, msg.text)}
+                              disabled={translating === msg.id}
+                              className="text-[11px] text-gray-400 hover:text-blue-500 mt-0.5 transition-colors"
+                            >
+                              {translating === msg.id ? "..." : userLang === "de" ? "Übersetzen" : "Tłumacz"}
+                            </button>
+                          )}
+                        </div>
                       )}
 
                       {msg.file && (

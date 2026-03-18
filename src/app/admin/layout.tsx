@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Mail, Type, Package, LogOut, Loader2, ShoppingCart, Euro, Users, Tag, AtSign, CreditCard, MessageCircle, ShieldCheck, FileText } from "lucide-react";
+import { LayoutDashboard, Mail, Type, Package, LogOut, Loader2, ShoppingCart, Euro, Users, Tag, AtSign, CreditCard, MessageCircle, ShieldCheck, FileText, Menu, X } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -25,6 +25,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const [auth, setAuth] = useState<boolean | null>(null);
   const [adminUser, setAdminUser] = useState<{ name: string; role: string } | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     fetch("/api/admin/check")
@@ -43,7 +44,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       .catch(() => setAuth(false));
   }, [pathname]);
 
-  // Print page — no sidebar, no admin chrome, minimal wrapper
+  // Close sidebar on navigation
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [pathname]);
+
+  // Print page — no chrome
   if (pathname.startsWith("/admin/documents/print")) {
     return (
       <html lang="de">
@@ -84,14 +90,46 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <html lang="de">
       <body>
         <div className="min-h-screen flex bg-gray-50">
+          {/* Mobile header bar */}
+          <div className="fixed top-0 left-0 right-0 z-40 bg-gray-900 text-white flex items-center justify-between px-4 py-3 lg:hidden">
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="p-1.5 hover:bg-gray-800 rounded-lg"
+            >
+              <Menu size={22} />
+            </button>
+            <h1 className="text-sm font-bold tracking-tight">
+              <span className="text-red-500">Swish</span> Admin
+            </h1>
+            <div className="w-8" />
+          </div>
+
+          {/* Overlay */}
+          {sidebarOpen && (
+            <div
+              className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+              onClick={() => setSidebarOpen(false)}
+            />
+          )}
+
           {/* Sidebar */}
-          <aside className="w-64 bg-gray-900 text-white flex flex-col flex-shrink-0">
-            <div className="p-6 border-b border-gray-800">
+          <aside
+            className={`fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 text-white flex flex-col flex-shrink-0 transform transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:z-auto ${
+              sidebarOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
+          >
+            <div className="p-6 border-b border-gray-800 flex items-center justify-between">
               <h1 className="text-lg font-bold tracking-tight">
                 <span className="text-red-500">Swish</span> Admin
               </h1>
+              <button
+                onClick={() => setSidebarOpen(false)}
+                className="lg:hidden p-1 hover:bg-gray-800 rounded"
+              >
+                <X size={18} />
+              </button>
             </div>
-            <nav className="flex-1 p-4 space-y-1">
+            <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(item.href));
@@ -129,8 +167,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </aside>
 
           {/* Main */}
-          <main className="flex-1 overflow-auto">
-            <div className="p-8">{children}</div>
+          <main className="flex-1 overflow-auto pt-14 lg:pt-0">
+            <div className="p-4 sm:p-6 lg:p-8">{children}</div>
           </main>
         </div>
       </body>
