@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { storeGet, storeSet } from "@/lib/admin-store";
 import { isAuthenticated } from "@/lib/admin-auth";
+import { notifyNewOrder } from "@/lib/email";
 
 export interface Order {
   id: string;
@@ -57,6 +58,9 @@ export async function POST(request: NextRequest) {
 
     orders.unshift(order);
     await saveOrders(orders);
+
+    // Send email notification (non-blocking)
+    notifyNewOrder(order).catch(() => {});
 
     return NextResponse.json({ success: true, orderId: order.id });
   } catch {

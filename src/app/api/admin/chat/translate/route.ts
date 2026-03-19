@@ -27,32 +27,10 @@ function detectLanguage(text: string): "de" | "pl" | "en" | "tr" | "ru" | "uk" |
   return bestLang;
 }
 
-async function translateWithLingva(text: string, from: string, to: string): Promise<string | null> {
-  // Lingva Translate - free Google Translate proxy
-  const instances = [
-    "lingva.ml",
-    "lingva.lunar.icu",
-    "translate.plausibility.cloud",
-  ];
-
-  for (const host of instances) {
-    try {
-      const url = `https://${host}/api/v1/${from}/${to}/${encodeURIComponent(text)}`;
-      const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
-      if (!res.ok) continue;
-      const data = await res.json();
-      if (data.translation) return data.translation;
-    } catch {
-      continue;
-    }
-  }
-  return null;
-}
-
 async function translateWithMyMemory(text: string, from: string, to: string): Promise<string | null> {
   try {
     const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(3000) });
+    const res = await fetch(url, { signal: AbortSignal.timeout(2500) });
     if (!res.ok) return null;
     const data = await res.json();
     if (data.responseStatus === 200 && data.responseData?.translatedText) {
@@ -64,6 +42,18 @@ async function translateWithMyMemory(text: string, from: string, to: string): Pr
   } catch {
     return null;
   }
+}
+
+async function translateWithLingva(text: string, from: string, to: string): Promise<string | null> {
+  // Try only one instance with short timeout
+  try {
+    const url = `https://lingva.lunar.icu/api/v1/${from}/${to}/${encodeURIComponent(text)}`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(2500) });
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (data.translation) return data.translation;
+  } catch { /* ignore */ }
+  return null;
 }
 
 export async function POST(request: NextRequest) {
@@ -80,10 +70,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ translation: null, detected });
   }
 
-  // Try Lingva first (faster, more reliable), fall back to MyMemory
-  let translation = await translateWithLingva(text, detected, targetLang);
+  // Try MyMemory first (more reliable), fallback to Lingva
+  let translation = await translateWithMyMemory(text, detected, targetLang);
   if (!translation) {
-    translation = await translateWithMyMemory(text, detected, targetLang);
+    translation = await translateWithLingva(text, detected, targetLang);
   }
 
   return NextResponse.json({ translation, detected, targetLang });

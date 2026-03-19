@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSessionUser } from "@/lib/admin-auth";
 import { storeGet, storeSet } from "@/lib/admin-store";
+import { notifyChatMessage } from "@/lib/email";
 
 const MAX_MESSAGES = 200;
 
@@ -67,6 +68,9 @@ export async function POST(request: NextRequest) {
   const messages = ((await storeGet(`chat-messages-${channel}`)) as ChatMessage[] | null) || [];
   messages.push(message);
   await storeSet(`chat-messages-${channel}`, messages.slice(-MAX_MESSAGES));
+
+  // Send email notification (non-blocking)
+  notifyChatMessage(user.name, channel, text || "(Datei)", user.id).catch(() => {});
 
   return NextResponse.json(message, { status: 201 });
 }

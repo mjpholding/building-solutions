@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Plus, Trash2, Shield, ShieldCheck, Edit3, Save, X, Loader2, Key, UserCircle } from "lucide-react";
+import { ArrowLeft, Plus, Trash2, Shield, ShieldCheck, Edit3, Save, X, Loader2, Key, UserCircle, Bell, Mail } from "lucide-react";
 
 interface AdminUser {
   id: string;
@@ -367,6 +367,9 @@ export default function AdminUsersPage() {
         </table>
       </div>
 
+      {/* Notification settings */}
+      <NotificationSettingsPanel />
+
       {/* Role info */}
       <div className="mt-6 bg-white rounded-xl border border-gray-200 p-6">
         <h3 className="text-sm font-semibold text-gray-900 mb-3">Rollenubersicht</h3>
@@ -383,6 +386,102 @@ export default function AdminUsersPage() {
             <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${ROLE_COLORS.editor}`}>Editor</span>
             Kann Produkte, Texte und Kontaktdaten bearbeiten
           </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function NotificationSettingsPanel() {
+  const [email, setEmail] = useState("");
+  const [chatNotify, setChatNotify] = useState(false);
+  const [orderNotify, setOrderNotify] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/admin/notification-settings")
+      .then((r) => r.json())
+      .then((data) => {
+        setEmail(data.email || "");
+        setChatNotify(data.chatNotify || false);
+        setOrderNotify(data.orderNotify || false);
+        setLoaded(true);
+      });
+  }, []);
+
+  const handleSave = async () => {
+    setSaving(true);
+    setSaved(false);
+    await fetch("/api/admin/notification-settings", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, chatNotify, orderNotify }),
+    });
+    setSaving(false);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 3000);
+  };
+
+  if (!loaded) return null;
+
+  return (
+    <div className="mt-6 bg-white rounded-xl border border-gray-200 p-6">
+      <div className="flex items-center gap-2 mb-4">
+        <Bell size={18} className="text-red-600" />
+        <h3 className="text-sm font-semibold text-gray-900">E-Mail-Benachrichtigungen</h3>
+      </div>
+      <p className="text-sm text-gray-500 mb-4">
+        Erhalten Sie E-Mail-Benachrichtigungen bei neuen Chat-Nachrichten oder Bestellungen.
+      </p>
+
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            <Mail size={14} className="inline mr-1" />
+            E-Mail-Adresse
+          </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="ihre@email.de"
+            className="w-full max-w-sm px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+          />
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <label className="flex items-center gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={chatNotify}
+              onChange={(e) => setChatNotify(e.target.checked)}
+              className="w-4 h-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
+            />
+            <span className="text-sm text-gray-700">Chat-Nachrichten — Benachrichtigung bei neuen Nachrichten im Team-Chat</span>
+          </label>
+          <label className="flex items-center gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={orderNotify}
+              onChange={(e) => setOrderNotify(e.target.checked)}
+              className="w-4 h-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
+            />
+            <span className="text-sm text-gray-700">Bestellungen — Benachrichtigung bei neuen Kundenbestellungen</span>
+          </label>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleSave}
+            disabled={saving || !email}
+            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 disabled:bg-red-300 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+          >
+            {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
+            Speichern
+          </button>
+          {saved && <span className="text-sm text-green-600 font-medium">Gespeichert!</span>}
         </div>
       </div>
     </div>
