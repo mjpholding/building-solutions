@@ -396,7 +396,7 @@ export default function ChatPage() {
     channels.find((c) => c.id === activeChannel)?.name || "";
 
   return (
-    <div className="h-[calc(100vh-4rem)] flex flex-col -m-8 -mt-8">
+    <div className="h-full flex flex-col">
       {/* Top Bar */}
       <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between flex-shrink-0">
         <div className="flex items-center gap-3">

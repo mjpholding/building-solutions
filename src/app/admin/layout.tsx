@@ -91,7 +91,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <html lang="de">
       <body>
-        <div className="min-h-screen flex bg-gray-50">
+        <div className={`flex bg-gray-50 ${isChat ? "h-screen" : "min-h-screen"}`}>
           {/* Mobile header bar */}
           <div className="fixed top-0 left-0 right-0 z-40 bg-gray-900 text-white flex items-center justify-between px-4 py-3 lg:hidden">
             <button
@@ -180,7 +180,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </aside>
 
           {/* Main */}
-          <main className="flex-1 overflow-auto pt-14 lg:pt-0">
+          <main className={`flex-1 overflow-auto pt-14 lg:pt-0 ${isChat ? "h-full" : ""}`}>
             <div className={isChat ? "h-full" : "p-4 sm:p-6 lg:p-8"}>{children}</div>
           </main>
         </div>
