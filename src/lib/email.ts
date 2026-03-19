@@ -5,7 +5,7 @@ const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
-const FROM_EMAIL = process.env.EMAIL_FROM || "Swish Deutschland <notifications@swish-deutschland.de>";
+const FROM_EMAIL = process.env.EMAIL_FROM || "Swish Deutschland <onboarding@resend.dev>";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://swish-deutschland.vercel.app";
 
 export interface NotificationSettings {
