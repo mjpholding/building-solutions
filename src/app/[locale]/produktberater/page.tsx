@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
+import { trackAdvisorStart, trackAdvisorResult } from "@/lib/analytics";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight, ArrowLeft, RotateCcw, Droplets, CheckCircle2,
@@ -119,6 +120,11 @@ export default function ProductAdvisorPage() {
   const steps = [t("step1"), t("step2"), t("step3"), t("step4"), t("step5")];
   const recommendations = step === 4 ? getRecommendations(surface, room, dirt, intensity) : [];
 
+  // Track advisor start on mount
+  useEffect(() => {
+    trackAdvisorStart();
+  }, []);
+
   function handleSelect(value: string) {
     if (step === 0) setSurface(value);
     else if (step === 1) setRoom(value);
@@ -126,6 +132,16 @@ export default function ProductAdvisorPage() {
     else if (step === 3) setIntensity(value);
     if (step < 4) setStep(step + 1);
   }
+
+  // Track advisor results when reaching step 4
+  useEffect(() => {
+    if (step === 4 && recommendations.length > 0) {
+      trackAdvisorResult(
+        `${surface}/${room}/${dirt}/${intensity}`,
+        recommendations.map((r) => r.name)
+      );
+    }
+  }, [step]);
 
   function restart() {
     setStep(0);

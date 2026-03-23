@@ -9,6 +9,7 @@ import { CartProvider } from "@/lib/cart-context";
 import { CustomerProvider } from "@/lib/customer-context";
 import CartDrawer from "@/components/cart/CartDrawer";
 import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
+import PageTracker from "@/components/analytics/PageTracker";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
@@ -42,6 +43,7 @@ export default async function LocaleLayout({
               <Footer />
               <CartDrawer />
               <LanguageSwitcher />
+              <PageTracker />
             </CartProvider>
           </CustomerProvider>
         </NextIntlClientProvider>

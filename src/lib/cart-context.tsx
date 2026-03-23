@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
+import { trackAddToCart } from "@/lib/analytics";
 
 export interface CartItem {
   slug: string;
@@ -60,6 +61,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
       return [...prev, { ...item, quantity }];
     });
+    trackAddToCart(item.name, item.size, quantity);
     setIsOpen(true);
   }, []);
 
