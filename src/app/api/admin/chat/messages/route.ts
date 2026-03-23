@@ -70,7 +70,9 @@ export async function POST(request: NextRequest) {
   await storeSet(`chat-messages-${channel}`, messages.slice(-MAX_MESSAGES));
 
   // Send email notification (non-blocking)
-  notifyChatMessage(user.name, channel, text || "(Datei)", user.id).catch(() => {});
+  notifyChatMessage(user.name, channel, text || "(Datei)", user.id).catch((err) => {
+    console.error("Chat email notification failed:", err);
+  });
 
   return NextResponse.json(message, { status: 201 });
 }
