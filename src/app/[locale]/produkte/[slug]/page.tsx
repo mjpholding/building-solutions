@@ -50,17 +50,19 @@ export default function ProductDetailPage() {
   const [selectedSize, setSelectedSize] = useState(sizes[0] || "");
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
-  const [sheetUrl, setSheetUrl] = useState<string | null>(null);
+  const [productSheetUrl, setProductSheetUrl] = useState<string | null>(null);
+  const [sdsSheetUrl, setSdsSheetUrl] = useState<string | null>(null);
 
-  // Check if product has a saved data sheet
+  // Check if product has saved data sheets
   useEffect(() => {
     if (slug) {
       fetch(`/api/product-sheets?slug=${slug}`)
         .then(r => r.json())
-        .then((sheets: { id: string }[]) => {
-          if (sheets.length > 0) {
-            setSheetUrl(`/api/admin/product-sheets/view?id=${sheets[0].id}`);
-          }
+        .then((sheets: { id: string; type: string }[]) => {
+          const productSheet = sheets.find(s => s.type === "product");
+          const sdsSheet = sheets.find(s => s.type === "sds");
+          if (productSheet) setProductSheetUrl(`/api/admin/product-sheets/view?id=${productSheet.id}`);
+          if (sdsSheet) setSdsSheetUrl(`/api/admin/product-sheets/view?id=${sdsSheet.id}`);
         })
         .catch(() => {});
     }
@@ -278,7 +280,7 @@ export default function ProductDetailPage() {
             </div>
 
             {/* Secondary CTA */}
-            <div className="mt-6 flex gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/kontakt"
                 className="inline-flex items-center justify-center border border-swish-gray-200 hover:border-swish-red/30 text-swish-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all"
@@ -286,7 +288,7 @@ export default function ProductDetailPage() {
                 {t("requestQuote")}
               </Link>
               <a
-                href={sheetUrl || `/katalog/${slug}.pdf`}
+                href={productSheetUrl || `/katalog/${slug}.pdf`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 border border-swish-gray-200 hover:border-swish-red/30 text-swish-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all"
@@ -294,6 +296,17 @@ export default function ProductDetailPage() {
                 <Download size={16} />
                 {t("dataSheet")}
               </a>
+              {sdsSheetUrl && (
+                <a
+                  href={sdsSheetUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 border border-swish-gray-200 hover:border-swish-red/30 text-swish-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all"
+                >
+                  <Download size={16} />
+                  Sicherheitsdatenblatt
+                </a>
+              )}
             </div>
           </motion.div>
         </div>
