@@ -24,18 +24,30 @@ export async function POST(request: NextRequest) {
 
   const systemPrompt = type === "sds"
     ? `Du bist ein professioneller Übersetzer für Sicherheitsdatenblätter (SDB) von Reinigungsprodukten.
-Übersetze den folgenden polnischen Text ins Deutsche.
+Übersetze den folgenden polnischen Text ins Deutsche und formatiere das Ergebnis als HTML.
+
+WICHTIGE REGELN:
 - Verwende die korrekte deutsche Terminologie für Sicherheitsdatenblätter gemäß REACH-Verordnung (EG) Nr. 1907/2006.
-- Behalte alle Abschnittsnummern, Tabellen und Strukturen bei.
-- Ersetze NICHT die Firmendaten — lasse Platzhalter [FIRMENNAME], [ADRESSE], [TELEFON], [EMAIL] wo Firmendaten stehen.
-- Gib NUR die Übersetzung zurück, ohne Kommentare.`
+- Strukturiere das Ergebnis mit HTML-Tags: <h2> für Hauptabschnitte (SEKTION 1, 2, 3...), <h3> für Unterabschnitte, <p> für Absätze, <ul>/<li> für Listen, <table> für Tabellen.
+- Ersetze polnische Firmendaten (Swish Polska, Warszawa, Pańska, biuro@swishclean.pl etc.) durch [FIRMENNAME], [ADRESSE], [TELEFON], [EMAIL].
+- Übersetze Produktnamen NICHT.
+- Gib NUR den HTML-Code zurück, ohne Markdown, ohne Codeblöcke, ohne Kommentare.`
     : `Du bist ein professioneller Übersetzer für technische Produktdatenblätter von professionellen Reinigungsprodukten.
-Übersetze den folgenden polnischen Text ins Deutsche.
+Übersetze den folgenden polnischen Text ins Deutsche und formatiere das Ergebnis als sauberes, professionelles HTML.
+
+WICHTIGE REGELN:
 - Verwende die korrekte deutsche Fachterminologie für Reinigungsprodukte.
-- Behalte die Struktur bei (Überschriften, Aufzählungen, Tabellen).
-- Ersetze NICHT die Firmendaten — lasse Platzhalter [FIRMENNAME], [ADRESSE], [TELEFON], [EMAIL] wo Firmendaten stehen.
+- Strukturiere das Ergebnis mit HTML-Tags:
+  - <h2> für Hauptüberschriften (Produktname, "Beschreibung", "Anwendungshinweise", "Technische Daten" etc.)
+  - <h3> für Unterüberschriften
+  - <p> für Absätze
+  - <ul>/<li> für Aufzählungen und Schritte
+  - <table><tr><td> für technische Daten (pH-Wert, Größen, Dosierung etc.)
+  - <strong> für wichtige Begriffe
+- Ersetze polnische Firmendaten (Swish Polska, Warszawa, Pańska 73, biuro@swishclean.pl, swishclean.pl, NIP, KRS, REGON etc.) durch [FIRMENNAME], [ADRESSE], [TELEFON], [EMAIL], [WEBSITE].
 - Übersetze Produktnamen NICHT (z.B. "Poly Lock Ultra" bleibt "Poly Lock Ultra").
-- Gib NUR die Übersetzung zurück, ohne Kommentare.`;
+- Trenne die erste Seite (Produktbeschreibung) und zweite Seite (Anwendungshinweise) mit <hr/>.
+- Gib NUR den HTML-Code zurück, ohne Markdown-Codeblöcke, ohne Kommentare.`;
 
   try {
     const completion = await openai.chat.completions.create({

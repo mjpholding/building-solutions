@@ -105,18 +105,25 @@ export default function PDFGeneratorPage() {
 
       // Replace placeholders with company data
       let text = data.translated;
+      // Remove markdown code fences if present
+      text = text.replace(/^```html?\n?/i, "").replace(/\n?```$/i, "");
       text = text.replace(/\[FIRMENNAME\]/g, company.name);
       text = text.replace(/\[ADRESSE\]/g, company.address);
       text = text.replace(/\[TELEFON\]/g, company.phone);
       text = text.replace(/\[EMAIL\]/g, company.email);
-      // Also replace Polish company data
-      text = text.replace(/Swish Polska[^]*?Warszawa/g, `${company.name}\n${company.sub}\n${company.address}`);
+      text = text.replace(/\[WEBSITE\]/g, company.website);
+      // Also replace Polish company data that might not have been replaced
+      text = text.replace(/Swish Polska[^<]*?Warszawa/g, `${company.name}<br/>${company.sub}<br/>${company.address}`);
       text = text.replace(/biuro@swishclean\.pl/g, company.email);
       text = text.replace(/swishclean\.pl/g, company.website);
       text = text.replace(/swishclean\.com/g, company.website);
       text = text.replace(/22\s*31\s*47\s*10[24]/g, company.phone);
       text = text.replace(/ul\.\s*Pańska\s*73/g, company.address);
       text = text.replace(/00-834\s*Warszawa/g, "50170 Kerpen");
+      // Remove NIP/KRS/REGON lines
+      text = text.replace(/NIP[:\s]*\d+/g, "");
+      text = text.replace(/KRS[:\s]*\d+/g, "");
+      text = text.replace(/REGON[:\s]*\d+/g, "");
 
       setTranslatedText(text);
       setStep("edit");
@@ -142,42 +149,39 @@ export default function PDFGeneratorPage() {
     const printWindow = window.open("", "_blank");
     if (!printWindow) return;
 
-    const sections = translatedText.split("\n").filter(Boolean);
-    const bodyHtml = sections
-      .map((line) => {
-        const trimmed = line.trim();
-        if (!trimmed) return "";
-        // Detect headers (ALL CAPS or starts with number followed by dot)
-        if (trimmed === trimmed.toUpperCase() && trimmed.length > 3 && trimmed.length < 100) {
-          return `<h2 style="color:#dc2626;font-size:14px;margin:18px 0 6px;font-weight:bold;border-bottom:1px solid #e5e7eb;padding-bottom:4px;">${trimmed}</h2>`;
-        }
-        if (/^\d+\./.test(trimmed) && trimmed.length < 80) {
-          return `<h3 style="color:#111827;font-size:12px;margin:14px 0 4px;font-weight:bold;">${trimmed}</h3>`;
-        }
-        return `<p style="margin:3px 0;font-size:10.5px;line-height:1.5;color:#374151;">${trimmed}</p>`;
-      })
-      .join("\n");
+    // Use the HTML directly from ChatGPT translation
+    const bodyHtml = translatedText;
 
     printWindow.document.write(`<!DOCTYPE html>
 <html>
 <head>
   <title>${productName} - Produktdatenblatt</title>
   <style>
-    @page { margin: 15mm; size: A4; }
-    body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 0; color: #111827; }
-    .header { background: #dc2626; color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
-    .header-left { display: flex; align-items: center; gap: 16px; }
-    .header-left img { height: 40px; }
-    .header-left .brand { font-size: 20px; font-weight: bold; }
-    .header-left .sub { font-size: 10px; opacity: 0.8; }
-    .header-right { text-align: right; font-size: 9px; line-height: 1.6; }
-    .header-right .label { font-weight: bold; font-size: 10px; margin-top: 8px; letter-spacing: 1px; }
-    .content { padding: 24px 30px; }
-    .product-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
-    .product-name { font-size: 26px; font-weight: bold; color: #111827; }
-    .product-badge { display: inline-block; background: #dc2626; color: white; font-size: 8px; font-weight: bold; padding: 3px 10px; border-radius: 10px; margin-top: 6px; letter-spacing: 0.5px; }
-    .product-image { width: 120px; height: 150px; object-fit: contain; }
-    .footer { background: #1f2937; color: #9ca3af; padding: 12px 30px; font-size: 8px; display: flex; justify-content: space-between; position: fixed; bottom: 0; left: 0; right: 0; }
+    @page { margin: 12mm 15mm; size: A4; }
+    body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 0; color: #111827; font-size: 10.5px; line-height: 1.6; }
+    .header { background: #dc2626; color: white; padding: 18px 28px; display: flex; justify-content: space-between; align-items: center; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .header-left { display: flex; align-items: center; gap: 14px; }
+    .header-left img { height: 36px; }
+    .header-left .brand { font-size: 18px; font-weight: bold; }
+    .header-left .sub { font-size: 9px; opacity: 0.8; }
+    .header-right { text-align: right; font-size: 8.5px; line-height: 1.6; }
+    .header-right .label { font-weight: bold; font-size: 9px; margin-top: 6px; letter-spacing: 1px; opacity: 0.85; }
+    .content { padding: 20px 28px 60px; }
+    .product-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+    .product-name { font-size: 24px; font-weight: bold; color: #111827; margin: 0; }
+    .product-badge { display: inline-block; background: #dc2626; color: white; font-size: 7.5px; font-weight: bold; padding: 2px 10px; border-radius: 10px; margin-top: 5px; letter-spacing: 0.5px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .product-image { width: 110px; height: 140px; object-fit: contain; }
+    .content h2 { color: #dc2626; font-size: 13px; font-weight: bold; margin: 16px 0 6px; border-bottom: 1px solid #e5e7eb; padding-bottom: 3px; }
+    .content h3 { color: #111827; font-size: 11.5px; font-weight: bold; margin: 12px 0 4px; }
+    .content p { margin: 4px 0; text-align: justify; }
+    .content ul { margin: 4px 0 4px 20px; padding: 0; }
+    .content li { margin: 2px 0; }
+    .content table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 10px; }
+    .content td, .content th { padding: 4px 8px; border: 1px solid #e5e7eb; text-align: left; }
+    .content th { background: #f9fafb; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .content hr { border: none; border-top: 2px solid #dc2626; margin: 20px 0; page-break-before: always; }
+    .content strong { color: #111827; }
+    .footer { background: #1f2937; color: #9ca3af; padding: 10px 28px; font-size: 7.5px; display: flex; justify-content: space-between; position: fixed; bottom: 0; left: 0; right: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .footer strong { color: white; }
     @media print { .no-print { display: none; } }
   </style>
@@ -543,19 +547,16 @@ export default function PDFGeneratorPage() {
 
               <hr className="mb-4" />
 
-              <div className="prose prose-sm max-w-none text-gray-700 text-[13px] leading-relaxed max-h-96 overflow-y-auto">
-                {translatedText.split("\n").filter(Boolean).map((line, i) => {
-                  const t = line.trim();
-                  if (!t) return null;
-                  if (t === t.toUpperCase() && t.length > 3 && t.length < 100) {
-                    return <h3 key={i} className="text-red-600 font-bold text-sm mt-4 mb-1 border-b border-gray-200 pb-1">{t}</h3>;
-                  }
-                  if (/^\d+\./.test(t) && t.length < 80) {
-                    return <h4 key={i} className="font-bold text-sm mt-3 mb-1">{t}</h4>;
-                  }
-                  return <p key={i} className="my-0.5">{t}</p>;
-                })}
-              </div>
+              <div
+                className="prose prose-sm max-w-none text-gray-700 leading-relaxed max-h-[500px] overflow-y-auto
+                  prose-h2:text-red-600 prose-h2:text-base prose-h2:font-bold prose-h2:mt-6 prose-h2:mb-2 prose-h2:border-b prose-h2:border-gray-200 prose-h2:pb-1
+                  prose-h3:text-gray-900 prose-h3:text-sm prose-h3:font-bold prose-h3:mt-4 prose-h3:mb-1
+                  prose-p:text-[13px] prose-p:my-1
+                  prose-li:text-[13px]
+                  prose-table:text-[12px] prose-td:px-2 prose-td:py-1 prose-td:border prose-td:border-gray-200
+                  prose-th:px-2 prose-th:py-1 prose-th:border prose-th:border-gray-200 prose-th:bg-gray-50 prose-th:font-bold"
+                dangerouslySetInnerHTML={{ __html: translatedText }}
+              />
             </div>
 
             {/* Footer preview */}
