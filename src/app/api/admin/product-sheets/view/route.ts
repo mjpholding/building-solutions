@@ -12,6 +12,7 @@ interface ProductSheet {
   assignedSlug: string | null;
 }
 
+
 // GET: render a saved sheet as full HTML page (for preview / print)
 export async function GET(request: NextRequest) {
   if (!(await isAuthenticated())) {
@@ -91,7 +92,7 @@ export async function GET(request: NextRequest) {
 
   <div class="header">
     <div class="header-left">
-      ${sheet.logoBase64 ? `<img src="${sheet.logoBase64}" alt="Logo" style="height:36px;filter:brightness(0) invert(1);" />` : ""}
+      <img src="${sheet.logoBase64 || '/logo-swish-deutschland.png'}" alt="Logo" style="height:36px;filter:brightness(0) invert(1);" />
       <div>
         <div class="brand">Swish Deutschland</div>
         <div class="sub">${company.sub}</div>
@@ -111,7 +112,11 @@ export async function GET(request: NextRequest) {
         <div class="product-name">${sheet.productName}</div>
         <div class="product-badge">${sheet.type === "product" ? "PROFESSIONAL LINE" : "SDB / SDS"}</div>
       </div>
-      ${sheet.productImageBase64 ? `<img src="${sheet.productImageBase64}" style="width:100px;height:130px;object-fit:contain;" />` : ""}
+      ${sheet.productImageBase64
+        ? `<img src="${sheet.productImageBase64}" style="width:100px;height:130px;object-fit:contain;" />`
+        : sheet.assignedSlug
+        ? `<img src="/products/${sheet.assignedSlug}.png" style="width:100px;height:130px;object-fit:contain;" onerror="this.src='/products/${sheet.assignedSlug}.jpg';this.onerror=function(){this.style.display='none'}" />`
+        : ""}
     </div>
 
     ${sheet.htmlContent}
