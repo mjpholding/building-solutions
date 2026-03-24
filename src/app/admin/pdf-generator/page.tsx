@@ -145,10 +145,30 @@ export default function PDFGeneratorPage() {
   }
 
   // Handle image upload (logo or product)
+  // Convert image URL (blob or path) to base64
+  async function urlToBase64(url: string): Promise<string | null> {
+    if (!url) return null;
+    try {
+      const res = await fetch(url);
+      const blob = await res.blob();
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.readAsDataURL(blob);
+      });
+    } catch {
+      return null;
+    }
+  }
+
   // Save sheet to server and reset form
   async function handleSaveSheet() {
     setSaving(true);
     try {
+      // Convert images to base64 for server storage
+      const logoB64 = await urlToBase64(logoUrl);
+      const productImgB64 = productImageUrl ? await urlToBase64(productImageUrl) : null;
+
       const res = await fetch("/api/admin/product-sheets", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -156,6 +176,8 @@ export default function PDFGeneratorPage() {
           productName,
           type: docType,
           htmlContent: translatedText,
+          logoBase64: logoB64,
+          productImageBase64: productImgB64,
           assignedSlug: assignSlug || null,
         }),
       });

@@ -7,7 +7,9 @@ export interface ProductSheet {
   productName: string;
   type: "product" | "sds";
   htmlContent: string;
-  assignedSlug: string | null; // which product slug this is assigned to
+  logoBase64: string | null;
+  productImageBase64: string | null;
+  assignedSlug: string | null;
   createdAt: number;
 }
 
@@ -39,7 +41,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { productName, type, htmlContent, assignedSlug } = await request.json();
+  const { productName, type, htmlContent, assignedSlug, logoBase64, productImageBase64 } = await request.json();
 
   if (!productName || !htmlContent) {
     return NextResponse.json({ error: "productName and htmlContent required" }, { status: 400 });
@@ -50,6 +52,8 @@ export async function POST(request: NextRequest) {
     productName,
     type: type || "product",
     htmlContent,
+    logoBase64: logoBase64 || null,
+    productImageBase64: productImageBase64 || null,
     assignedSlug: assignedSlug || null,
     createdAt: Date.now(),
   };

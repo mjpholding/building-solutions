@@ -7,6 +7,8 @@ interface ProductSheet {
   productName: string;
   type: "product" | "sds";
   htmlContent: string;
+  logoBase64: string | null;
+  productImageBase64: string | null;
   assignedSlug: string | null;
 }
 
@@ -50,6 +52,7 @@ export async function GET(request: NextRequest) {
     body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 0; color: #111827; font-size: 10.5px; line-height: 1.6; }
     .header { background: #dc2626; color: white; padding: 18px 28px; display: flex; justify-content: space-between; align-items: center; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .header-left { display: flex; align-items: center; gap: 14px; }
+    .header-left img { height: 36px; }
     .header-left .brand { font-size: 18px; font-weight: bold; }
     .header-left .sub { font-size: 9px; opacity: 0.8; }
     .header-right { text-align: right; font-size: 8.5px; line-height: 1.6; }
@@ -88,6 +91,7 @@ export async function GET(request: NextRequest) {
 
   <div class="header">
     <div class="header-left">
+      ${sheet.logoBase64 ? `<img src="${sheet.logoBase64}" alt="Logo" style="height:36px;filter:brightness(0) invert(1);" />` : ""}
       <div>
         <div class="brand">Swish Deutschland</div>
         <div class="sub">${company.sub}</div>
@@ -102,8 +106,13 @@ export async function GET(request: NextRequest) {
   </div>
 
   <div class="content">
-    <div class="product-name">${sheet.productName}</div>
-    <div class="product-badge">${sheet.type === "product" ? "PROFESSIONAL LINE" : "SDB / SDS"}</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="product-name">${sheet.productName}</div>
+        <div class="product-badge">${sheet.type === "product" ? "PROFESSIONAL LINE" : "SDB / SDS"}</div>
+      </div>
+      ${sheet.productImageBase64 ? `<img src="${sheet.productImageBase64}" style="width:100px;height:130px;object-fit:contain;" />` : ""}
+    </div>
 
     ${sheet.htmlContent}
   </div>
