@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { useParams } from "next/navigation";
@@ -50,6 +50,21 @@ export default function ProductDetailPage() {
   const [selectedSize, setSelectedSize] = useState(sizes[0] || "");
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const [sheetUrl, setSheetUrl] = useState<string | null>(null);
+
+  // Check if product has a saved data sheet
+  useEffect(() => {
+    if (slug) {
+      fetch(`/api/product-sheets?slug=${slug}`)
+        .then(r => r.json())
+        .then((sheets: { id: string }[]) => {
+          if (sheets.length > 0) {
+            setSheetUrl(`/api/admin/product-sheets/view?id=${sheets[0].id}`);
+          }
+        })
+        .catch(() => {});
+    }
+  }, [slug]);
 
   if (!product) {
     return (
@@ -271,7 +286,7 @@ export default function ProductDetailPage() {
                 {t("requestQuote")}
               </Link>
               <a
-                href={`/katalog/${slug}.pdf`}
+                href={sheetUrl || `/katalog/${slug}.pdf`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 border border-swish-gray-200 hover:border-swish-red/30 text-swish-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all"

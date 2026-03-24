@@ -145,29 +145,39 @@ export default function PDFGeneratorPage() {
   }
 
   // Handle image upload (logo or product)
-  // Convert image URL (blob or path) to base64
-  async function urlToBase64(url: string): Promise<string | null> {
-    if (!url) return null;
-    try {
-      const res = await fetch(url);
-      const blob = await res.blob();
-      return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result as string);
-        reader.readAsDataURL(blob);
-      });
-    } catch {
-      return null;
-    }
+  // Store logo and product image as base64 directly when uploaded
+  const [logoBase64, setLogoBase64] = useState<string | null>(null);
+  const [productImageBase64, setProductImageBase64] = useState<string | null>(null);
+
+  // Convert file to base64
+  function fileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
   }
+
+  // Load default logo as base64 on mount
+  useEffect(() => {
+    fetch("/logo-swish-deutschland.png")
+      .then(r => r.blob())
+      .then(blob => {
+        const reader = new FileReader();
+        reader.onloadend = () => setLogoBase64(reader.result as string);
+        reader.readAsDataURL(blob);
+      })
+      .catch(() => {});
+  }, []);
 
   // Save sheet to server and reset form
   async function handleSaveSheet() {
     setSaving(true);
     try {
-      // Convert images to base64 for server storage
-      const logoB64 = await urlToBase64(logoUrl);
-      const productImgB64 = productImageUrl ? await urlToBase64(productImageUrl) : null;
+      // Use stored base64 images
+      const logoB64 = logoBase64;
+      const productImgB64 = productImageBase64;
 
       const res = await fetch("/api/admin/product-sheets", {
         method: "POST",
@@ -214,12 +224,18 @@ export default function PDFGeneratorPage() {
     setSavedSheets((prev) => prev.map((s) => s.id === id ? { ...s, assignedSlug: slug || null } : s));
   }
 
-  function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>, type: "logo" | "product") {
+  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>, type: "logo" | "product") {
     const file = e.target.files?.[0];
     if (!file) return;
     const url = URL.createObjectURL(file);
-    if (type === "logo") setLogoUrl(url);
-    else setProductImageUrl(url);
+    const b64 = await fileToBase64(file);
+    if (type === "logo") {
+      setLogoUrl(url);
+      setLogoBase64(b64);
+    } else {
+      setProductImageUrl(url);
+      setProductImageBase64(b64);
+    }
   }
 
   // Generate and download PDF
