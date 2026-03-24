@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   FileUp, Languages, Download, Loader2, FileText, Image as ImageIcon,
-  Eye, Edit3, Upload, RefreshCw, Printer
+  Eye, Edit3, Upload, RefreshCw, Printer, Save, Trash2, Link2
 } from "lucide-react";
 
 type DocType = "product" | "sds";
@@ -20,6 +20,16 @@ export default function PDFGeneratorPage() {
   const [logoUrl, setLogoUrl] = useState("/logo-swish-deutschland.png");
   const [productImageUrl, setProductImageUrl] = useState("");
   const [error, setError] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [savedSheets, setSavedSheets] = useState<{ id: string; productName: string; type: string; assignedSlug: string | null; createdAt: number }[]>([]);
+  const [products, setProducts] = useState<{ slug: string; name: string }[]>([]);
+  const [assignSlug, setAssignSlug] = useState("");
+
+  // Load saved sheets and products
+  useEffect(() => {
+    fetch("/api/admin/product-sheets").then(r => r.json()).then(setSavedSheets).catch(() => {});
+    fetch("/api/products").then(r => r.json()).then((data: { slug: string; name: string }[]) => setProducts(data)).catch(() => {});
+  }, []);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const logoInputRef = useRef<HTMLInputElement>(null);
@@ -135,6 +145,53 @@ export default function PDFGeneratorPage() {
   }
 
   // Handle image upload (logo or product)
+  // Save sheet to server and reset form
+  async function handleSaveSheet() {
+    setSaving(true);
+    try {
+      const res = await fetch("/api/admin/product-sheets", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          productName,
+          type: docType,
+          htmlContent: translatedText,
+          assignedSlug: assignSlug || null,
+        }),
+      });
+      const saved = await res.json();
+      setSavedSheets((prev) => [...prev, saved]);
+      // Reset form
+      setStep("upload");
+      setOriginalText("");
+      setTranslatedText("");
+      setProductName("");
+      setProductImageUrl("");
+      setAssignSlug("");
+      setError("");
+    } catch {
+      setError("Speichern fehlgeschlagen");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  // Delete sheet
+  async function handleDeleteSheet(id: string) {
+    await fetch(`/api/admin/product-sheets?id=${id}`, { method: "DELETE" });
+    setSavedSheets((prev) => prev.filter((s) => s.id !== id));
+  }
+
+  // Assign sheet to product
+  async function handleAssignSheet(id: string, slug: string) {
+    await fetch("/api/admin/product-sheets", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, assignedSlug: slug || null }),
+    });
+    setSavedSheets((prev) => prev.map((s) => s.id === id ? { ...s, assignedSlug: slug || null } : s));
+  }
+
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>, type: "logo" | "product") {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -566,6 +623,21 @@ export default function PDFGeneratorPage() {
             </div>
           </div>
 
+          {/* Assign to product */}
+          <div className="bg-white rounded-xl border border-gray-200 p-4">
+            <label className="block text-sm font-medium text-gray-700 mb-2">Produkt zuordnen (optional)</label>
+            <select
+              value={assignSlug}
+              onChange={(e) => setAssignSlug(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500"
+            >
+              <option value="">— Kein Produkt —</option>
+              {products.map((p) => (
+                <option key={p.slug} value={p.slug}>{p.name}</option>
+              ))}
+            </select>
+          </div>
+
           <div className="flex gap-3">
             <button
               onClick={() => setStep("edit")}
@@ -575,11 +647,67 @@ export default function PDFGeneratorPage() {
             </button>
             <button
               onClick={handleDownloadPDF}
-              className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-red-700 text-lg"
+              className="flex items-center justify-center gap-2 border border-gray-300 text-gray-700 px-6 py-3 rounded-xl font-medium hover:bg-gray-50"
             >
-              <Download size={20} />
-              Als PDF herunterladen
+              <Download size={18} />
+              PDF herunterladen
             </button>
+            <button
+              onClick={handleSaveSheet}
+              disabled={saving}
+              className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-red-700 text-lg disabled:opacity-50"
+            >
+              {saving ? <Loader2 size={20} className="animate-spin" /> : <Save size={20} />}
+              {saving ? "Wird gespeichert..." : "Speichern & Zuordnen"}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Saved Sheets List */}
+      {savedSheets.length > 0 && (
+        <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <FileText size={18} className="text-red-500" />
+            Gespeicherte Datenblätter ({savedSheets.length})
+          </h2>
+          <div className="space-y-3">
+            {savedSheets.map((sheet) => (
+              <div key={sheet.id} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-sm text-gray-900 truncate">{sheet.productName}</p>
+                  <p className="text-xs text-gray-400">
+                    {sheet.type === "product" ? "Produktdatenblatt" : "Sicherheitsdatenblatt"}
+                    {" · "}
+                    {new Date(sheet.createdAt).toLocaleDateString("de-DE")}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <select
+                    value={sheet.assignedSlug || ""}
+                    onChange={(e) => handleAssignSheet(sheet.id, e.target.value)}
+                    className="text-xs border border-gray-300 rounded px-2 py-1 max-w-[150px]"
+                  >
+                    <option value="">Nicht zugeordnet</option>
+                    {products.map((p) => (
+                      <option key={p.slug} value={p.slug}>{p.name}</option>
+                    ))}
+                  </select>
+                  {sheet.assignedSlug && (
+                    <span className="flex items-center gap-1 text-xs text-green-600">
+                      <Link2 size={12} /> Zugeordnet
+                    </span>
+                  )}
+                  <button
+                    onClick={() => handleDeleteSheet(sheet.id)}
+                    className="p-1.5 text-gray-400 hover:text-red-600 transition-colors"
+                    title="Löschen"
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       )}
