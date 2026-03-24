@@ -104,6 +104,11 @@ export default function Footer() {
                   {t("privacy")}
                 </Link>
               </li>
+              <li>
+                <Link href="/agb" className="text-swish-gray-300 hover:text-swish-red transition-colors text-sm">
+                  AGB
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

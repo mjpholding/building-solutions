@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Scale, Save, Loader2, FileText, Shield } from "lucide-react";
+import { Scale, Save, Loader2, FileText, Shield, ScrollText } from "lucide-react";
 
 export default function LegalAdminPage() {
-  const [activeTab, setActiveTab] = useState<"impressum" | "datenschutz">("impressum");
+  const [activeTab, setActiveTab] = useState<"impressum" | "datenschutz" | "agb">("impressum");
   const [impressum, setImpressum] = useState("");
   const [datenschutz, setDatenschutz] = useState("");
+  const [agb, setAgb] = useState("");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -17,6 +18,7 @@ export default function LegalAdminPage() {
       .then((data) => {
         setImpressum(data.impressum || "");
         setDatenschutz(data.datenschutz || "");
+        setAgb(data.agb || "");
       })
       .finally(() => setLoading(false));
   }, []);
@@ -27,7 +29,7 @@ export default function LegalAdminPage() {
     await fetch("/api/admin/legal", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ impressum, datenschutz }),
+      body: JSON.stringify({ impressum, datenschutz, agb }),
     });
     setSaving(false);
     setSaved(true);
@@ -52,7 +54,7 @@ export default function LegalAdminPage() {
             Rechtliche Seiten
           </h1>
           <p className="text-gray-500 text-sm mt-1">
-            Impressum und Datenschutzerklärung bearbeiten
+            Impressum, Datenschutzerklärung und AGB bearbeiten
           </p>
         </div>
         <button
@@ -89,13 +91,24 @@ export default function LegalAdminPage() {
           <Shield size={16} />
           Datenschutz
         </button>
+        <button
+          onClick={() => setActiveTab("agb")}
+          className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+            activeTab === "agb"
+              ? "bg-white text-gray-900 shadow-sm"
+              : "text-gray-500 hover:text-gray-700"
+          }`}
+        >
+          <ScrollText size={16} />
+          AGB
+        </button>
       </div>
 
       {/* Editor */}
       <div className="bg-white rounded-xl border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-semibold text-gray-900">
-            {activeTab === "impressum" ? "Impressum" : "Datenschutzerklärung"}
+            {activeTab === "impressum" ? "Impressum" : activeTab === "datenschutz" ? "Datenschutzerklärung" : "Allgemeine Geschäftsbedingungen"}
           </h2>
           <span className="text-xs text-gray-400">HTML-Format erlaubt</span>
         </div>
@@ -103,15 +116,17 @@ export default function LegalAdminPage() {
           Verwende HTML-Tags: &lt;h2&gt;, &lt;h3&gt;, &lt;p&gt;, &lt;strong&gt;, &lt;br/&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;a href=&quot;...&quot;&gt;
         </p>
         <textarea
-          value={activeTab === "impressum" ? impressum : datenschutz}
+          value={activeTab === "impressum" ? impressum : activeTab === "datenschutz" ? datenschutz : agb}
           onChange={(e) =>
             activeTab === "impressum"
               ? setImpressum(e.target.value)
-              : setDatenschutz(e.target.value)
+              : activeTab === "datenschutz"
+              ? setDatenschutz(e.target.value)
+              : setAgb(e.target.value)
           }
           rows={25}
           className="w-full border border-gray-300 rounded-lg p-4 text-sm font-mono focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-y"
-          placeholder={`${activeTab === "impressum" ? "Impressum" : "Datenschutzerklärung"} hier eingeben...`}
+          placeholder={`${activeTab === "impressum" ? "Impressum" : activeTab === "datenschutz" ? "Datenschutzerklärung" : "AGB"} hier eingeben...`}
         />
       </div>
 
@@ -121,7 +136,7 @@ export default function LegalAdminPage() {
         <div
           className="prose prose-sm max-w-none text-gray-700"
           dangerouslySetInnerHTML={{
-            __html: activeTab === "impressum" ? impressum : datenschutz,
+            __html: activeTab === "impressum" ? impressum : activeTab === "datenschutz" ? datenschutz : agb,
           }}
         />
       </div>
