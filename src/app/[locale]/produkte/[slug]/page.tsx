@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { useParams } from "next/navigation";
-import { ArrowLeft, Droplets, FileText, ShieldCheck, Package, ShoppingBag, Check } from "lucide-react";
+import { ArrowLeft, Droplets, ShieldCheck, ShoppingBag, Check, Download } from "lucide-react";
 import { useProducts } from "@/lib/use-products";
 import { getTranslatedProduct, getTranslatedProducts } from "@/data/product-i18n";
 import { useProductDescription } from "@/lib/use-product-descriptions";
@@ -270,10 +270,15 @@ export default function ProductDetailPage() {
               >
                 {t("requestQuote")}
               </Link>
-              <button className="inline-flex items-center justify-center gap-2 border border-swish-gray-200 hover:border-swish-red/30 text-swish-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all">
-                <FileText size={16} />
+              <a
+                href={`/katalog/${slug}.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border border-swish-gray-200 hover:border-swish-red/30 text-swish-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all"
+              >
+                <Download size={16} />
                 {t("dataSheet")}
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>
