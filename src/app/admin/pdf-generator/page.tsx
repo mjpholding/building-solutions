@@ -699,6 +699,13 @@ export default function PDFGeneratorPage() {
                     </span>
                   )}
                   <button
+                    onClick={() => window.open(`/api/admin/product-sheets/view?id=${sheet.id}`, "_blank")}
+                    className="p-1.5 text-gray-400 hover:text-blue-600 transition-colors"
+                    title="Vorschau"
+                  >
+                    <Eye size={14} />
+                  </button>
+                  <button
                     onClick={() => handleDeleteSheet(sheet.id)}
                     className="p-1.5 text-gray-400 hover:text-red-600 transition-colors"
                     title="Löschen"
