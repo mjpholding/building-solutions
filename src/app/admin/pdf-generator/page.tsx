@@ -47,21 +47,27 @@ export default function PDFGeneratorPage() {
     const name = file.name.replace(/\.pdf$/i, "").replace(/-/g, " ").replace(/karta.*$/i, "").trim();
     if (!productName) setProductName(name);
 
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
-      const res = await fetch("/api/admin/pdf-generator/extract", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
+      // Extract text client-side using pdfjs-dist
+      const arrayBuffer = await file.arrayBuffer();
+      const pdfjsLib = await import("pdfjs-dist");
+      pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
 
-      setOriginalText(data.text);
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      let fullText = "";
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        const pageText = content.items
+          .map((item: unknown) => (item as { str?: string }).str || "")
+          .join(" ");
+        fullText += pageText + "\n\n";
+      }
+
+      setOriginalText(fullText.trim());
       setStep("translate");
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Upload failed");
+      setError(err instanceof Error ? err.message : "PDF-Extraktion fehlgeschlagen");
     } finally {
       setExtracting(false);
     }
