@@ -51,15 +51,30 @@ export default function PDFGeneratorPage() {
       // Extract text client-side using pdfjs-dist
       const arrayBuffer = await file.arrayBuffer();
       const pdfjsLib = await import("pdfjs-dist");
-      pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
-      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      // Use local worker
+      if (typeof window !== "undefined") {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+          "pdfjs-dist/build/pdf.worker.min.mjs",
+          import.meta.url
+        ).toString();
+      }
+
+      const loadingTask = pdfjsLib.getDocument({
+        data: new Uint8Array(arrayBuffer),
+        useWorkerFetch: false,
+        isEvalSupported: false,
+        useSystemFonts: true,
+      });
+      const pdf = await loadingTask.promise;
+
       let fullText = "";
       for (let i = 1; i <= pdf.numPages; i++) {
         const page = await pdf.getPage(i);
         const content = await page.getTextContent();
-        const pageText = content.items
-          .map((item: unknown) => (item as { str?: string }).str || "")
+        const pageText = (content.items as unknown[])
+          .filter((item) => typeof (item as { str?: string }).str === "string")
+          .map((item) => (item as { str: string }).str)
           .join(" ");
         fullText += pageText + "\n\n";
       }
@@ -67,7 +82,8 @@ export default function PDFGeneratorPage() {
       setOriginalText(fullText.trim());
       setStep("translate");
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "PDF-Extraktion fehlgeschlagen");
+      console.error("PDF extraction error:", err);
+      setError(err instanceof Error ? err.message : "PDF-Extraktion fehlgeschlagen. Bitte Text manuell einfügen.");
     } finally {
       setExtracting(false);
     }
