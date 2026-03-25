@@ -71,7 +71,7 @@ export default function DownloadsPage() {
   useEffect(() => {
     if (activeCategory === "productSheets" || activeCategory === "safetySheets") {
       setLoading(true);
-      fetch("/api/admin/product-sheets")
+      fetch("/api/product-sheets")
         .then((r) => r.json())
         .then((data: ProductSheet[]) => {
           if (Array.isArray(data)) setSheets(data);

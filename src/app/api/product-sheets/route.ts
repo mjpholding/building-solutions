@@ -13,14 +13,17 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const slug = searchParams.get("slug");
 
-  if (!slug) {
-    return NextResponse.json([]);
+  const sheets = ((await storeGet("product-sheets")) as ProductSheet[]) || [];
+
+  if (slug) {
+    const assigned = sheets
+      .filter((s) => s.assignedSlug === slug)
+      .map((s) => ({ id: s.id, productName: s.productName, type: s.type }));
+    return NextResponse.json(assigned);
   }
 
-  const sheets = ((await storeGet("product-sheets")) as ProductSheet[]) || [];
-  const assigned = sheets
-    .filter((s) => s.assignedSlug === slug)
-    .map((s) => ({ id: s.id, productName: s.productName, type: s.type }));
-
-  return NextResponse.json(assigned);
+  // No slug = return all sheets (for downloads page)
+  return NextResponse.json(
+    sheets.map((s) => ({ id: s.id, productName: s.productName, type: s.type }))
+  );
 }
