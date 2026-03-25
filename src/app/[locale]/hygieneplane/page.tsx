@@ -44,7 +44,7 @@ export default function HygienePlansPage() {
   useEffect(() => {
     fetch("/api/admin/hygiene-plans")
       .then((r) => r.json())
-      .then(setPlans)
+      .then((data: HygienePlan[]) => { if (Array.isArray(data)) setPlans(data); })
       .catch(() => {});
   }, []);
 

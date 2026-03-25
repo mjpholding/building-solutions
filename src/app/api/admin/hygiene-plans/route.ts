@@ -9,14 +9,37 @@ export interface HygienePlan {
   createdAt: number;
 }
 
-async function getPlans(): Promise<HygienePlan[]> {
-  return ((await storeGet("hygiene-plans")) as HygienePlan[]) || [];
+// Store each plan separately to avoid Redis size limits
+async function getPlanIndex(): Promise<{ id: string; category: string; createdAt: number }[]> {
+  return ((await storeGet("hygiene-plans-index")) as { id: string; category: string; createdAt: number }[]) || [];
 }
 
-// GET: list all plans (public)
-export async function GET() {
-  const plans = await getPlans();
-  return NextResponse.json(plans);
+async function getPlan(id: string): Promise<HygienePlan | null> {
+  return (await storeGet(`hygiene-plan-${id}`)) as HygienePlan | null;
+}
+
+// GET: list all plans (public) or get single plan by id/category
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+  const category = searchParams.get("category");
+
+  if (id) {
+    const plan = await getPlan(id);
+    return plan ? NextResponse.json(plan) : NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+
+  if (category) {
+    const index = await getPlanIndex();
+    const entry = index.find((p) => p.category === category);
+    if (!entry) return NextResponse.json({ error: "Not found" }, { status: 404 });
+    const plan = await getPlan(entry.id);
+    return plan ? NextResponse.json(plan) : NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+
+  // Return index (without htmlContent)
+  const index = await getPlanIndex();
+  return NextResponse.json(index);
 }
 
 // POST: save a new plan (admin only)
@@ -38,13 +61,21 @@ export async function POST(request: NextRequest) {
     createdAt: Date.now(),
   };
 
-  const plans = await getPlans();
-  // Replace existing plan for same category
-  const filtered = plans.filter((p) => p.category !== category);
-  filtered.push(plan);
-  await storeSet("hygiene-plans", filtered);
+  // Save plan content separately
+  await storeSet(`hygiene-plan-${plan.id}`, plan);
 
-  return NextResponse.json(plan, { status: 201 });
+  // Update index — replace existing for same category
+  const index = await getPlanIndex();
+  const oldEntry = index.find((p) => p.category === category);
+  if (oldEntry) {
+    // Delete old plan content
+    await storeSet(`hygiene-plan-${oldEntry.id}`, null);
+  }
+  const filtered = index.filter((p) => p.category !== category);
+  filtered.push({ id: plan.id, category: plan.category, createdAt: plan.createdAt });
+  await storeSet("hygiene-plans-index", filtered);
+
+  return NextResponse.json({ id: plan.id, category: plan.category, createdAt: plan.createdAt }, { status: 201 });
 }
 
 // DELETE: remove a plan
@@ -60,8 +91,9 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ error: "id required" }, { status: 400 });
   }
 
-  const plans = await getPlans();
-  await storeSet("hygiene-plans", plans.filter((p) => p.id !== id));
+  await storeSet(`hygiene-plan-${id}`, null);
+  const index = await getPlanIndex();
+  await storeSet("hygiene-plans-index", index.filter((p) => p.id !== id));
 
   return NextResponse.json({ success: true });
 }

@@ -18,8 +18,17 @@ export async function GET(request: NextRequest) {
   const id = searchParams.get("id");
   const category = searchParams.get("category");
 
-  const plans = ((await storeGet("hygiene-plans")) as HygienePlan[]) || [];
-  const plan = id ? plans.find((p) => p.id === id) : category ? plans.find((p) => p.category === category) : null;
+  let plan: HygienePlan | null = null;
+
+  if (id) {
+    plan = (await storeGet(`hygiene-plan-${id}`)) as HygienePlan | null;
+  } else if (category) {
+    const index = ((await storeGet("hygiene-plans-index")) as { id: string; category: string }[]) || [];
+    const entry = index.find((p) => p.category === category);
+    if (entry) {
+      plan = (await storeGet(`hygiene-plan-${entry.id}`)) as HygienePlan | null;
+    }
+  }
 
   if (!plan) {
     return new NextResponse("Hygieneplan nicht gefunden", { status: 404 });
