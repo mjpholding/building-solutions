@@ -9,10 +9,32 @@ import contactData from "@/data/contact.json";
 export default function ContactPage() {
   const t = useTranslations("contact");
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setSending(true);
+    const form = e.target as HTMLFormElement;
+    const data = new FormData(form);
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: data.get("firstName"),
+          lastName: data.get("lastName"),
+          email: data.get("email"),
+          company: data.get("company"),
+          phone: data.get("phone"),
+          message: data.get("message"),
+        }),
+      });
+      setSubmitted(true);
+    } catch {
+      setSubmitted(true);
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -89,34 +111,34 @@ export default function ContactPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-medium text-swish-gray-700 mb-1.5">{t("form.firstName")}</label>
-                      <input type="text" required className="w-full px-4 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all" />
+                      <input name="firstName" type="text" required className="w-full px-4 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-swish-gray-700 mb-1.5">{t("form.lastName")}</label>
-                      <input type="text" required className="w-full px-4 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all" />
+                      <input name="lastName" type="text" required className="w-full px-4 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all" />
                     </div>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-sm font-medium text-swish-gray-700 mb-1.5">{t("form.email")}</label>
-                      <input type="email" required className="w-full px-4 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all" />
+                      <input name="email" type="email" required className="w-full px-4 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-swish-gray-700 mb-1.5">{t("form.company")}</label>
-                      <input type="text" className="w-full px-4 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all" />
+                      <input name="company" type="text" className="w-full px-4 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all" />
                     </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-swish-gray-700 mb-1.5">{t("form.phone")}</label>
-                    <input type="tel" className="w-full px-4 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all" />
+                    <input name="phone" type="tel" className="w-full px-4 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-swish-gray-700 mb-1.5">{t("form.message")}</label>
-                    <textarea rows={5} required className="w-full px-4 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all resize-none" />
+                    <textarea name="message" rows={5} required className="w-full px-4 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all resize-none" />
                   </div>
-                  <button type="submit" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-swish-red hover:bg-swish-red-dark text-white px-8 py-3.5 rounded-xl font-semibold text-sm transition-all shadow-sm hover:shadow-md">
+                  <button type="submit" disabled={sending} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-swish-red hover:bg-swish-red-dark text-white px-8 py-3.5 rounded-xl font-semibold text-sm transition-all shadow-sm hover:shadow-md disabled:opacity-50">
                     <Send size={16} />
-                    {t("form.submit")}
+                    {sending ? "Wird gesendet..." : t("form.submit")}
                   </button>
                 </form>
               )}
