@@ -58,7 +58,9 @@ export async function GET(request: NextRequest) {
     .content h3 { font-size: 11px; font-weight: bold; margin: 10px 0 4px; }
     .content p { margin: 3px 0; }
     .content table { width: 100%; border-collapse: collapse; margin: 8px 0; }
-    .content td, .content th { padding: 6px 8px; border: 1px solid #d1d5db; text-align: left; vertical-align: top; font-size: 9.5px; }
+    .content td, .content th { padding: 6px 8px; border: 1px solid #d1d5db; text-align: left; vertical-align: middle; font-size: 9.5px; }
+    .content td.product-img { width: 55px; padding: 3px; text-align: center; }
+    .content td.product-img img { width: 48px; height: 48px; object-fit: contain; border-radius: 4px; }
     .content th { background: #dc2626; color: white; font-weight: bold; font-size: 10px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .content tr:nth-child(even) { background: #f9fafb; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .section-header { background: #059669; color: white; font-weight: bold; font-size: 10px; padding: 5px 8px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -102,6 +104,98 @@ export async function GET(request: NextRequest) {
     <span>${company.name} — ${company.sub} | ${company.address}</span>
     <span><strong>Tel:</strong> ${company.phone} | <strong>E-Mail:</strong> ${company.email} | <strong>Web:</strong> ${company.website}</span>
   </div>
+
+  <script>
+    // Auto-insert product images into table
+    const productToSlug = {
+      "SP-300 WASHROOM CLEANER": "sp-300-washroom-cleaner",
+      "E35 GEL": "e35-gel",
+      "SCALE REMOVER": "scale-remover",
+      "SPARKLE": "sparkle",
+      "QUATO 78 PLUS": "quato-78-professional",
+      "QUATO 78": "quato-78-professional",
+      "JET": "jet",
+      "SP-120 FLOOR ACTIVE": "sp-120-floor-active",
+      "FOOD SERVICE 5000": "food-service-konzentrat",
+      "FOOD SERVICE": "food-service-rtu",
+      "SUPER CLEAN": "super-clean",
+      "HARDWATER DETERGENT": "hardwater-detergent",
+      "HARDWATER RINSE AGENT": "hardwater-rinse",
+      "HARDWATER RINSE": "hardwater-rinse",
+      "DESCALER": "descaler",
+      "STAINLESS STEEL CLEAN & PROTECT": "stainless-steel-cleaner",
+      "STAINLESS STEEL CLEANER": "stainless-steel-cleaner",
+      "OFFICE CLEAN": "office-clean",
+      "GLASS CLEAN": "glass-clean",
+      "FRESH AIR": "fresh-air-nectarine",
+      "DE-GREASE": "de-grease",
+      "NANO GLASS": "nano-glass",
+      "KLING": "kling",
+      "SP-350 ACID CLEANER": "sp-350-acid-cleaner",
+      "SANI CLEAN": "sani-clean",
+      "SANI FOAM": "sani-foam",
+      "E10 NEUTRAL": "e10-neutral",
+      "E11 ORANGE": "e11-orange",
+      "E20 ALKALI": "e20-alkali",
+      "E30 ACID": "e30-acid",
+      "E40 GLASS": "e40-glass",
+      "E50 STRONG": "e50-strong",
+    };
+
+    // Add image column to header
+    const headers = document.querySelectorAll("thead tr");
+    headers.forEach(tr => {
+      const firstTh = tr.querySelector("th");
+      if (firstTh) {
+        const imgTh = document.createElement("th");
+        imgTh.textContent = "";
+        imgTh.style.width = "55px";
+        firstTh.parentNode.insertBefore(imgTh, firstTh.nextSibling);
+      }
+    });
+
+    // Add images to each product row
+    const rows = document.querySelectorAll("tbody tr");
+    rows.forEach(tr => {
+      // Check if it's a section header row
+      if (tr.querySelector(".section-header") || tr.querySelector("[colspan]")) {
+        const td = tr.querySelector("td[colspan]");
+        if (td) td.setAttribute("colspan", String(Number(td.getAttribute("colspan") || 5) + 1));
+        return;
+      }
+
+      const cells = tr.querySelectorAll("td");
+      if (cells.length < 2) return;
+
+      // Product name is in the second cell (index 1)
+      const productCell = cells[1];
+      const productName = productCell ? productCell.textContent.trim() : "";
+
+      // Find slug
+      let slug = null;
+      for (const [name, s] of Object.entries(productToSlug)) {
+        if (productName.toUpperCase().includes(name)) {
+          slug = s;
+          break;
+        }
+      }
+
+      // Insert image cell after first cell
+      const imgTd = document.createElement("td");
+      imgTd.className = "product-img";
+      if (slug) {
+        const img = document.createElement("img");
+        img.src = "/products/" + slug + ".png";
+        img.alt = productName;
+        img.onerror = function() {
+          this.src = "/products/" + slug + ".jpg";
+          this.onerror = function() { this.style.display = "none"; };
+        };
+        imgTd.appendChild(img);
+      }
+      cells[0].parentNode.insertBefore(imgTd, cells[1]);
+    });
+  </script>
 </body>
 </html>`;
 
