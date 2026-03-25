@@ -112,8 +112,8 @@ export async function GET(request: NextRequest) {
       "E35 GEL": "e35-gel",
       "SCALE REMOVER": "scale-remover",
       "SPARKLE": "sparkle",
-      "QUATO 78 PLUS": "quato-78-professional",
-      "QUATO 78": "quato-78-professional",
+      "QUATO 78 PLUS": "quato-44",
+      "QUATO 78": "quato-44",
       "JET": "jet",
       "SP-120 FLOOR ACTIVE": "sp-120-floor-active",
       "FOOD SERVICE 5000": "food-service-konzentrat",
@@ -167,14 +167,11 @@ export async function GET(request: NextRequest) {
       const cells = tr.querySelectorAll("td");
       if (cells.length < 2) return;
 
-      // Product name is in the second cell (index 1)
-      const productCell = cells[1];
-      const productName = productCell ? productCell.textContent.trim() : "";
-
-      // Find slug
+      // Search all cells for a product name match
+      const rowText = tr.textContent.toUpperCase();
       let slug = null;
       for (const [name, s] of Object.entries(productToSlug)) {
-        if (productName.toUpperCase().includes(name)) {
+        if (rowText.includes(name)) {
           slug = s;
           break;
         }
@@ -186,7 +183,7 @@ export async function GET(request: NextRequest) {
       if (slug) {
         const img = document.createElement("img");
         img.src = "/products/" + slug + ".png";
-        img.alt = productName;
+        img.alt = slug;
         img.onerror = function() {
           this.src = "/products/" + slug + ".jpg";
           this.onerror = function() { this.style.display = "none"; };

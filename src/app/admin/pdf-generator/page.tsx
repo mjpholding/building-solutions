@@ -795,6 +795,66 @@ export default function PDFGeneratorPage() {
           </div>
         </div>
       )}
+      {/* Saved Hygiene Plans */}
+      <HygienePlansList />
+    </div>
+  );
+}
+
+function HygienePlansList() {
+  const [plans, setPlans] = useState<{ id: string; category: string; createdAt: number }[]>([]);
+
+  useEffect(() => {
+    fetch("/api/admin/hygiene-plans").then(r => r.json()).then(setPlans).catch(() => {});
+  }, []);
+
+  const categoryNames: Record<string, string> = {
+    sanitary: "Sanitäranlagen",
+    kitchen: "Restaurant – Küche",
+    dining: "Restaurant – Gastraum",
+  };
+
+  async function handleDelete(id: string) {
+    await fetch(`/api/admin/hygiene-plans?id=${id}`, { method: "DELETE" });
+    setPlans(prev => prev.filter(p => p.id !== id));
+  }
+
+  if (plans.length === 0) return null;
+
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 p-6">
+      <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+        <FileText size={18} className="text-green-500" />
+        Gespeicherte Hygienepläne ({plans.length})
+      </h2>
+      <div className="space-y-3">
+        {plans.map((plan) => (
+          <div key={plan.id} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+            <div className="flex-1 min-w-0">
+              <p className="font-medium text-sm text-gray-900">{categoryNames[plan.category] || plan.category}</p>
+              <p className="text-xs text-gray-400">
+                Hygieneplan · {new Date(plan.createdAt).toLocaleDateString("de-DE")}
+              </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => window.open(`/api/hygiene-plans/view?id=${plan.id}`, "_blank")}
+                className="p-1.5 text-gray-400 hover:text-blue-600 transition-colors"
+                title="Vorschau"
+              >
+                <Eye size={14} />
+              </button>
+              <button
+                onClick={() => handleDelete(plan.id)}
+                className="p-1.5 text-gray-400 hover:text-red-600 transition-colors"
+                title="Löschen"
+              >
+                <Trash2 size={14} />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
