@@ -42,7 +42,7 @@ export default function HygienePlansPage() {
   const [plans, setPlans] = useState<HygienePlan[]>([]);
 
   useEffect(() => {
-    fetch("/api/admin/hygiene-plans")
+    fetch("/api/hygiene-plans")
       .then((r) => r.json())
       .then((data: HygienePlan[]) => { if (Array.isArray(data)) setPlans(data); })
       .catch(() => {});
