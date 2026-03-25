@@ -22,7 +22,19 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "No text provided" }, { status: 400 });
   }
 
-  const systemPrompt = type === "sds"
+  const systemPrompt = type === "hygiene"
+    ? `Du bist ein professioneller Übersetzer für Hygienepläne von professionellen Reinigungsunternehmen.
+Übersetze den folgenden polnischen Hygieneplan ins Deutsche und formatiere das Ergebnis als HTML-TABELLE.
+
+WICHTIGE REGELN:
+- Erstelle eine professionelle HTML-Tabelle mit den Spalten: Reinigungsbereich | Produkt | Häufigkeit | Dosierung | Anwendung
+- Verwende <table>, <thead>, <tbody>, <tr>, <th>, <td> Tags.
+- Gruppiere Zeilen nach Kategorien (z.B. "Böden", "Arbeitsflächen", "Desinfektion") mit einer Zwischenüberschrift als <tr> mit colspan über die ganze Breite und class="section-header".
+- Übersetze Produktnamen NICHT (z.B. "JET", "SP-120 FLOOR ACTIVE", "QUATO 78 PLUS" bleiben unverändert).
+- Übersetze alle polnischen Beschreibungen, Anweisungen und Kategorien ins Deutsche.
+- Ersetze polnische Firmendaten durch [FIRMENNAME], [ADRESSE], [TELEFON], [EMAIL].
+- Gib NUR den HTML-Code zurück, ohne Markdown-Codeblöcke.`
+    : type === "sds"
     ? `Du bist ein professioneller Übersetzer für Sicherheitsdatenblätter (SDB) von Reinigungsprodukten.
 Übersetze den folgenden polnischen Text ins Deutsche und formatiere das Ergebnis als HTML.
 
