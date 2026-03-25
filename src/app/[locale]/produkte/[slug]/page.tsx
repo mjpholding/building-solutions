@@ -61,8 +61,8 @@ export default function ProductDetailPage() {
         .then((sheets: { id: string; type: string }[]) => {
           const productSheet = sheets.find(s => s.type === "product");
           const sdsSheet = sheets.find(s => s.type === "sds");
-          if (productSheet) setProductSheetUrl(`/api/admin/product-sheets/view?id=${productSheet.id}`);
-          if (sdsSheet) setSdsSheetUrl(`/api/admin/product-sheets/view?id=${sdsSheet.id}`);
+          if (productSheet) setProductSheetUrl(`/api/product-sheets/view?id=${productSheet.id}`);
+          if (sdsSheet) setSdsSheetUrl(`/api/product-sheets/view?id=${sdsSheet.id}`);
         })
         .catch(() => {});
     }
