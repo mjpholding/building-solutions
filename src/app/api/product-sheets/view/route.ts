@@ -52,7 +52,7 @@ export async function GET(request: NextRequest) {
     .header-left .sub { font-size: 9px; opacity: 0.8; }
     .header-right { text-align: right; font-size: 8.5px; line-height: 1.6; }
     .header-right .label { font-weight: bold; font-size: 9px; margin-top: 6px; letter-spacing: 1px; opacity: 0.85; }
-    .content { padding: 24px 28px 70px; max-width: 800px; }
+    .content { padding: 24px 28px 70px; }
     .product-name { font-size: 24px; font-weight: bold; color: #111827; margin: 0 0 4px; }
     .product-badge { display: inline-block; background: #dc2626; color: white; font-size: 7.5px; font-weight: bold; padding: 2px 10px; border-radius: 10px; margin-bottom: 16px; letter-spacing: 0.5px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .content h2 { color: #dc2626; font-size: 13px; font-weight: bold; margin: 18px 0 6px; border-bottom: 1px solid #e5e7eb; padding-bottom: 3px; }
