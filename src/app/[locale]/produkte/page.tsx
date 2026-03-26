@@ -4,7 +4,10 @@ import { useState, useMemo, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
-import { Search, Filter, ArrowRight, Droplets, X } from "lucide-react";
+import {
+  Search, ArrowRight, Droplets, X, Layers, Wind, Beaker, Shield,
+  UtensilsCrossed, Factory, Truck, Tag, Leaf, Gauge, Sparkles
+} from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { categories } from "@/data/products";
 import { useProducts } from "@/lib/use-products";
@@ -20,6 +23,22 @@ function getPHColor(ph: string): string {
   if (val < 10) return "text-blue-600 bg-blue-50";
   return "text-purple-600 bg-purple-50";
 }
+
+// Category colors — inspired by cleaning industry color coding
+const categoryStyles: Record<string, { icon: React.ComponentType<{ size?: number }>; color: string; activeColor: string }> = {
+  floors:        { icon: Layers,           color: "bg-emerald-50 text-emerald-600 border-emerald-200",    activeColor: "bg-emerald-600 text-white ring-emerald-600/20" },
+  sanitary:      { icon: Droplets,         color: "bg-rose-50 text-rose-600 border-rose-200",             activeColor: "bg-rose-600 text-white ring-rose-600/20" },
+  odor:          { icon: Wind,             color: "bg-violet-50 text-violet-600 border-violet-200",       activeColor: "bg-violet-600 text-white ring-violet-600/20" },
+  special:       { icon: Beaker,           color: "bg-sky-50 text-sky-600 border-sky-200",                activeColor: "bg-sky-600 text-white ring-sky-600/20" },
+  carpets:       { icon: Layers,           color: "bg-amber-50 text-amber-600 border-amber-200",          activeColor: "bg-amber-600 text-white ring-amber-600/20" },
+  disinfection:  { icon: Shield,           color: "bg-blue-50 text-blue-600 border-blue-200",             activeColor: "bg-blue-600 text-white ring-blue-600/20" },
+  food:          { icon: UtensilsCrossed,  color: "bg-orange-50 text-orange-600 border-orange-200",       activeColor: "bg-orange-600 text-white ring-orange-600/20" },
+  industry:      { icon: Factory,          color: "bg-slate-50 text-slate-600 border-slate-200",          activeColor: "bg-slate-600 text-white ring-slate-600/20" },
+  transport:     { icon: Truck,            color: "bg-zinc-50 text-zinc-600 border-zinc-200",             activeColor: "bg-zinc-600 text-white ring-zinc-600/20" },
+  economy:       { icon: Tag,              color: "bg-teal-50 text-teal-600 border-teal-200",             activeColor: "bg-teal-600 text-white ring-teal-600/20" },
+  green:         { icon: Leaf,             color: "bg-green-50 text-green-600 border-green-200",          activeColor: "bg-green-600 text-white ring-green-600/20" },
+  dosing:        { icon: Gauge,            color: "bg-indigo-50 text-indigo-600 border-indigo-200",       activeColor: "bg-indigo-600 text-white ring-indigo-600/20" },
+};
 
 export default function ProductsPage() {
   const t = useTranslations("products");
@@ -86,30 +105,37 @@ export default function ProductsPage() {
                 </button>
               )}
             </div>
-            <div className="flex gap-2 flex-wrap">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-2">
               <button
                 onClick={() => setCategory("")}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                className={`flex flex-col items-center gap-1.5 px-3 py-3 rounded-xl text-xs font-semibold transition-all ${
                   !category
-                    ? "bg-swish-red text-white shadow-sm"
-                    : "bg-white text-swish-gray-600 border border-swish-gray-200 hover:border-swish-red/30 hover:text-swish-red"
+                    ? "bg-gray-900 text-white shadow-md ring-2 ring-gray-900/20"
+                    : "bg-white text-gray-500 border border-gray-200 hover:border-gray-400 hover:shadow-sm"
                 }`}
               >
+                <Sparkles size={18} />
                 {t("allCategories") || "Alle"}
               </button>
-              {categories.map((cat) => (
-                <button
-                  key={cat.slug}
-                  onClick={() => setCategory(cat.slug)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    category === cat.slug
-                      ? "bg-swish-red text-white shadow-sm"
-                      : "bg-white text-swish-gray-600 border border-swish-gray-200 hover:border-swish-red/30 hover:text-swish-red"
-                  }`}
-                >
-                  {tCat(cat.slug)}
-                </button>
-              ))}
+              {categories.map((cat) => {
+                const config = categoryStyles[cat.slug] || { icon: Beaker, color: "bg-gray-50 text-gray-600 border-gray-200", activeColor: "bg-gray-600 text-white ring-gray-600/20" };
+                const Icon = config.icon;
+                const isActive = category === cat.slug;
+                return (
+                  <button
+                    key={cat.slug}
+                    onClick={() => setCategory(isActive ? "" : cat.slug)}
+                    className={`flex flex-col items-center gap-1.5 px-3 py-3 rounded-xl text-xs font-semibold transition-all ${
+                      isActive
+                        ? `${config.activeColor} shadow-md ring-2`
+                        : `${config.color} border hover:shadow-sm`
+                    }`}
+                  >
+                    <Icon size={18} />
+                    <span className="text-center leading-tight">{tCat(cat.slug)}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
