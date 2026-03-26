@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import {
   Image as ImageIcon, Film, Plus, Trash2, Loader2, ArrowUp, ArrowDown,
   Eye, EyeOff, Save, ArrowLeft
@@ -26,58 +26,29 @@ export default function HeroManagePage() {
   const [config, setConfig] = useState<HeroConfig>({ slides: [], pauseBetween: 1, pauseAfterLoop: 10, imageDuration: 8 });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [uploading, setUploading] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [addUrl, setAddUrl] = useState("");
 
   useEffect(() => {
     fetch("/api/admin/hero").then(r => r.json()).then(setConfig).finally(() => setLoading(false));
   }, []);
 
-  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
 
-    setUploading(true);
-    try {
-      // Upload to /api/admin/upload
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("folder", "hero");
-      const res = await fetch(`/api/admin/upload?slug=hero-${Date.now()}`, {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      if (data.error) throw new Error(data.error);
-
-      // Add slide
-      const type = file.type.startsWith("video/") ? "video" : "image";
-      const addRes = await fetch("/api/admin/hero", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: data.url, type }),
-      });
-      const slide = await addRes.json();
-      setConfig(prev => ({ ...prev, slides: [...prev.slides, slide] }));
-    } catch (err) {
-      alert("Upload fehlgeschlagen: " + (err instanceof Error ? err.message : "Unbekannter Fehler"));
-    } finally {
-      setUploading(false);
-      if (fileInputRef.current) fileInputRef.current.value = "";
-    }
-  }
-
-  // Add existing file from /public/logo/ by URL
-  async function handleAddExisting(filename: string) {
-    const url = `/logo/${filename}`;
-    const type = filename.match(/\.(mp4|webm|mov)$/i) ? "video" : "image";
+  // Add file by URL path
+  async function handleAddByUrl(url: string) {
+    const cleanUrl = url.startsWith("/") ? url : "/" + url;
+    const type = cleanUrl.match(/\.(mp4|webm|mov)$/i) ? "video" : "image";
     const res = await fetch("/api/admin/hero", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url, type }),
+      body: JSON.stringify({ url: cleanUrl, type }),
     });
     const slide = await res.json();
     setConfig(prev => ({ ...prev, slides: [...prev.slides, slide] }));
+  }
+
+  // Add existing file from /public/logo/
+  async function handleAddExisting(filename: string) {
+    await handleAddByUrl(`/logo/${filename}`);
   }
 
   async function handleDelete(id: string) {
@@ -120,8 +91,9 @@ export default function HeroManagePage() {
 
   // Files available in /public/logo/
   const availableFiles = [
-    "Gen-4_5 Create a high-quality, modern logo animation for a professional cleaning and disinfection companyThe logo text is Swish.mp4",
+    "Black.mp4",
     "Gen-4_5 Create a high-quality, modern logo animation for a professional cleaning and disinfection companyThe logo text is Swish 2.mp4",
+    "Gen-4_5 Create a premium, luxury-style logo animation for a high-end professional cleaning and disinfection brandThe logo text i.mp4",
     "Product Reshoot - Create a high-quality_ modern logo animation for a professional cleaning and disin.png",
   ];
   const usedUrls = config.slides.map(s => s.url);
@@ -220,29 +192,39 @@ export default function HeroManagePage() {
         </div>
       </div>
 
-      {/* Upload new */}
+      {/* Add by URL */}
       <div className="bg-white rounded-xl border border-gray-200 p-6">
-        <h2 className="font-semibold text-gray-900 mb-4">Neue Datei hochladen</h2>
-        <div
-          onClick={() => fileInputRef.current?.click()}
-          className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-red-300 transition-all"
-        >
-          {uploading ? (
-            <Loader2 size={32} className="mx-auto text-red-500 animate-spin" />
-          ) : (
-            <Plus size={32} className="mx-auto text-gray-400" />
-          )}
-          <p className="mt-2 text-sm text-gray-500">
-            {uploading ? "Wird hochgeladen..." : "Bild oder Video hochladen (JPG, PNG, MP4, WebM)"}
-          </p>
+        <h2 className="font-semibold text-gray-900 mb-4">Datei per URL hinzufügen</h2>
+        <p className="text-xs text-gray-400 mb-3">
+          Videos und Bilder müssen im Ordner <code className="bg-gray-100 px-1 rounded">public/</code> liegen.
+          Gib den Pfad ein, z.B. <code className="bg-gray-100 px-1 rounded">/logo/mein-video.mp4</code>
+        </p>
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={addUrl}
+            onChange={(e) => setAddUrl(e.target.value)}
+            placeholder="/logo/dateiname.mp4 oder /logo/bild.png"
+            className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && addUrl) {
+                handleAddByUrl(addUrl);
+                setAddUrl("");
+              }
+            }}
+          />
+          <button
+            onClick={() => {
+              if (addUrl) {
+                handleAddByUrl(addUrl);
+                setAddUrl("");
+              }
+            }}
+            className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700"
+          >
+            <Plus size={14} /> Hinzufügen
+          </button>
         </div>
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/*,video/*"
-          className="hidden"
-          onChange={handleUpload}
-        />
       </div>
 
       {/* Slides list */}
