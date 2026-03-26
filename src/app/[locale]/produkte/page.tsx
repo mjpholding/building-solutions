@@ -74,17 +74,12 @@ export default function ProductsPage() {
     <div className="min-h-screen bg-swish-gray-50">
       {/* Header */}
       <div className="bg-white border-b border-swish-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <h1 className="text-3xl lg:text-4xl font-bold text-swish-gray-900">
-            {t("title")}
-          </h1>
-          <p className="mt-2 text-swish-gray-500">
-            {filtered.length} {t("productsCount") || "Produkte"}
-          </p>
-
-          {/* Filters */}
-          <div className="mt-6 flex flex-col gap-4">
-            <div className="relative max-w-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex items-center justify-between gap-6">
+            <h1 className="text-3xl lg:text-4xl font-bold text-swish-gray-900">
+              {t("title")}
+            </h1>
+            <div className="relative w-full max-w-sm">
               <Search
                 size={18}
                 className="absolute left-3 top-1/2 -translate-y-1/2 text-swish-gray-400"
@@ -105,7 +100,10 @@ export default function ProductsPage() {
                 </button>
               )}
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-2">
+          </div>
+
+          {/* Category filters */}
+          <div className="mt-6 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-2">
               <button
                 onClick={() => setCategory("")}
                 className={`flex flex-col items-center gap-1.5 px-3 py-3 rounded-xl text-xs font-semibold transition-all ${
@@ -137,7 +135,6 @@ export default function ProductsPage() {
                 );
               })}
             </div>
-          </div>
         </div>
       </div>
 
