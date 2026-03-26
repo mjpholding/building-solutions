@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Mail, Type, Package, LogOut, Loader2, ShoppingCart, Euro, Users, Tag, AtSign, CreditCard, MessageCircle, ShieldCheck, FileText, Menu, X, BarChart3, Activity, Scale, Printer, ClipboardList } from "lucide-react";
+import { LayoutDashboard, Mail, Type, Package, LogOut, Loader2, ShoppingCart, Euro, Users, Tag, AtSign, CreditCard, MessageCircle, ShieldCheck, FileText, Menu, X, BarChart3, Activity, Scale, Printer, ClipboardList, Brain } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -22,6 +22,7 @@ const navItems = [
   { href: "/admin/pdf-generator", label: "PDF-Generator", icon: Printer },
   { href: "/admin/finance", label: "Finanzen", icon: BarChart3 },
   { href: "/admin/analytics", label: "Analytik", icon: Activity },
+  { href: "/admin/ai-advisor", label: "AI-Berater", icon: Brain },
   { href: "/admin/chat", label: "Team-Chat", icon: MessageCircle },
   { href: "/admin/users", label: "Benutzer", icon: ShieldCheck },
 ];
