@@ -31,6 +31,13 @@ export async function GET() {
     }
     if ((!result.prices || Object.keys(result.prices).length === 0) && staticP.prices) {
       result.prices = staticP.prices;
+    } else if (result.prices && staticP.prices) {
+      // Merge: fill in missing sizes from static data
+      for (const [size, price] of Object.entries(staticP.prices)) {
+        if (!(size in result.prices)) {
+          result.prices[size] = price as number;
+        }
+      }
     }
     return result;
   });
