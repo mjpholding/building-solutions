@@ -88,9 +88,14 @@ export default function HeroSection() {
     }
   }, [slides, currentSlide, config.pauseAfterLoop, config.pauseBetween]);
 
-  // Handle video ended
-  function handleVideoEnded() {
-    goToNext();
+  // Handle video timeupdate — pause 0.5s before end
+  function handleTimeUpdate() {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.duration && video.currentTime >= video.duration - 0.5) {
+      video.pause();
+      goToNext();
+    }
   }
 
   // Handle image display — advance after imageDuration
@@ -138,7 +143,7 @@ export default function HeroSection() {
                 autoPlay
                 muted
                 playsInline
-                onEnded={handleVideoEnded}
+                onTimeUpdate={handleTimeUpdate}
                 className="absolute inset-0 w-full h-full object-cover"
               />
             ) : (
