@@ -145,7 +145,7 @@ export default function ProductsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {filtered.length === 0 ? (
           <div className="text-center py-20">
-            <Filter size={48} className="mx-auto text-swish-gray-300 mb-4" />
+            <Search size={48} className="mx-auto text-swish-gray-300 mb-4" />
             <p className="text-swish-gray-500 text-lg">{t("noResults")}</p>
           </div>
         ) : (
