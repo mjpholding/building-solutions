@@ -6,20 +6,20 @@ import PageBanner from "@/components/layout/PageBanner";
 import { Award, Leaf, Shield, Lightbulb, Heart, Globe, Truck, HeadphonesIcon, FileCheck, Droplets } from "lucide-react";
 
 const values = [
-  { icon: Shield, titleKey: "trust", descKey: "trustDesc" },
-  { icon: Award, titleKey: "expertise", descKey: "expertiseDesc" },
-  { icon: Lightbulb, titleKey: "innovation", descKey: "innovationDesc" },
-  { icon: Award, titleKey: "quality", descKey: "qualityDesc" },
-  { icon: Leaf, titleKey: "environment", descKey: "environmentDesc" },
-  { icon: Heart, titleKey: "ethics", descKey: "ethicsDesc" },
+  { icon: Shield, titleKey: "trust", descKey: "trustDesc", gradient: "from-blue-500 to-cyan-400", bg: "bg-blue-50" },
+  { icon: Award, titleKey: "expertise", descKey: "expertiseDesc", gradient: "from-amber-500 to-orange-400", bg: "bg-amber-50" },
+  { icon: Lightbulb, titleKey: "innovation", descKey: "innovationDesc", gradient: "from-violet-500 to-purple-400", bg: "bg-violet-50" },
+  { icon: Award, titleKey: "quality", descKey: "qualityDesc", gradient: "from-emerald-500 to-green-400", bg: "bg-emerald-50" },
+  { icon: Leaf, titleKey: "environment", descKey: "environmentDesc", gradient: "from-green-500 to-teal-400", bg: "bg-green-50" },
+  { icon: Heart, titleKey: "ethics", descKey: "ethicsDesc", gradient: "from-rose-500 to-pink-400", bg: "bg-rose-50" },
 ];
 
 const whyUs = [
-  { icon: Globe, key: "why1" },
-  { icon: HeadphonesIcon, key: "why2" },
-  { icon: FileCheck, key: "why3" },
-  { icon: Droplets, key: "why4" },
-  { icon: Truck, key: "why5" },
+  { icon: Globe, key: "why1", gradient: "from-blue-500 to-indigo-500" },
+  { icon: HeadphonesIcon, key: "why2", gradient: "from-orange-500 to-red-500" },
+  { icon: FileCheck, key: "why3", gradient: "from-emerald-500 to-teal-500" },
+  { icon: Droplets, key: "why4", gradient: "from-cyan-500 to-blue-500" },
+  { icon: Truck, key: "why5", gradient: "from-violet-500 to-purple-500" },
 ];
 
 export default function AboutPage() {
@@ -74,11 +74,13 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="p-6 bg-white rounded-2xl border border-swish-gray-100 hover:shadow-lg transition-all"
+                  className="group p-8 bg-white rounded-2xl border border-swish-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
-                  <Icon size={28} className="text-swish-red mb-4" />
-                  <h3 className="font-semibold text-lg text-swish-gray-900">{t(val.titleKey)}</h3>
-                  <p className="mt-2 text-sm text-swish-gray-500 leading-relaxed">{t(val.descKey)}</p>
+                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${val.gradient} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon size={28} className="text-white" strokeWidth={1.8} />
+                  </div>
+                  <h3 className="font-bold text-lg text-swish-gray-900">{t(val.titleKey)}</h3>
+                  <p className="mt-3 text-sm text-swish-gray-500 leading-relaxed">{t(val.descKey)}</p>
                 </motion.div>
               );
             })}
@@ -100,12 +102,12 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="text-center p-5"
+                  className="text-center p-6 bg-swish-gray-50 rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="w-14 h-14 mx-auto bg-red-50 rounded-xl flex items-center justify-center mb-4">
-                    <Icon size={28} className="text-swish-red" />
+                  <div className={`w-14 h-14 mx-auto rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-4 shadow-md`}>
+                    <Icon size={24} className="text-white" strokeWidth={1.8} />
                   </div>
-                  <p className="text-sm text-swish-gray-700 font-medium leading-relaxed">{t(item.key)}</p>
+                  <p className="text-sm text-swish-gray-700 font-semibold leading-relaxed">{t(item.key)}</p>
                 </motion.div>
               );
             })}
