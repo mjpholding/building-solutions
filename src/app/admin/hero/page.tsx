@@ -17,11 +17,13 @@ interface HeroSlide {
 
 interface HeroConfig {
   slides: HeroSlide[];
-  interval: number;
+  pauseBetween: number;
+  pauseAfterLoop: number;
+  imageDuration: number;
 }
 
 export default function HeroManagePage() {
-  const [config, setConfig] = useState<HeroConfig>({ slides: [], interval: 8 });
+  const [config, setConfig] = useState<HeroConfig>({ slides: [], pauseBetween: 1, pauseAfterLoop: 10, imageDuration: 8 });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -148,16 +150,43 @@ export default function HeroManagePage() {
       {/* Settings */}
       <div className="bg-white rounded-xl border border-gray-200 p-6">
         <h2 className="font-semibold text-gray-900 mb-4">Einstellungen</h2>
-        <div className="flex items-center gap-4">
-          <label className="text-sm text-gray-700">Intervall (Sekunden):</label>
-          <input
-            type="number"
-            min="3"
-            max="30"
-            value={config.interval}
-            onChange={(e) => setConfig(prev => ({ ...prev, interval: parseInt(e.target.value) || 8 }))}
-            className="w-20 border border-gray-300 rounded-lg px-3 py-2 text-sm text-center"
-          />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Pause zwischen Videos (Sek.)</label>
+            <input
+              type="number"
+              min="0"
+              max="30"
+              value={config.pauseBetween}
+              onChange={(e) => setConfig(prev => ({ ...prev, pauseBetween: parseFloat(e.target.value) || 1 }))}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-center"
+            />
+            <p className="text-xs text-gray-400 mt-1">Pause nach jedem Video bevor das nächste startet</p>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Pause nach Durchlauf (Sek.)</label>
+            <input
+              type="number"
+              min="1"
+              max="60"
+              value={config.pauseAfterLoop}
+              onChange={(e) => setConfig(prev => ({ ...prev, pauseAfterLoop: parseFloat(e.target.value) || 10 }))}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-center"
+            />
+            <p className="text-xs text-gray-400 mt-1">Pause nach dem letzten Slide bevor es von vorne beginnt</p>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Bildanzeige (Sek.)</label>
+            <input
+              type="number"
+              min="2"
+              max="30"
+              value={config.imageDuration}
+              onChange={(e) => setConfig(prev => ({ ...prev, imageDuration: parseFloat(e.target.value) || 8 }))}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-center"
+            />
+            <p className="text-xs text-gray-400 mt-1">Wie lange ein Bild (nicht Video) angezeigt wird</p>
+          </div>
         </div>
       </div>
 

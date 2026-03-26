@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
 interface HeroSlide {
   id: string;
@@ -13,39 +13,106 @@ interface HeroSlide {
   active: boolean;
 }
 
+interface HeroConfig {
+  slides: HeroSlide[];
+  pauseBetween: number;
+  pauseAfterLoop: number;
+  imageDuration: number;
+}
+
 export default function HeroSection() {
   const t = useTranslations("hero");
   const tS = useTranslations("heroStats");
   const [slides, setSlides] = useState<HeroSlide[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [interval, setIntervalTime] = useState(8);
+  const [config, setConfig] = useState<HeroConfig>({
+    slides: [],
+    pauseBetween: 1,
+    pauseAfterLoop: 10,
+    imageDuration: 8,
+  });
+  const [paused, setPaused] = useState(false);
+  const [showLastFrame, setShowLastFrame] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Load hero config
   useEffect(() => {
     fetch("/api/admin/hero")
       .then((r) => r.json())
-      .then((data) => {
+      .then((data: HeroConfig) => {
         if (data?.slides) {
-          const active = data.slides.filter((s: HeroSlide) => s.active);
+          const active = data.slides.filter((s) => s.active);
           setSlides(active);
-          if (data.interval) setIntervalTime(data.interval);
+          setConfig(data);
         }
       })
       .catch(() => {});
   }, []);
 
-  // Auto-advance slides
-  const nextSlide = useCallback(() => {
-    if (slides.length > 1) {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+  // Advance to next slide with pause logic
+  const goToNext = useCallback(() => {
+    if (slides.length <= 1) {
+      // Single slide: if video, pause at end then restart after pauseAfterLoop
+      if (slides[0]?.type === "video") {
+        setShowLastFrame(true);
+        timerRef.current = setTimeout(() => {
+          setShowLastFrame(false);
+          // Restart video
+          if (videoRef.current) {
+            videoRef.current.currentTime = 0;
+            videoRef.current.play();
+          }
+        }, config.pauseAfterLoop * 1000);
+      }
+      return;
     }
-  }, [slides.length]);
 
+    const nextIdx = currentSlide + 1;
+    const isLastSlide = nextIdx >= slides.length;
+
+    if (isLastSlide) {
+      // After last slide: long pause, then restart from 0
+      setPaused(true);
+      timerRef.current = setTimeout(() => {
+        setPaused(false);
+        setCurrentSlide(0);
+      }, config.pauseAfterLoop * 1000);
+    } else {
+      // Between slides: short pause
+      setPaused(true);
+      timerRef.current = setTimeout(() => {
+        setPaused(false);
+        setCurrentSlide(nextIdx);
+      }, config.pauseBetween * 1000);
+    }
+  }, [slides, currentSlide, config.pauseAfterLoop, config.pauseBetween]);
+
+  // Handle video ended
+  function handleVideoEnded() {
+    goToNext();
+  }
+
+  // Handle image display — advance after imageDuration
   useEffect(() => {
-    if (slides.length <= 1) return;
-    const timer = setInterval(nextSlide, interval * 1000);
-    return () => clearInterval(timer);
-  }, [slides.length, interval, nextSlide]);
+    const slide = slides[currentSlide];
+    if (!slide || slide.type !== "image" || paused) return;
+
+    timerRef.current = setTimeout(() => {
+      goToNext();
+    }, config.imageDuration * 1000);
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [currentSlide, slides, paused, config.imageDuration, goToNext]);
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   const activeSlide = slides[currentSlide];
   const hasMedia = slides.length > 0;
@@ -54,9 +121,9 @@ export default function HeroSection() {
     <section className="relative overflow-hidden min-h-[85vh] flex items-center">
       {/* Background media */}
       <AnimatePresence mode="wait">
-        {hasMedia && activeSlide && (
+        {hasMedia && activeSlide && !paused && (
           <motion.div
-            key={activeSlide.id}
+            key={activeSlide.id + "-" + currentSlide}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -65,12 +132,13 @@ export default function HeroSection() {
           >
             {activeSlide.type === "video" ? (
               <video
+                ref={videoRef}
                 key={activeSlide.url}
                 src={activeSlide.url}
                 autoPlay
                 muted
-                loop
                 playsInline
+                onEnded={handleVideoEnded}
                 className="absolute inset-0 w-full h-full object-cover"
               />
             ) : (
@@ -83,6 +151,19 @@ export default function HeroSection() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Show last frame during pause (for single video) */}
+      {showLastFrame && slides[0]?.type === "video" && (
+        <div className="absolute inset-0 z-0">
+          <video
+            src={slides[0].url}
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ opacity: 1 }}
+          />
+        </div>
+      )}
 
       {/* Fallback gradient background (when no media) */}
       {!hasMedia && (
@@ -187,7 +268,7 @@ export default function HeroSection() {
             {slides.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setCurrentSlide(i)}
+                onClick={() => { setCurrentSlide(i); setPaused(false); }}
                 className={`w-2 h-2 rounded-full transition-all ${
                   i === currentSlide ? "bg-white w-6" : "bg-white/40 hover:bg-white/60"
                 }`}
