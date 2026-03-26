@@ -47,13 +47,13 @@ export default function PageBanner({ title, subtitle }: { title: string; subtitl
   const hasMedia = bannerEnabled && slides.length > 0;
 
   return (
-    <div className="relative overflow-hidden h-44 lg:h-52 flex items-end pb-8">
+    <div className="relative overflow-hidden h-52 lg:h-64 flex items-end pb-8">
       {hasMedia && activeSlide && (
         <div className="absolute inset-0 z-0">
           {activeSlide.type === "video" ? (
-            <video ref={videoRef} key={activeSlide.url + currentSlide} src={activeSlide.url} autoPlay muted playsInline onTimeUpdate={handleTimeUpdate} className="absolute inset-0 w-full h-full object-cover object-top" />
+            <video ref={videoRef} key={activeSlide.url + currentSlide} src={activeSlide.url} autoPlay muted playsInline onTimeUpdate={handleTimeUpdate} className="absolute inset-0 w-full h-full object-cover object-center" />
           ) : (
-            <img src={activeSlide.url} alt="" className="absolute inset-0 w-full h-full object-cover object-top" />
+            <img src={activeSlide.url} alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
           )}
         </div>
       )}

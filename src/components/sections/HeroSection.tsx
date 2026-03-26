@@ -54,7 +54,7 @@ export default function HeroSection() {
   const activeSlide = slides[currentSlide];
 
   return (
-    <section className="relative overflow-hidden min-h-[85vh] flex items-center">
+    <section className="relative overflow-hidden min-h-[100vh] flex items-center">
       <AnimatePresence mode="wait">
         {activeSlide && (
           <motion.div key={activeSlide.id + currentSlide} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2 }} className="absolute inset-0 z-0">
