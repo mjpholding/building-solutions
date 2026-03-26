@@ -93,9 +93,17 @@ export default function HeroManagePage() {
   // Files available in /public/logo/
   const availableFiles = [
     "Black.mp4",
-    "Gen-4_5 Create a high-quality, modern logo animation for a professional cleaning and disinfection companyThe logo text is Swish 2.mp4",
-    "Gen-4_5 Create a premium, luxury-style logo animation for a high-end professional cleaning and disinfection brandThe logo text i.mp4",
-    "Product Reshoot - Create a high-quality_ modern logo animation for a professional cleaning and disin.png",
+    "swish-animation-1.mp4",
+    "swish-animation-2.mp4",
+    "frohe-ostern.mp4",
+    "Gol1.mp4",
+    "Gold.mp4",
+    "Gold2.mp4",
+    "hero-image-1.png",
+    "hero-image-2.png",
+    "hero-image-3.png",
+    "hero-image-4.png",
+    "product-reshoot.png",
   ];
   const usedUrls = config.slides.map(s => s.url);
 
