@@ -19,6 +19,7 @@ export default function PageBanner({
 }) {
   const [slides, setSlides] = useState<HeroSlide[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [enabled, setEnabled] = useState(true);
   const [pauseBetween, setPauseBetween] = useState(1);
   const [pauseAfterLoop, setPauseAfterLoop] = useState(10);
   const [imageDuration, setImageDuration] = useState(8);
@@ -32,17 +33,17 @@ export default function PageBanner({
         if (data?.slides) {
           const active = data.slides.filter((s: HeroSlide) => s.active);
           setSlides(active);
-          if (data.pauseBetween) setPauseBetween(data.pauseBetween);
-          if (data.pauseAfterLoop) setPauseAfterLoop(data.pauseAfterLoop);
-          if (data.imageDuration) setImageDuration(data.imageDuration);
         }
+        if (data?.bannerEnabled === false) setEnabled(false);
+        if (data?.pauseBetween) setPauseBetween(data.pauseBetween);
+        if (data?.pauseAfterLoop) setPauseAfterLoop(data.pauseAfterLoop);
+        if (data?.imageDuration) setImageDuration(data.imageDuration);
       })
       .catch(() => {});
   }, []);
 
   const goToNext = useCallback(() => {
     if (slides.length <= 1) {
-      // Single video: wait pauseAfterLoop then restart
       if (slides[0]?.type === "video") {
         timerRef.current = setTimeout(() => {
           if (videoRef.current) {
@@ -53,7 +54,6 @@ export default function PageBanner({
       }
       return;
     }
-
     const nextIdx = currentSlide + 1;
     if (nextIdx >= slides.length) {
       timerRef.current = setTimeout(() => setCurrentSlide(0), pauseAfterLoop * 1000);
@@ -62,7 +62,6 @@ export default function PageBanner({
     }
   }, [slides, currentSlide, pauseAfterLoop, pauseBetween]);
 
-  // Video: pause 0.5s before end, then advance
   function handleTimeUpdate() {
     const video = videoRef.current;
     if (!video) return;
@@ -72,7 +71,6 @@ export default function PageBanner({
     }
   }
 
-  // Image: advance after imageDuration
   useEffect(() => {
     const slide = slides[currentSlide];
     if (!slide || slide.type !== "image") return;
@@ -85,11 +83,12 @@ export default function PageBanner({
   }, []);
 
   const activeSlide = slides[currentSlide];
+  const hasMedia = enabled && slides.length > 0;
 
   return (
-    <div className="relative overflow-hidden h-48 lg:h-56 flex items-center">
+    <div className="relative overflow-hidden h-44 lg:h-52 flex items-end pb-8">
       {/* Background media */}
-      {activeSlide && (
+      {hasMedia && activeSlide && (
         <div className="absolute inset-0 z-0">
           {activeSlide.type === "video" ? (
             <video
@@ -112,23 +111,20 @@ export default function PageBanner({
         </div>
       )}
 
-      {/* Fallback gradient */}
-      {slides.length === 0 && (
+      {/* Fallback or no-media gradient */}
+      {!hasMedia && (
         <div className="absolute inset-0 bg-gradient-to-br from-swish-gray-900 via-swish-gray-800 to-swish-gray-900" />
       )}
 
-      {/* Dark overlay — stronger for readability */}
-      <div className="absolute inset-0 bg-black/70 z-[1]" />
-
-      {/* Bottom gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/50 to-transparent z-[2]" />
+      {/* STRONG dark overlay — ensures text is always readable */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/60 z-[1]" />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="text-3xl lg:text-4xl font-bold text-white drop-shadow-lg">{title}</h1>
+        <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}>
+          <h1 className="text-3xl lg:text-4xl font-bold text-white">{title}</h1>
           {subtitle && (
-            <p className="mt-2 text-lg text-white/80 drop-shadow max-w-3xl">{subtitle}</p>
+            <p className="mt-1.5 text-base text-white/70 max-w-2xl">{subtitle}</p>
           )}
         </motion.div>
       </div>

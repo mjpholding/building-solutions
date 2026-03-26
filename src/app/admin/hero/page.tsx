@@ -20,10 +20,11 @@ interface HeroConfig {
   pauseBetween: number;
   pauseAfterLoop: number;
   imageDuration: number;
+  bannerEnabled: boolean;
 }
 
 export default function HeroManagePage() {
-  const [config, setConfig] = useState<HeroConfig>({ slides: [], pauseBetween: 1, pauseAfterLoop: 10, imageDuration: 8 });
+  const [config, setConfig] = useState<HeroConfig>({ slides: [], pauseBetween: 1, pauseAfterLoop: 10, imageDuration: 8, bannerEnabled: true });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [addUrl, setAddUrl] = useState("");
@@ -159,6 +160,20 @@ export default function HeroManagePage() {
             />
             <p className="text-xs text-gray-400 mt-1">Wie lange ein Bild (nicht Video) angezeigt wird</p>
           </div>
+        </div>
+
+        {/* Banner toggle */}
+        <div className="mt-4 flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+          <div>
+            <p className="text-sm font-medium text-gray-700">Banner auf Unterseiten</p>
+            <p className="text-xs text-gray-400">Animierter Banner mit Video/Bild als Hintergrund auf allen Unterseiten</p>
+          </div>
+          <button
+            onClick={() => setConfig(prev => ({ ...prev, bannerEnabled: !prev.bannerEnabled }))}
+            className={`relative w-12 h-6 rounded-full transition-colors ${config.bannerEnabled ? "bg-green-500" : "bg-gray-300"}`}
+          >
+            <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${config.bannerEnabled ? "translate-x-6" : "translate-x-0.5"}`} />
+          </button>
         </div>
       </div>
 

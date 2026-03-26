@@ -12,9 +12,10 @@ export interface HeroSlide {
 
 export interface HeroConfig {
   slides: HeroSlide[];
-  pauseBetween: number; // seconds pause between videos (default 1)
-  pauseAfterLoop: number; // seconds pause after all videos played (default 10)
-  imageDuration: number; // seconds to show images (default 8)
+  pauseBetween: number;
+  pauseAfterLoop: number;
+  imageDuration: number;
+  bannerEnabled: boolean;
 }
 
 const DEFAULT_CONFIG: HeroConfig = {
@@ -22,6 +23,7 @@ const DEFAULT_CONFIG: HeroConfig = {
   pauseBetween: 1,
   pauseAfterLoop: 10,
   imageDuration: 8,
+  bannerEnabled: true,
 };
 
 async function getConfig(): Promise<HeroConfig> {
@@ -46,6 +48,7 @@ export async function PUT(request: NextRequest) {
   if (body.pauseBetween !== undefined) config.pauseBetween = body.pauseBetween;
   if (body.pauseAfterLoop !== undefined) config.pauseAfterLoop = body.pauseAfterLoop;
   if (body.imageDuration !== undefined) config.imageDuration = body.imageDuration;
+  if (body.bannerEnabled !== undefined) config.bannerEnabled = body.bannerEnabled;
 
   await storeSet("hero-config", config);
   return NextResponse.json(config);
