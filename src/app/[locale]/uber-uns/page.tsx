@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import PageBanner from "@/components/layout/PageBanner";
-import { Award, Leaf, Shield, Lightbulb, Heart } from "lucide-react";
+import { Award, Leaf, Shield, Lightbulb, Heart, Globe, Truck, HeadphonesIcon, FileCheck, Droplets } from "lucide-react";
 
 const values = [
   { icon: Shield, titleKey: "trust", descKey: "trustDesc" },
@@ -11,69 +11,60 @@ const values = [
   { icon: Lightbulb, titleKey: "innovation", descKey: "innovationDesc" },
   { icon: Award, titleKey: "quality", descKey: "qualityDesc" },
   { icon: Leaf, titleKey: "environment", descKey: "environmentDesc" },
-  { icon: Heart, titleKey: "trust", descKey: "ethicsDesc" },
+  { icon: Heart, titleKey: "ethics", descKey: "ethicsDesc" },
 ];
 
-const timeline = [
-  { year: "1956", titleKey: "timeline1956", descKey: "timeline1956Desc" },
-  { year: "2001", titleKey: "timeline1997", descKey: "timeline1997Desc" },
-  { year: "2010", titleKey: "timeline2003", descKey: "timeline2003Desc" },
-  { year: "2024", titleKey: "timeline2020", descKey: "timeline2020Desc" },
+const whyUs = [
+  { icon: Globe, key: "why1" },
+  { icon: HeadphonesIcon, key: "why2" },
+  { icon: FileCheck, key: "why3" },
+  { icon: Droplets, key: "why4" },
+  { icon: Truck, key: "why5" },
 ];
 
 export default function AboutPage() {
   const t = useTranslations("about");
-  const tP = useTranslations("aboutPage");
 
   return (
     <div className="min-h-screen">
-      <PageBanner title={t("title")} subtitle={t("historyText")} />
+      <PageBanner title={t("title")} />
 
-      {/* Mission */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-swish-gray-900">{t("mission")}</h2>
-            <p className="mt-6 text-xl text-swish-gray-600 leading-relaxed">{t("missionText")}</p>
+      {/* About Swish Deutschland */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="text-3xl font-bold text-swish-gray-900 mb-6">{t("aboutTitle")}</h2>
+            <p className="text-lg text-swish-gray-600 leading-relaxed">{t("aboutText1")}</p>
+            <p className="mt-4 text-lg text-swish-gray-600 leading-relaxed">{t("aboutText2")}</p>
           </motion.div>
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-20 bg-swish-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-swish-gray-900 text-center mb-14">{t("history")}</h2>
-          <div className="max-w-2xl mx-auto space-y-8">
-            {timeline.map((item, i) => (
-              <motion.div
-                key={item.year}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex gap-6"
-              >
-                <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 bg-swish-red text-white rounded-xl flex items-center justify-center font-bold text-sm">
-                    {item.year}
-                  </div>
-                  {i < timeline.length - 1 && <div className="w-0.5 flex-1 bg-swish-gray-200 mt-2" />}
-                </div>
-                <div className="pb-8">
-                  <h3 className="font-bold text-lg text-swish-gray-900">{tP(item.titleKey)}</h3>
-                  <p className="mt-1 text-swish-gray-500">{tP(item.descKey)}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+      {/* About the brand */}
+      <section className="py-16 bg-swish-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="text-3xl font-bold text-swish-gray-900 mb-6">{t("brandTitle")}</h2>
+            <p className="text-lg text-swish-gray-600 leading-relaxed">{t("brandText")}</p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Mission */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="text-3xl font-bold text-swish-gray-900 mb-6">{t("mission")}</h2>
+            <p className="text-xl text-swish-gray-600 leading-relaxed italic">{t("missionText")}</p>
+          </motion.div>
         </div>
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-swish-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-swish-gray-900 text-center mb-14">{t("values")}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <h2 className="text-3xl font-bold text-swish-gray-900 text-center mb-12">{t("values")}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {values.map((val, i) => {
               const Icon = val.icon;
               return (
@@ -83,11 +74,38 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="p-6 rounded-2xl border border-swish-gray-100 hover:shadow-lg transition-all"
+                  className="p-6 bg-white rounded-2xl border border-swish-gray-100 hover:shadow-lg transition-all"
                 >
                   <Icon size={28} className="text-swish-red mb-4" />
                   <h3 className="font-semibold text-lg text-swish-gray-900">{t(val.titleKey)}</h3>
-                  <p className="mt-2 text-sm text-swish-gray-500 leading-relaxed">{tP(val.descKey)}</p>
+                  <p className="mt-2 text-sm text-swish-gray-500 leading-relaxed">{t(val.descKey)}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Swish Deutschland */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-swish-gray-900 text-center mb-12">{t("whyTitle")}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {whyUs.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.key}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className="text-center p-5"
+                >
+                  <div className="w-14 h-14 mx-auto bg-red-50 rounded-xl flex items-center justify-center mb-4">
+                    <Icon size={28} className="text-swish-red" />
+                  </div>
+                  <p className="text-sm text-swish-gray-700 font-medium leading-relaxed">{t(item.key)}</p>
                 </motion.div>
               );
             })}
