@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import PageBanner from "@/components/layout/PageBanner";
 import { Award, Leaf, Shield, Lightbulb, Heart } from "lucide-react";
 
 const values = [
@@ -26,15 +27,7 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-swish-gray-900 to-swish-gray-800 text-white py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-4xl lg:text-5xl font-bold">{t("title")}</h1>
-            <p className="mt-6 text-xl text-swish-gray-300 max-w-2xl">{t("historyText")}</p>
-          </motion.div>
-        </div>
-      </section>
+      <PageBanner title={t("title")} subtitle={t("historyText")} />
 
       {/* Mission */}
       <section className="py-20 bg-white">

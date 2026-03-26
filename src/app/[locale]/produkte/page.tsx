@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import PageBanner from "@/components/layout/PageBanner";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import {
@@ -72,69 +73,66 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-swish-gray-50">
-      {/* Header */}
+      <PageBanner title={t("title")} />
+
+      {/* Search + Category filters */}
       <div className="bg-white border-b border-swish-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center justify-between gap-6">
-            <h1 className="text-3xl lg:text-4xl font-bold text-swish-gray-900">
-              {t("title")}
-            </h1>
-            <div className="relative w-full max-w-sm">
-              <Search
-                size={18}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-swish-gray-400"
-              />
-              <input
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder={t("search")}
-                className="w-full pl-10 pr-10 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all bg-white"
-              />
-              {search && (
-                <button
-                  onClick={() => setSearch("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-swish-gray-400 hover:text-swish-gray-600"
-                >
-                  <X size={16} />
-                </button>
-              )}
-            </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="relative w-full max-w-sm">
+            <Search
+              size={18}
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-swish-gray-400"
+            />
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={t("search")}
+              className="w-full pl-10 pr-10 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all bg-white"
+            />
+            {search && (
+              <button
+                onClick={() => setSearch("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-swish-gray-400 hover:text-swish-gray-600"
+              >
+                <X size={16} />
+              </button>
+            )}
           </div>
 
           {/* Category filters */}
           <div className="mt-6 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-2">
-              <button
-                onClick={() => setCategory("")}
-                className={`flex flex-col items-center gap-1.5 px-3 py-3 rounded-xl text-xs font-semibold transition-all ${
-                  !category
-                    ? "bg-gray-900 text-white shadow-md ring-2 ring-gray-900/20"
-                    : "bg-white text-gray-500 border border-gray-200 hover:border-gray-400 hover:shadow-sm"
-                }`}
-              >
-                <Sparkles size={18} />
-                {t("allCategories") || "Alle"}
-              </button>
-              {categories.map((cat) => {
-                const config = categoryStyles[cat.slug] || { icon: Beaker, color: "bg-gray-50 text-gray-600 border-gray-200", activeColor: "bg-gray-600 text-white ring-gray-600/20" };
-                const Icon = config.icon;
-                const isActive = category === cat.slug;
-                return (
-                  <button
-                    key={cat.slug}
-                    onClick={() => setCategory(isActive ? "" : cat.slug)}
-                    className={`flex flex-col items-center gap-1.5 px-3 py-3 rounded-xl text-xs font-semibold transition-all ${
-                      isActive
-                        ? `${config.activeColor} shadow-md ring-2`
-                        : `${config.color} border hover:shadow-sm`
-                    }`}
-                  >
-                    <Icon size={18} />
-                    <span className="text-center leading-tight">{tCat(cat.slug)}</span>
-                  </button>
-                );
-              })}
-            </div>
+            <button
+              onClick={() => setCategory("")}
+              className={`flex flex-col items-center gap-1.5 px-3 py-3 rounded-xl text-xs font-semibold transition-all ${
+                !category
+                  ? "bg-gray-900 text-white shadow-md ring-2 ring-gray-900/20"
+                  : "bg-white text-gray-500 border border-gray-200 hover:border-gray-400 hover:shadow-sm"
+              }`}
+            >
+              <Sparkles size={18} />
+              {t("allCategories") || "Alle"}
+            </button>
+            {categories.map((cat) => {
+              const config = categoryStyles[cat.slug] || { icon: Beaker, color: "bg-gray-50 text-gray-600 border-gray-200", activeColor: "bg-gray-600 text-white ring-gray-600/20" };
+              const Icon = config.icon;
+              const isActive = category === cat.slug;
+              return (
+                <button
+                  key={cat.slug}
+                  onClick={() => setCategory(isActive ? "" : cat.slug)}
+                  className={`flex flex-col items-center gap-1.5 px-3 py-3 rounded-xl text-xs font-semibold transition-all ${
+                    isActive
+                      ? `${config.activeColor} shadow-md ring-2`
+                      : `${config.color} border hover:shadow-sm`
+                  }`}
+                >
+                  <Icon size={18} />
+                  <span className="text-center leading-tight">{tCat(cat.slug)}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
 

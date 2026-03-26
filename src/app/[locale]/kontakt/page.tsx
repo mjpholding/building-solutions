@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import PageBanner from "@/components/layout/PageBanner";
 import { MapPin, Phone, Mail, Send, CheckCircle2 } from "lucide-react";
 import contactData from "@/data/contact.json";
 
@@ -39,15 +40,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-swish-gray-50">
-      {/* Header */}
-      <div className="bg-gradient-to-br from-swish-gray-900 to-swish-gray-800 text-white py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-4xl lg:text-5xl font-bold">{t("title")}</h1>
-            <p className="mt-4 text-xl text-swish-gray-300">{t("subtitle")}</p>
-          </motion.div>
-        </div>
-      </div>
+      <PageBanner title={t("title")} subtitle={t("subtitle")} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
