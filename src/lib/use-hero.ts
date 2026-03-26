@@ -27,6 +27,18 @@ export function useHero(): HeroSettings {
   });
 
   useEffect(() => {
+    // Check cache first
+    const cached = sessionStorage.getItem("hero-settings");
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        if (parsed.slides?.length > 0) {
+          setSettings(parsed);
+          return; // use cache, don't fetch again
+        }
+      } catch {}
+    }
+
     fetch("/api/admin/hero")
       .then((r) => r.json())
       .then(async (config) => {
@@ -34,12 +46,10 @@ export function useHero(): HeroSettings {
 
         const active = config.slides.filter((s: { active: boolean }) => s.active);
 
-        // Load media URLs for each slide
-        const slidesWithUrls: HeroSlideWithUrl[] = await Promise.all(
+        // Load ALL media in parallel
+        const slidesWithUrls: HeroSlideWithUrl[] = (await Promise.all(
           active.map(async (s: { id: string; type: string; mediaId?: string; url?: string }) => {
             let url = s.url || "";
-
-            // If has mediaId, load from Redis
             if (s.mediaId) {
               try {
                 const res = await fetch(`/api/admin/hero/upload?id=${s.mediaId}`);
@@ -47,23 +57,21 @@ export function useHero(): HeroSettings {
                 if (data.url) url = data.url;
               } catch {}
             }
-
-            return {
-              id: s.id,
-              type: s.type as "image" | "video",
-              url,
-              active: true,
-            };
+            return url ? { id: s.id, type: s.type as "image" | "video", url, active: true } : null;
           })
-        );
+        )).filter(Boolean) as HeroSlideWithUrl[];
 
-        setSettings({
-          slides: slidesWithUrls.filter((s) => s.url),
+        const result: HeroSettings = {
+          slides: slidesWithUrls,
           pauseBetween: config.pauseBetween || 1,
           pauseAfterLoop: config.pauseAfterLoop || 10,
           imageDuration: config.imageDuration || 8,
           bannerEnabled: config.bannerEnabled !== false,
-        });
+        };
+
+        setSettings(result);
+        // Cache for this session
+        sessionStorage.setItem("hero-settings", JSON.stringify(result));
       })
       .catch(() => {});
   }, []);
