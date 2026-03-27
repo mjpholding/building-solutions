@@ -91,7 +91,27 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [adminUser, setAdminUser] = useState<{ name: string; role: string } | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
+  const [newOrderCount, setNewOrderCount] = useState(0);
   const isChat = pathname.startsWith("/admin/chat");
+
+  // Poll new order count every 30s
+  useEffect(() => {
+    function fetchCount() {
+      fetch("/api/admin/orders/new-count")
+        .then((r) => r.json())
+        .then((d) => {
+          if (d.count > newOrderCount && newOrderCount > 0) {
+            // Play notification sound for new order
+            try { new Audio("/notification.wav").play(); } catch {}
+          }
+          setNewOrderCount(d.count);
+        })
+        .catch(() => {});
+    }
+    fetchCount();
+    const interval = setInterval(fetchCount, 30000);
+    return () => clearInterval(interval);
+  }, [newOrderCount]);
 
   // Auto-open group that contains current page
   useEffect(() => {
@@ -235,6 +255,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     >
                       <GroupIcon size={16} />
                       <span className="flex-1 text-left">{group.label}</span>
+                      {group.label === "Bestellungen" && newOrderCount > 0 && (
+                        <span className="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center animate-pulse">
+                          {newOrderCount}
+                        </span>
+                      )}
                       <ChevronDown size={14} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
                     </button>
 

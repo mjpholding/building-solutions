@@ -51,10 +51,16 @@ export default function OrdersAdmin() {
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/api/orders")
-      .then((r) => r.json())
-      .then((d) => { setOrders(d); setLoading(false); })
-      .catch(() => setLoading(false));
+    function fetchOrders() {
+      fetch("/api/orders")
+        .then((r) => r.json())
+        .then((d) => { if (Array.isArray(d)) setOrders(d); setLoading(false); })
+        .catch(() => setLoading(false));
+    }
+    fetchOrders();
+    // Auto-refresh every 30 seconds
+    const interval = setInterval(fetchOrders, 30000);
+    return () => clearInterval(interval);
   }, []);
 
   const updateStatus = async (id: string, status: string) => {
