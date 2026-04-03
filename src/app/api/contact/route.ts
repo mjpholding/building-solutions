@@ -5,7 +5,7 @@ const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
-const FROM = process.env.EMAIL_FROM || "Swish Deutschland <onboarding@resend.dev>";
+const FROM = process.env.EMAIL_FROM || "Swish Deutschland <info@swish-deutschland.de>";
 const TO = "info@swish-deutschland.de";
 
 export async function POST(request: NextRequest) {
