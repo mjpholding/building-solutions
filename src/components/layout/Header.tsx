@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
 import { Menu, X, ShoppingBag, UserCircle } from "lucide-react";
@@ -28,6 +28,7 @@ export default function Header() {
   const tA = useTranslations("account");
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { totalItems, setIsOpen: setCartOpen } = useCart();
   const { customer } = useCustomer();
   const { isPageEnabled } = usePageVisibility();
@@ -35,10 +36,19 @@ export default function Header() {
   const navItems = allNavItems.filter((item) => isPageEnabled(item.slug));
   const isHome = pathname === "/" || pathname === "";
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <header className={`top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isHome
-        ? "fixed bg-transparent"
+        ? scrolled
+          ? "fixed bg-bs-mitternacht/95 backdrop-blur-md shadow-lg border-b border-white/5"
+          : "fixed bg-transparent"
         : "sticky bg-white/95 backdrop-blur-md border-b border-bs-gray-200 shadow-sm"
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -10,7 +10,7 @@ export default function CTASection() {
   const t = useTranslations("cta");
 
   return (
-    <section className="py-20 lg:py-28 bg-gradient-to-br from-bs-accent to-bs-accent-dark text-white relative overflow-hidden">
+    <section className="py-20 lg:py-28 bg-gradient-to-br from-bs-tuerkisblau to-bs-mitternacht text-white relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-black/5 rounded-full blur-3xl" />
@@ -31,7 +31,7 @@ export default function CTASection() {
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/kontakt"
-              className="inline-flex items-center justify-center gap-2 bg-white text-bs-accent hover:bg-bs-gray-100 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 shadow-lg"
+              className="inline-flex items-center justify-center gap-2 bg-bs-tuerkis text-bs-mitternacht hover:bg-bs-tuerkis/90 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 shadow-lg shadow-bs-tuerkis/30"
             >
               {t("button")}
               <ArrowRight size={18} />

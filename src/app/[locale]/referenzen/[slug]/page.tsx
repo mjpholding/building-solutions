@@ -200,12 +200,12 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
                   </span>
                 )}
                 {ref.buildingType && (
-                  <span className="text-xs bg-bs-tuerkisblau/10 text-bs-tuerkisblau px-2.5 py-1 rounded-full font-medium">
+                  <span className="text-xs bg-bs-tuerkis/25 text-bs-mitternacht px-2.5 py-1 rounded-full font-semibold">
                     {BUILDING_LABELS[ref.buildingType] || ref.buildingType}
                   </span>
                 )}
                 {ref.category && (
-                  <span className="text-xs bg-bs-tuerkis/20 text-bs-mitternacht px-2.5 py-1 rounded-full font-medium">
+                  <span className="text-xs bg-bs-tuerkisblau/10 text-bs-tuerkisblau px-2.5 py-1 rounded-full font-medium">
                     {CAT_LABELS[ref.category] || ref.category}
                   </span>
                 )}
@@ -244,7 +244,7 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
               <div className="pt-4 border-t border-bs-grau">
                 <Link
                   href={`/${locale}/kontakt`}
-                  className="block w-full text-center bg-bs-tuerkisblau hover:bg-bs-mitternacht text-white px-5 py-3 rounded-lg font-medium text-sm transition-colors"
+                  className="block w-full text-center bg-bs-tuerkis hover:bg-bs-tuerkis/90 text-bs-mitternacht px-5 py-3 rounded-lg font-semibold text-sm transition-colors shadow-md shadow-bs-tuerkis/20"
                 >
                   {t("requestSimilar")}
                 </Link>

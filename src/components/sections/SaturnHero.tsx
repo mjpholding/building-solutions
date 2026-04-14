@@ -315,7 +315,7 @@ export default function SaturnHero() {
           <h1 className="text-3xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-5">{t("title")}</h1>
           <p className="text-white/40 text-sm lg:text-base leading-relaxed mb-8 max-w-sm">{t("subtitle")}</p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Link href="/leistungen" className="inline-flex items-center justify-center gap-2 bg-bs-accent hover:bg-bs-accent-light text-white px-6 py-3 rounded-xl text-sm font-semibold transition-all shadow-lg shadow-bs-accent/25">
+            <Link href="/leistungen" className="inline-flex items-center justify-center gap-2 bg-bs-tuerkis hover:bg-bs-tuerkis/90 text-bs-mitternacht px-6 py-3 rounded-xl text-sm font-semibold transition-all shadow-lg shadow-bs-tuerkis/25">
               {t("cta")} <ArrowRight size={16} />
             </Link>
             <a href={`tel:${contactData.phone.replace(/[\s()]/g, "")}`} className="inline-flex items-center justify-center gap-2 bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.12] text-white/80 px-6 py-3 rounded-xl text-sm font-semibold transition-all">

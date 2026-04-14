@@ -94,8 +94,8 @@ export default function ReferenzenPage({ params }: { params: Promise<{ locale: s
                     <div className="p-5">
                       <div className="flex flex-wrap items-center gap-2 mb-2">
                         {ref.featured && <Star size={14} className="text-yellow-500" fill="currentColor" />}
-                        {ref.buildingType && <span className="text-[10px] bg-bs-tuerkisblau/10 text-bs-tuerkisblau px-2 py-0.5 rounded-full font-medium">{BUILDING_LABELS[ref.buildingType] || ref.buildingType}</span>}
-                        {ref.category && <span className="text-[10px] bg-bs-tuerkis/20 text-bs-mitternacht px-2 py-0.5 rounded-full font-medium">{CAT_LABELS[ref.category] || ref.category}</span>}
+                        {ref.buildingType && <span className="text-[10px] bg-bs-tuerkis/25 text-bs-mitternacht px-2 py-0.5 rounded-full font-semibold">{BUILDING_LABELS[ref.buildingType] || ref.buildingType}</span>}
+                        {ref.category && <span className="text-[10px] bg-bs-tuerkisblau/10 text-bs-tuerkisblau px-2 py-0.5 rounded-full font-medium">{CAT_LABELS[ref.category] || ref.category}</span>}
                       </div>
                       <h3 className="font-bold text-bs-mitternacht mb-1 group-hover:text-bs-tuerkisblau transition-colors">{ref.title}</h3>
                       <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-3">
