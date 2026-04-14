@@ -2,23 +2,33 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --bs-accent: #1e3a5f;
-  --bs-accent-dark: #152d4a;
-  --bs-accent-light: #2d5a8e;
+  /* Brand palette — wiernie z buildingsolutions.de (Webflow) */
+  --bs-tuerkisblau: #06373c;   /* główny brand (türkisblau) */
+  --bs-mitternacht: #13232d;   /* ciemny tekst / nagłówki (mitternacht) */
+  --bs-tuerkis: #31cfb3;       /* akcent jasny (türkis) */
+  --bs-hellgrau: #f5f5f5;      /* whitesmoke (hellgrau) */
+  --bs-grau: #e6e6e6;          /* jasny szary (grau) */
+
+  /* Aliasy używane w kodzie aplikacji (zachowana kompatybilność) */
+  --bs-accent: var(--bs-tuerkisblau);
+  --bs-accent-dark: var(--bs-mitternacht);
+  --bs-accent-light: var(--bs-tuerkis);
+
   --bs-black: #000000;
   --bs-white: #ffffff;
-  --bs-gray-50: #f9fafb;
-  --bs-gray-100: #f3f4f6;
-  --bs-gray-200: #e5e7eb;
+  --bs-gray-50: #fafafa;
+  --bs-gray-100: var(--bs-hellgrau);
+  --bs-gray-200: var(--bs-grau);
   --bs-gray-300: #d1d5db;
   --bs-gray-400: #9ca3af;
-  --bs-gray-500: #6b7280;
+  --bs-gray-500: #5d6c7b;
   --bs-gray-600: #4b5563;
   --bs-gray-700: #374151;
   --bs-gray-800: #1f2937;
-  --bs-gray-900: #111827;
+  --bs-gray-900: var(--bs-mitternacht);
+
   --background: #ffffff;
-  --foreground: #111827;
+  --foreground: var(--bs-mitternacht);
 }
 
 @theme inline {
@@ -27,6 +37,11 @@
   --color-bs-accent: var(--bs-accent);
   --color-bs-accent-dark: var(--bs-accent-dark);
   --color-bs-accent-light: var(--bs-accent-light);
+  --color-bs-tuerkisblau: var(--bs-tuerkisblau);
+  --color-bs-mitternacht: var(--bs-mitternacht);
+  --color-bs-tuerkis: var(--bs-tuerkis);
+  --color-bs-hellgrau: var(--bs-hellgrau);
+  --color-bs-grau: var(--bs-grau);
   --color-bs-black: var(--bs-black);
   --color-bs-gray-50: var(--bs-gray-50);
   --color-bs-gray-100: var(--bs-gray-100);

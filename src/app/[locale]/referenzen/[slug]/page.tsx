@@ -99,11 +99,11 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
         <PageBanner title={t("title")} />
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           <Building2 size={56} className="mx-auto text-gray-300 mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">{t("notFound")}</h2>
+          <h2 className="text-2xl font-bold text-bs-mitternacht mb-2">{t("notFound")}</h2>
           <p className="text-gray-500 mb-6">{t("notFoundDescription")}</p>
           <Link
             href={`/${locale}/referenzen`}
-            className="inline-flex items-center gap-2 bg-bs-accent text-white px-5 py-2.5 rounded-lg hover:bg-bs-accent-dark transition-colors font-medium text-sm"
+            className="inline-flex items-center gap-2 bg-bs-tuerkisblau text-white px-5 py-2.5 rounded-lg hover:bg-bs-mitternacht transition-colors font-medium text-sm"
           >
             <ArrowLeft size={16} /> {t("backToList")}
           </Link>
@@ -119,7 +119,7 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
         <Link
           href={`/${locale}/referenzen`}
-          className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-bs-accent mb-8 transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-bs-tuerkisblau mb-8 transition-colors"
         >
           <ArrowLeft size={14} /> {t("backToList")}
         </Link>
@@ -129,7 +129,7 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              className="relative rounded-2xl overflow-hidden bg-gray-50 aspect-[16/10]"
+              className="relative rounded-2xl overflow-hidden bg-bs-hellgrau aspect-[16/10]"
             >
               {hasImages ? (
                 <>
@@ -183,7 +183,7 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
                     key={i}
                     onClick={() => setActiveImage(i)}
                     className={`aspect-square rounded-lg overflow-hidden border-2 transition-colors ${
-                      i === activeImage ? "border-bs-accent" : "border-transparent hover:border-gray-300"
+                      i === activeImage ? "border-bs-tuerkisblau" : "border-transparent hover:border-gray-300"
                     }`}
                   >
                     <img src={img} alt={`Thumb ${i + 1}`} className="w-full h-full object-cover" />
@@ -200,12 +200,12 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
                   </span>
                 )}
                 {ref.buildingType && (
-                  <span className="text-xs bg-bs-accent/10 text-bs-accent px-2.5 py-1 rounded-full font-medium">
+                  <span className="text-xs bg-bs-tuerkisblau/10 text-bs-tuerkisblau px-2.5 py-1 rounded-full font-medium">
                     {BUILDING_LABELS[ref.buildingType] || ref.buildingType}
                   </span>
                 )}
                 {ref.category && (
-                  <span className="text-xs bg-bs-accent-light/20 text-gray-900 px-2.5 py-1 rounded-full font-medium">
+                  <span className="text-xs bg-bs-tuerkis/20 text-bs-mitternacht px-2.5 py-1 rounded-full font-medium">
                     {CAT_LABELS[ref.category] || ref.category}
                   </span>
                 )}
@@ -222,8 +222,8 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
           </div>
 
           <aside className="lg:col-span-1">
-            <div className="bg-gray-50 rounded-2xl p-6 sticky top-24 space-y-5">
-              <h3 className="font-bold text-gray-900 text-lg">{t("projectData")}</h3>
+            <div className="bg-bs-hellgrau rounded-2xl p-6 sticky top-24 space-y-5">
+              <h3 className="font-bold text-bs-mitternacht text-lg">{t("projectData")}</h3>
 
               {ref.client && (
                 <InfoRow icon={<Building2 size={16} />} label={t("client")} value={ref.client} />
@@ -241,10 +241,10 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
                 <InfoRow icon={<Wrench size={16} />} label={t("scope")} value={ref.scope} />
               )}
 
-              <div className="pt-4 border-t border-gray-200">
+              <div className="pt-4 border-t border-bs-grau">
                 <Link
                   href={`/${locale}/kontakt`}
-                  className="block w-full text-center bg-bs-accent hover:bg-bs-accent-dark text-white px-5 py-3 rounded-lg font-medium text-sm transition-colors"
+                  className="block w-full text-center bg-bs-tuerkisblau hover:bg-bs-mitternacht text-white px-5 py-3 rounded-lg font-medium text-sm transition-colors"
                 >
                   {t("requestSimilar")}
                 </Link>
@@ -254,16 +254,16 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
         </div>
 
         {related.length > 0 && (
-          <div className="mt-16 lg:mt-24 pt-10 border-t border-gray-200">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">{t("relatedProjects")}</h2>
+          <div className="mt-16 lg:mt-24 pt-10 border-t border-bs-grau">
+            <h2 className="text-2xl font-bold text-bs-mitternacht mb-6">{t("relatedProjects")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {related.map((r) => (
                 <Link
                   key={r.id}
                   href={`/${locale}/referenzen/${r.slug}`}
-                  className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg hover:border-bs-accent/30 transition-all"
+                  className="bg-white rounded-2xl border border-bs-grau overflow-hidden hover:shadow-lg hover:border-bs-tuerkisblau/30 transition-all"
                 >
-                  <div className="h-40 bg-gray-50 flex items-center justify-center">
+                  <div className="h-40 bg-bs-hellgrau flex items-center justify-center">
                     {r.images?.[0] ? (
                       <img src={r.images[0]} alt={r.title} className="w-full h-full object-cover" />
                     ) : (
@@ -271,7 +271,7 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
                     )}
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-gray-900 text-sm mb-1">{r.title}</h3>
+                    <h3 className="font-semibold text-bs-mitternacht text-sm mb-1">{r.title}</h3>
                     {r.address && <p className="text-xs text-gray-500">{r.address}</p>}
                   </div>
                 </Link>
@@ -287,12 +287,12 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
 function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
     <div className="flex gap-3">
-      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-white flex items-center justify-center text-bs-accent">
+      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-white flex items-center justify-center text-bs-tuerkisblau">
         {icon}
       </div>
       <div className="flex-1 min-w-0">
         <div className="text-xs text-gray-500 uppercase tracking-wide">{label}</div>
-        <div className="text-sm font-medium text-gray-900 break-words">{value}</div>
+        <div className="text-sm font-medium text-bs-mitternacht break-words">{value}</div>
       </div>
     </div>
   );

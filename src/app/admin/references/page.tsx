@@ -208,7 +208,7 @@ export default function AdminReferencesPage() {
                   </div>
                 </div>
                 {ref.buildingType && (
-                  <span className="text-xs bg-bs-accent/10 text-bs-accent px-2 py-0.5 rounded hidden md:inline">
+                  <span className="text-xs bg-bs-tuerkisblau/10 text-bs-tuerkisblau px-2 py-0.5 rounded hidden md:inline">
                     {BUILDING_TYPES.find((b) => b.value === ref.buildingType)?.label || ref.buildingType}
                   </span>
                 )}
