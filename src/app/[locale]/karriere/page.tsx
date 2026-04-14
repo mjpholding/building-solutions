@@ -6,8 +6,8 @@ import PageBanner from "@/components/layout/PageBanner";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import {
-  MapPin, CheckCircle2, Phone, Mail, ArrowRight,
-  Zap, Users, GraduationCap, TrendingUp, Wrench, ShieldCheck,
+  MapPin, CheckCircle2, Phone, Mail, ArrowRight, Briefcase,
+  Zap, Users, TrendingUp, Wrench, ShieldCheck,
   Sparkles, Heart, Calendar, Award
 } from "lucide-react";
 import contactData from "@/data/contact.json";
@@ -39,7 +39,7 @@ export default function KarrierePage() {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
-              <Sparkles size={14} /> Ausbildung 2026
+              <Sparkles size={14} /> Praktikum & Einstieg
             </div>
             <h1 className="text-4xl lg:text-6xl font-bold mb-4">Lust auf Gebäudetechnik?</h1>
             <p className="text-lg lg:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
@@ -54,21 +54,21 @@ export default function KarrierePage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-bs-accent/10 text-bs-accent px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
-              <GraduationCap size={16} /> Ausbildungsposition
+              <Briefcase size={16} /> Praktikum bei uns
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Mache deine Ausbildung bei Building Solutions
+              Sammle echte Praxiserfahrung bei Building Solutions
             </h2>
             <p className="text-lg text-bs-gray-600">
-              … und werde <span className="font-semibold text-bs-accent">Elektroniker/in für Energie- und Gebäudetechnik</span>!
+              Arbeite mit uns Seite an Seite auf <span className="font-semibold text-bs-accent">echten Projekten</span> — von der Planung bis zur Inbetriebnahme.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: MapPin, label: "Ausbildungsort", value: "Kerpen / NRW" },
-              { icon: Calendar, label: "Dauer", value: "3,5 Jahre" },
-              { icon: Award, label: "Abschluss", value: "Gesellenbrief HWK" },
+              { icon: MapPin, label: "Einsatzort", value: "Kerpen / NRW" },
+              { icon: Calendar, label: "Dauer", value: "Nach Absprache" },
+              { icon: Wrench, label: "Schwerpunkt", value: "Praxis vor Ort" },
             ].map((item, i) => {
               const Icon = item.icon;
               return (
@@ -145,9 +145,9 @@ export default function KarrierePage() {
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
-              { icon: GraduationCap, title: "3,5 Jahre Ausbildung", desc: "Mit sehr guten Übernahmechancen als Facharbeiter" },
+              { icon: Briefcase, title: "Flexible Dauer", desc: "Praktikumszeit nach Absprache — wir finden die passende Lösung" },
               { icon: Heart, title: "Familiäres Team", desc: "Inhabergeführtes Unternehmen mit ausgezeichnetem Betriebsklima" },
-              { icon: Award, title: "Fortbildungen", desc: "Überbetriebliche Lehrgänge und regelmäßige Seminare" },
+              { icon: TrendingUp, title: "Echte Projekte", desc: "Arbeit auf realen Baustellen mit konkreten Aufgaben" },
               { icon: Wrench, title: "Ausstattung inklusive", desc: "Hochwertiges Werkzeug und komplette Arbeitskleidung" },
               { icon: Users, title: "Paten-System", desc: "Persönliche Betreuung durch einen erfahrenen Kollegen" },
               { icon: Sparkles, title: "Team-Events", desc: "Gemeinsame Aktivitäten auch außerhalb der Arbeitszeit" },
@@ -178,10 +178,10 @@ export default function KarrierePage() {
               </div>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4">Deine Zukunft bei uns</h2>
               <p className="text-white/70 leading-relaxed text-lg mb-8">
-                Nach erfolgreichem Abschluss bieten wir dir sehr gute Chancen auf eine Übernahme als Facharbeiter. Darüber hinaus unterstützen wir deine Weiterbildung zum <span className="text-white font-semibold">Führungsmonteur, Meister, Techniker</span> oder <span className="text-white font-semibold">Bachelor</span> in Bau- und Projektleitung.
+                Mit uns wächst du durch echte Praxis. Nach erfolgreicher Einarbeitung übernimmst du als <span className="text-white font-semibold">Facharbeiter</span> eigenverantwortlich Aufgaben. Bei entsprechendem Engagement entwickeln wir dich weiter zum <span className="text-white font-semibold">Führungsmonteur</span>, <span className="text-white font-semibold">Bauleiter</span> oder <span className="text-white font-semibold">Projektleiter</span> — Karriere bei uns entsteht durch Können, nicht durch Titel.
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {["Facharbeiter", "Führungsmonteur", "Meister", "Techniker / Bachelor"].map((step, i) => (
+                {["Facharbeiter", "Führungsmonteur", "Bauleiter", "Projektleiter"].map((step, i) => (
                   <div key={step} className="flex items-center gap-2 text-sm">
                     <div className="w-7 h-7 bg-bs-accent-light/30 rounded-full flex items-center justify-center text-xs font-bold">
                       {i + 1}
