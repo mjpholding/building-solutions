@@ -6,7 +6,7 @@
   "nav": {
     "home": "Home",
     "services": "Services",
-    "references": "References",
+    "references": "Projects",
     "about": "About Us",
     "career": "Career",
     "partners": "Partners",
@@ -388,7 +388,7 @@
     "expertTagline": "Experts in professional cleaning solutions"
   },
   "references": {
-    "title": "References",
+    "title": "Projects",
     "subtitle": "Selected projects and satisfied clients",
     "allCategories": "All",
     "empty": "No references yet.",

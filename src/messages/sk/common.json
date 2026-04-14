@@ -6,7 +6,7 @@
   "nav": {
     "home": "Domov",
     "services": "Služby",
-    "references": "Referencie",
+    "references": "Projekty",
     "about": "O nás",
     "career": "Kariéra",
     "partners": "Partneri",
@@ -388,7 +388,7 @@
     "expertTagline": "Odborníci na profesionálne čistiace riešenia"
   },
   "references": {
-    "title": "Referencie",
+    "title": "Projekty",
     "subtitle": "Vybrané projekty a spokojní zákazníci",
     "allCategories": "Všetky",
     "empty": "Zatiaľ žiadne referencie.",

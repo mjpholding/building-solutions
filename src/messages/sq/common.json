@@ -6,7 +6,7 @@
   "nav": {
     "home": "Kryefaqja",
     "services": "Shërbimet",
-    "references": "Referencat",
+    "references": "Projektet",
     "about": "Rreth nesh",
     "career": "Karriera",
     "partners": "Partnerët",
@@ -388,7 +388,7 @@
     "expertTagline": "Ekspertë në zgjidhje profesionale pastrimi"
   },
   "references": {
-    "title": "Referencat",
+    "title": "Projektet",
     "subtitle": "Projekte të zgjedhura dhe klientë të kënaqur",
     "allCategories": "Të gjitha",
     "empty": "Ende nuk ka referenca.",

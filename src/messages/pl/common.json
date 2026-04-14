@@ -6,7 +6,7 @@
   "nav": {
     "home": "Strona główna",
     "services": "Usługi",
-    "references": "Referencje",
+    "references": "Projekty",
     "about": "O nas",
     "career": "Kariera",
     "partners": "Partnerzy",
@@ -388,7 +388,7 @@
     "expertTagline": "Eksperci w profesjonalnych rozwiązaniach czyszczących"
   },
   "references": {
-    "title": "Referencje",
+    "title": "Projekty",
     "subtitle": "Wybrane projekty i zadowoleni klienci",
     "allCategories": "Wszystkie",
     "empty": "Brak referencji.",

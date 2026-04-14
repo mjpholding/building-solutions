@@ -6,7 +6,7 @@
   "nav": {
     "home": "Ana Sayfa",
     "services": "Hizmetler",
-    "references": "Referanslar",
+    "references": "Projeler",
     "about": "Hakkımızda",
     "career": "Kariyer",
     "partners": "Ortaklar",
@@ -388,7 +388,7 @@
     "expertTagline": "Profesyonel temizlik çözümlerinde uzmanlar"
   },
   "references": {
-    "title": "Referanslar",
+    "title": "Projeler",
     "subtitle": "Seçilmiş projeler ve memnun müşteriler",
     "allCategories": "Tümü",
     "empty": "Henüz referans yok.",

@@ -6,7 +6,7 @@
   "nav": {
     "home": "Početna",
     "services": "Usluge",
-    "references": "Reference",
+    "references": "Projekti",
     "about": "O nama",
     "career": "Karijera",
     "partners": "Partneri",
@@ -388,7 +388,7 @@
     "expertTagline": "Stručnjaci za profesionalna rješenja za čišćenje"
   },
   "references": {
-    "title": "Reference",
+    "title": "Projekti",
     "subtitle": "Odabrani projekti i zadovoljni klijenti",
     "allCategories": "Sve",
     "empty": "Još nema referenci.",

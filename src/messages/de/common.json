@@ -6,7 +6,7 @@
   "nav": {
     "home": "Startseite",
     "services": "Leistungen",
-    "references": "Referenzen",
+    "references": "Projekte",
     "about": "Über uns",
     "career": "Karriere",
     "partners": "Partner",
@@ -215,10 +215,10 @@
     "allServices": "Alle Leistungen anzeigen"
   },
   "references": {
-    "title": "Referenzen",
+    "title": "Projekte",
     "subtitle": "Ausgewählte Projekte und zufriedene Kunden",
     "allCategories": "Alle",
-    "empty": "Noch keine Referenzen vorhanden.",
+    "empty": "Noch keine Projekte vorhanden.",
     "backToList": "Zurück zur Übersicht",
     "projectData": "Projektdaten",
     "client": "Auftraggeber",
@@ -228,7 +228,7 @@
     "scope": "Leistungsumfang",
     "featured": "Highlight",
     "requestSimilar": "Ähnliches Projekt anfragen",
-    "relatedProjects": "Weitere Referenzen",
+    "relatedProjects": "Weitere Projekte",
     "notFound": "Projekt nicht gefunden",
     "notFoundDescription": "Diese Referenz existiert nicht oder wurde entfernt."
   },
