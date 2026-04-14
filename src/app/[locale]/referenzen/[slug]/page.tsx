@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowLeft, Building2, Calendar, MapPin, Maximize2, Wrench, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import PageBanner from "@/components/layout/PageBanner";
+import ReferencePlaceholder from "@/components/ReferencePlaceholder";
 
 interface Reference {
   id: string;
@@ -170,9 +171,7 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
                   )}
                 </>
               ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <Building2 size={80} className="text-gray-300" />
-                </div>
+                <ReferencePlaceholder size="lg" />
               )}
             </motion.div>
 
@@ -263,11 +262,11 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
                   href={`/${locale}/referenzen/${r.slug}`}
                   className="bg-white rounded-2xl border border-bs-grau overflow-hidden hover:shadow-lg hover:border-bs-tuerkisblau/30 transition-all"
                 >
-                  <div className="h-40 bg-bs-hellgrau flex items-center justify-center">
+                  <div className="h-40 flex items-center justify-center overflow-hidden">
                     {r.images?.[0] ? (
                       <img src={r.images[0]} alt={r.title} className="w-full h-full object-cover" />
                     ) : (
-                      <Building2 size={32} className="text-gray-300" />
+                      <ReferencePlaceholder size="sm" />
                     )}
                   </div>
                   <div className="p-4">
