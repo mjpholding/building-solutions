@@ -28,6 +28,7 @@ export async function GET() {
         { slug: "partner", path: "/partner", enabled: true },
         { slug: "impressum", path: "/impressum", enabled: true },
         { slug: "datenschutz", path: "/datenschutz", enabled: true },
+        { slug: "konto", path: "/konto", enabled: true },
       ],
     });
   }
