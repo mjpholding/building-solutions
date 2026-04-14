@@ -11,11 +11,7 @@
     "address": "Ottoplatz 2, 50679 Köln-Deutz",
     "area": "22.055 m² NGF oberirdisch + 4.254 m² unterirdisch · 17 Geschosse · 69,5 m Höhe · 1.200 Arbeitsplätze · Grundstück 7.357 m²",
     "scope": "",
-    "images": [
-      "/references/lvr-gebaeude-q-koeln-deutz/01.jpg",
-      "/references/lvr-gebaeude-q-koeln-deutz/02.jpg",
-      "/references/lvr-gebaeude-q-koeln-deutz/03.jpg"
-    ],
+    "images": [],
     "year": 2026,
     "featured": true
   },
@@ -31,11 +27,7 @@
     "address": "Arnulf-Klett-Platz 2, 70173 Stuttgart",
     "area": "Bahnsteighalle 447 × 80 m (≈ 35.760 m²) · 28 Kelchstützen · 8 Gleise · 27 Lichtaugen je bis 350 m²",
     "scope": "",
-    "images": [
-      "/references/stuttgart-21/01.jpg",
-      "/references/stuttgart-21/02.jpg",
-      "/references/stuttgart-21/03.jpg"
-    ],
+    "images": [],
     "year": 2025,
     "featured": true
   },
@@ -51,11 +43,7 @@
     "address": "Zum Rebstockbad 7, 60486 Frankfurt am Main",
     "area": "≈ 23.000 m² BGF · 3.000 m² Wasserfläche · 13 Becken · Eröffnung Mitte 2027",
     "scope": "",
-    "images": [
-      "/references/rebstockbad-frankfurt/01.jpg",
-      "/references/rebstockbad-frankfurt/02.jpg",
-      "/references/rebstockbad-frankfurt/03.jpg"
-    ],
+    "images": [],
     "year": 2027,
     "featured": true
   },
@@ -71,11 +59,7 @@
     "address": "Kerpener Straße 62, 50937 Köln · Gebäude 23",
     "area": "40 stationäre Betten · 5 HNO-OP-Säle · ambulantes und stationäres Zentrum",
     "scope": "",
-    "images": [
-      "/references/hno-uniklinik-koeln/01.jpg",
-      "/references/hno-uniklinik-koeln/02.jpg",
-      "/references/hno-uniklinik-koeln/03.jpg"
-    ],
+    "images": [],
     "year": 2024,
     "featured": true
   },
@@ -91,10 +75,7 @@
     "address": "Kerpener Straße 62, 50937 Köln · Gebäude 60",
     "area": "Stationärer Bereich im 2. OG · Privatsprechstunde Schilddrüse im EG",
     "scope": "",
-    "images": [
-      "/references/ukk-nuklearmedizin-koeln/01.jpg",
-      "/references/ukk-nuklearmedizin-koeln/02.jpg"
-    ],
+    "images": [],
     "year": 2024,
     "featured": false
   },
@@ -110,10 +91,7 @@
     "address": "Berliner Platz 2, 53103 Bonn (aktuell) · Neubau gegenüber Alter Friedhof",
     "area": "> 14 Regalkilometer Bestand · 4-geschossiger Magazin-Neubau · Inbetriebnahme Herbst 2026",
     "scope": "",
-    "images": [
-      "/references/stadtarchiv-bonn/01.jpg",
-      "/references/stadtarchiv-bonn/02.jpg"
-    ],
+    "images": [],
     "year": 2026,
     "featured": false
   },
@@ -129,10 +107,7 @@
     "address": "Oxfordstraße 19, 53111 Bonn",
     "area": "Verwaltungsgebäude mit barrierefreiem Hauptzugang, Aufzug und barrierefreiem WC im EG",
     "scope": "",
-    "images": [
-      "/references/auslaenderamt-bonn/01.jpg",
-      "/references/auslaenderamt-bonn/02.jpg"
-    ],
+    "images": [],
     "year": 2024,
     "featured": false
   },
@@ -148,10 +123,7 @@
     "address": "Kölnstraße 229, 53117 Bonn",
     "area": "≈ 2.700 Schüler · 160 Lehrkräfte · 1. Erweiterung 2010-2014 (+1.300 m²) · 2. Erweiterung 2023 mit ≈ 400 m² Aula",
     "scope": "",
-    "images": [
-      "/references/robert-wetzlar-berufskolleg-bonn/01.jpg",
-      "/references/robert-wetzlar-berufskolleg-bonn/02.jpg"
-    ],
+    "images": [],
     "year": 2023,
     "featured": false
   },
@@ -167,10 +139,7 @@
     "address": "Schlesienstraße 21-23, 53119 Bonn",
     "area": "Gesamtschule samt Sporthalle · Sanierung 2022-2025",
     "scope": "",
-    "images": [
-      "/references/bertolt-brecht-gesamtschule-bonn/01.jpg",
-      "/references/bertolt-brecht-gesamtschule-bonn/02.jpg"
-    ],
+    "images": [],
     "year": 2025,
     "featured": false
   },
@@ -186,10 +155,7 @@
     "address": "Pommernstraße 1, 53119 Bonn-Tannenbusch",
     "area": "Jugend- und Pfarrzentrum inkl. Veranstaltungsräumen",
     "scope": "",
-    "images": [
-      "/references/tabu-bonn-tannenbusch/01.jpg",
-      "/references/tabu-bonn-tannenbusch/02.jpg"
-    ],
+    "images": [],
     "year": 2024,
     "featured": false
   },
@@ -205,9 +171,7 @@
     "address": "Ravensburger Straße 18, 88255 Baienfurt",
     "area": "≈ 500 Schüler · Primar- und Sekundarstufe (Klassen 1-10) · zweizügig · Hauptgebäude saniert 2005",
     "scope": "",
-    "images": [
-      "/references/achtalschule-baienfurt/01.jpg"
-    ],
+    "images": [],
     "year": 2024,
     "featured": false
   },
@@ -223,9 +187,7 @@
     "address": "Gronewaldstraße 1, 50931 Köln · Primarstufe: Biggestraße 3/5",
     "area": "≈ 190 Schüler · 20 Klassen · Frühförderung, Kindergarten, Primar- und Sekundarstufe I",
     "scope": "",
-    "images": [
-      "/references/lvr-gronewaldschule-koeln/01.jpg"
-    ],
+    "images": [],
     "year": 2024,
     "featured": false
   },
@@ -241,10 +203,7 @@
     "address": "Kettelerstraße 9, 53844 Troisdorf",
     "area": "13-20 Klassen · ≈ 340-500 Schüler · Gebäude von 1961 mit Erweiterungen bis 2001 · zwei Turnhallen",
     "scope": "",
-    "images": [
-      "/references/ggs-sieglar-troisdorf/01.jpg",
-      "/references/ggs-sieglar-troisdorf/02.jpg"
-    ],
+    "images": [],
     "year": 2024,
     "featured": false
   },
@@ -260,10 +219,7 @@
     "address": "Plektrudisstraße 9, 50354 Hürth-Stotzheim",
     "area": "≈ 119 Schüler · Primarstufe mit Förderschwerpunkt Sprache",
     "scope": "",
-    "images": [
-      "/references/milos-sovak-schule-huerth/01.jpg",
-      "/references/milos-sovak-schule-huerth/02.jpg"
-    ],
+    "images": [],
     "year": 2024,
     "featured": false
   },
@@ -279,10 +235,7 @@
     "address": "Walter-Gropius-Straße 11-13, 51503 Rösrath",
     "area": "≈ 220 Schüler · Klassen 1-10 · Haus 12 (Sek I) + Haus 13 (Primar) + Erweiterungsneubau in Holzbau",
     "scope": "",
-    "images": [
-      "/references/albert-einstein-schule-roesrath/01.jpg",
-      "/references/albert-einstein-schule-roesrath/02.jpg"
-    ],
+    "images": [],
     "year": 2024,
     "featured": false
   },
@@ -298,10 +251,7 @@
     "address": "Landshuter Allee 40, 80637 München",
     "area": "Akademie-/Seminargebäude der Inneren Mission",
     "scope": "",
-    "images": [
-      "/references/aid-muenchen/01.jpg",
-      "/references/aid-muenchen/02.jpg"
-    ],
+    "images": [],
     "year": 2024,
     "featured": false
   },
@@ -317,10 +267,7 @@
     "address": "Öhder Straße 28, 42289 Wuppertal",
     "area": "157.000 m² Werksgelände · ≈ 500 Mitarbeiter · weltweit führend in Membrantechnologie",
     "scope": "",
-    "images": [
-      "/references/3m-wuppertal/01.jpg",
-      "/references/3m-wuppertal/02.jpg"
-    ],
+    "images": [],
     "year": 2024,
     "featured": false
   },
@@ -368,11 +315,7 @@
     "address": "Bahnhof 1, 71332 Waiblingen",
     "area": "Empfangsgebäude von 1980 · Modernisierung 2008 · großer P+R-Parkplatz · S-Bahn-Inbetriebnahme 1981",
     "scope": "",
-    "images": [
-      "/references/deutsche-bahn-waiblingen/01.jpg",
-      "/references/deutsche-bahn-waiblingen/02.jpg",
-      "/references/deutsche-bahn-waiblingen/03.jpg"
-    ],
+    "images": [],
     "year": 2024,
     "featured": false
   },
@@ -388,11 +331,7 @@
     "address": "Amsterdamer Straße 34, 50735 Köln-Riehl",
     "area": "11,5 ha Gesamtanlage (davon ≈ 5,5 ha Gartenflächen) · ≈ 12.000 Pflanzenarten · Festhaus restauriert 2011-2014",
     "scope": "",
-    "images": [
-      "/references/flora-botanischer-garten-koeln/01.jpg",
-      "/references/flora-botanischer-garten-koeln/02.jpg",
-      "/references/flora-botanischer-garten-koeln/03.jpg"
-    ],
+    "images": [],
     "year": 2024,
     "featured": false
   }
