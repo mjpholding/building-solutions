@@ -9,7 +9,7 @@ export interface LegalPages {
 }
 
 const DEFAULT_IMPRESSUM = `<h2>Impressum</h2>
-<p><strong>Swish Deutschland</strong><br/>
+<p><strong>Building Solutions GmbH</strong><br/>
 Musterstraße 1<br/>
 12345 Musterstadt<br/>
 Deutschland</p>
@@ -19,7 +19,7 @@ Max Mustermann</p>
 
 <p><strong>Kontakt:</strong><br/>
 Telefon: +49 (0) 123 456789<br/>
-E-Mail: info@swish-deutschland.de</p>
+E-Mail: info@buildingsolutions.de</p>
 
 <p><strong>Handelsregister:</strong><br/>
 Registergericht: Amtsgericht Musterstadt<br/>
@@ -41,10 +41,10 @@ const DEFAULT_DATENSCHUTZ = `<h2>Datenschutzerklärung</h2>
 
 <h3>2. Verantwortliche Stelle</h3>
 <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br/>
-Swish Deutschland<br/>
+Building Solutions GmbH<br/>
 Musterstraße 1<br/>
 12345 Musterstadt<br/>
-E-Mail: info@swish-deutschland.de</p>
+E-Mail: info@buildingsolutions.de</p>
 
 <h3>3. Datenerfassung auf dieser Website</h3>
 <p><strong>Cookies:</strong> Diese Website verwendet keine Tracking-Cookies. Es werden keine personenbezogenen Daten zu Analysezwecken erhoben.</p>
@@ -55,11 +55,11 @@ E-Mail: info@swish-deutschland.de</p>
 <h3>5. Ihre Rechte</h3>
 <p>Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten. Bitte wenden Sie sich dazu an die oben genannte verantwortliche Stelle.</p>`;
 
-const DEFAULT_AGB = `<p><strong>Swish Deutschland</strong><br/>(eine Marke der Building Solutions GmbH)</p>
+const DEFAULT_AGB = `<p><strong>Building Solutions GmbH</strong><br/>(eine Marke der Building Solutions GmbH)</p>
 <p>Vertrieb von Reinigungs-, Hygiene- und Pflegeprodukten (B2B)<br/>Stand: März 2026</p>
 
 <h3>1. Geltungsbereich</h3>
-<p>1.1 Diese Allgemeinen Geschäftsbedingungen gelten für sämtliche Lieferungen und Leistungen der Building Solutions GmbH, Ottostraße 14, 50170 Kerpen, unter der Marke „Swish Deutschland".</p>
+<p>1.1 Diese Allgemeinen Geschäftsbedingungen gelten für sämtliche Lieferungen und Leistungen der Building Solutions GmbH, Ottostraße 14, 50170 Kerpen, unter der Marke „Building Solutions GmbH".</p>
 <p>1.2 Das Angebot richtet sich ausschließlich an Unternehmer im Sinne des § 14 BGB sowie an juristische Personen des öffentlichen Rechts.</p>
 <p>1.3 Entgegenstehende oder abweichende Bedingungen des Kunden werden nicht anerkannt, es sei denn, ihrer Geltung wird ausdrücklich schriftlich zugestimmt.</p>
 

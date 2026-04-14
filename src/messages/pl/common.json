@@ -1,23 +1,27 @@
 {
   "meta": {
-    "title": "Swish Deutschland – Profesjonalne rozwiązania czyszczące",
-    "description": "Eksperci w profesjonalnych środkach czystości i rozwiązaniach higienicznych w Niemczech. Od 1956 roku."
+    "title": "Building Solutions GmbH – Technika budynkowa i bezpieczeństwo",
+    "description": "Twój partner w zakresie systemów bezpieczeństwa, monitoringu wideo, elektrotechniki i fotowoltaiki w Kerpen i okolicach."
   },
   "nav": {
     "home": "Strona główna",
+    "services": "Usługi",
+    "references": "Referencje",
+    "about": "O nas",
+    "career": "Kariera",
+    "partners": "Partnerzy",
+    "contact": "Kontakt",
     "products": "Produkty",
     "productAdvisor": "Doradca produktowy",
-    "about": "O nas",
     "hygienePlans": "Plany higieny",
-    "downloads": "Do pobrania",
-    "contact": "Kontakt",
+    "downloads": "Pobieranie",
     "allProducts": "Wszystkie produkty",
     "requestQuote": "Zapytaj o ofertę"
   },
   "hero": {
-    "title": "Czystość to nasza misja",
-    "subtitle": "Profesjonalne rozwiązania czyszczące dla Twojej firmy – sprawdzone od 1956 roku",
-    "cta": "Odkryj produkty",
+    "title": "Rozwiązania dla bezpieczniejszych budynków",
+    "subtitle": "Sprawiamy, że budynki są bezpieczniejsze, wydajniejsze i wygodniejsze — dzięki zintegrowanej technice bezpieczeństwa, komunikacji i elektrotechnice.",
+    "cta": "Nasze usługi",
     "ctaSecondary": "Zapytaj o ofertę"
   },
   "categories": {
@@ -196,14 +200,28 @@
     "images": "Zdjęcia produktów",
     "dosageTables": "Tabele dozowania"
   },
+  "services": {
+    "title": "Nasze usługi",
+    "subtitle": "Kompleksowe rozwiązania dla techniki budynkowej i bezpieczeństwa",
+    "learnMore": "Dowiedz się więcej",
+    "backToServices": "Wszystkie usługi",
+    "notFound": "Usługa nie znaleziona",
+    "overview": "Przegląd",
+    "ourServices": "Nasze usługi w szczegółach",
+    "ctaTitle": "Omówić projekt?",
+    "ctaDescription": "Skontaktuj się z nami w sprawie bezpłatnej konsultacji.",
+    "ctaButton": "Skontaktuj się",
+    "otherServices": "Więcej usług",
+    "allServices": "Zobacz wszystkie usługi"
+  },
   "footer": {
-    "company": "Swish Deutschland",
-    "address": "Ottostr. 14, 50170 Kerpen",
-    "phone": "+49 (0) 2273 951 55 77",
+    "company": "Building Solutions GmbH",
+    "address": "Ottostraße 14, 50170 Kerpen",
+    "phone": "+49 (0) 2273 951 55 0",
     "rights": "Wszelkie prawa zastrzeżone",
     "privacy": "Polityka prywatności",
     "imprint": "Impressum",
-    "tagline": "Eksperci w profesjonalnych rozwiązaniach czyszczących"
+    "tagline": "Twój partner w technice budynkowej i bezpieczeństwie"
   },
   "common": {
     "learnMore": "Dowiedz się więcej",
@@ -335,11 +353,11 @@
     "detailedDescription": "Opis produktu"
   },
   "heroStats": {
-    "since": "Od 1956",
-    "founded": "Założono",
-    "products": "Produktów",
-    "locations": "Lokalizacji",
-    "employees": "Pracowników"
+    "since": "Building Solutions GmbH",
+    "services": "Obszary usług",
+    "quality": "Jakość",
+    "support": "Serwis i wsparcie",
+    "region": "Region"
   },
   "whySwish": {
     "title": "Dlaczego Swish?",
@@ -368,5 +386,33 @@
     "navigation": "Nawigacja",
     "legalSection": "Prawne",
     "expertTagline": "Eksperci w profesjonalnych rozwiązaniach czyszczących"
+  },
+  "references": {
+    "title": "Referencje",
+    "subtitle": "Wybrane projekty i zadowoleni klienci",
+    "allCategories": "Wszystkie",
+    "empty": "Brak referencji."
+  },
+  "career": {
+    "title": "Kariera",
+    "subtitle": "Dołącz do naszego zespołu",
+    "noJobs": "Brak otwartych pozycji",
+    "noJobsDescription": "Obecnie nie mamy otwartych pozycji. Wyślij nam aplikację spontaniczną.",
+    "applyGeneral": "Wyślij aplikację",
+    "apply": "Aplikuj",
+    "requirements": "Wymagania",
+    "benefits": "Co oferujemy",
+    "contactTitle": "Pytania o karierę?",
+    "contactDescription": "Czekamy na kontakt."
+  },
+  "partners": {
+    "title": "Nasi partnerzy",
+    "subtitle": "Silne partnerstwa dla najlepszych wyników",
+    "empty": "Brak partnerów."
+  },
+  "cta": {
+    "title": "Twój projekt. Nasze rozwiązanie.",
+    "subtitle": "Skontaktuj się z nami w sprawie bezpłatnej konsultacji — znajdziemy optymalne rozwiązanie.",
+    "button": "Skontaktuj się"
   }
 }

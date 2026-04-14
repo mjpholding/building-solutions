@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "slug": "sicherheitssysteme",
+    "name": "Sicherheitssysteme",
+    "icon": "Shield",
+    "category": "security",
+    "shortDescription": "Umfassende Sicherheitslösungen für Ihr Gebäude – von Einbruchmeldeanlagen bis hin zu Zutrittskontrollsystemen.",
+    "description": "Wir planen, installieren und warten modernste Sicherheitssysteme, die Ihr Gebäude und Ihre Mitarbeiter zuverlässig schützen. Unsere Lösungen umfassen Einbruchmeldeanlagen, Zutrittskontrolle und Perimeterschutz – individuell auf Ihre Anforderungen abgestimmt.",
+    "features": [
+      "Einbruchmeldeanlagen (EMA)",
+      "Zutrittskontrollsysteme",
+      "Perimeterschutz",
+      "Schlüsselverwaltung",
+      "24/7 Alarmaufschaltung",
+      "Wartung & Service"
+    ],
+    "image": ""
+  },
+  {
+    "id": 2,
+    "slug": "videoueberwachung",
+    "name": "Videoüberwachung",
+    "icon": "Camera",
+    "category": "video",
+    "shortDescription": "Professionelle Videoüberwachungssysteme für maximale Transparenz und Sicherheit in Ihrem Gebäude.",
+    "description": "Unsere Videoüberwachungslösungen bieten Ihnen lückenlose Überwachung mit modernster Kameratechnik. Von der Planung über die Installation bis zur Wartung – wir liefern maßgeschneiderte Systeme für jeden Anwendungsbereich.",
+    "features": [
+      "IP-Kamerasysteme",
+      "Videoanalyse & KI-gestützte Erkennung",
+      "Netzwerk-Videorekorder (NVR)",
+      "Fernzugriff & Mobile Überwachung",
+      "Datenschutzkonforme Lösungen",
+      "Integration in bestehende Systeme"
+    ],
+    "image": ""
+  },
+  {
+    "id": 3,
+    "slug": "gefahrenmanagement",
+    "name": "Gefahrenmanagement",
+    "icon": "AlertTriangle",
+    "category": "hazard",
+    "shortDescription": "Intelligente Gefahrenmanagementsysteme zum Schutz von Menschen und Sachwerten.",
+    "description": "Unser Gefahrenmanagement verbindet Brandmeldetechnik, Rauch- und Gaserkennung sowie Evakuierungssysteme zu einer integrierten Sicherheitslösung. Wir sorgen dafür, dass im Ernstfall alles reibungslos funktioniert.",
+    "features": [
+      "Brandmeldeanlagen (BMA)",
+      "Rauch- und Wärmeabzugsanlagen (RWA)",
+      "Gaswarnanlage",
+      "Evakuierungssysteme",
+      "Sprachalarmierungsanlagen (SAA)",
+      "Regelmäßige Prüfung & Wartung"
+    ],
+    "image": ""
+  },
+  {
+    "id": 4,
+    "slug": "kommunikationstechnik",
+    "name": "Kommunikationstechnik",
+    "icon": "Radio",
+    "category": "communication",
+    "shortDescription": "Moderne Kommunikationslösungen für effiziente Gebäudevernetzung und Intercom-Systeme.",
+    "description": "Wir realisieren leistungsfähige Kommunikationsinfrastrukturen – von IP-Intercom-Systemen über strukturierte Verkabelung bis hin zu Netzwerklösungen. Alles aus einer Hand, perfekt aufeinander abgestimmt.",
+    "features": [
+      "IP-Intercom & Türkommunikation",
+      "Strukturierte Verkabelung (Cat6a/Cat7)",
+      "Netzwerktechnik & WLAN",
+      "Telefonanlagen (VoIP)",
+      "Beschallungssysteme",
+      "Konferenztechnik"
+    ],
+    "image": ""
+  },
+  {
+    "id": 5,
+    "slug": "elektrotechnik",
+    "name": "Elektrotechnik",
+    "icon": "Zap",
+    "category": "electrical",
+    "shortDescription": "Professionelle Elektroinstallationen und -planung für Gewerbe und Industrie.",
+    "description": "Von der Elektroplanung über die Installation bis zur Abnahme – wir bieten das komplette Spektrum der Elektrotechnik. Unsere Fachkräfte sorgen für sichere, normgerechte und energieeffiziente Lösungen.",
+    "features": [
+      "Elektroinstallation Gewerbe & Industrie",
+      "Schaltschrankbau",
+      "Beleuchtungstechnik & LED",
+      "Energieverteilung",
+      "E-Check & Prüfung",
+      "Smart Building Integration"
+    ],
+    "image": ""
+  },
+  {
+    "id": 6,
+    "slug": "geraetereparaturen",
+    "name": "Gerätereparaturen",
+    "icon": "Wrench",
+    "category": "repairs",
+    "shortDescription": "Schnelle und kompetente Diagnose und Reparatur Ihrer technischen Geräte und Anlagen.",
+    "description": "Unser Serviceteam diagnostiziert und repariert Ihre technischen Geräte und Anlagen schnell und zuverlässig. Ob Sicherheitstechnik, Kommunikationsanlagen oder Elektrogeräte – wir bringen Ihre Technik wieder zum Laufen.",
+    "features": [
+      "Fehlerdiagnose & Analyse",
+      "Reparatur von Sicherheitstechnik",
+      "Instandsetzung von Kommunikationsanlagen",
+      "Elektrogeräte-Reparatur",
+      "Ersatzteilbeschaffung",
+      "Wartungsverträge"
+    ],
+    "image": ""
+  },
+  {
+    "id": 7,
+    "slug": "photovoltaik",
+    "name": "Photovoltaik",
+    "icon": "Sun",
+    "category": "pv",
+    "shortDescription": "Nachhaltige Energielösungen mit Photovoltaik – Planung, Installation und Wartung von PV-Anlagen.",
+    "description": "Nutzen Sie die Kraft der Sonne für Ihr Gebäude. Wir planen und installieren leistungsstarke Photovoltaikanlagen für Gewerbe und Industrie. Von der Wirtschaftlichkeitsberechnung bis zur Inbetriebnahme – alles aus einer Hand.",
+    "features": [
+      "PV-Anlagenplanung & Wirtschaftlichkeitsberechnung",
+      "Montage & Installation",
+      "Wechselrichter & Speicherlösungen",
+      "Monitoring & Fernüberwachung",
+      "Wartung & Reinigung",
+      "Einspeisemanagement & Eigenverbrauchsoptimierung"
+    ],
+    "image": ""
+  }
+]

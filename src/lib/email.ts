@@ -5,8 +5,8 @@ const resend = process.env.RESEND_API_KEY
   ? new Resend(process.env.RESEND_API_KEY)
   : null;
 
-const FROM_EMAIL = process.env.EMAIL_FROM || "Swish Deutschland <info@swish-deutschland.de>";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.swish-deutschland.de";
+const FROM_EMAIL = process.env.EMAIL_FROM || "Building Solutions GmbH <info@buildingsolutions.de>";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.buildingsolutions.de";
 
 export interface NotificationSettings {
   [userId: string]: {

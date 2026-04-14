@@ -58,15 +58,15 @@ export default function AIAdvisorAdminPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-            <Brain className="text-red-600" size={28} />
+            <Brain className="text-bs-accent" size={28} />
             AI-Produktberater
           </h1>
           <p className="text-gray-500 text-sm mt-1">KI-gestützte Oberflächenanalyse mit Kamera</p>
         </div>
         <div className="flex items-center gap-3">
-          <Link href="/de/ai-berater" target="_blank" className="text-sm text-gray-500 hover:text-red-600">Vorschau →</Link>
+          <Link href="/de/ai-berater" target="_blank" className="text-sm text-gray-500 hover:text-bs-accent">Vorschau →</Link>
           <button onClick={handleSave} disabled={saving}
-            className="flex items-center gap-2 bg-red-600 text-white px-5 py-2.5 rounded-lg hover:bg-red-700 font-medium text-sm disabled:opacity-50">
+            className="flex items-center gap-2 bg-bs-accent text-white px-5 py-2.5 rounded-lg hover:bg-bs-accent-dark font-medium text-sm disabled:opacity-50">
             {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
             Speichern
           </button>
@@ -133,7 +133,7 @@ export default function AIAdvisorAdminPage() {
             <button onClick={() => setConfig({
               ...config,
               plans: [...config.plans, { id: Date.now().toString(36), name: "Neuer Tarif", price: 0, scansPerMonth: 0, features: [] }]
-            })} className="flex items-center gap-1 text-sm text-red-600 hover:text-red-700 font-medium">
+            })} className="flex items-center gap-1 text-sm text-bs-accent hover:text-bs-accent-dark font-medium">
               <Plus size={14} /> Tarif hinzufügen
             </button>
           </div>
@@ -144,7 +144,7 @@ export default function AIAdvisorAdminPage() {
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-gray-400 font-mono">ID: {plan.id}</span>
                   <button onClick={() => setConfig({ ...config, plans: config.plans.filter((_, i) => i !== idx) })}
-                    className="text-gray-400 hover:text-red-600"><Trash2 size={14} /></button>
+                    className="text-gray-400 hover:text-bs-accent"><Trash2 size={14} /></button>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   <div>
@@ -189,7 +189,7 @@ export default function AIAdvisorAdminPage() {
             <button onClick={() => setConfig({
               ...config,
               knowledgeBase: [...config.knowledgeBase, { id: Date.now().toString(36), surface: "", visualDescription: "", products: [] }]
-            })} className="flex items-center gap-1 text-sm text-red-600 hover:text-red-700 font-medium">
+            })} className="flex items-center gap-1 text-sm text-bs-accent hover:text-bs-accent-dark font-medium">
               <Plus size={14} /> Eintrag hinzufügen
             </button>
           </div>
@@ -219,7 +219,7 @@ export default function AIAdvisorAdminPage() {
                     </div>
                   </div>
                   <button onClick={() => setConfig({ ...config, knowledgeBase: config.knowledgeBase.filter((_, i) => i !== idx) })}
-                    className="text-gray-400 hover:text-red-600 mt-5"><Trash2 size={14} /></button>
+                    className="text-gray-400 hover:text-bs-accent mt-5"><Trash2 size={14} /></button>
                 </div>
               </div>
             ))}

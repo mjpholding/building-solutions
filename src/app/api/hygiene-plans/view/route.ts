@@ -37,12 +37,12 @@ export async function GET(request: NextRequest) {
   const title = TITLES[plan.category] || "Hygieneplan";
 
   const company = {
-    name: "Swish Deutschland",
+    name: "Building Solutions GmbH",
     sub: "eine Marke der Building Solutions GmbH",
     address: "Ottostr. 14 | 50170 Kerpen | Deutschland",
     phone: "+49 (0) 2273 951 55 0",
-    email: "info@swish-deutschland.de",
-    website: "www.swish-deutschland.de",
+    email: "info@buildingsolutions.de",
+    website: "www.buildingsolutions.de",
   };
 
   const html = `<!DOCTYPE html>
@@ -93,9 +93,9 @@ export async function GET(request: NextRequest) {
 
   <div class="header">
     <div class="header-left">
-      <img src="/logo-swish-deutschland.png" alt="Logo" style="height:30px;filter:brightness(0) invert(1);" />
+      <img src="/logo-buildingsolutions.png" alt="Logo" style="height:30px;filter:brightness(0) invert(1);" />
       <div>
-        <div class="brand">Swish Deutschland</div>
+        <div class="brand">Building Solutions GmbH</div>
         <div class="sub">${company.sub}</div>
       </div>
     </div>

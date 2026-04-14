@@ -37,11 +37,11 @@ export default function AdminLogin() {
       <div className="w-full max-w-sm">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
           <div className="text-center mb-8">
-            <div className="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <Lock size={24} className="text-red-600" />
+            <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <Lock size={24} className="text-bs-accent" />
             </div>
             <h1 className="text-xl font-bold text-gray-900">
-              <span className="text-red-600">Swish</span> Admin
+              <span className="text-bs-accent">Building Solutions</span> <span className="font-normal text-gray-400">Admin</span>
             </h1>
             <p className="mt-1 text-sm text-gray-500">Bitte melden Sie sich an</p>
           </div>
@@ -58,7 +58,7 @@ export default function AdminLogin() {
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
                   placeholder="admin"
                   autoFocus
                 />
@@ -75,14 +75,14 @@ export default function AdminLogin() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
                   placeholder="Passwort eingeben"
                 />
               </div>
             </div>
 
             {error && (
-              <div className="text-sm text-red-600 bg-red-50 px-4 py-2.5 rounded-lg">
+              <div className="text-sm text-bs-accent bg-blue-50 px-4 py-2.5 rounded-lg">
                 {error}
               </div>
             )}
@@ -90,7 +90,7 @@ export default function AdminLogin() {
             <button
               type="submit"
               disabled={loading || !password}
-              className="w-full bg-red-600 hover:bg-red-700 disabled:bg-red-300 text-white py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-bs-accent hover:bg-bs-accent-dark disabled:bg-red-300 text-white py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2"
             >
               {loading ? <Loader2 size={16} className="animate-spin" /> : null}
               Anmelden

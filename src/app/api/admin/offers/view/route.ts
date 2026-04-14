@@ -17,12 +17,12 @@ export async function GET(request: NextRequest) {
   if (!offer) return new NextResponse("Angebot nicht gefunden", { status: 404 });
 
   const company = {
-    name: "Swish Deutschland",
+    name: "Building Solutions GmbH",
     sub: "eine Marke der Building Solutions GmbH",
     address: "Ottostr. 14, 50170 Kerpen, Deutschland",
     phone: "+49 (0) 2273 951 55 0",
-    email: "info@swish-deutschland.de",
-    website: "www.swish-deutschland.de",
+    email: "info@buildingsolutions.de",
+    website: "www.buildingsolutions.de",
   };
 
   const itemsHtml = offer.items.map((item, i) => `
@@ -90,7 +90,7 @@ export async function GET(request: NextRequest) {
   <div class="page">
     <div class="header">
       <div class="company">
-        <div class="name">Swish Deutschland</div>
+        <div class="name">Building Solutions GmbH</div>
         <div class="sub">${company.sub}</div>
         <div style="margin-top:8px;">${company.address}</div>
         <div>Tel: ${company.phone}</div>
@@ -98,7 +98,7 @@ export async function GET(request: NextRequest) {
         <div>${company.website}</div>
       </div>
       <div class="logo">
-        <img src="/logo-swish-deutschland.png" alt="Logo" />
+        <img src="/logo-buildingsolutions.png" alt="Logo" />
       </div>
     </div>
 

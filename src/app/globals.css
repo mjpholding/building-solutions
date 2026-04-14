@@ -2,21 +2,21 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --swish-red: #e31837;
-  --swish-red-dark: #c01430;
-  --swish-red-light: #ff3a54;
-  --swish-black: #000000;
-  --swish-white: #ffffff;
-  --swish-gray-50: #f9fafb;
-  --swish-gray-100: #f3f4f6;
-  --swish-gray-200: #e5e7eb;
-  --swish-gray-300: #d1d5db;
-  --swish-gray-400: #9ca3af;
-  --swish-gray-500: #6b7280;
-  --swish-gray-600: #4b5563;
-  --swish-gray-700: #374151;
-  --swish-gray-800: #1f2937;
-  --swish-gray-900: #111827;
+  --bs-accent: #1e3a5f;
+  --bs-accent-dark: #152d4a;
+  --bs-accent-light: #2d5a8e;
+  --bs-black: #000000;
+  --bs-white: #ffffff;
+  --bs-gray-50: #f9fafb;
+  --bs-gray-100: #f3f4f6;
+  --bs-gray-200: #e5e7eb;
+  --bs-gray-300: #d1d5db;
+  --bs-gray-400: #9ca3af;
+  --bs-gray-500: #6b7280;
+  --bs-gray-600: #4b5563;
+  --bs-gray-700: #374151;
+  --bs-gray-800: #1f2937;
+  --bs-gray-900: #111827;
   --background: #ffffff;
   --foreground: #111827;
 }
@@ -24,20 +24,20 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-swish-red: var(--swish-red);
-  --color-swish-red-dark: var(--swish-red-dark);
-  --color-swish-red-light: var(--swish-red-light);
-  --color-swish-black: var(--swish-black);
-  --color-swish-gray-50: var(--swish-gray-50);
-  --color-swish-gray-100: var(--swish-gray-100);
-  --color-swish-gray-200: var(--swish-gray-200);
-  --color-swish-gray-300: var(--swish-gray-300);
-  --color-swish-gray-400: var(--swish-gray-400);
-  --color-swish-gray-500: var(--swish-gray-500);
-  --color-swish-gray-600: var(--swish-gray-600);
-  --color-swish-gray-700: var(--swish-gray-700);
-  --color-swish-gray-800: var(--swish-gray-800);
-  --color-swish-gray-900: var(--swish-gray-900);
+  --color-bs-accent: var(--bs-accent);
+  --color-bs-accent-dark: var(--bs-accent-dark);
+  --color-bs-accent-light: var(--bs-accent-light);
+  --color-bs-black: var(--bs-black);
+  --color-bs-gray-50: var(--bs-gray-50);
+  --color-bs-gray-100: var(--bs-gray-100);
+  --color-bs-gray-200: var(--bs-gray-200);
+  --color-bs-gray-300: var(--bs-gray-300);
+  --color-bs-gray-400: var(--bs-gray-400);
+  --color-bs-gray-500: var(--bs-gray-500);
+  --color-bs-gray-600: var(--bs-gray-600);
+  --color-bs-gray-700: var(--bs-gray-700);
+  --color-bs-gray-800: var(--bs-gray-800);
+  --color-bs-gray-900: var(--bs-gray-900);
   --font-sans: "Inter", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
@@ -58,14 +58,14 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--swish-gray-100);
+  background: var(--bs-gray-100);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--swish-gray-400);
+  background: var(--bs-gray-400);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--swish-red);
+  background: var(--bs-accent);
 }

@@ -87,7 +87,7 @@ export default function CustomersAdmin() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Suchen..."
-          className="w-full pl-9 pr-8 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+          className="w-full pl-9 pr-8 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
         />
         {search && (
           <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"><X size={14} /></button>
@@ -172,7 +172,7 @@ export default function CustomersAdmin() {
                         <button onClick={() => startEdit(c)} className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
                           <Pencil size={14} />
                         </button>
-                        <button onClick={() => handleDelete(c.id, c.name)} className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg">
+                        <button onClick={() => handleDelete(c.id, c.name)} className="p-2 text-gray-400 hover:text-bs-accent hover:bg-blue-50 rounded-lg">
                           <Trash2 size={14} />
                         </button>
                       </>

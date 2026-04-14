@@ -1,24 +1,28 @@
 {
   "meta": {
-    "title": "Swish Deutschland – Zgjidhje Profesionale Pastrimi",
-    "description": "Ekspertë në produkte profesionale pastrimi dhe zgjidhje higjienike në Gjermani. Që nga viti 1956."
+    "title": "Building Solutions GmbH – Teknologjia e ndërtesave dhe siguria",
+    "description": "Partneri juaj për sistemet e sigurisë, mbikëqyrjen video, inxhinierinë elektrike dhe fotovoltaikën në Kerpen dhe rrethinë."
   },
   "nav": {
     "home": "Kryefaqja",
+    "services": "Shërbimet",
+    "references": "Referencat",
+    "about": "Rreth nesh",
+    "career": "Karriera",
+    "partners": "Partnerët",
+    "contact": "Kontakti",
     "products": "Produktet",
-    "productAdvisor": "Këshilltar Produkti",
-    "about": "Rreth Nesh",
-    "hygienePlans": "Planet e Higjienës",
-    "downloads": "Shkarkime",
-    "contact": "Kontakt",
+    "productAdvisor": "Këshilluesi i produkteve",
+    "hygienePlans": "Planet e higjienës",
+    "downloads": "Shkarkimet",
     "allProducts": "Të gjitha produktet",
-    "requestQuote": "Kërko Ofertë"
+    "requestQuote": "Kërkoni ofertë"
   },
   "hero": {
-    "title": "Pastërtia është misioni ynë",
-    "subtitle": "Zgjidhje profesionale pastrimi për biznesin tuaj – të provuara që nga viti 1956",
-    "cta": "Zbulo Produktet",
-    "ctaSecondary": "Kërko Ofertë"
+    "title": "Zgjidhje për ndërtesa më të sigurta",
+    "subtitle": "I bëjmë ndërtesat më të sigurta, më efikase dhe më komode — me teknologji të integruar sigurie, komunikimi dhe elektrike.",
+    "cta": "Shërbimet tona",
+    "ctaSecondary": "Kërkoni ofertë"
   },
   "categories": {
     "title": "Kategoritë e Produkteve",
@@ -180,14 +184,28 @@
     "images": "Foto Produktesh",
     "dosageTables": "Tabelat e Dozimit"
   },
+  "services": {
+    "title": "Shërbimet tona",
+    "subtitle": "Zgjidhje gjithëpërfshirëse për teknologjinë e ndërtesave dhe sigurinë",
+    "learnMore": "Mëso më shumë",
+    "backToServices": "Të gjitha shërbimet",
+    "notFound": "Shërbimi nuk u gjet",
+    "overview": "Përmbledhje",
+    "ourServices": "Shërbimet tona në detaje",
+    "ctaTitle": "Diskutoni projektin tuaj?",
+    "ctaDescription": "Na kontaktoni për një konsultë falas.",
+    "ctaButton": "Na kontaktoni",
+    "otherServices": "Shërbime të tjera",
+    "allServices": "Shiko të gjitha shërbimet"
+  },
   "footer": {
-    "company": "Swish Deutschland",
-    "address": "Ottostr. 14, 50170 Kerpen",
-    "phone": "+49 (0) 2273 951 55 77",
+    "company": "Building Solutions GmbH",
+    "address": "Ottostraße 14, 50170 Kerpen",
+    "phone": "+49 (0) 2273 951 55 0",
     "rights": "Të gjitha të drejtat e rezervuara",
-    "privacy": "Politika e Privatësisë",
-    "imprint": "Impressum",
-    "tagline": "Ekspertë në zgjidhje profesionale pastrimi"
+    "privacy": "Politika e privatësisë",
+    "imprint": "Impresi",
+    "tagline": "Partneri juaj për teknologjinë e ndërtesave dhe sigurinë"
   },
   "common": {
     "learnMore": "Mëso Më Shumë",
@@ -319,11 +337,11 @@
     "detailedDescription": "Përshkrimi i produktit"
   },
   "heroStats": {
-    "since": "Që nga 1956",
-    "founded": "Themelimi",
-    "products": "Produkte",
-    "locations": "Vendndodhje",
-    "employees": "Punonjës"
+    "since": "Building Solutions GmbH",
+    "services": "Fushat e shërbimit",
+    "quality": "Cilësia",
+    "support": "Shërbim dhe mbështetje",
+    "region": "Rajoni"
   },
   "whySwish": {
     "title": "Pse Swish?",
@@ -352,5 +370,33 @@
     "navigation": "Navigimi",
     "legalSection": "Ligjore",
     "expertTagline": "Ekspertë në zgjidhje profesionale pastrimi"
+  },
+  "references": {
+    "title": "Referencat",
+    "subtitle": "Projekte të zgjedhura dhe klientë të kënaqur",
+    "allCategories": "Të gjitha",
+    "empty": "Ende nuk ka referenca."
+  },
+  "career": {
+    "title": "Karriera",
+    "subtitle": "Bashkohuni me ekipin tonë",
+    "noJobs": "Nuk ka pozicione të hapura",
+    "noJobsDescription": "Aktualisht nuk kemi pozicione të hapura. Na dërgoni një aplikim spontan.",
+    "applyGeneral": "Dërgo aplikimin",
+    "apply": "Apliko tani",
+    "requirements": "Kërkesat",
+    "benefits": "Çfarë ofrojmë",
+    "contactTitle": "Pyetje rreth karrierës?",
+    "contactDescription": "Presim të dëgjojmë nga ju."
+  },
+  "partners": {
+    "title": "Partnerët tanë",
+    "subtitle": "Partneritete të forta për rezultatet më të mira",
+    "empty": "Ende nuk ka partnerë."
+  },
+  "cta": {
+    "title": "Projekti juaj. Zgjidhja jonë.",
+    "subtitle": "Na kontaktoni për një konsultë falas — do të gjejmë zgjidhjen optimale.",
+    "button": "Na kontaktoni tani"
   }
 }

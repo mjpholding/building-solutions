@@ -7,7 +7,7 @@ import {
   LayoutDashboard, Mail, Type, Package, LogOut, Loader2, ShoppingCart, Euro,
   Users, Tag, AtSign, CreditCard, MessageCircle, ShieldCheck, FileText,
   Menu, X, BarChart3, Activity, Scale, Printer, ClipboardList, Brain,
-  ChevronDown
+  ChevronDown, Globe, ImageIcon, Briefcase, Award, Handshake, UserPlus
 } from "lucide-react";
 
 interface NavItem {
@@ -23,6 +23,23 @@ interface NavGroup {
 }
 
 const navGroups: NavGroup[] = [
+  {
+    label: "Website",
+    icon: Globe,
+    items: [
+      { href: "/admin/pages", label: "Seiten", icon: FileText },
+      { href: "/admin/hero", label: "Hero-Bereich", icon: ImageIcon },
+      { href: "/admin/logo", label: "Logo", icon: ImageIcon },
+    ],
+  },
+  {
+    label: "Leistungen",
+    icon: Briefcase,
+    items: [
+      { href: "/admin/services", label: "Leistungen", icon: Briefcase },
+      { href: "/admin/references", label: "Referenzen", icon: Award },
+    ],
+  },
   {
     label: "Bestellungen",
     icon: ShoppingCart,
@@ -48,6 +65,8 @@ const navGroups: NavGroup[] = [
       { href: "/admin/texts", label: "Texte", icon: Type },
       { href: "/admin/contact", label: "Kontaktdaten", icon: Mail },
       { href: "/admin/legal", label: "Impressum / Datenschutz / AGB", icon: Scale },
+      { href: "/admin/careers", label: "Karriere", icon: UserPlus },
+      { href: "/admin/partners", label: "Partner", icon: Handshake },
     ],
   },
   {
@@ -184,7 +203,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <Menu size={22} />
             </button>
             <h1 className="text-sm font-bold tracking-tight">
-              <span className="text-red-500">Swish</span> Admin
+              <span className="text-bs-accent-light">BS</span> Admin
             </h1>
             <div className="w-8" />
           </div>
@@ -202,9 +221,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           >
             <div className={`border-b border-gray-800 flex items-center justify-between ${isChat ? "lg:p-3 lg:justify-center p-6" : "p-6"}`}>
               <h1 className={`text-lg font-bold tracking-tight ${isChat ? "lg:hidden" : ""}`}>
-                <span className="text-red-500">Swish</span> Admin
+                <span className="text-bs-accent-light">Building Solutions</span> <span className="text-gray-400 font-normal">Admin</span>
               </h1>
-              {isChat && <span className="text-red-500 font-bold text-lg hidden lg:block">S</span>}
+              {isChat && <span className="text-bs-accent-light font-bold text-lg hidden lg:block">BS</span>}
               <button onClick={() => setSidebarOpen(false)} className="lg:hidden p-1 hover:bg-gray-800 rounded">
                 <X size={18} />
               </button>
@@ -217,7 +236,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 title={isChat ? "Dashboard" : undefined}
                 className={`flex items-center gap-3 rounded-lg text-sm font-medium transition-colors mb-1 ${
                   isChat ? "lg:justify-center lg:px-0 lg:py-2.5 px-3 py-2.5" : "px-3 py-2.5"
-                } ${pathname === "/admin" ? "bg-red-600 text-white" : "text-gray-400 hover:text-white hover:bg-gray-800"}`}
+                } ${pathname === "/admin" ? "bg-bs-accent text-white" : "text-gray-400 hover:text-white hover:bg-gray-800"}`}
               >
                 <LayoutDashboard size={18} />
                 <span className={isChat ? "lg:hidden" : ""}>Dashboard</span>
@@ -238,7 +257,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     const isActive = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(item.href));
                     return (
                       <Link key={item.href} href={item.href} title={item.label}
-                        className={`flex items-center justify-center py-2.5 rounded-lg transition-colors ${isActive ? "bg-red-600 text-white" : "text-gray-400 hover:text-white hover:bg-gray-800"}`}>
+                        className={`flex items-center justify-center py-2.5 rounded-lg transition-colors ${isActive ? "bg-bs-accent text-white" : "text-gray-400 hover:text-white hover:bg-gray-800"}`}>
                         <Icon size={18} />
                       </Link>
                     );
@@ -256,7 +275,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                       <GroupIcon size={16} />
                       <span className="flex-1 text-left">{group.label}</span>
                       {group.label === "Bestellungen" && newOrderCount > 0 && (
-                        <span className="bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center animate-pulse">
+                        <span className="bg-bs-accent text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] text-center animate-pulse">
                           {newOrderCount}
                         </span>
                       )}
@@ -274,7 +293,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                               href={item.href}
                               className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
                                 isActive
-                                  ? "bg-red-600 text-white"
+                                  ? "bg-bs-accent text-white"
                                   : "text-gray-400 hover:text-white hover:bg-gray-800"
                               }`}
                             >

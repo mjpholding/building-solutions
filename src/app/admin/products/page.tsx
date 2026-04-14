@@ -116,7 +116,7 @@ export default function ProductsAdmin() {
         </div>
         <Link
           href="/admin/products/new"
-          className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+          className="flex items-center gap-2 bg-bs-accent hover:bg-bs-accent-dark text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
         >
           <Plus size={16} />
           Neues Produkt
@@ -132,7 +132,7 @@ export default function ProductsAdmin() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Suchen..."
-            className="w-full pl-9 pr-8 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+            className="w-full pl-9 pr-8 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
           />
           {search && (
             <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
@@ -143,7 +143,7 @@ export default function ProductsAdmin() {
         <select
           value={catFilter}
           onChange={(e) => setCatFilter(e.target.value)}
-          className="px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-700 outline-none focus:border-red-500"
+          className="px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-700 outline-none focus:border-bs-accent500"
         >
           <option value="">Alle Kategorien</option>
           {Object.entries(CATEGORIES).map(([val, label]) => (
@@ -179,7 +179,7 @@ export default function ProductsAdmin() {
                   <td className="px-5 py-3 text-gray-500 font-mono text-xs">{p.ph}</td>
                   <td className="px-5 py-3 text-center">
                     {p.isBestseller && (
-                      <span className="inline-block w-2 h-2 bg-red-500 rounded-full" />
+                      <span className="inline-block w-2 h-2 bg-bs-accent rounded-full" />
                     )}
                   </td>
                   <td className="px-5 py-3 text-center">
@@ -208,7 +208,7 @@ export default function ProductsAdmin() {
                       <button
                         onClick={() => handleDelete(p.slug)}
                         disabled={deleting === p.slug}
-                        className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50"
+                        className="p-2 text-gray-400 hover:text-bs-accent hover:bg-blue-50 rounded-lg transition-colors disabled:opacity-50"
                       >
                         {deleting === p.slug ? <Loader2 size={14} className="animate-spin" /> : <Trash2 size={14} />}
                       </button>
@@ -251,7 +251,7 @@ export default function ProductsAdmin() {
                       min="0"
                       value={qty}
                       onChange={(e) => setStockInputs((prev) => ({ ...prev, [size]: e.target.value }))}
-                      className="flex-1 px-3 py-2 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm text-center"
+                      className="flex-1 px-3 py-2 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm text-center"
                     />
                     <span className="text-xs text-gray-400">Stk.</span>
                   </div>
@@ -262,7 +262,7 @@ export default function ProductsAdmin() {
             <button
               onClick={saveStock}
               disabled={savingStock || Object.keys(stockInputs).length === 0}
-              className="mt-4 w-full py-2.5 bg-red-600 hover:bg-red-700 disabled:bg-gray-300 text-white rounded-xl text-sm font-semibold transition-colors flex items-center justify-center gap-2"
+              className="mt-4 w-full py-2.5 bg-bs-accent hover:bg-bs-accent-dark disabled:bg-gray-300 text-white rounded-xl text-sm font-semibold transition-colors flex items-center justify-center gap-2"
             >
               {savingStock && <Loader2 size={16} className="animate-spin" />}
               Speichern

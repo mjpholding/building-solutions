@@ -8,7 +8,7 @@ export async function POST() {
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const apiKey = process.env.RESEND_API_KEY;
-  const fromEmail = process.env.EMAIL_FROM || "Swish Deutschland <onboarding@resend.dev>";
+  const fromEmail = process.env.EMAIL_FROM || "Building Solutions GmbH <onboarding@resend.dev>";
 
   // Check 1: API key exists
   if (!apiKey) {
@@ -41,7 +41,7 @@ export async function POST() {
       subject: "✅ Swish Test — E-Mail funktioniert!",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 400px; margin: 0 auto; padding: 24px;">
-          <h2 style="color: #dc2626;">Swish Deutschland</h2>
+          <h2 style="color: #dc2626;">Building Solutions GmbH</h2>
           <p>E-Mail-Benachrichtigungen funktionieren korrekt!</p>
           <p style="color: #6b7280; font-size: 13px;">Gesendet an: ${userSettings.email}<br/>Von: ${fromEmail}<br/>User: ${user.name} (${user.id})</p>
         </div>

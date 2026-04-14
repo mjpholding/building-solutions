@@ -35,10 +35,10 @@ export default function CategoriesSection() {
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-swish-gray-900">
+          <h2 className="text-3xl lg:text-4xl font-bold text-bs-gray-900">
             {t("title")}
           </h2>
-          <p className="mt-4 text-lg text-swish-gray-500 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-bs-gray-500 max-w-2xl mx-auto">
             {t("subtitle")}
           </p>
         </motion.div>
@@ -56,12 +56,12 @@ export default function CategoriesSection() {
               >
                 <Link
                   href={`/produkte?category=${cat.slug}`}
-                  className="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-swish-gray-100 hover:border-swish-red/20 hover:shadow-lg hover:shadow-swish-red/5 transition-all duration-300 bg-white"
+                  className="group flex flex-col items-center gap-3 p-6 rounded-2xl border border-bs-gray-100 hover:border-bs-accent/20 hover:shadow-lg hover:shadow-bs-accent/5 transition-all duration-300 bg-white"
                 >
                   <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${cat.color} group-hover:scale-110 transition-transform duration-300`}>
                     <Icon size={24} />
                   </div>
-                  <span className="text-sm font-medium text-swish-gray-700 group-hover:text-swish-red transition-colors text-center">
+                  <span className="text-sm font-medium text-bs-gray-700 group-hover:text-bs-accent transition-colors text-center">
                     {t(cat.slug)}
                   </span>
                 </Link>

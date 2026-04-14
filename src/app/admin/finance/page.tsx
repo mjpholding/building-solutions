@@ -36,7 +36,7 @@ interface ExchangeRateData {
 }
 
 const inputClass =
-  "w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm";
+  "w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm";
 
 export default function FinancePage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -150,7 +150,7 @@ export default function FinancePage() {
         </div>
         <button
           onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-sm font-medium transition-colors"
+          className="flex items-center gap-2 px-4 py-2.5 bg-bs-accent hover:bg-bs-accent-dark text-white rounded-xl text-sm font-medium transition-colors"
         >
           <Plus size={16} />
           Transaktion
@@ -186,7 +186,7 @@ export default function FinancePage() {
               <TrendingDown size={16} className="text-red-400" />
             )}
           </div>
-          <div className={`text-2xl font-bold ${totalProfitEUR >= 0 ? "text-green-600" : "text-red-600"}`}>
+          <div className={`text-2xl font-bold ${totalProfitEUR >= 0 ? "text-green-600" : "text-bs-accent"}`}>
             {totalProfitEUR >= 0 ? "+" : ""}{totalProfitEUR.toFixed(2)} &euro;
           </div>
           <div className="text-xs text-gray-400 mt-1">Marge: {marginPercent.toFixed(1)}%</div>
@@ -256,7 +256,7 @@ export default function FinancePage() {
                   value={form.description}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
                   className={inputClass}
-                  placeholder="z.B. Einkauf Swish Polska - Rechnung 2024/03"
+                  placeholder="z.B. Einkauf Building Solutions - Rechnung 2024/03"
                   required
                 />
               </div>
@@ -295,7 +295,7 @@ export default function FinancePage() {
                       <button
                         type="button"
                         onClick={() => setForm({ ...form, exchangeRate: rate.currentRate.toFixed(4) })}
-                        className="ml-2 text-xs text-red-600 hover:underline"
+                        className="ml-2 text-xs text-bs-accent hover:underline"
                       >
                         NBP aktuell ({rate.currentRate.toFixed(4)})
                       </button>
@@ -332,7 +332,7 @@ export default function FinancePage() {
               <button
                 type="submit"
                 disabled={saving}
-                className="w-full py-2.5 bg-red-600 hover:bg-red-700 disabled:bg-red-400 text-white rounded-xl text-sm font-semibold transition-colors flex items-center justify-center gap-2"
+                className="w-full py-2.5 bg-bs-accent hover:bg-bs-accent-dark disabled:bg-red-400 text-white rounded-xl text-sm font-semibold transition-colors flex items-center justify-center gap-2"
               >
                 {saving && <Loader2 size={16} className="animate-spin" />}
                 Transaktion speichern
@@ -353,7 +353,7 @@ export default function FinancePage() {
                 onClick={() => setFilter(f)}
                 className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${
                   filter === f
-                    ? "bg-red-600 text-white"
+                    ? "bg-bs-accent text-white"
                     : "bg-gray-100 text-gray-500 hover:bg-gray-200"
                 }`}
               >
@@ -369,7 +369,7 @@ export default function FinancePage() {
             <p className="text-sm text-gray-500">Noch keine Transaktionen vorhanden</p>
             <button
               onClick={() => setShowForm(true)}
-              className="mt-3 text-sm text-red-600 hover:underline font-medium"
+              className="mt-3 text-sm text-bs-accent hover:underline font-medium"
             >
               Erste Transaktion erfassen
             </button>
@@ -419,7 +419,7 @@ export default function FinancePage() {
                 </div>
                 <button
                   onClick={() => handleDelete(tx.id)}
-                  className="p-1.5 text-gray-300 hover:text-red-500 transition-colors flex-shrink-0"
+                  className="p-1.5 text-gray-300 hover:text-bs-accent transition-colors flex-shrink-0"
                 >
                   <Trash2 size={14} />
                 </button>

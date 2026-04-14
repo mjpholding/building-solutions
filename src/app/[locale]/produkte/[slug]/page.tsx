@@ -15,7 +15,7 @@ import { useCustomer } from "@/lib/customer-context";
 
 function getPHColor(ph: string): string {
   const val = parseFloat(ph.split("-")[0].trim());
-  if (val < 3) return "text-red-600 bg-red-50 border-red-200";
+  if (val < 3) return "text-bs-accent bg-blue-50 border-bs-accent200";
   if (val < 6) return "text-orange-600 bg-orange-50 border-orange-200";
   if (val < 8) return "text-green-600 bg-green-50 border-green-200";
   if (val < 10) return "text-blue-600 bg-blue-50 border-blue-200";
@@ -72,12 +72,12 @@ export default function ProductDetailPage() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-swish-gray-900 mb-4">
+          <h1 className="text-2xl font-bold text-bs-gray-900 mb-4">
             {tD("notFound")}
           </h1>
           <Link
             href="/produkte"
-            className="inline-flex items-center gap-2 text-swish-red hover:underline"
+            className="inline-flex items-center gap-2 text-bs-accent hover:underline"
           >
             <ArrowLeft size={16} />
             {t("title")}
@@ -112,7 +112,7 @@ export default function ProductDetailPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <Link
           href="/produkte"
-          className="inline-flex items-center gap-2 text-swish-gray-500 hover:text-swish-red text-sm font-medium mb-8 transition-colors"
+          className="inline-flex items-center gap-2 text-bs-gray-500 hover:text-bs-accent text-sm font-medium mb-8 transition-colors"
         >
           <ArrowLeft size={16} />
           {t("title")}
@@ -123,7 +123,7 @@ export default function ProductDetailPage() {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-gradient-to-br from-swish-gray-50 to-swish-gray-100 rounded-2xl flex items-center justify-center h-96 lg:h-[500px] relative overflow-hidden"
+            className="bg-gradient-to-br from-bs-gray-50 to-bs-gray-100 rounded-2xl flex items-center justify-center h-96 lg:h-[500px] relative overflow-hidden"
           >
             {product.image ? (
               <img
@@ -132,12 +132,12 @@ export default function ProductDetailPage() {
                 className="object-contain h-full w-auto p-8"
               />
             ) : (
-              <div className="w-40 h-56 bg-gradient-to-b from-swish-gray-200 to-swish-gray-300 rounded-xl shadow-lg flex items-center justify-center">
-                <Droplets size={48} className="text-swish-gray-400" />
+              <div className="w-40 h-56 bg-gradient-to-b from-bs-gray-200 to-bs-gray-300 rounded-xl shadow-lg flex items-center justify-center">
+                <Droplets size={48} className="text-bs-gray-400" />
               </div>
             )}
             {product.isBestseller && (
-              <span className="absolute top-4 right-4 bg-swish-red text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
+              <span className="absolute top-4 right-4 bg-bs-accent text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
                 {tD("bestseller")}
               </span>
             )}
@@ -150,23 +150,23 @@ export default function ProductDetailPage() {
           >
             <Link
               href={`/produkte?category=${product.category}`}
-              className="text-xs font-semibold text-swish-red uppercase tracking-wider hover:underline"
+              className="text-xs font-semibold text-bs-accent uppercase tracking-wider hover:underline"
             >
               {tCat(product.category)}
             </Link>
-            <h1 className="mt-2 text-3xl lg:text-4xl font-bold text-swish-gray-900">
+            <h1 className="mt-2 text-3xl lg:text-4xl font-bold text-bs-gray-900">
               {product.name}
             </h1>
-            <p className="mt-4 text-swish-gray-600 leading-relaxed">
+            <p className="mt-4 text-bs-gray-600 leading-relaxed">
               {product.description}
             </p>
 
             {/* Price & Size selector */}
             {Object.keys(prices).length > 0 && (
-              <div className="mt-8 p-6 bg-swish-gray-50 rounded-2xl">
+              <div className="mt-8 p-6 bg-bs-gray-50 rounded-2xl">
                 {/* Size selector */}
                 <div className="mb-4">
-                  <label className="block text-sm font-medium text-swish-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-bs-gray-700 mb-2">
                     {t("sizes")}
                   </label>
                   <div className="flex gap-2 flex-wrap">
@@ -176,8 +176,8 @@ export default function ProductDetailPage() {
                         onClick={() => setSelectedSize(size)}
                         className={`px-4 py-2 rounded-lg text-sm font-medium border transition-all ${
                           selectedSize === size
-                            ? "border-swish-red bg-red-50 text-swish-red"
-                            : "border-swish-gray-200 bg-white text-swish-gray-600 hover:border-swish-gray-300"
+                            ? "border-bs-accent bg-blue-50 text-bs-accent"
+                            : "border-bs-gray-200 bg-white text-bs-gray-600 hover:border-bs-gray-300"
                         }`}
                       >
                         {size}
@@ -190,27 +190,27 @@ export default function ProductDetailPage() {
                 {isB2B ? (
                   <div className="mb-4 space-y-1">
                     <div className="flex items-end gap-2">
-                      <span className="text-3xl font-bold text-swish-gray-900">
+                      <span className="text-3xl font-bold text-bs-gray-900">
                         {currentPrice.toFixed(2)} &euro;
                       </span>
-                      <span className="text-sm text-swish-gray-400 mb-1">{tD("net")}</span>
+                      <span className="text-sm text-bs-gray-400 mb-1">{tD("net")}</span>
                     </div>
-                    <div className="text-sm text-swish-gray-500">
+                    <div className="text-sm text-bs-gray-500">
                       {tD("vatLine")}: {(currentPrice * 0.19).toFixed(2)} &euro;
                     </div>
-                    <div className="text-sm font-semibold text-swish-gray-700">
+                    <div className="text-sm font-semibold text-bs-gray-700">
                       {tD("gross")}: {(currentPrice * 1.19).toFixed(2)} &euro;
                     </div>
                   </div>
                 ) : (
                   <div className="mb-4">
                     <div className="flex items-end gap-2">
-                      <span className="text-3xl font-bold text-swish-gray-900">
+                      <span className="text-3xl font-bold text-bs-gray-900">
                         {(currentPrice * 1.19).toFixed(2)} &euro;
                       </span>
-                      <span className="text-sm text-swish-gray-400 mb-1">{tD("gross")}</span>
+                      <span className="text-sm text-bs-gray-400 mb-1">{tD("gross")}</span>
                     </div>
-                    <p className="text-xs text-swish-gray-400 mt-1">
+                    <p className="text-xs text-bs-gray-400 mt-1">
                       {tD("vatIncluded")}
                     </p>
                   </div>
@@ -218,10 +218,10 @@ export default function ProductDetailPage() {
 
                 {/* Quantity + Add to cart */}
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center border border-swish-gray-200 rounded-lg overflow-hidden bg-white">
+                  <div className="flex items-center border border-bs-gray-200 rounded-lg overflow-hidden bg-white">
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="px-3 py-2.5 text-swish-gray-600 hover:bg-swish-gray-50 transition-colors"
+                      className="px-3 py-2.5 text-bs-gray-600 hover:bg-bs-gray-50 transition-colors"
                     >
                       -
                     </button>
@@ -229,12 +229,12 @@ export default function ProductDetailPage() {
                       type="number"
                       value={quantity}
                       onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                      className="w-14 text-center text-sm font-medium border-x border-swish-gray-200 py-2.5 outline-none"
+                      className="w-14 text-center text-sm font-medium border-x border-bs-gray-200 py-2.5 outline-none"
                       min={1}
                     />
                     <button
                       onClick={() => setQuantity(quantity + 1)}
-                      className="px-3 py-2.5 text-swish-gray-600 hover:bg-swish-gray-50 transition-colors"
+                      className="px-3 py-2.5 text-bs-gray-600 hover:bg-bs-gray-50 transition-colors"
                     >
                       +
                     </button>
@@ -245,7 +245,7 @@ export default function ProductDetailPage() {
                     className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                       added
                         ? "bg-green-600 text-white"
-                        : "bg-swish-red hover:bg-swish-red-dark text-white"
+                        : "bg-bs-accent hover:bg-bs-accent-dark text-white"
                     }`}
                   >
                     {added ? <Check size={18} /> : <ShoppingBag size={18} />}
@@ -257,24 +257,24 @@ export default function ProductDetailPage() {
 
             {/* Specs */}
             <div className="mt-6 space-y-3">
-              <div className="flex items-center gap-3 p-4 bg-swish-gray-50 rounded-xl">
+              <div className="flex items-center gap-3 p-4 bg-bs-gray-50 rounded-xl">
                 <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${getPHColor(product.ph)}`}>
                   <span className="font-mono font-bold text-sm">pH</span>
                 </div>
                 <div>
-                  <span className="text-sm font-medium text-swish-gray-900">{t("ph")}</span>
-                  <span className="ml-2 text-sm text-swish-gray-500">{product.ph}</span>
-                  <span className="ml-2 text-xs text-swish-gray-400">({tD(getPHLabel(product.ph))})</span>
+                  <span className="text-sm font-medium text-bs-gray-900">{t("ph")}</span>
+                  <span className="ml-2 text-sm text-bs-gray-500">{product.ph}</span>
+                  <span className="ml-2 text-xs text-bs-gray-400">({tD(getPHLabel(product.ph))})</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-4 bg-swish-gray-50 rounded-xl">
+              <div className="flex items-center gap-3 p-4 bg-bs-gray-50 rounded-xl">
                 <div className="w-10 h-10 bg-amber-50 rounded-lg flex items-center justify-center">
                   <ShieldCheck size={18} className="text-amber-600" />
                 </div>
                 <div>
-                  <span className="text-sm font-medium text-swish-gray-900">{t("application")}</span>
-                  <span className="ml-2 text-sm text-swish-gray-500">{product.applications.join(", ")}</span>
+                  <span className="text-sm font-medium text-bs-gray-900">{t("application")}</span>
+                  <span className="ml-2 text-sm text-bs-gray-500">{product.applications.join(", ")}</span>
                 </div>
               </div>
             </div>
@@ -283,7 +283,7 @@ export default function ProductDetailPage() {
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/kontakt"
-                className="inline-flex items-center justify-center border border-swish-gray-200 hover:border-swish-red/30 text-swish-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all"
+                className="inline-flex items-center justify-center border border-bs-gray-200 hover:border-bs-accent/30 text-bs-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all"
               >
                 {t("requestQuote")}
               </Link>
@@ -291,7 +291,7 @@ export default function ProductDetailPage() {
                 href={productSheetUrl || `/katalog/${slug}.pdf`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border border-swish-gray-200 hover:border-swish-red/30 text-swish-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all"
+                className="inline-flex items-center justify-center gap-2 border border-bs-gray-200 hover:border-bs-accent/30 text-bs-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all"
               >
                 <Download size={16} />
                 {t("dataSheet")}
@@ -301,7 +301,7 @@ export default function ProductDetailPage() {
                   href={sdsSheetUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 border border-swish-gray-200 hover:border-swish-red/30 text-swish-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all"
+                  className="inline-flex items-center justify-center gap-2 border border-bs-gray-200 hover:border-bs-accent/30 text-bs-gray-700 px-6 py-3 rounded-xl font-medium text-sm transition-all"
                 >
                   <Download size={16} />
                   Sicherheitsdatenblatt
@@ -319,17 +319,17 @@ export default function ProductDetailPage() {
             transition={{ delay: 0.2 }}
             className="mt-16"
           >
-            <h2 className="text-2xl font-bold text-swish-gray-900 mb-6">
+            <h2 className="text-2xl font-bold text-bs-gray-900 mb-6">
               {tD("detailedDescription")}
             </h2>
             <div
-              className="prose prose-lg max-w-none text-swish-gray-700
-                prose-headings:text-swish-gray-900 prose-headings:font-bold
+              className="prose prose-lg max-w-none text-bs-gray-700
+                prose-headings:text-bs-gray-900 prose-headings:font-bold
                 prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-4
                 prose-p:leading-relaxed prose-p:mb-4
                 prose-ul:my-4 prose-li:my-1
-                prose-strong:text-swish-gray-900
-                prose-a:text-swish-red prose-a:no-underline hover:prose-a:underline"
+                prose-strong:text-bs-gray-900
+                prose-a:text-bs-accent prose-a:no-underline hover:prose-a:underline"
               dangerouslySetInnerHTML={{ __html: detailedDescription }}
             />
           </motion.div>
@@ -338,7 +338,7 @@ export default function ProductDetailPage() {
         {/* Related products */}
         {related.length > 0 && (
           <div className="mt-20">
-            <h2 className="text-2xl font-bold text-swish-gray-900 mb-8">
+            <h2 className="text-2xl font-bold text-bs-gray-900 mb-8">
               {t("relatedProducts")}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -346,24 +346,24 @@ export default function ProductDetailPage() {
                 <Link
                   key={rp.slug}
                   href={`/produkte/${rp.slug}`}
-                  className="group block bg-white rounded-xl border border-swish-gray-100 overflow-hidden hover:shadow-lg hover:border-swish-red/10 transition-all duration-300"
+                  className="group block bg-white rounded-xl border border-bs-gray-100 overflow-hidden hover:shadow-lg hover:border-bs-accent/10 transition-all duration-300"
                 >
-                  <div className="h-32 bg-gradient-to-br from-swish-gray-50 to-swish-gray-100 flex items-center justify-center overflow-hidden">
+                  <div className="h-32 bg-gradient-to-br from-bs-gray-50 to-bs-gray-100 flex items-center justify-center overflow-hidden">
                     {rp.image ? (
                       <img src={rp.image} alt={rp.name} className="object-contain h-full w-auto p-2" />
                     ) : (
-                      <Droplets size={24} className="text-swish-gray-300" />
+                      <Droplets size={24} className="text-bs-gray-300" />
                     )}
                   </div>
                   <div className="p-4">
                     <span className={`text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded ${getPHColor(rp.ph)}`}>
                       pH {rp.ph}
                     </span>
-                    <h3 className="mt-2 font-bold text-sm text-swish-gray-900 group-hover:text-swish-red transition-colors">
+                    <h3 className="mt-2 font-bold text-sm text-bs-gray-900 group-hover:text-bs-accent transition-colors">
                       {rp.name}
                     </h3>
                     {rp.prices && Object.values(rp.prices)[0] && (
-                      <p className="mt-1 text-sm font-semibold text-swish-gray-900">
+                      <p className="mt-1 text-sm font-semibold text-bs-gray-900">
                         {tD("from")} {(Object.values(rp.prices)[0] as number).toFixed(2)} &euro;
                       </p>
                     )}

@@ -1,23 +1,27 @@
 {
   "meta": {
-    "title": "Swish Deutschland – Professional Cleaning Solutions",
-    "description": "Experts in professional cleaning products and hygiene solutions in Germany. Since 1956."
+    "title": "Building Solutions GmbH – Building Technology & Security Solutions",
+    "description": "Your partner for security systems, video surveillance, electrical engineering and photovoltaics in Kerpen and surroundings."
   },
   "nav": {
     "home": "Home",
+    "services": "Services",
+    "references": "References",
+    "about": "About Us",
+    "career": "Career",
+    "partners": "Partners",
+    "contact": "Contact",
     "products": "Products",
     "productAdvisor": "Product Advisor",
-    "about": "About Us",
     "hygienePlans": "Hygiene Plans",
     "downloads": "Downloads",
-    "contact": "Contact",
     "allProducts": "All Products",
     "requestQuote": "Request Quote"
   },
   "hero": {
-    "title": "Cleanliness is Our Mission",
-    "subtitle": "Professional cleaning solutions for your business – proven since 1956",
-    "cta": "Discover Products",
+    "title": "Solutions for Safer Buildings",
+    "subtitle": "We make buildings safer, more efficient and more comfortable — with integrated security, communication and electrical technology.",
+    "cta": "Our Services",
     "ctaSecondary": "Request Quote"
   },
   "categories": {
@@ -196,14 +200,28 @@
     "images": "Product Images",
     "dosageTables": "Dosage Tables"
   },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive solutions for building technology and security",
+    "learnMore": "Learn more",
+    "backToServices": "All Services",
+    "notFound": "Service not found",
+    "overview": "Overview",
+    "ourServices": "Our Services in Detail",
+    "ctaTitle": "Discuss your project?",
+    "ctaDescription": "Contact us for a free consultation about your project.",
+    "ctaButton": "Get in touch",
+    "otherServices": "More Services",
+    "allServices": "View all services"
+  },
   "footer": {
-    "company": "Swish Deutschland",
-    "address": "Ottostr. 14, 50170 Kerpen",
-    "phone": "+49 (0) 2273 951 55 77",
+    "company": "Building Solutions GmbH",
+    "address": "Ottostraße 14, 50170 Kerpen",
+    "phone": "+49 (0) 2273 951 55 0",
     "rights": "All rights reserved",
     "privacy": "Privacy Policy",
     "imprint": "Imprint",
-    "tagline": "Experts in professional cleaning solutions"
+    "tagline": "Your partner for building technology and security solutions"
   },
   "common": {
     "learnMore": "Learn More",
@@ -335,11 +353,11 @@
     "detailedDescription": "Product Description"
   },
   "heroStats": {
-    "since": "Since 1956",
-    "founded": "Founded",
-    "products": "Products",
-    "locations": "Locations",
-    "employees": "Employees"
+    "since": "Building Solutions GmbH",
+    "services": "Service Areas",
+    "quality": "Quality",
+    "support": "Service & Support",
+    "region": "Region"
   },
   "whySwish": {
     "title": "Why Swish?",
@@ -368,5 +386,33 @@
     "navigation": "Navigation",
     "legalSection": "Legal",
     "expertTagline": "Experts in professional cleaning solutions"
+  },
+  "references": {
+    "title": "References",
+    "subtitle": "Selected projects and satisfied clients",
+    "allCategories": "All",
+    "empty": "No references yet."
+  },
+  "career": {
+    "title": "Career",
+    "subtitle": "Join our team",
+    "noJobs": "No open positions",
+    "noJobsDescription": "We currently have no open positions. Feel free to send us a speculative application.",
+    "applyGeneral": "Send speculative application",
+    "apply": "Apply now",
+    "requirements": "Requirements",
+    "benefits": "What we offer",
+    "contactTitle": "Questions about careers?",
+    "contactDescription": "We look forward to hearing from you."
+  },
+  "partners": {
+    "title": "Our Partners",
+    "subtitle": "Strong partnerships for best results",
+    "empty": "No partners yet."
+  },
+  "cta": {
+    "title": "Your Project. Our Solution.",
+    "subtitle": "Contact us for a free consultation — we'll find the optimal solution for your requirements.",
+    "button": "Get in touch now"
   }
 }

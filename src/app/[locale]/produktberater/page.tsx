@@ -47,7 +47,7 @@ const dirtItems = [
 const intensityLevels = [
   { id: "light", color: "bg-green-100 border-green-300 text-green-700" },
   { id: "medium", color: "bg-yellow-100 border-yellow-300 text-yellow-700" },
-  { id: "heavy", color: "bg-red-100 border-red-300 text-red-700" },
+  { id: "heavy", color: "bg-blue-100 border-bs-accent300 text-bs-accent-dark" },
 ];
 
 // Recommendation logic — uses reasonKey instead of hardcoded German strings
@@ -152,12 +152,12 @@ export default function ProductAdvisorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-swish-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-bs-gray-50 to-white">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl lg:text-4xl font-bold text-swish-gray-900">{t("title")}</h1>
-          <p className="mt-3 text-swish-gray-500">{t("subtitle")}</p>
+          <h1 className="text-3xl lg:text-4xl font-bold text-bs-gray-900">{t("title")}</h1>
+          <p className="mt-3 text-bs-gray-500">{t("subtitle")}</p>
         </div>
 
         {/* Progress */}
@@ -165,14 +165,14 @@ export default function ProductAdvisorPage() {
           {steps.map((s, i) => (
             <div key={i} className="flex items-center gap-2">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                i < step ? "bg-swish-red text-white" :
-                i === step ? "bg-swish-red text-white ring-4 ring-swish-red/20" :
-                "bg-swish-gray-200 text-swish-gray-500"
+                i < step ? "bg-bs-accent text-white" :
+                i === step ? "bg-bs-accent text-white ring-4 ring-bs-accent/20" :
+                "bg-bs-gray-200 text-bs-gray-500"
               }`}>
                 {i < step ? <CheckCircle2 size={16} /> : i + 1}
               </div>
               {i < steps.length - 1 && (
-                <div className={`hidden sm:block w-12 h-0.5 ${i < step ? "bg-swish-red" : "bg-swish-gray-200"}`} />
+                <div className={`hidden sm:block w-12 h-0.5 ${i < step ? "bg-bs-accent" : "bg-bs-gray-200"}`} />
               )}
             </div>
           ))}
@@ -189,7 +189,7 @@ export default function ProductAdvisorPage() {
           >
             {step === 0 && (
               <div>
-                <h2 className="text-xl font-semibold text-swish-gray-900 mb-6 text-center">{t("surface")}</h2>
+                <h2 className="text-xl font-semibold text-bs-gray-900 mb-6 text-center">{t("surface")}</h2>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {surfaceItems.map((s) => {
                     const Icon = s.icon;
@@ -197,12 +197,12 @@ export default function ProductAdvisorPage() {
                       <button
                         key={s.id}
                         onClick={() => handleSelect(s.id)}
-                        className={`p-4 rounded-xl border-2 transition-all text-center hover:border-swish-red hover:shadow-md ${
-                          surface === s.id ? "border-swish-red bg-red-50" : "border-swish-gray-200 bg-white"
+                        className={`p-4 rounded-xl border-2 transition-all text-center hover:border-bs-accent hover:shadow-md ${
+                          surface === s.id ? "border-bs-accent bg-blue-50" : "border-bs-gray-200 bg-white"
                         }`}
                       >
-                        <Icon size={24} className="mx-auto mb-2 text-swish-gray-600" />
-                        <span className="text-sm font-medium text-swish-gray-700">{t(`surfaces.${s.id}`)}</span>
+                        <Icon size={24} className="mx-auto mb-2 text-bs-gray-600" />
+                        <span className="text-sm font-medium text-bs-gray-700">{t(`surfaces.${s.id}`)}</span>
                       </button>
                     );
                   })}
@@ -212,7 +212,7 @@ export default function ProductAdvisorPage() {
 
             {step === 1 && (
               <div>
-                <h2 className="text-xl font-semibold text-swish-gray-900 mb-6 text-center">{t("room")}</h2>
+                <h2 className="text-xl font-semibold text-bs-gray-900 mb-6 text-center">{t("room")}</h2>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {roomItems.map((r) => {
                     const Icon = r.icon;
@@ -220,12 +220,12 @@ export default function ProductAdvisorPage() {
                       <button
                         key={r.id}
                         onClick={() => handleSelect(r.id)}
-                        className={`p-4 rounded-xl border-2 transition-all text-center hover:border-swish-red hover:shadow-md ${
-                          room === r.id ? "border-swish-red bg-red-50" : "border-swish-gray-200 bg-white"
+                        className={`p-4 rounded-xl border-2 transition-all text-center hover:border-bs-accent hover:shadow-md ${
+                          room === r.id ? "border-bs-accent bg-blue-50" : "border-bs-gray-200 bg-white"
                         }`}
                       >
-                        <Icon size={24} className="mx-auto mb-2 text-swish-gray-600" />
-                        <span className="text-sm font-medium text-swish-gray-700">{t(`rooms.${r.id}`)}</span>
+                        <Icon size={24} className="mx-auto mb-2 text-bs-gray-600" />
+                        <span className="text-sm font-medium text-bs-gray-700">{t(`rooms.${r.id}`)}</span>
                       </button>
                     );
                   })}
@@ -235,7 +235,7 @@ export default function ProductAdvisorPage() {
 
             {step === 2 && (
               <div>
-                <h2 className="text-xl font-semibold text-swish-gray-900 mb-6 text-center">{t("dirt")}</h2>
+                <h2 className="text-xl font-semibold text-bs-gray-900 mb-6 text-center">{t("dirt")}</h2>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {dirtItems.map((d) => {
                     const Icon = d.icon;
@@ -243,12 +243,12 @@ export default function ProductAdvisorPage() {
                       <button
                         key={d.id}
                         onClick={() => handleSelect(d.id)}
-                        className={`p-4 rounded-xl border-2 transition-all text-center hover:border-swish-red hover:shadow-md ${
-                          dirt === d.id ? "border-swish-red bg-red-50" : "border-swish-gray-200 bg-white"
+                        className={`p-4 rounded-xl border-2 transition-all text-center hover:border-bs-accent hover:shadow-md ${
+                          dirt === d.id ? "border-bs-accent bg-blue-50" : "border-bs-gray-200 bg-white"
                         }`}
                       >
-                        <Icon size={24} className="mx-auto mb-2 text-swish-gray-600" />
-                        <span className="text-sm font-medium text-swish-gray-700">{t(`dirtTypes.${d.id}`)}</span>
+                        <Icon size={24} className="mx-auto mb-2 text-bs-gray-600" />
+                        <span className="text-sm font-medium text-bs-gray-700">{t(`dirtTypes.${d.id}`)}</span>
                       </button>
                     );
                   })}
@@ -258,14 +258,14 @@ export default function ProductAdvisorPage() {
 
             {step === 3 && (
               <div>
-                <h2 className="text-xl font-semibold text-swish-gray-900 mb-6 text-center">{t("intensity")}</h2>
+                <h2 className="text-xl font-semibold text-bs-gray-900 mb-6 text-center">{t("intensity")}</h2>
                 <div className="grid grid-cols-3 gap-4 max-w-md mx-auto">
                   {intensityLevels.map((level) => (
                     <button
                       key={level.id}
                       onClick={() => handleSelect(level.id)}
                       className={`p-6 rounded-xl border-2 transition-all text-center hover:shadow-md ${level.color} ${
-                        intensity === level.id ? "ring-2 ring-swish-red" : ""
+                        intensity === level.id ? "ring-2 ring-bs-accent" : ""
                       }`}
                     >
                       <span className="text-lg font-bold">{t(level.id)}</span>
@@ -277,29 +277,29 @@ export default function ProductAdvisorPage() {
 
             {step === 4 && (
               <div>
-                <h2 className="text-xl font-semibold text-swish-gray-900 mb-2 text-center">{t("results")}</h2>
-                <p className="text-swish-gray-500 text-center mb-8">{t("resultsDesc")}</p>
+                <h2 className="text-xl font-semibold text-bs-gray-900 mb-2 text-center">{t("results")}</h2>
+                <p className="text-bs-gray-500 text-center mb-8">{t("resultsDesc")}</p>
 
                 <div className="space-y-4">
                   {recommendations.map((rec) => (
                     <Link
                       key={rec.slug}
                       href={`/produkte/${rec.slug}`}
-                      className="group block bg-white p-5 rounded-xl border border-swish-gray-200 hover:border-swish-red/30 hover:shadow-lg transition-all"
+                      className="group block bg-white p-5 rounded-xl border border-bs-gray-200 hover:border-bs-accent/30 hover:shadow-lg transition-all"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="w-14 h-14 bg-swish-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                          <Droplets size={24} className="text-swish-gray-400" />
+                        <div className="w-14 h-14 bg-bs-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <Droplets size={24} className="text-bs-gray-400" />
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between">
-                            <h3 className="font-bold text-swish-gray-900 group-hover:text-swish-red transition-colors">
+                            <h3 className="font-bold text-bs-gray-900 group-hover:text-bs-accent transition-colors">
                               {rec.name}
                             </h3>
-                            <span className="text-xs font-mono text-swish-gray-400">pH {rec.ph}</span>
+                            <span className="text-xs font-mono text-bs-gray-400">pH {rec.ph}</span>
                           </div>
-                          <p className="mt-1 text-sm text-swish-gray-500">{t(rec.reasonKey)}</p>
-                          <div className="mt-2 flex items-center gap-1 text-swish-red text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                          <p className="mt-1 text-sm text-bs-gray-500">{t(rec.reasonKey)}</p>
+                          <div className="mt-2 flex items-center gap-1 text-bs-accent text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                             {t("viewProduct")} <ArrowRight size={12} />
                           </div>
                         </div>
@@ -317,7 +317,7 @@ export default function ProductAdvisorPage() {
           {step > 0 && step < 4 && (
             <button
               onClick={() => setStep(step - 1)}
-              className="flex items-center gap-2 text-swish-gray-500 hover:text-swish-gray-700 font-medium text-sm transition-colors"
+              className="flex items-center gap-2 text-bs-gray-500 hover:text-bs-gray-700 font-medium text-sm transition-colors"
             >
               <ArrowLeft size={16} /> {t("back")}
             </button>
@@ -325,7 +325,7 @@ export default function ProductAdvisorPage() {
           {step === 4 && (
             <button
               onClick={restart}
-              className="flex items-center gap-2 text-swish-red hover:text-swish-red-dark font-medium text-sm transition-colors mx-auto"
+              className="flex items-center gap-2 text-bs-accent hover:text-bs-accent-dark font-medium text-sm transition-colors mx-auto"
             >
               <RotateCcw size={16} /> {t("restart")}
             </button>

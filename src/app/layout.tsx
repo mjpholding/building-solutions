@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Swish Deutschland",
+  title: "Building Solutions GmbH",
   description: "Professionelle Reinigungslösungen",
 };
 

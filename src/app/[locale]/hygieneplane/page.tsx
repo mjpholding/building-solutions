@@ -70,18 +70,18 @@ export default function HygienePlansPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-2xl border border-swish-gray-100 p-8 hover:shadow-xl transition-all group"
+                className="bg-white rounded-2xl border border-bs-gray-100 p-8 hover:shadow-xl transition-all group"
               >
                 <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${plan.color}`}>
                   <Icon size={28} />
                 </div>
-                <h3 className="text-xl font-bold text-swish-gray-900 mb-3">{t(plan.titleKey)}</h3>
-                <p className="text-sm text-swish-gray-500 leading-relaxed mb-6">{t(plan.descKey)}</p>
+                <h3 className="text-xl font-bold text-bs-gray-900 mb-3">{t(plan.titleKey)}</h3>
+                <p className="text-sm text-bs-gray-500 leading-relaxed mb-6">{t(plan.descKey)}</p>
                 <a
                   href={getPdfUrl(plan.category)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-swish-red hover:bg-swish-red-dark text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all"
+                  className="inline-flex items-center gap-2 bg-bs-accent hover:bg-bs-accent-dark text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-all"
                 >
                   <FileDown size={16} />
                   {t("download")} (PDF)

@@ -3,15 +3,14 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
-import { ArrowRight, Wand2 } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
+import contactData from "@/data/contact.json";
 
 export default function CTASection() {
-  const t = useTranslations("advisor");
-  const tNav = useTranslations("nav");
+  const t = useTranslations("cta");
 
   return (
-    <section className="py-20 lg:py-28 bg-gradient-to-br from-swish-red to-swish-red-dark text-white relative overflow-hidden">
-      {/* Background decorations */}
+    <section className="py-20 lg:py-28 bg-gradient-to-br from-bs-accent to-bs-accent-dark text-white relative overflow-hidden">
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-black/5 rounded-full blur-3xl" />
@@ -23,9 +22,6 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-8">
-            <Wand2 size={32} className="text-white" />
-          </div>
           <h2 className="text-3xl lg:text-4xl font-bold">
             {t("title")}
           </h2>
@@ -34,18 +30,19 @@ export default function CTASection() {
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/produktberater"
-              className="inline-flex items-center justify-center gap-2 bg-white text-swish-red hover:bg-swish-gray-100 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 shadow-lg"
+              href="/kontakt"
+              className="inline-flex items-center justify-center gap-2 bg-white text-bs-accent hover:bg-bs-gray-100 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 shadow-lg"
             >
-              {t("title")}
+              {t("button")}
               <ArrowRight size={18} />
             </Link>
-            <Link
-              href="/kontakt"
+            <a
+              href={`tel:${contactData.phone.replace(/[\s()]/g, "")}`}
               className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/25 text-white px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200"
             >
-              {tNav("requestQuote")}
-            </Link>
+              <Phone size={18} />
+              {contactData.phone}
+            </a>
           </div>
         </motion.div>
       </div>

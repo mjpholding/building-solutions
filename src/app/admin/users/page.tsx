@@ -18,7 +18,7 @@ const ROLE_LABELS: Record<string, string> = {
   editor: "Editor",
 };
 const ROLE_COLORS: Record<string, string> = {
-  superadmin: "bg-red-100 text-red-700",
+  superadmin: "bg-blue-100 text-bs-accent-dark",
   admin: "bg-blue-100 text-blue-700",
   editor: "bg-gray-100 text-gray-700",
 };
@@ -144,7 +144,7 @@ export default function AdminUsersPage() {
         {isSuperadmin && (
           <button
             onClick={() => setShowCreate(!showCreate)}
-            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+            className="flex items-center gap-2 bg-bs-accent hover:bg-bs-accent-dark text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
           >
             <Plus size={16} /> Neuer Benutzer
           </button>
@@ -152,7 +152,7 @@ export default function AdminUsersPage() {
       </div>
 
       {error && (
-        <div className="mb-4 text-sm text-red-600 bg-red-50 p-3 rounded-lg flex items-center justify-between">
+        <div className="mb-4 text-sm text-bs-accent bg-blue-50 p-3 rounded-lg flex items-center justify-between">
           {error}
           <button onClick={() => setError("")}><X size={14} /></button>
         </div>
@@ -170,7 +170,7 @@ export default function AdminUsersPage() {
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
                 placeholder="Max Mustermann"
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
               />
             </div>
             <div>
@@ -180,7 +180,7 @@ export default function AdminUsersPage() {
                 value={newUsername}
                 onChange={(e) => setNewUsername(e.target.value.toLowerCase().replace(/[^a-z0-9._-]/g, ""))}
                 placeholder="max.mustermann"
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm font-mono"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm font-mono"
               />
             </div>
             <div>
@@ -190,7 +190,7 @@ export default function AdminUsersPage() {
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 placeholder="Min. 4 Zeichen"
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
               />
             </div>
             <div>
@@ -198,7 +198,7 @@ export default function AdminUsersPage() {
               <select
                 value={newRole}
                 onChange={(e) => setNewRole(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 outline-none text-sm"
               >
                 <option value="admin">Admin</option>
                 <option value="editor">Editor</option>
@@ -210,7 +210,7 @@ export default function AdminUsersPage() {
             <button
               onClick={handleCreate}
               disabled={saving || !newName || !newUsername || !newPassword}
-              className="flex items-center gap-2 bg-red-600 hover:bg-red-700 disabled:bg-red-300 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+              className="flex items-center gap-2 bg-bs-accent hover:bg-bs-accent-dark disabled:bg-red-300 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
             >
               {saving ? <Loader2 size={16} className="animate-spin" /> : <Plus size={16} />}
               Erstellen
@@ -247,7 +247,7 @@ export default function AdminUsersPage() {
                         type="text"
                         value={editName}
                         onChange={(e) => setEditName(e.target.value)}
-                        className="w-full px-3 py-1.5 rounded border border-gray-200 focus:border-red-500 outline-none text-sm"
+                        className="w-full px-3 py-1.5 rounded border border-gray-200 focus:border-bs-accent500 outline-none text-sm"
                       />
                     </td>
                     <td className="px-6 py-3">
@@ -255,7 +255,7 @@ export default function AdminUsersPage() {
                         type="text"
                         value={editUsername}
                         onChange={(e) => setEditUsername(e.target.value.toLowerCase().replace(/[^a-z0-9._-]/g, ""))}
-                        className="w-full px-3 py-1.5 rounded border border-gray-200 focus:border-red-500 outline-none text-sm font-mono"
+                        className="w-full px-3 py-1.5 rounded border border-gray-200 focus:border-bs-accent500 outline-none text-sm font-mono"
                       />
                     </td>
                     <td className="px-6 py-3">
@@ -283,7 +283,7 @@ export default function AdminUsersPage() {
                           value={editPassword}
                           onChange={(e) => setEditPassword(e.target.value)}
                           placeholder="Neues Passwort (leer = unverändert)"
-                          className="w-full px-3 py-1.5 rounded border border-gray-200 focus:border-red-500 outline-none text-sm"
+                          className="w-full px-3 py-1.5 rounded border border-gray-200 focus:border-bs-accent500 outline-none text-sm"
                         />
                       </div>
                     </td>
@@ -311,7 +311,7 @@ export default function AdminUsersPage() {
                       <div className="flex items-center gap-3">
                         <div className="w-9 h-9 bg-gray-100 rounded-full flex items-center justify-center">
                           {user.role === "superadmin" ? (
-                            <ShieldCheck size={16} className="text-red-500" />
+                            <ShieldCheck size={16} className="text-bs-accent" />
                           ) : user.role === "admin" ? (
                             <Shield size={16} className="text-blue-500" />
                           ) : (
@@ -351,7 +351,7 @@ export default function AdminUsersPage() {
                         {isSuperadmin && user.id !== currentUser?.id && (
                           <button
                             onClick={() => handleDelete(user)}
-                            className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                            className="p-2 text-gray-400 hover:text-bs-accent hover:bg-blue-50 rounded-lg transition-colors"
                             title="Loschen"
                           >
                             <Trash2 size={16} />
@@ -429,7 +429,7 @@ function NotificationSettingsPanel() {
   return (
     <div className="mt-6 bg-white rounded-xl border border-gray-200 p-6">
       <div className="flex items-center gap-2 mb-4">
-        <Bell size={18} className="text-red-600" />
+        <Bell size={18} className="text-bs-accent" />
         <h3 className="text-sm font-semibold text-gray-900">E-Mail-Benachrichtigungen</h3>
       </div>
       <p className="text-sm text-gray-500 mb-4">
@@ -447,7 +447,7 @@ function NotificationSettingsPanel() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="ihre@email.de"
-            className="w-full max-w-sm px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+            className="w-full max-w-sm px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
           />
         </div>
 
@@ -457,7 +457,7 @@ function NotificationSettingsPanel() {
               type="checkbox"
               checked={chatNotify}
               onChange={(e) => setChatNotify(e.target.checked)}
-              className="w-4 h-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
+              className="w-4 h-4 rounded border-gray-300 text-bs-accent focus:ring-red-500"
             />
             <span className="text-sm text-gray-700">Chat-Nachrichten — Benachrichtigung bei neuen Nachrichten im Team-Chat</span>
           </label>
@@ -466,7 +466,7 @@ function NotificationSettingsPanel() {
               type="checkbox"
               checked={orderNotify}
               onChange={(e) => setOrderNotify(e.target.checked)}
-              className="w-4 h-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
+              className="w-4 h-4 rounded border-gray-300 text-bs-accent focus:ring-red-500"
             />
             <span className="text-sm text-gray-700">Bestellungen — Benachrichtigung bei neuen Kundenbestellungen</span>
           </label>
@@ -476,7 +476,7 @@ function NotificationSettingsPanel() {
           <button
             onClick={handleSave}
             disabled={saving || !email}
-            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 disabled:bg-red-300 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+            className="flex items-center gap-2 bg-bs-accent hover:bg-bs-accent-dark disabled:bg-red-300 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
           >
             {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
             Speichern

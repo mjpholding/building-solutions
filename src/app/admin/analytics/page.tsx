@@ -63,7 +63,7 @@ export default function AnalyticsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-            <BarChart3 className="text-red-600" size={28} />
+            <BarChart3 className="text-bs-accent" size={28} />
             Analytik
           </h1>
           <p className="text-gray-500 text-sm mt-1">
@@ -75,7 +75,7 @@ export default function AnalyticsPage() {
           <select
             value={days}
             onChange={(e) => setDays(Number(e.target.value))}
-            className="text-sm border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-red-500"
+            className="text-sm border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-bs-accent500"
           >
             <option value={7}>Letzte 7 Tage</option>
             <option value={14}>Letzte 14 Tage</option>
@@ -247,7 +247,7 @@ export default function AnalyticsPage() {
       {/* Advisor Funnel */}
       <div className="bg-white rounded-xl border border-gray-200 p-6">
         <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-          <ArrowUpRight size={18} className="text-red-500" />
+          <ArrowUpRight size={18} className="text-bs-accent" />
           Produktberater-Trichter
         </h2>
         <div className="flex items-center gap-4 flex-wrap">
@@ -257,7 +257,7 @@ export default function AnalyticsPage() {
           <span className="text-gray-300">→</span>
           <FunnelStep label="In Warenkorb" value={totals.advisorToCart} color="bg-green-100 text-green-700" />
           <span className="text-gray-300">=</span>
-          <FunnelStep label="Conversion" value={`${totals.advisorConversion}%`} color="bg-red-100 text-red-700" />
+          <FunnelStep label="Conversion" value={`${totals.advisorConversion}%`} color="bg-blue-100 text-bs-accent-dark" />
         </div>
       </div>
     </div>
@@ -281,7 +281,7 @@ function KPICard({
     blue: "bg-blue-50 text-blue-600",
     green: "bg-green-50 text-green-600",
     purple: "bg-purple-50 text-purple-600",
-    red: "bg-red-50 text-red-600",
+    red: "bg-blue-50 text-bs-accent",
   };
 
   return (

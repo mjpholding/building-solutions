@@ -436,7 +436,7 @@ export default function ChatPage() {
         >
           <div className="p-4 border-b border-gray-800 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <MessageCircle size={18} className="text-red-500" />
+              <MessageCircle size={18} className="text-bs-accent" />
               <span className="font-semibold text-sm">Kanäle</span>
             </div>
             <button
@@ -453,7 +453,7 @@ export default function ChatPage() {
                 key={ch.id}
                 className={`group flex items-center justify-between rounded-lg px-3 py-2 cursor-pointer transition-colors ${
                   activeChannel === ch.id
-                    ? "bg-red-600 text-white"
+                    ? "bg-bs-accent text-white"
                     : "text-gray-400 hover:text-white hover:bg-gray-800"
                 }`}
                 onClick={() => {
@@ -467,7 +467,7 @@ export default function ChatPage() {
                     {ch.name}
                   </span>
                   {unreadCounts[ch.id] > 0 && activeChannel !== ch.id && (
-                    <span className="ml-auto bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center">
+                    <span className="ml-auto bg-bs-accent text-white text-xs font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center">
                       {unreadCounts[ch.id]}
                     </span>
                   )}
@@ -505,7 +505,7 @@ export default function ChatPage() {
                   />
                   <button
                     onClick={handleCreateChannel}
-                    className="px-2.5 py-1.5 bg-red-600 hover:bg-red-700 rounded text-sm font-medium transition-colors"
+                    className="px-2.5 py-1.5 bg-bs-accent hover:bg-bs-accent-dark rounded text-sm font-medium transition-colors"
                   >
                     <Plus size={16} />
                   </button>
@@ -706,7 +706,7 @@ export default function ChatPage() {
               <button
                 onClick={() => handleSend()}
                 disabled={sending || (!input.trim() && !uploading)}
-                className="p-2.5 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:hover:bg-red-600 text-white rounded-lg transition-colors"
+                className="p-2.5 bg-bs-accent hover:bg-bs-accent-dark disabled:opacity-50 disabled:hover:bg-bs-accent text-white rounded-lg transition-colors"
               >
                 <Send size={18} />
               </button>
@@ -753,7 +753,7 @@ export default function ChatPage() {
                   <div className="text-sm font-medium text-gray-900 truncate flex items-center gap-1.5">
                     {m.name}
                     {m.role === "superadmin" && (
-                      <Shield size={12} className="text-red-500 flex-shrink-0" />
+                      <Shield size={12} className="text-bs-accent flex-shrink-0" />
                     )}
                   </div>
                   <div className="text-xs text-gray-400 truncate">

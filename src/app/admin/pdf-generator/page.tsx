@@ -17,7 +17,7 @@ export default function PDFGeneratorPage() {
   const [productName, setProductName] = useState("");
   const [translating, setTranslating] = useState(false);
   const [extracting, setExtracting] = useState(false);
-  const [logoUrl, setLogoUrl] = useState("/logo-swish-deutschland.png");
+  const [logoUrl, setLogoUrl] = useState("/logo-buildingsolutions.png");
   const [productImageUrl, setProductImageUrl] = useState("");
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
@@ -35,14 +35,14 @@ export default function PDFGeneratorPage() {
   const logoInputRef = useRef<HTMLInputElement>(null);
   const productImgInputRef = useRef<HTMLInputElement>(null);
 
-  // Company data (Swish Deutschland)
+  // Company data (Building Solutions GmbH)
   const company = {
-    name: "Swish Deutschland",
+    name: "Building Solutions GmbH",
     sub: "eine Marke der Building Solutions GmbH",
     address: "Ottostr. 14, 50170 Kerpen, Deutschland",
     phone: "+49 (0) 2273 951 55 0",
-    email: "info@swish-deutschland.de",
-    website: "www.swish-deutschland.de",
+    email: "info@buildingsolutions.de",
+    website: "www.buildingsolutions.de",
   };
 
   // Step 1: Upload PDF and extract text
@@ -123,7 +123,7 @@ export default function PDFGeneratorPage() {
       text = text.replace(/\[EMAIL\]/g, company.email);
       text = text.replace(/\[WEBSITE\]/g, company.website);
       // Also replace Polish company data that might not have been replaced
-      text = text.replace(/Swish Polska[^<]*?Warszawa/g, `${company.name}<br/>${company.sub}<br/>${company.address}`);
+      text = text.replace(/Building Solutions[^<]*?Warszawa/g, `${company.name}<br/>${company.sub}<br/>${company.address}`);
       text = text.replace(/biuro@swishclean\.pl/g, company.email);
       text = text.replace(/swishclean\.pl/g, company.website);
       text = text.replace(/swishclean\.com/g, company.website);
@@ -161,7 +161,7 @@ export default function PDFGeneratorPage() {
 
   // Load default logo as base64 on mount
   useEffect(() => {
-    fetch("/logo-swish-deutschland.png")
+    fetch("/logo-buildingsolutions.png")
       .then(r => r.blob())
       .then(blob => {
         const reader = new FileReader();
@@ -299,7 +299,7 @@ export default function PDFGeneratorPage() {
     <div class="header-left">
       ${logoUrl ? `<img src="${logoUrl}" alt="Logo" style="height:40px;filter:brightness(0) invert(1);" />` : ""}
       <div>
-        <div class="brand">Swish Deutschland</div>
+        <div class="brand">Building Solutions GmbH</div>
         <div class="sub">${company.sub}</div>
       </div>
     </div>
@@ -341,7 +341,7 @@ export default function PDFGeneratorPage() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-          <Printer className="text-red-600" size={28} />
+          <Printer className="text-bs-accent" size={28} />
           PDF-Generator
         </h1>
         <p className="text-gray-500 text-sm mt-1">
@@ -368,7 +368,7 @@ export default function PDFGeneratorPage() {
                 }}
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                   isActive
-                    ? "bg-red-600 text-white"
+                    ? "bg-bs-accent text-white"
                     : isDone
                     ? "bg-green-100 text-green-700 hover:bg-green-200"
                     : "bg-gray-100 text-gray-400"
@@ -384,7 +384,7 @@ export default function PDFGeneratorPage() {
       </div>
 
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">{error}</div>
+        <div className="bg-blue-50 border border-bs-accent200 text-bs-accent-dark px-4 py-3 rounded-lg text-sm">{error}</div>
       )}
 
       {/* Step 1: Upload */}
@@ -397,7 +397,7 @@ export default function PDFGeneratorPage() {
               <button
                 onClick={() => setDocType("product")}
                 className={`flex-1 p-4 rounded-lg border-2 text-center transition-all ${
-                  docType === "product" ? "border-red-500 bg-red-50" : "border-gray-200 hover:border-gray-300"
+                  docType === "product" ? "border-bs-accent500 bg-blue-50" : "border-gray-200 hover:border-gray-300"
                 }`}
               >
                 <FileText size={24} className="mx-auto mb-2 text-gray-600" />
@@ -407,7 +407,7 @@ export default function PDFGeneratorPage() {
               <button
                 onClick={() => setDocType("sds")}
                 className={`flex-1 p-4 rounded-lg border-2 text-center transition-all ${
-                  docType === "sds" ? "border-red-500 bg-red-50" : "border-gray-200 hover:border-gray-300"
+                  docType === "sds" ? "border-bs-accent500 bg-blue-50" : "border-gray-200 hover:border-gray-300"
                 }`}
               >
                 <FileText size={24} className="mx-auto mb-2 text-gray-600" />
@@ -417,7 +417,7 @@ export default function PDFGeneratorPage() {
               <button
                 onClick={() => setDocType("hygiene")}
                 className={`flex-1 p-4 rounded-lg border-2 text-center transition-all ${
-                  docType === "hygiene" ? "border-red-500 bg-red-50" : "border-gray-200 hover:border-gray-300"
+                  docType === "hygiene" ? "border-bs-accent500 bg-blue-50" : "border-gray-200 hover:border-gray-300"
                 }`}
               >
                 <FileText size={24} className="mx-auto mb-2 text-gray-600" />
@@ -458,7 +458,7 @@ export default function PDFGeneratorPage() {
                   )}
                   <button
                     onClick={() => logoInputRef.current?.click()}
-                    className="text-sm text-red-600 hover:text-red-700 font-medium"
+                    className="text-sm text-bs-accent hover:text-bs-accent-dark font-medium"
                   >
                     Ändern
                   </button>
@@ -487,7 +487,7 @@ export default function PDFGeneratorPage() {
                   )}
                   <button
                     onClick={() => productImgInputRef.current?.click()}
-                    className="text-sm text-red-600 hover:text-red-700 font-medium"
+                    className="text-sm text-bs-accent hover:text-bs-accent-dark font-medium"
                   >
                     {productImageUrl ? "Ändern" : "Hinzufügen"}
                   </button>
@@ -510,7 +510,7 @@ export default function PDFGeneratorPage() {
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
                 placeholder="z.B. Poly Lock Ultra"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-red-500 focus:border-bs-accent500"
               />
             </div>
           </div>
@@ -520,10 +520,10 @@ export default function PDFGeneratorPage() {
             <h2 className="font-semibold text-gray-900 mb-4">PDF hochladen (polnisch)</h2>
             <div
               onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed border-gray-300 rounded-xl p-12 text-center cursor-pointer hover:border-red-300 hover:bg-red-50/30 transition-all"
+              className="border-2 border-dashed border-gray-300 rounded-xl p-12 text-center cursor-pointer hover:border-bs-accent-light hover:bg-blue-50/30 transition-all"
             >
               {extracting ? (
-                <Loader2 size={40} className="mx-auto text-red-500 animate-spin" />
+                <Loader2 size={40} className="mx-auto text-bs-accent animate-spin" />
               ) : (
                 <Upload size={40} className="mx-auto text-gray-400" />
               )}
@@ -547,13 +547,13 @@ export default function PDFGeneratorPage() {
                 value={originalText}
                 onChange={(e) => setOriginalText(e.target.value)}
                 rows={6}
-                className="w-full border border-gray-300 rounded-lg p-3 text-sm font-mono focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                className="w-full border border-gray-300 rounded-lg p-3 text-sm font-mono focus:ring-2 focus:ring-red-500 focus:border-bs-accent500"
                 placeholder="Polnischen Text hier einfügen..."
               />
               {originalText && (
                 <button
                   onClick={() => setStep("translate")}
-                  className="mt-2 bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-700"
+                  className="mt-2 bg-bs-accent text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-bs-accent-dark"
                 >
                   Weiter →
                 </button>
@@ -580,7 +580,7 @@ export default function PDFGeneratorPage() {
           <button
             onClick={handleTranslate}
             disabled={translating}
-            className="w-full flex items-center justify-center gap-3 bg-red-600 text-white px-6 py-4 rounded-xl font-medium text-lg hover:bg-red-700 disabled:opacity-50 transition-colors"
+            className="w-full flex items-center justify-center gap-3 bg-bs-accent text-white px-6 py-4 rounded-xl font-medium text-lg hover:bg-bs-accent-dark disabled:opacity-50 transition-colors"
           >
             {translating ? (
               <>
@@ -609,7 +609,7 @@ export default function PDFGeneratorPage() {
               <button
                 onClick={handleTranslate}
                 disabled={translating}
-                className="flex items-center gap-2 text-sm text-red-600 hover:text-red-700 font-medium"
+                className="flex items-center gap-2 text-sm text-bs-accent hover:text-bs-accent-dark font-medium"
               >
                 <RefreshCw size={14} className={translating ? "animate-spin" : ""} />
                 Neu übersetzen
@@ -619,7 +619,7 @@ export default function PDFGeneratorPage() {
               value={translatedText}
               onChange={(e) => setTranslatedText(e.target.value)}
               rows={25}
-              className="w-full border border-gray-300 rounded-lg p-4 text-sm font-mono focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-y"
+              className="w-full border border-gray-300 rounded-lg p-4 text-sm font-mono focus:ring-2 focus:ring-red-500 focus:border-bs-accent500 resize-y"
             />
           </div>
 
@@ -632,7 +632,7 @@ export default function PDFGeneratorPage() {
             </button>
             <button
               onClick={() => setStep("preview")}
-              className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-red-700"
+              className="flex-1 flex items-center justify-center gap-2 bg-bs-accent text-white px-6 py-3 rounded-xl font-medium hover:bg-bs-accent-dark"
             >
               <Eye size={18} />
               Vorschau & Download
@@ -647,13 +647,13 @@ export default function PDFGeneratorPage() {
           {/* Preview */}
           <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-lg">
             {/* Header preview */}
-            <div className="bg-red-600 text-white p-5 flex justify-between items-center">
+            <div className="bg-bs-accent text-white p-5 flex justify-between items-center">
               <div className="flex items-center gap-4">
                 {logoUrl && (
                   <img src={logoUrl} alt="Logo" className="h-10 brightness-0 invert" />
                 )}
                 <div>
-                  <div className="text-lg font-bold">Swish Deutschland</div>
+                  <div className="text-lg font-bold">Building Solutions GmbH</div>
                   <div className="text-xs opacity-80">{company.sub}</div>
                 </div>
               </div>
@@ -670,7 +670,7 @@ export default function PDFGeneratorPage() {
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900">{productName || "Produktname"}</h2>
-                  <span className="inline-block mt-1 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  <span className="inline-block mt-1 bg-bs-accent text-white text-xs font-bold px-3 py-1 rounded-full">
                     {docType === "product" ? "PROFESSIONAL LINE" : "SICHERHEITSDATENBLATT"}
                   </span>
                 </div>
@@ -683,7 +683,7 @@ export default function PDFGeneratorPage() {
 
               <div
                 className="prose prose-sm max-w-none text-gray-700 leading-relaxed max-h-[500px] overflow-y-auto
-                  prose-h2:text-red-600 prose-h2:text-base prose-h2:font-bold prose-h2:mt-6 prose-h2:mb-2 prose-h2:border-b prose-h2:border-gray-200 prose-h2:pb-1
+                  prose-h2:text-bs-accent prose-h2:text-base prose-h2:font-bold prose-h2:mt-6 prose-h2:mb-2 prose-h2:border-b prose-h2:border-gray-200 prose-h2:pb-1
                   prose-h3:text-gray-900 prose-h3:text-sm prose-h3:font-bold prose-h3:mt-4 prose-h3:mb-1
                   prose-p:text-[13px] prose-p:my-1
                   prose-li:text-[13px]
@@ -732,7 +732,7 @@ export default function PDFGeneratorPage() {
             <button
               onClick={handleSaveSheet}
               disabled={saving}
-              className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-red-700 text-lg disabled:opacity-50"
+              className="flex-1 flex items-center justify-center gap-2 bg-bs-accent text-white px-6 py-3 rounded-xl font-medium hover:bg-bs-accent-dark text-lg disabled:opacity-50"
             >
               {saving ? <Loader2 size={20} className="animate-spin" /> : <Save size={20} />}
               {saving ? "Wird gespeichert..." : "Speichern & Zuordnen"}
@@ -745,7 +745,7 @@ export default function PDFGeneratorPage() {
       {savedSheets.length > 0 && (
         <div className="bg-white rounded-xl border border-gray-200 p-6">
           <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <FileText size={18} className="text-red-500" />
+            <FileText size={18} className="text-bs-accent" />
             Gespeicherte Datenblätter ({savedSheets.length})
           </h2>
           <div className="space-y-3">
@@ -784,7 +784,7 @@ export default function PDFGeneratorPage() {
                   </button>
                   <button
                     onClick={() => handleDeleteSheet(sheet.id)}
-                    className="p-1.5 text-gray-400 hover:text-red-600 transition-colors"
+                    className="p-1.5 text-gray-400 hover:text-bs-accent transition-colors"
                     title="Löschen"
                   >
                     <Trash2 size={14} />
@@ -846,7 +846,7 @@ function HygienePlansList() {
               </button>
               <button
                 onClick={() => handleDelete(plan.id)}
-                className="p-1.5 text-gray-400 hover:text-red-600 transition-colors"
+                className="p-1.5 text-gray-400 hover:text-bs-accent transition-colors"
                 title="Löschen"
               >
                 <Trash2 size={14} />

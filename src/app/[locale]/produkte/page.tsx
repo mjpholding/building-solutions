@@ -18,7 +18,7 @@ import { useCustomer } from "@/lib/customer-context";
 
 function getPHColor(ph: string): string {
   const val = parseFloat(ph.split("-")[0].trim());
-  if (val < 3) return "text-red-600 bg-red-50";
+  if (val < 3) return "text-bs-accent bg-blue-50";
   if (val < 6) return "text-orange-600 bg-orange-50";
   if (val < 8) return "text-green-600 bg-green-50";
   if (val < 10) return "text-blue-600 bg-blue-50";
@@ -72,28 +72,28 @@ export default function ProductsPage() {
   }, [search, category, translatedProducts]);
 
   return (
-    <div className="min-h-screen bg-swish-gray-50">
+    <div className="min-h-screen bg-bs-gray-50">
       <PageBanner title={t("title")} />
 
       {/* Search + Category filters */}
-      <div className="bg-white border-b border-swish-gray-200">
+      <div className="bg-white border-b border-bs-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="relative w-full max-w-sm">
             <Search
               size={18}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-swish-gray-400"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-bs-gray-400"
             />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t("search")}
-              className="w-full pl-10 pr-10 py-3 rounded-xl border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm transition-all bg-white"
+              className="w-full pl-10 pr-10 py-3 rounded-xl border border-bs-gray-200 focus:border-bs-accent focus:ring-2 focus:ring-bs-accent/10 outline-none text-sm transition-all bg-white"
             />
             {search && (
               <button
                 onClick={() => setSearch("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-swish-gray-400 hover:text-swish-gray-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-bs-gray-400 hover:text-bs-gray-600"
               >
                 <X size={16} />
               </button>
@@ -140,8 +140,8 @@ export default function ProductsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {filtered.length === 0 ? (
           <div className="text-center py-20">
-            <Search size={48} className="mx-auto text-swish-gray-300 mb-4" />
-            <p className="text-swish-gray-500 text-lg">{t("noResults")}</p>
+            <Search size={48} className="mx-auto text-bs-gray-300 mb-4" />
+            <p className="text-bs-gray-500 text-lg">{t("noResults")}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
@@ -154,9 +154,9 @@ export default function ProductsPage() {
               >
                 <Link
                   href={`/produkte/${product.slug}`}
-                  className="group block bg-white rounded-xl border border-swish-gray-100 overflow-hidden hover:shadow-lg hover:border-swish-red/10 transition-all duration-300"
+                  className="group block bg-white rounded-xl border border-bs-gray-100 overflow-hidden hover:shadow-lg hover:border-bs-accent/10 transition-all duration-300"
                 >
-                  <div className="h-40 bg-gradient-to-br from-swish-gray-50 to-swish-gray-100 flex items-center justify-center overflow-hidden">
+                  <div className="h-40 bg-gradient-to-br from-bs-gray-50 to-bs-gray-100 flex items-center justify-center overflow-hidden">
                     {product.image ? (
                       <img
                         src={product.image}
@@ -164,12 +164,12 @@ export default function ProductsPage() {
                         className="object-contain h-full w-auto p-3 group-hover:scale-105 transition-transform duration-300"
                       />
                     ) : (
-                      <Droplets size={28} className="text-swish-gray-300" />
+                      <Droplets size={28} className="text-bs-gray-300" />
                     )}
                   </div>
                   <div className="p-4">
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-[10px] font-semibold text-swish-gray-400 uppercase tracking-wider">
+                      <span className="text-[10px] font-semibold text-bs-gray-400 uppercase tracking-wider">
                         {tCat(product.category)}
                       </span>
                       <span
@@ -178,31 +178,31 @@ export default function ProductsPage() {
                         pH {product.ph}
                       </span>
                     </div>
-                    <h3 className="font-bold text-sm text-swish-gray-900 group-hover:text-swish-red transition-colors">
+                    <h3 className="font-bold text-sm text-bs-gray-900 group-hover:text-bs-accent transition-colors">
                       {product.name}
                     </h3>
-                    <p className="mt-1 text-xs text-swish-gray-500 line-clamp-2">
+                    <p className="mt-1 text-xs text-bs-gray-500 line-clamp-2">
                       {product.description}
                     </p>
                     <div className="mt-2 flex items-center justify-between">
                       {product.prices && Object.values(product.prices)[0] ? (
-                        <span className="text-sm font-bold text-swish-gray-900">
+                        <span className="text-sm font-bold text-bs-gray-900">
                           {tD("from")} {(isB2B
                             ? (Object.values(product.prices)[0] as number)
                             : (Object.values(product.prices)[0] as number) * 1.19
                           ).toFixed(2)} &euro;
-                          {!isB2B && <span className="text-[10px] font-normal text-swish-gray-400 ml-1">{tD("gross")}</span>}
+                          {!isB2B && <span className="text-[10px] font-normal text-bs-gray-400 ml-1">{tD("gross")}</span>}
                         </span>
                       ) : (
-                        <span className="text-xs text-swish-gray-400">{tD("priceOnRequest")}</span>
+                        <span className="text-xs text-bs-gray-400">{tD("priceOnRequest")}</span>
                       )}
                       {product.isBestseller && (
-                        <span className="text-[10px] font-semibold text-swish-red bg-red-50 px-2 py-0.5 rounded-full">
+                        <span className="text-[10px] font-semibold text-bs-accent bg-blue-50 px-2 py-0.5 rounded-full">
                           {tD("bestseller")}
                         </span>
                       )}
                     </div>
-                    <div className="mt-2 flex items-center gap-1 text-swish-red text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="mt-2 flex items-center gap-1 text-bs-accent text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                       {t("viewProduct")} <ArrowRight size={12} />
                     </div>
                   </div>

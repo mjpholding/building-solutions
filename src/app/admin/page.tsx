@@ -21,7 +21,7 @@ export default function AdminDashboard() {
   return (
     <div>
       <h1 className="text-2xl font-bold text-gray-900">Admin Panel</h1>
-      <p className="mt-1 text-gray-500 text-sm">Swish Deutschland Verwaltung</p>
+      <p className="mt-1 text-gray-500 text-sm">Building Solutions Verwaltung</p>
 
       {/* Stats */}
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -54,16 +54,16 @@ export default function AdminDashboard() {
               href={ql.href}
               className={`group rounded-xl border p-5 hover:shadow-sm transition-all ${
                 ql.highlight
-                  ? "bg-red-50 border-red-200 hover:border-red-300"
-                  : "bg-white border-gray-200 hover:border-red-200"
+                  ? "bg-blue-50 border-bs-accent200 hover:border-bs-accent-light"
+                  : "bg-white border-gray-200 hover:border-bs-accent200"
               }`}
             >
-              {ql.icon && <ql.icon size={20} className="text-red-500 mb-2" />}
-              <h3 className="font-medium text-gray-900 group-hover:text-red-600 transition-colors">
+              {ql.icon && <ql.icon size={20} className="text-bs-accent mb-2" />}
+              <h3 className="font-medium text-gray-900 group-hover:text-bs-accent transition-colors">
                 {ql.label}
               </h3>
               <p className="mt-1 text-sm text-gray-500">{ql.desc}</p>
-              <div className="mt-3 flex items-center gap-1 text-red-600 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="mt-3 flex items-center gap-1 text-bs-accent text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                 Öffnen <ArrowRight size={14} />
               </div>
             </Link>

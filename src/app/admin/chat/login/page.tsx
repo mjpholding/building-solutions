@@ -45,7 +45,7 @@ export default function ChatLoginPage() {
       <div className="w-full max-w-sm">
         <div className="bg-gray-800 rounded-2xl shadow-xl p-8">
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-bs-accent rounded-xl flex items-center justify-center">
               <MessageCircle size={22} className="text-white" />
             </div>
             <h1 className="text-xl font-bold text-white">Team-Chat</h1>
@@ -90,7 +90,7 @@ export default function ChatLoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-2.5 bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+              className="w-full py-2.5 bg-bs-accent hover:bg-bs-accent-dark disabled:opacity-50 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
             >
               {loading ? (
                 <Loader2 size={18} className="animate-spin" />

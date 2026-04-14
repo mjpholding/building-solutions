@@ -67,26 +67,26 @@ export default function CartDrawer() {
                       <div className="flex-1 min-w-0">
                         <h3 className="text-sm font-semibold text-gray-900 truncate">{item.name}</h3>
                         <p className="text-xs text-gray-400">{item.size}</p>
-                        <p className="text-sm font-bold text-red-600 mt-0.5">
+                        <p className="text-sm font-bold text-bs-accent mt-0.5">
                           {(isB2B ? item.price * item.quantity : item.price * item.quantity * 1.19).toFixed(2)} &euro;
                         </p>
                         <div className="flex items-center gap-2 mt-2">
                           <button
                             onClick={() => updateQuantity(item.slug, item.size, item.quantity - 1)}
-                            className="w-7 h-7 flex items-center justify-center rounded border border-gray-200 hover:border-red-300 transition-colors"
+                            className="w-7 h-7 flex items-center justify-center rounded border border-gray-200 hover:border-bs-accent-light transition-colors"
                           >
                             <Minus size={12} />
                           </button>
                           <span className="text-sm font-medium w-8 text-center">{item.quantity}</span>
                           <button
                             onClick={() => updateQuantity(item.slug, item.size, item.quantity + 1)}
-                            className="w-7 h-7 flex items-center justify-center rounded border border-gray-200 hover:border-red-300 transition-colors"
+                            className="w-7 h-7 flex items-center justify-center rounded border border-gray-200 hover:border-bs-accent-light transition-colors"
                           >
                             <Plus size={12} />
                           </button>
                           <button
                             onClick={() => removeItem(item.slug, item.size)}
-                            className="ml-auto p-1.5 text-gray-400 hover:text-red-500 transition-colors"
+                            className="ml-auto p-1.5 text-gray-400 hover:text-bs-accent transition-colors"
                           >
                             <Trash2 size={14} />
                           </button>
@@ -121,7 +121,7 @@ export default function CartDrawer() {
                 <Link
                   href="/kasse"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full bg-red-600 hover:bg-red-700 text-white text-center py-3 rounded-xl text-sm font-semibold transition-colors"
+                  className="block w-full bg-bs-accent hover:bg-bs-accent-dark text-white text-center py-3 rounded-xl text-sm font-semibold transition-colors"
                 >
                   {t("toCheckout")}
                 </Link>

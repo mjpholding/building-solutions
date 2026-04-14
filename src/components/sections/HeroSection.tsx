@@ -68,8 +68,8 @@ export default function HeroSection() {
       </AnimatePresence>
 
       {slides.length === 0 && (
-        <div className="absolute inset-0 bg-gradient-to-br from-swish-gray-900 via-swish-gray-800 to-swish-gray-900">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-swish-red/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-bs-gray-900 via-bs-gray-800 to-bs-gray-900">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-bs-accent/10 rounded-full blur-3xl" />
         </div>
       )}
 
@@ -85,11 +85,7 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-white">
-            {t("title").split(" ").map((word, i) => (
-              <span key={i}>
-                {["mission", "misja", "misyonumuz", "миссия", "місія"].includes(word.toLowerCase()) ? <span className="text-swish-red">{word}</span> : word}{" "}
-              </span>
-            ))}
+            {t("title")}
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="mt-6 text-lg sm:text-xl text-white/80 leading-relaxed max-w-2xl">
@@ -97,7 +93,7 @@ export default function HeroSection() {
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Link href="/produkte" className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white border border-white/30 px-7 py-3.5 rounded-xl text-base font-semibold transition-all duration-200">
+            <Link href="/leistungen" className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white border border-white/30 px-7 py-3.5 rounded-xl text-base font-semibold transition-all duration-200">
               {t("cta")} <ArrowRight size={18} />
             </Link>
             <Link href="/kontakt" className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 backdrop-blur-sm text-white border border-white/20 px-7 py-3.5 rounded-xl text-base font-semibold transition-all duration-200">
@@ -107,9 +103,9 @@ export default function HeroSection() {
         </div>
 
         <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.5 }} className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {[{ value: "1956", label: tS("founded") }, { value: "70+", label: tS("products") }, { value: "15+", label: tS("locations") }, { value: "300+", label: tS("employees") }].map((stat) => (
+          {[{ value: "7", label: tS("services") }, { value: "100%", label: tS("quality") }, { value: "24/7", label: tS("support") }, { value: "NRW", label: tS("region") }].map((stat) => (
             <div key={stat.label} className="text-center lg:text-left">
-              <div className="text-2xl sm:text-3xl font-bold text-swish-red">{stat.value}</div>
+              <div className="text-2xl sm:text-3xl font-bold text-bs-accent">{stat.value}</div>
               <div className="text-sm text-white/60 mt-1">{stat.label}</div>
             </div>
           ))}

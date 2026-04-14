@@ -38,7 +38,7 @@ const statusColors: Record<string, string> = {
   draft: "bg-gray-100 text-gray-600",
   sent: "bg-blue-100 text-blue-600",
   accepted: "bg-green-100 text-green-600",
-  rejected: "bg-red-100 text-red-600",
+  rejected: "bg-blue-100 text-bs-accent",
 };
 const statusLabels: Record<string, string> = {
   draft: "Entwurf",
@@ -170,14 +170,14 @@ export default function OffersPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-            <FileText className="text-red-600" size={28} />
+            <FileText className="text-bs-accent" size={28} />
             Angebote
           </h1>
           <p className="text-gray-500 text-sm mt-1">Angebote erstellen und verwalten</p>
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="flex items-center gap-2 bg-red-600 text-white px-5 py-2.5 rounded-lg hover:bg-red-700 font-medium text-sm"
+          className="flex items-center gap-2 bg-bs-accent text-white px-5 py-2.5 rounded-lg hover:bg-bs-accent-dark font-medium text-sm"
         >
           <Plus size={16} />
           Neues Angebot
@@ -230,7 +230,7 @@ export default function OffersPage() {
               <div className="relative">
                 <button
                   onClick={() => setShowProductList(!showProductList)}
-                  className="flex items-center gap-2 text-sm text-red-600 hover:text-red-700 font-medium"
+                  className="flex items-center gap-2 text-sm text-bs-accent hover:text-bs-accent-dark font-medium"
                 >
                   <Plus size={14} /> Produkt hinzufügen <ChevronDown size={14} />
                 </button>
@@ -316,7 +316,7 @@ export default function OffersPage() {
                         </td>
                         <td className="py-2 text-right font-medium">{item.totalNet.toFixed(2)} €</td>
                         <td className="py-2">
-                          <button onClick={() => removeItem(i)} className="text-gray-400 hover:text-red-600">
+                          <button onClick={() => removeItem(i)} className="text-gray-400 hover:text-bs-accent">
                             <X size={14} />
                           </button>
                         </td>
@@ -343,7 +343,7 @@ export default function OffersPage() {
                     <span>MwSt. 19%:</span>
                     <span>{vatAmount.toFixed(2)} €</span>
                   </div>
-                  <div className="flex justify-between font-bold text-lg text-red-600 pt-2 border-t">
+                  <div className="flex justify-between font-bold text-lg text-bs-accent pt-2 border-t">
                     <span>Gesamt brutto:</span>
                     <span>{totalGross.toFixed(2)} €</span>
                   </div>
@@ -367,7 +367,7 @@ export default function OffersPage() {
               Abbrechen
             </button>
             <button onClick={handleSave} disabled={saving || items.length === 0}
-              className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white px-6 py-2.5 rounded-lg hover:bg-red-700 font-medium text-sm disabled:opacity-50">
+              className="flex-1 flex items-center justify-center gap-2 bg-bs-accent text-white px-6 py-2.5 rounded-lg hover:bg-bs-accent-dark font-medium text-sm disabled:opacity-50">
               {saving ? <Loader2 size={16} className="animate-spin" /> : <Check size={16} />}
               {saving ? "Wird gespeichert..." : "Angebot speichern"}
             </button>
@@ -413,7 +413,7 @@ export default function OffersPage() {
                     <Eye size={14} />
                   </button>
                   <button onClick={() => handleDelete(offer.id)}
-                    className="p-1.5 text-gray-400 hover:text-red-600" title="Löschen">
+                    className="p-1.5 text-gray-400 hover:text-bs-accent" title="Löschen">
                     <Trash2 size={14} />
                   </button>
                 </div>

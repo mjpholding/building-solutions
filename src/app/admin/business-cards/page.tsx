@@ -24,18 +24,18 @@ interface CardPerson {
 }
 
 const defaultContact: ContactData = {
-  company: "Swish Deutschland",
+  company: "Building Solutions GmbH",
   address: "Ottostr. 14",
   zip: "50170",
   city: "Kerpen",
   phone: "+49 (0) 2273 951 55 77",
   fax: "",
-  email: "info@swish-deutschland.de",
-  website: "www.swish-deutschland.de",
+  email: "info@buildingsolutions.de",
+  website: "www.buildingsolutions.de",
 };
 
 const inputClass =
-  "w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm";
+  "w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm";
 
 function createEmptyPerson(): CardPerson {
   return {
@@ -99,7 +99,7 @@ function BusinessCard({ person, contact, logoUrl }: { person: CardPerson; contac
 export default function BusinessCardsPage() {
   const [contact, setContact] = useState<ContactData>(defaultContact);
   const [persons, setPersons] = useState<CardPerson[]>([{ ...createEmptyPerson(), name: "Max Mustermann", role: "Vertrieb" }]);
-  const [logoUrl, setLogoUrl] = useState("/logo-swish-deutschland.png");
+  const [logoUrl, setLogoUrl] = useState("/logo-buildingsolutions.png");
   const printRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -188,7 +188,7 @@ export default function BusinessCardsPage() {
               <div class="card-name">${p.name || "Name"}</div>
               ${p.role ? `<div class="card-role">${p.role}</div>` : ""}
             </div>
-            <img src="${logoUrl.startsWith("/") ? `https://swish-deutschland.vercel.app${logoUrl}` : logoUrl}" alt="${contact.company}" class="card-logo" />
+            <img src="${logoUrl.startsWith("/") ? `https://buildingsolutions.vercel.app${logoUrl}` : logoUrl}" alt="${contact.company}" class="card-logo" />
           </div>
           <div class="card-bottom">
             <div class="card-company">${contact.company}</div>
@@ -226,7 +226,7 @@ export default function BusinessCardsPage() {
         </div>
         <button
           onClick={handlePrint}
-          className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors"
+          className="flex items-center gap-2 bg-bs-accent hover:bg-bs-accent-dark text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors"
         >
           <Printer size={16} />
           Drucken / PDF
@@ -277,7 +277,7 @@ export default function BusinessCardsPage() {
                   Mitarbeiter {persons.length > 1 ? `#${i + 1}` : ""}
                 </h2>
                 {persons.length > 1 && (
-                  <button onClick={() => removePerson(person.id)} className="text-gray-400 hover:text-red-500 transition-colors">
+                  <button onClick={() => removePerson(person.id)} className="text-gray-400 hover:text-bs-accent transition-colors">
                     <Trash2 size={16} />
                   </button>
                 )}

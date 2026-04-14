@@ -1,16 +1,12 @@
-import HeroSection from "@/components/sections/HeroSection";
-import CategoriesSection from "@/components/sections/CategoriesSection";
-import BestsellersSection from "@/components/sections/BestsellersSection";
-import WhySwishSection from "@/components/sections/WhySwishSection";
+import SaturnHero from "@/components/sections/SaturnHero";
+import PartnersSection from "@/components/sections/PartnersSection";
 import CTASection from "@/components/sections/CTASection";
 
 export default function HomePage() {
   return (
     <>
-      <HeroSection />
-      <CategoriesSection />
-      <BestsellersSection />
-      <WhySwishSection />
+      <SaturnHero />
+      <PartnersSection />
       <CTASection />
     </>
   );

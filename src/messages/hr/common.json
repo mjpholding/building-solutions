@@ -1,23 +1,27 @@
 {
   "meta": {
-    "title": "Swish Deutschland – Profesionalna rješenja za čišćenje",
-    "description": "Stručnjaci za profesionalne proizvode za čišćenje i higijenska rješenja u Njemačkoj. Od 1956."
+    "title": "Building Solutions GmbH – Tehnologija zgrada i sigurnost",
+    "description": "Vaš partner za sigurnosne sustave, video nadzor, elektrotehniku i fotonaponske sustave u Kerpenu i okolici."
   },
   "nav": {
     "home": "Početna",
+    "services": "Usluge",
+    "references": "Reference",
+    "about": "O nama",
+    "career": "Karijera",
+    "partners": "Partneri",
+    "contact": "Kontakt",
     "products": "Proizvodi",
     "productAdvisor": "Savjetnik za proizvode",
-    "about": "O nama",
     "hygienePlans": "Higijenski planovi",
     "downloads": "Preuzimanja",
-    "contact": "Kontakt",
     "allProducts": "Svi proizvodi",
     "requestQuote": "Zatražite ponudu"
   },
   "hero": {
-    "title": "Čistoća je naša misija",
-    "subtitle": "Profesionalna rješenja za čišćenje za vaše poslovanje – provjereno od 1956.",
-    "cta": "Otkrijte proizvode",
+    "title": "Rješenja za sigurnije zgrade",
+    "subtitle": "Činimo zgrade sigurnijima, učinkovitijima i ugodnijima — s integriranom sigurnosnom, komunikacijskom i elektrotehnologijom.",
+    "cta": "Naše usluge",
     "ctaSecondary": "Zatražite ponudu"
   },
   "categories": {
@@ -180,14 +184,28 @@
     "images": "Slike proizvoda",
     "dosageTables": "Tablice doziranja"
   },
+  "services": {
+    "title": "Naše usluge",
+    "subtitle": "Sveobuhvatna rješenja za tehnologiju zgrada i sigurnost",
+    "learnMore": "Saznajte više",
+    "backToServices": "Sve usluge",
+    "notFound": "Usluga nije pronađena",
+    "overview": "Pregled",
+    "ourServices": "Naše usluge detaljno",
+    "ctaTitle": "Razgovarajte o projektu?",
+    "ctaDescription": "Kontaktirajte nas za besplatno savjetovanje.",
+    "ctaButton": "Kontaktirajte nas",
+    "otherServices": "Ostale usluge",
+    "allServices": "Pogledajte sve usluge"
+  },
   "footer": {
-    "company": "Swish Deutschland",
-    "address": "Ottostr. 14, 50170 Kerpen",
-    "phone": "+49 (0) 2273 951 55 77",
+    "company": "Building Solutions GmbH",
+    "address": "Ottostraße 14, 50170 Kerpen",
+    "phone": "+49 (0) 2273 951 55 0",
     "rights": "Sva prava pridržana",
-    "privacy": "Politika privatnosti",
+    "privacy": "Pravila privatnosti",
     "imprint": "Impressum",
-    "tagline": "Stručnjaci za profesionalna rješenja čišćenja"
+    "tagline": "Vaš partner za tehnologiju zgrada i sigurnost"
   },
   "common": {
     "learnMore": "Saznaj više",
@@ -319,11 +337,11 @@
     "detailedDescription": "Opis proizvoda"
   },
   "heroStats": {
-    "since": "Od 1956.",
-    "founded": "Osnivanje",
-    "products": "Proizvoda",
-    "locations": "Lokacija",
-    "employees": "Zaposlenika"
+    "since": "Building Solutions GmbH",
+    "services": "Područja usluga",
+    "quality": "Kvaliteta",
+    "support": "Servis i podrška",
+    "region": "Regija"
   },
   "whySwish": {
     "title": "Zašto Swish?",
@@ -352,5 +370,33 @@
     "navigation": "Navigacija",
     "legalSection": "Pravne informacije",
     "expertTagline": "Stručnjaci za profesionalna rješenja za čišćenje"
+  },
+  "references": {
+    "title": "Reference",
+    "subtitle": "Odabrani projekti i zadovoljni klijenti",
+    "allCategories": "Sve",
+    "empty": "Još nema referenci."
+  },
+  "career": {
+    "title": "Karijera",
+    "subtitle": "Pridružite se našem timu",
+    "noJobs": "Nema otvorenih pozicija",
+    "noJobsDescription": "Trenutno nemamo otvorenih pozicija. Pošaljite nam inicijativnu prijavu.",
+    "applyGeneral": "Pošalji prijavu",
+    "apply": "Prijavi se",
+    "requirements": "Zahtjevi",
+    "benefits": "Što nudimo",
+    "contactTitle": "Pitanja o karijeri?",
+    "contactDescription": "Radujemo se vašem javljanju."
+  },
+  "partners": {
+    "title": "Naši partneri",
+    "subtitle": "Snažna partnerstva za najbolje rezultate",
+    "empty": "Još nema partnera."
+  },
+  "cta": {
+    "title": "Vaš projekt. Naše rješenje.",
+    "subtitle": "Kontaktirajte nas za besplatno savjetovanje — pronaći ćemo optimalno rješenje.",
+    "button": "Kontaktirajte nas"
   }
 }

@@ -1,23 +1,27 @@
 {
   "meta": {
-    "title": "Swish Deutschland – Professionelle Reinigungslösungen",
-    "description": "Experten für professionelle Reinigungsmittel und Hygienelösungen in Deutschland. Seit 1956."
+    "title": "Building Solutions GmbH – Gebäudetechnik & Sicherheitslösungen",
+    "description": "Ihr Partner für Sicherheitssysteme, Videoüberwachung, Elektrotechnik und Photovoltaik in Kerpen und Umgebung."
   },
   "nav": {
     "home": "Startseite",
+    "services": "Leistungen",
+    "references": "Referenzen",
+    "about": "Über uns",
+    "career": "Karriere",
+    "partners": "Partner",
+    "contact": "Kontakt",
     "products": "Produkte",
     "productAdvisor": "Produktberater",
-    "about": "Über uns",
     "hygienePlans": "Hygienepläne",
     "downloads": "Downloads",
-    "contact": "Kontakt",
     "allProducts": "Alle Produkte",
     "requestQuote": "Angebot anfordern"
   },
   "hero": {
-    "title": "Sauberkeit ist unsere Mission",
-    "subtitle": "Professionelle Reinigungslösungen für Ihr Unternehmen – bewährt seit 1956",
-    "cta": "Produkte entdecken",
+    "title": "Lösungen für sichere Gebäude",
+    "subtitle": "Wir machen Gebäude sicherer, effizienter und komfortabler – mit integrierter Sicherheits-, Kommunikations- und Elektrotechnik.",
+    "cta": "Unsere Leistungen",
     "ctaSecondary": "Angebot anfordern"
   },
   "categories": {
@@ -196,14 +200,56 @@
     "images": "Produktbilder",
     "dosageTables": "Dosiertabellen"
   },
+  "services": {
+    "title": "Unsere Leistungen",
+    "subtitle": "Ganzheitliche Lösungen für Gebäudetechnik und Sicherheit",
+    "learnMore": "Mehr erfahren",
+    "backToServices": "Alle Leistungen",
+    "notFound": "Leistung nicht gefunden",
+    "overview": "Überblick",
+    "ourServices": "Unsere Leistungen im Detail",
+    "ctaTitle": "Projekt besprechen?",
+    "ctaDescription": "Kontaktieren Sie uns für eine unverbindliche Beratung zu Ihrem Projekt.",
+    "ctaButton": "Kontakt aufnehmen",
+    "otherServices": "Weitere Leistungen",
+    "allServices": "Alle Leistungen anzeigen"
+  },
+  "references": {
+    "title": "Referenzen",
+    "subtitle": "Ausgewählte Projekte und zufriedene Kunden",
+    "allCategories": "Alle",
+    "empty": "Noch keine Referenzen vorhanden."
+  },
+  "career": {
+    "title": "Karriere",
+    "subtitle": "Werden Sie Teil unseres Teams",
+    "noJobs": "Aktuell keine offenen Stellen",
+    "noJobsDescription": "Derzeit haben wir keine offenen Positionen. Senden Sie uns gerne eine Initiativbewerbung.",
+    "applyGeneral": "Initiativbewerbung senden",
+    "apply": "Jetzt bewerben",
+    "requirements": "Anforderungen",
+    "benefits": "Was wir bieten",
+    "contactTitle": "Fragen zur Karriere?",
+    "contactDescription": "Wir freuen uns auf Ihre Kontaktaufnahme."
+  },
+  "partners": {
+    "title": "Unsere Partner",
+    "subtitle": "Starke Partnerschaften für beste Ergebnisse",
+    "empty": "Noch keine Partner vorhanden."
+  },
+  "cta": {
+    "title": "Ihr Projekt. Unsere Lösung.",
+    "subtitle": "Kontaktieren Sie uns für eine unverbindliche Beratung – wir finden die optimale Lösung für Ihre Anforderungen.",
+    "button": "Jetzt Kontakt aufnehmen"
+  },
   "footer": {
-    "company": "Swish Deutschland",
-    "address": "Ottostr. 14, 50170 Kerpen",
-    "phone": "+49 (0) 2273 951 55 77",
+    "company": "Building Solutions GmbH",
+    "address": "Ottostraße 14, 50170 Kerpen",
+    "phone": "+49 (0) 2273 951 55 0",
     "rights": "Alle Rechte vorbehalten",
     "privacy": "Datenschutz",
     "imprint": "Impressum",
-    "tagline": "Experten für professionelle Reinigungslösungen"
+    "tagline": "Ihr Partner für Gebäudetechnik und Sicherheitslösungen"
   },
   "common": {
     "learnMore": "Mehr erfahren",
@@ -335,11 +381,11 @@
     "detailedDescription": "Produktbeschreibung"
   },
   "heroStats": {
-    "since": "Seit 1956",
-    "founded": "Gegründet",
-    "products": "Produkte",
-    "locations": "Standorte",
-    "employees": "Mitarbeiter"
+    "since": "Building Solutions GmbH",
+    "services": "Leistungsbereiche",
+    "quality": "Qualität",
+    "support": "Service & Support",
+    "region": "Region"
   },
   "whySwish": {
     "title": "Warum Swish?",

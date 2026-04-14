@@ -203,7 +203,7 @@ export default function ProductEditor() {
           {!isNew && (
             <button
               onClick={handleDelete}
-              className="flex items-center gap-2 border border-red-200 text-red-600 hover:bg-red-50 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+              className="flex items-center gap-2 border border-bs-accent200 text-bs-accent hover:bg-blue-50 px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
             >
               <Trash2 size={16} /> Loschen
             </button>
@@ -211,7 +211,7 @@ export default function ProductEditor() {
           <button
             onClick={handleSave}
             disabled={saving || !product.name || !product.slug}
-            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 disabled:bg-red-300 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition-colors"
+            className="flex items-center gap-2 bg-bs-accent hover:bg-bs-accent-dark disabled:bg-red-300 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition-colors"
           >
             {saving ? <Loader2 size={16} className="animate-spin" /> : saved ? <Check size={16} /> : <Save size={16} />}
             {saved ? "Gespeichert!" : "Speichern"}
@@ -233,7 +233,7 @@ export default function ProductEditor() {
                   updateField("name", e.target.value);
                   if (isNew) updateField("slug", slugify(e.target.value));
                 }}
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
               />
             </div>
             <div>
@@ -242,7 +242,7 @@ export default function ProductEditor() {
                 type="text"
                 value={product.slug}
                 onChange={(e) => updateField("slug", slugify(e.target.value))}
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm font-mono"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm font-mono"
               />
             </div>
             <div>
@@ -250,7 +250,7 @@ export default function ProductEditor() {
               <select
                 value={product.category}
                 onChange={(e) => updateField("category", e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 outline-none text-sm"
               >
                 {CATEGORIES.map((c) => (
                   <option key={c} value={c}>{CAT_LABELS[c] || c}</option>
@@ -264,7 +264,7 @@ export default function ProductEditor() {
                 value={product.ph}
                 onChange={(e) => updateField("ph", e.target.value)}
                 placeholder="z.B. 8.0 - 9.0"
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
               />
             </div>
             <div className="md:col-span-2">
@@ -273,7 +273,7 @@ export default function ProductEditor() {
                 value={product.description}
                 onChange={(e) => updateField("description", e.target.value)}
                 rows={3}
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm resize-y"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm resize-y"
               />
             </div>
             <div>
@@ -283,7 +283,7 @@ export default function ProductEditor() {
                 value={applicationsText}
                 onChange={(e) => setApplicationsText(e.target.value)}
                 placeholder="PVC, Linoleum, Stein"
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
               />
             </div>
             <div>
@@ -293,7 +293,7 @@ export default function ProductEditor() {
                 value={sizesText}
                 onChange={(e) => setSizesText(e.target.value)}
                 placeholder="1 L, 5 L, 10 L"
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+                className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
               />
             </div>
             <div className="flex items-center gap-3">
@@ -302,7 +302,7 @@ export default function ProductEditor() {
                 id="bestseller"
                 checked={product.isBestseller}
                 onChange={(e) => updateField("isBestseller", e.target.checked)}
-                className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                className="w-4 h-4 text-bs-accent border-gray-300 rounded focus:ring-red-500"
               />
               <label htmlFor="bestseller" className="text-sm font-medium text-gray-700">
                 Bestseller
@@ -315,9 +315,9 @@ export default function ProductEditor() {
         <div className="bg-white rounded-xl border border-gray-200 p-6">
           <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">Produktbild</h2>
           {uploadError && (
-            <div className="mb-4 text-sm text-red-600 bg-red-50 p-3 rounded-lg flex items-center justify-between">
+            <div className="mb-4 text-sm text-bs-accent bg-blue-50 p-3 rounded-lg flex items-center justify-between">
               {uploadError}
-              <button onClick={() => setUploadError("")} className="text-red-400 hover:text-red-600"><X size={14} /></button>
+              <button onClick={() => setUploadError("")} className="text-red-400 hover:text-bs-accent"><X size={14} /></button>
             </div>
           )}
           <div className="flex items-start gap-6">
@@ -356,7 +356,7 @@ export default function ProductEditor() {
                   <button
                     type="button"
                     onClick={handleImageDelete}
-                    className="flex items-center gap-2 border border-red-200 text-red-600 hover:bg-red-50 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors"
+                    className="flex items-center gap-2 border border-bs-accent200 text-bs-accent hover:bg-blue-50 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors"
                   >
                     <Trash2 size={16} /> Bild entfernen
                   </button>
@@ -384,7 +384,7 @@ export default function ProductEditor() {
                       value={prices[size] || ""}
                       onChange={(e) => setPrices((prev) => ({ ...prev, [size]: parseFloat(e.target.value) || 0 }))}
                       placeholder="0.00"
-                      className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm text-right pr-8"
+                      className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm text-right pr-8"
                     />
                     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400">&euro;</span>
                   </div>
@@ -406,7 +406,7 @@ export default function ProductEditor() {
                 onClick={() => toggleArrayItem("surfaceTypes", t)}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                   product.surfaceTypes.includes(t)
-                    ? "bg-red-600 text-white"
+                    ? "bg-bs-accent text-white"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
@@ -426,7 +426,7 @@ export default function ProductEditor() {
                 onClick={() => toggleArrayItem("roomTypes", t)}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                   product.roomTypes.includes(t)
-                    ? "bg-red-600 text-white"
+                    ? "bg-bs-accent text-white"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
@@ -446,7 +446,7 @@ export default function ProductEditor() {
                 onClick={() => toggleArrayItem("dirtTypes", t)}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                   product.dirtTypes.includes(t)
-                    ? "bg-red-600 text-white"
+                    ? "bg-bs-accent text-white"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
@@ -466,7 +466,7 @@ export default function ProductEditor() {
                 onClick={() => toggleArrayItem("intensityLevels", t)}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                   product.intensityLevels.includes(t)
-                    ? "bg-red-600 text-white"
+                    ? "bg-bs-accent text-white"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >

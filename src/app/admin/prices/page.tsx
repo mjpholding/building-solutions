@@ -220,7 +220,7 @@ export default function PricingPage() {
           <button
             onClick={handleRecalculate}
             disabled={recalculating}
-            className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+            className="flex items-center gap-2 bg-bs-accent hover:bg-bs-accent-dark text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
           >
             {recalculating ? <Loader2 size={16} className="animate-spin" /> : <Calculator size={16} />}
             Neu berechnen
@@ -269,7 +269,7 @@ export default function PricingPage() {
               min="1"
               defaultValue={rate?.threshold || 10}
               onBlur={(e) => handleThresholdUpdate(parseFloat(e.target.value) || 10)}
-              className="w-16 px-2 py-1 rounded border border-gray-200 text-xs text-right focus:border-red-500 focus:ring-1 focus:ring-red-500/20 outline-none"
+              className="w-16 px-2 py-1 rounded border border-gray-200 text-xs text-right focus:border-bs-accent500 focus:ring-1 focus:ring-red-500/20 outline-none"
             />
             <span className="text-xs text-gray-400">%</span>
           </div>
@@ -294,7 +294,7 @@ export default function PricingPage() {
               max="100"
               defaultValue={config?.globalPurchaseDiscount || 0}
               onBlur={(e) => handleGlobalUpdate("globalPurchaseDiscount", parseFloat(e.target.value) || 0)}
-              className="w-24 text-2xl font-bold text-gray-900 px-3 py-1 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-right"
+              className="w-24 text-2xl font-bold text-gray-900 px-3 py-1 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-right"
             />
             <span className="text-xl text-gray-400">%</span>
           </div>
@@ -317,7 +317,7 @@ export default function PricingPage() {
               max="500"
               defaultValue={config?.globalMargin || 30}
               onBlur={(e) => handleGlobalUpdate("globalMargin", parseFloat(e.target.value) || 30)}
-              className="w-24 text-2xl font-bold text-gray-900 px-3 py-1 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-right"
+              className="w-24 text-2xl font-bold text-gray-900 px-3 py-1 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-right"
             />
             <span className="text-xl text-gray-400">%</span>
           </div>
@@ -377,7 +377,7 @@ export default function PricingPage() {
           placeholder="Produkt suchen..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full sm:w-64 px-3 py-1.5 rounded-lg border border-gray-200 text-sm focus:border-red-500 focus:ring-1 focus:ring-red-500/20 outline-none"
+          className="w-full sm:w-64 px-3 py-1.5 rounded-lg border border-gray-200 text-sm focus:border-bs-accent500 focus:ring-1 focus:ring-red-500/20 outline-none"
         />
         <div className="text-xs text-gray-400 ml-auto">
           {filteredItems.length} von {items.length} Produkten
@@ -454,7 +454,7 @@ export default function PricingPage() {
                             if (e.key === "Enter") (e.target as HTMLInputElement).blur();
                             if (e.key === "Escape") setEditingCell(null);
                           }}
-                          className="w-14 px-1 py-0.5 rounded border border-red-300 text-xs text-right focus:outline-none"
+                          className="w-14 px-1 py-0.5 rounded border border-bs-accent300 text-xs text-right focus:outline-none"
                         />
                       ) : (
                         <button
@@ -492,7 +492,7 @@ export default function PricingPage() {
                             if (e.key === "Enter") (e.target as HTMLInputElement).blur();
                             if (e.key === "Escape") setEditingCell(null);
                           }}
-                          className="w-14 px-1 py-0.5 rounded border border-red-300 text-xs text-right focus:outline-none"
+                          className="w-14 px-1 py-0.5 rounded border border-bs-accent300 text-xs text-right focus:outline-none"
                         />
                       ) : (
                         <button
@@ -524,12 +524,12 @@ export default function PricingPage() {
                               if (e.key === "Enter") (e.target as HTMLInputElement).blur();
                               if (e.key === "Escape") setEditingCell(null);
                             }}
-                            className="w-16 px-1 py-0.5 rounded border border-red-300 text-xs text-right focus:outline-none"
+                            className="w-16 px-1 py-0.5 rounded border border-bs-accent300 text-xs text-right focus:outline-none"
                           />
                           {hasOverride && (
                             <button
                               onClick={() => handleItemUpdate(realIdx, "sellPriceOverride", null)}
-                              className="text-[10px] text-red-500 hover:text-red-700"
+                              className="text-[10px] text-bs-accent hover:text-bs-accent-dark"
                               title="Override entfernen"
                             >
                               ✕

@@ -221,16 +221,16 @@ export default function ChatUsersPage() {
                 onChange={(e) => setIsAdmin(e.target.checked)}
                 className="sr-only peer"
               />
-              <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-red-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-red-600" />
+              <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-red-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-bs-accent" />
             </label>
             <span className="text-sm text-gray-700 flex items-center gap-1.5">
-              <Shield size={14} className="text-red-500" />
+              <Shield size={14} className="text-bs-accent" />
               Administrator (kann Kanäle verwalten)
             </span>
           </div>
 
           {error && (
-            <div className="text-red-600 text-sm bg-red-50 rounded-lg px-4 py-2">
+            <div className="text-bs-accent text-sm bg-blue-50 rounded-lg px-4 py-2">
               {error}
             </div>
           )}
@@ -238,7 +238,7 @@ export default function ChatUsersPage() {
           <button
             type="submit"
             disabled={saving}
-            className="px-6 py-2.5 bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-medium rounded-lg transition-colors flex items-center gap-2"
+            className="px-6 py-2.5 bg-bs-accent hover:bg-bs-accent-dark disabled:opacity-50 text-white font-medium rounded-lg transition-colors flex items-center gap-2"
           >
             {saving ? (
               <Loader2 size={16} className="animate-spin" />
@@ -284,7 +284,7 @@ export default function ChatUsersPage() {
                     <div className="font-medium text-gray-900 flex items-center gap-1.5">
                       {u.name}
                       {u.isAdmin && (
-                        <span className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-red-100 text-red-700 text-xs font-medium rounded">
+                        <span className="inline-flex items-center gap-1 px-1.5 py-0.5 bg-blue-100 text-bs-accent-dark text-xs font-medium rounded">
                           <Shield size={10} />
                           Admin
                         </span>
@@ -296,7 +296,7 @@ export default function ChatUsersPage() {
 
                 <button
                   onClick={() => handleDelete(u.id, u.name)}
-                  className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                  className="p-2 text-gray-400 hover:text-bs-accent hover:bg-blue-50 rounded-lg transition-colors"
                   title="Benutzer löschen"
                 >
                   <Trash2 size={16} />

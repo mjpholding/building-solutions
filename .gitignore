@@ -43,5 +43,7 @@ next-env.d.ts
 .vercel
 .env*.local
 Katalog/
-Katalog/
 catalog_raw.json
+
+# local admin data (should go to Redis in production)
+/.admin-data/

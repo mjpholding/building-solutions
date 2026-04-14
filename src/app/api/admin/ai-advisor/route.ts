@@ -48,7 +48,7 @@ const DEFAULT_CONFIG: AIAdvisorConfig = {
     { id: "9", surface: "Teppich / Textil", visualDescription: "Weiche, textile Oberfläche, Fasern sichtbar", products: ["Plush", "Stain Remover", "Aromx 80"] },
     { id: "10", surface: "Sanitärkeramik", visualDescription: "Weiße, glatte Keramik, WC, Waschbecken, Urinal", products: ["Kling", "Sani Clean", "Scale Remover"] },
   ],
-  systemPrompt: `Du bist ein Experte für professionelle Reinigungsprodukte von Swish Deutschland.
+  systemPrompt: `Du bist ein Experte für professionelle Reinigungsprodukte von Building Solutions GmbH.
 Analysiere das Bild und identifiziere:
 1. Typ der Oberfläche (z.B. Marmor, PVC, Holz, Fliesen, Glas, Edelstahl, Beton, Teppich, Sanitärkeramik)
 2. Art der Verschmutzung (z.B. Fett, Kalk, organisch, Staub, Flecken)

@@ -12,17 +12,17 @@ export default async function AGBPage() {
   return (
     <div className="min-h-screen bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-        <h1 className="text-3xl lg:text-4xl font-bold text-swish-gray-900 mb-12">
+        <h1 className="text-3xl lg:text-4xl font-bold text-bs-gray-900 mb-12">
           Allgemeine Geschäftsbedingungen
         </h1>
 
         {content ? (
           <div
-            className="prose prose-gray max-w-none text-swish-gray-700 text-[15px] leading-relaxed"
+            className="prose prose-gray max-w-none text-bs-gray-700 text-[15px] leading-relaxed"
             dangerouslySetInnerHTML={{ __html: content }}
           />
         ) : (
-          <p className="text-swish-gray-500">Die AGB werden in Kürze veröffentlicht.</p>
+          <p className="text-bs-gray-500">Die AGB werden in Kürze veröffentlicht.</p>
         )}
       </div>
     </div>

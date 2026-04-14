@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import { Loader2, Save, Check, ArrowLeft } from "lucide-react";
 import { Link } from "@/i18n/routing";
 
-const inputClass = "w-full px-4 py-2.5 rounded-lg border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm";
+const inputClass = "w-full px-4 py-2.5 rounded-lg border border-bs-gray-200 focus:border-bs-accent focus:ring-2 focus:ring-bs-accent/10 outline-none text-sm";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -50,62 +50,62 @@ export default function ProfilePage() {
   };
 
   if (loading || !customer) {
-    return <div className="min-h-screen flex items-center justify-center"><Loader2 className="w-8 h-8 animate-spin text-swish-gray-300" /></div>;
+    return <div className="min-h-screen flex items-center justify-center"><Loader2 className="w-8 h-8 animate-spin text-bs-gray-300" /></div>;
   }
 
   return (
-    <div className="min-h-screen bg-swish-gray-50">
+    <div className="min-h-screen bg-bs-gray-50">
       <div className="max-w-2xl mx-auto px-4 py-10">
-        <Link href="/konto" className="inline-flex items-center gap-2 text-swish-gray-500 hover:text-swish-red text-sm font-medium mb-6">
+        <Link href="/konto" className="inline-flex items-center gap-2 text-bs-gray-500 hover:text-bs-accent text-sm font-medium mb-6">
           <ArrowLeft size={16} /> {t("backToAccount")}
         </Link>
-        <h1 className="text-2xl font-bold text-swish-gray-900 mb-6">{t("editProfile")}</h1>
+        <h1 className="text-2xl font-bold text-bs-gray-900 mb-6">{t("editProfile")}</h1>
 
-        <form onSubmit={handleSave} className="bg-white rounded-2xl border border-swish-gray-100 p-6 space-y-4">
+        <form onSubmit={handleSave} className="bg-white rounded-2xl border border-bs-gray-100 p-6 space-y-4">
           {customer.type === "b2b" && (
             <div>
-              <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("company")}</label>
+              <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("company")}</label>
               <input type="text" value={form.company} onChange={(e) => update("company", e.target.value)} className={inputClass} />
             </div>
           )}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("name")}</label>
+              <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("name")}</label>
               <input type="text" required value={form.name} onChange={(e) => update("name", e.target.value)} className={inputClass} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("phone")}</label>
+              <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("phone")}</label>
               <input type="tel" value={form.phone} onChange={(e) => update("phone", e.target.value)} className={inputClass} />
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("street")}</label>
+            <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("street")}</label>
             <input type="text" value={form.address} onChange={(e) => update("address", e.target.value)} className={inputClass} />
           </div>
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("zip")}</label>
+              <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("zip")}</label>
               <input type="text" value={form.zip} onChange={(e) => update("zip", e.target.value)} className={inputClass} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("city")}</label>
+              <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("city")}</label>
               <input type="text" value={form.city} onChange={(e) => update("city", e.target.value)} className={inputClass} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("country")}</label>
+              <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("country")}</label>
               <input type="text" value={form.country} onChange={(e) => update("country", e.target.value)} className={inputClass} />
             </div>
           </div>
           {customer.type === "b2b" && (
             <div>
-              <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("taxId")}</label>
+              <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("taxId")}</label>
               <input type="text" value={form.taxId} onChange={(e) => update("taxId", e.target.value)} className={inputClass} placeholder="DE123456789" />
             </div>
           )}
           <button
             type="submit"
             disabled={saving}
-            className="flex items-center gap-2 bg-swish-red hover:bg-swish-red-dark disabled:bg-swish-red/50 text-white px-6 py-3 rounded-xl text-sm font-semibold transition-colors"
+            className="flex items-center gap-2 bg-bs-accent hover:bg-bs-accent-dark disabled:bg-bs-accent/50 text-white px-6 py-3 rounded-xl text-sm font-semibold transition-colors"
           >
             {saving ? <Loader2 size={16} className="animate-spin" /> : saved ? <Check size={16} /> : <Save size={16} />}
             {saved ? t("saved") : t("save")}

@@ -50,7 +50,7 @@ export default function LegalAdminPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-            <Scale className="text-red-600" size={28} />
+            <Scale className="text-bs-accent" size={28} />
             Rechtliche Seiten
           </h1>
           <p className="text-gray-500 text-sm mt-1">
@@ -60,7 +60,7 @@ export default function LegalAdminPage() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="flex items-center gap-2 bg-red-600 text-white px-5 py-2.5 rounded-lg hover:bg-red-700 disabled:opacity-50 transition-colors font-medium text-sm"
+          className="flex items-center gap-2 bg-bs-accent text-white px-5 py-2.5 rounded-lg hover:bg-bs-accent-dark disabled:opacity-50 transition-colors font-medium text-sm"
         >
           {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
           {saving ? "Speichern..." : saved ? "✓ Gespeichert" : "Speichern"}
@@ -125,7 +125,7 @@ export default function LegalAdminPage() {
               : setAgb(e.target.value)
           }
           rows={25}
-          className="w-full border border-gray-300 rounded-lg p-4 text-sm font-mono focus:ring-2 focus:ring-red-500 focus:border-red-500 resize-y"
+          className="w-full border border-gray-300 rounded-lg p-4 text-sm font-mono focus:ring-2 focus:ring-red-500 focus:border-bs-accent500 resize-y"
           placeholder={`${activeTab === "impressum" ? "Impressum" : activeTab === "datenschutz" ? "Datenschutzerklärung" : "AGB"} hier eingeben...`}
         />
       </div>

@@ -110,7 +110,7 @@ export default function AIBeraterPage() {
   );
 
   return (
-    <div className="min-h-screen bg-swish-gray-50">
+    <div className="min-h-screen bg-bs-gray-50">
       <PageBanner title="AI-Produktberater" subtitle="Fotografieren Sie die Oberfläche — unsere KI empfiehlt das richtige Produkt" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -120,17 +120,17 @@ export default function AIBeraterPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <button
                 onClick={() => cameraInputRef.current?.click()}
-                className="group p-8 bg-white rounded-2xl border-2 border-dashed border-gray-300 hover:border-red-300 hover:bg-red-50/30 transition-all text-center"
+                className="group p-8 bg-white rounded-2xl border-2 border-dashed border-gray-300 hover:border-bs-accent-light hover:bg-blue-50/30 transition-all text-center"
               >
-                <Camera size={48} className="mx-auto text-gray-400 group-hover:text-red-500 transition-colors" />
+                <Camera size={48} className="mx-auto text-gray-400 group-hover:text-bs-accent transition-colors" />
                 <p className="mt-3 font-semibold text-gray-700">Foto aufnehmen</p>
                 <p className="text-xs text-gray-400 mt-1">Kamera öffnen</p>
               </button>
               <button
                 onClick={() => fileInputRef.current?.click()}
-                className="group p-8 bg-white rounded-2xl border-2 border-dashed border-gray-300 hover:border-red-300 hover:bg-red-50/30 transition-all text-center"
+                className="group p-8 bg-white rounded-2xl border-2 border-dashed border-gray-300 hover:border-bs-accent-light hover:bg-blue-50/30 transition-all text-center"
               >
-                <Upload size={48} className="mx-auto text-gray-400 group-hover:text-red-500 transition-colors" />
+                <Upload size={48} className="mx-auto text-gray-400 group-hover:text-bs-accent transition-colors" />
                 <p className="mt-3 font-semibold text-gray-700">Bild hochladen</p>
                 <p className="text-xs text-gray-400 mt-1">JPG, PNG von Ihrem Gerät</p>
               </button>
@@ -145,9 +145,9 @@ export default function AIBeraterPage() {
                 <h2 className="text-xl font-bold text-gray-900 text-center mb-6">Verfügbare Tarife</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {plans.map((plan) => (
-                    <div key={plan.id} className={`p-5 rounded-xl border ${plan.price === 0 ? "bg-white border-gray-200" : "bg-white border-red-200 ring-1 ring-red-100"}`}>
+                    <div key={plan.id} className={`p-5 rounded-xl border ${plan.price === 0 ? "bg-white border-gray-200" : "bg-white border-bs-accent200 ring-1 ring-red-100"}`}>
                       <h3 className="font-bold text-gray-900">{plan.name}</h3>
-                      <p className="text-2xl font-bold text-red-600 mt-2">
+                      <p className="text-2xl font-bold text-bs-accent mt-2">
                         {plan.price === 0 ? "Kostenlos" : `${plan.price} €`}
                         {plan.price > 0 && <span className="text-sm text-gray-400 font-normal">/Monat</span>}
                       </p>
@@ -175,7 +175,7 @@ export default function AIBeraterPage() {
             </div>
 
             {error && (
-              <div className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+              <div className="flex items-start gap-3 bg-blue-50 border border-bs-accent200 text-bs-accent-dark px-4 py-3 rounded-lg text-sm">
                 <AlertCircle size={18} className="flex-shrink-0 mt-0.5" />
                 {error}
               </div>
@@ -186,7 +186,7 @@ export default function AIBeraterPage() {
                 <RotateCcw size={16} className="inline mr-2" />Anderes Bild
               </button>
               <button onClick={handleScan} disabled={scanning}
-                className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-red-700 disabled:opacity-50 text-lg">
+                className="flex-1 flex items-center justify-center gap-2 bg-bs-accent text-white px-6 py-3 rounded-xl font-semibold hover:bg-bs-accent-dark disabled:opacity-50 text-lg">
                 {scanning ? <Loader2 size={20} className="animate-spin" /> : <Sparkles size={20} />}
                 {scanning ? "Wird analysiert..." : "Oberfläche analysieren"}
               </button>
@@ -200,7 +200,7 @@ export default function AIBeraterPage() {
             {/* Analysis summary */}
             <div className="bg-white rounded-2xl border border-gray-200 p-6">
               <h2 className="font-bold text-lg text-gray-900 flex items-center gap-2 mb-4">
-                <Sparkles size={20} className="text-red-500" />
+                <Sparkles size={20} className="text-bs-accent" />
                 Analyse-Ergebnis
               </h2>
               <div className="grid grid-cols-3 gap-4">
@@ -225,16 +225,16 @@ export default function AIBeraterPage() {
                 <h3 className="font-bold text-gray-900 mb-4">Empfohlene Produkte</h3>
                 <div className="space-y-3">
                   {result.products.map((p, i) => (
-                    <div key={i} className="flex items-start gap-4 p-4 bg-swish-gray-50 rounded-xl">
-                      <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span className="text-red-600 font-bold text-sm">{i + 1}</span>
+                    <div key={i} className="flex items-start gap-4 p-4 bg-bs-gray-50 rounded-xl">
+                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-bs-accent font-bold text-sm">{i + 1}</span>
                       </div>
                       <div className="flex-1">
                         <h4 className="font-bold text-gray-900">{p.name}</h4>
                         <p className="text-sm text-gray-500 mt-0.5">{p.reason}</p>
                       </div>
                       <Link href={`/produkte/${p.name.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="text-red-600 hover:text-red-700 text-sm font-medium flex items-center gap-1">
+                        className="text-bs-accent hover:text-bs-accent-dark text-sm font-medium flex items-center gap-1">
                         Details <ArrowRight size={14} />
                       </Link>
                     </div>

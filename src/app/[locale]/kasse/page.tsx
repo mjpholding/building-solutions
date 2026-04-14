@@ -8,7 +8,7 @@ import { Link } from "@/i18n/routing";
 import { ArrowLeft, ShoppingBag, Loader2, CheckCircle2, Tag } from "lucide-react";
 import Image from "next/image";
 
-const inputClass = "w-full px-4 py-2.5 rounded-lg border border-swish-gray-200 focus:border-swish-red focus:ring-2 focus:ring-swish-red/10 outline-none text-sm";
+const inputClass = "w-full px-4 py-2.5 rounded-lg border border-bs-gray-200 focus:border-bs-accent focus:ring-2 focus:ring-bs-accent/10 outline-none text-sm";
 
 export default function CheckoutPage() {
   const t = useTranslations("checkout");
@@ -106,23 +106,23 @@ export default function CheckoutPage() {
   // Order confirmation
   if (orderId) {
     return (
-      <div className="min-h-screen bg-swish-gray-50 flex items-center justify-center px-4">
-        <div className="max-w-md w-full bg-white rounded-2xl border border-swish-gray-100 p-10 text-center shadow-sm">
+      <div className="min-h-screen bg-bs-gray-50 flex items-center justify-center px-4">
+        <div className="max-w-md w-full bg-white rounded-2xl border border-bs-gray-100 p-10 text-center shadow-sm">
           <CheckCircle2 size={64} className="text-green-500 mx-auto mb-6" />
-          <h1 className="text-2xl font-bold text-swish-gray-900">{t("orderReceived")}</h1>
-          <p className="mt-3 text-swish-gray-500">
+          <h1 className="text-2xl font-bold text-bs-gray-900">{t("orderReceived")}</h1>
+          <p className="mt-3 text-bs-gray-500">
             {t("orderThankYou")}
           </p>
-          <div className="mt-6 bg-swish-gray-50 rounded-xl p-4">
-            <p className="text-sm text-swish-gray-400">{t("orderNumber")}</p>
-            <p className="text-lg font-mono font-bold text-swish-gray-900">{orderId}</p>
+          <div className="mt-6 bg-bs-gray-50 rounded-xl p-4">
+            <p className="text-sm text-bs-gray-400">{t("orderNumber")}</p>
+            <p className="text-lg font-mono font-bold text-bs-gray-900">{orderId}</p>
           </div>
-          <p className="mt-4 text-sm text-swish-gray-400">
+          <p className="mt-4 text-sm text-bs-gray-400">
             {t("confirmationSent", { email: form.email })}
           </p>
           <Link
             href="/produkte"
-            className="inline-block mt-8 bg-swish-red hover:bg-swish-red-dark text-white px-6 py-3 rounded-xl text-sm font-semibold transition-colors"
+            className="inline-block mt-8 bg-bs-accent hover:bg-bs-accent-dark text-white px-6 py-3 rounded-xl text-sm font-semibold transition-colors"
           >
             {t("continueShopping")}
           </Link>
@@ -133,11 +133,11 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-swish-gray-50 flex items-center justify-center px-4">
+      <div className="min-h-screen bg-bs-gray-50 flex items-center justify-center px-4">
         <div className="text-center">
-          <ShoppingBag size={64} className="text-swish-gray-200 mx-auto mb-4" />
-          <h1 className="text-xl font-bold text-swish-gray-900">{t("emptyCart")}</h1>
-          <Link href="/produkte" className="inline-flex items-center gap-2 mt-4 text-swish-red text-sm font-medium">
+          <ShoppingBag size={64} className="text-bs-gray-200 mx-auto mb-4" />
+          <h1 className="text-xl font-bold text-bs-gray-900">{t("emptyCart")}</h1>
+          <Link href="/produkte" className="inline-flex items-center gap-2 mt-4 text-bs-accent text-sm font-medium">
             <ArrowLeft size={14} /> {t("toProducts")}
           </Link>
         </div>
@@ -146,71 +146,71 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-swish-gray-50">
+    <div className="min-h-screen bg-bs-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <Link href="/produkte" className="inline-flex items-center gap-2 text-swish-gray-500 hover:text-swish-red text-sm font-medium mb-8 transition-colors">
+        <Link href="/produkte" className="inline-flex items-center gap-2 text-bs-gray-500 hover:text-bs-accent text-sm font-medium mb-8 transition-colors">
           <ArrowLeft size={16} /> {t("continueShopping")}
         </Link>
 
-        <h1 className="text-3xl font-bold text-swish-gray-900 mb-8">{t("title")}</h1>
+        <h1 className="text-3xl font-bold text-bs-gray-900 mb-8">{t("title")}</h1>
 
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Form */}
             <div className="lg:col-span-2 space-y-6">
               {/* Company info */}
-              <div className="bg-white rounded-2xl border border-swish-gray-100 p-6">
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">{t("companyData")}</h2>
+              <div className="bg-white rounded-2xl border border-bs-gray-100 p-6">
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-bs-gray-900 mb-4">{t("companyData")}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="sm:col-span-2">
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("company")} *</label>
+                    <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("company")} *</label>
                     <input type="text" required value={form.company} onChange={(e) => updateForm("company", e.target.value)} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("contactPerson")} *</label>
+                    <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("contactPerson")} *</label>
                     <input type="text" required value={form.name} onChange={(e) => updateForm("name", e.target.value)} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("taxId")}</label>
+                    <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("taxId")}</label>
                     <input type="text" value={form.taxId} onChange={(e) => updateForm("taxId", e.target.value)} className={inputClass} placeholder="DE123456789" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("email")} *</label>
+                    <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("email")} *</label>
                     <input type="email" required value={form.email} onChange={(e) => updateForm("email", e.target.value)} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("phone")}</label>
+                    <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("phone")}</label>
                     <input type="tel" value={form.phone} onChange={(e) => updateForm("phone", e.target.value)} className={inputClass} />
                   </div>
                 </div>
               </div>
 
               {/* Delivery address */}
-              <div className="bg-white rounded-2xl border border-swish-gray-100 p-6">
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">{t("deliveryAddress")}</h2>
+              <div className="bg-white rounded-2xl border border-bs-gray-100 p-6">
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-bs-gray-900 mb-4">{t("deliveryAddress")}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="sm:col-span-2">
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("street")} *</label>
+                    <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("street")} *</label>
                     <input type="text" required value={form.address} onChange={(e) => updateForm("address", e.target.value)} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("zip")} *</label>
+                    <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("zip")} *</label>
                     <input type="text" required value={form.zip} onChange={(e) => updateForm("zip", e.target.value)} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("city")} *</label>
+                    <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("city")} *</label>
                     <input type="text" required value={form.city} onChange={(e) => updateForm("city", e.target.value)} className={inputClass} />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-swish-gray-700 mb-1">{t("country")}</label>
+                    <label className="block text-sm font-medium text-bs-gray-700 mb-1">{t("country")}</label>
                     <input type="text" value={form.country} onChange={(e) => updateForm("country", e.target.value)} className={inputClass} />
                   </div>
                 </div>
               </div>
 
               {/* Coupon code */}
-              <div className="bg-white rounded-2xl border border-swish-gray-100 p-6">
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">{t("couponCode")}</h2>
+              <div className="bg-white rounded-2xl border border-bs-gray-100 p-6">
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-bs-gray-900 mb-4">{t("couponCode")}</h2>
                 <div className="flex gap-2">
                   <input
                     type="text"
@@ -234,7 +234,7 @@ export default function CheckoutPage() {
                         setError(data.error || t("invalidCode"));
                       }
                     }}
-                    className="px-4 py-2.5 bg-swish-gray-100 hover:bg-swish-gray-200 text-swish-gray-700 rounded-lg text-sm font-medium transition-colors"
+                    className="px-4 py-2.5 bg-bs-gray-100 hover:bg-bs-gray-200 text-bs-gray-700 rounded-lg text-sm font-medium transition-colors"
                   >
                     <Tag size={16} />
                   </button>
@@ -248,8 +248,8 @@ export default function CheckoutPage() {
               </div>
 
               {/* Notes */}
-              <div className="bg-white rounded-2xl border border-swish-gray-100 p-6">
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">{t("notes")}</h2>
+              <div className="bg-white rounded-2xl border border-bs-gray-100 p-6">
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-bs-gray-900 mb-4">{t("notes")}</h2>
                 <textarea
                   value={form.notes}
                   onChange={(e) => updateForm("notes", e.target.value)}
@@ -262,35 +262,35 @@ export default function CheckoutPage() {
 
             {/* Order Summary */}
             <div>
-              <div className="bg-white rounded-2xl border border-swish-gray-100 p-6 sticky top-24">
-                <h2 className="text-sm font-semibold uppercase tracking-wider text-swish-gray-900 mb-4">
+              <div className="bg-white rounded-2xl border border-bs-gray-100 p-6 sticky top-24">
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-bs-gray-900 mb-4">
                   {t("orderSummary")}
                 </h2>
                 <div className="space-y-3 mb-4">
                   {items.map((item) => (
                     <div key={`${item.slug}-${item.size}`} className="flex gap-3">
-                      <div className="w-12 h-12 bg-swish-gray-50 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
+                      <div className="w-12 h-12 bg-bs-gray-50 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
                         {item.image ? (
                           <Image src={item.image} alt={item.name} width={40} height={40} className="object-contain" />
                         ) : (
-                          <ShoppingBag size={14} className="text-swish-gray-300" />
+                          <ShoppingBag size={14} className="text-bs-gray-300" />
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-swish-gray-900 truncate">{item.name}</p>
-                        <p className="text-xs text-swish-gray-400">{item.size} x {item.quantity}</p>
+                        <p className="text-sm font-medium text-bs-gray-900 truncate">{item.name}</p>
+                        <p className="text-xs text-bs-gray-400">{item.size} x {item.quantity}</p>
                       </div>
-                      <p className="text-sm font-semibold text-swish-gray-900 whitespace-nowrap">
+                      <p className="text-sm font-semibold text-bs-gray-900 whitespace-nowrap">
                         {(isB2B ? item.price * item.quantity : item.price * item.quantity * 1.19).toFixed(2)} &euro;
                       </p>
                     </div>
                   ))}
                 </div>
-                <div className="border-t border-swish-gray-100 pt-4 space-y-2">
+                <div className="border-t border-bs-gray-100 pt-4 space-y-2">
                   {isB2B ? (
                     <>
                       <div className="flex justify-between text-sm">
-                        <span className="text-swish-gray-500">{t("subtotalNet")}</span>
+                        <span className="text-bs-gray-500">{t("subtotalNet")}</span>
                         <span className="font-medium">{discountedPrice.toFixed(2)} &euro;</span>
                       </div>
                       {totalDiscount > 0 && (
@@ -300,22 +300,22 @@ export default function CheckoutPage() {
                         </div>
                       )}
                       <div className="flex justify-between text-sm">
-                        <span className="text-swish-gray-500">{t("vat")}</span>
+                        <span className="text-bs-gray-500">{t("vat")}</span>
                         <span className="font-medium">{(discountedPrice * 0.19).toFixed(2)} &euro;</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-swish-gray-500">{t("shipping")}</span>
-                        <span className="font-medium text-swish-gray-400">{t("shippingOnRequest")}</span>
+                        <span className="text-bs-gray-500">{t("shipping")}</span>
+                        <span className="font-medium text-bs-gray-400">{t("shippingOnRequest")}</span>
                       </div>
-                      <div className="border-t border-swish-gray-100 pt-2 flex justify-between">
-                        <span className="font-semibold text-swish-gray-900">{t("totalGross")}</span>
-                        <span className="text-lg font-bold text-swish-gray-900">{(discountedPrice * 1.19).toFixed(2)} &euro;</span>
+                      <div className="border-t border-bs-gray-100 pt-2 flex justify-between">
+                        <span className="font-semibold text-bs-gray-900">{t("totalGross")}</span>
+                        <span className="text-lg font-bold text-bs-gray-900">{(discountedPrice * 1.19).toFixed(2)} &euro;</span>
                       </div>
                     </>
                   ) : (
                     <>
                       <div className="flex justify-between text-sm">
-                        <span className="text-swish-gray-500">{t("subtotalGross")}</span>
+                        <span className="text-bs-gray-500">{t("subtotalGross")}</span>
                         <span className="font-medium">{(discountedPrice * 1.19).toFixed(2)} &euro;</span>
                       </div>
                       {totalDiscount > 0 && (
@@ -324,34 +324,34 @@ export default function CheckoutPage() {
                           <span className="font-medium">-{(discountAmount * 1.19).toFixed(2)} &euro;</span>
                         </div>
                       )}
-                      <div className="text-xs text-swish-gray-400">
+                      <div className="text-xs text-bs-gray-400">
                         {t("vatIncluded")}
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-swish-gray-500">{t("shipping")}</span>
-                        <span className="font-medium text-swish-gray-400">{t("shippingOnRequest")}</span>
+                        <span className="text-bs-gray-500">{t("shipping")}</span>
+                        <span className="font-medium text-bs-gray-400">{t("shippingOnRequest")}</span>
                       </div>
-                      <div className="border-t border-swish-gray-100 pt-2 flex justify-between">
-                        <span className="font-semibold text-swish-gray-900">{t("totalGross")}</span>
-                        <span className="text-lg font-bold text-swish-gray-900">{(discountedPrice * 1.19).toFixed(2)} &euro;</span>
+                      <div className="border-t border-bs-gray-100 pt-2 flex justify-between">
+                        <span className="font-semibold text-bs-gray-900">{t("totalGross")}</span>
+                        <span className="text-lg font-bold text-bs-gray-900">{(discountedPrice * 1.19).toFixed(2)} &euro;</span>
                       </div>
                     </>
                   )}
                 </div>
 
                 {error && (
-                  <div className="mt-4 text-sm text-red-600 bg-red-50 p-3 rounded-lg">{error}</div>
+                  <div className="mt-4 text-sm text-bs-accent bg-blue-50 p-3 rounded-lg">{error}</div>
                 )}
 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="mt-6 w-full flex items-center justify-center gap-2 bg-swish-red hover:bg-swish-red-dark disabled:bg-swish-red/50 text-white py-3.5 rounded-xl text-sm font-semibold transition-colors"
+                  className="mt-6 w-full flex items-center justify-center gap-2 bg-bs-accent hover:bg-bs-accent-dark disabled:bg-bs-accent/50 text-white py-3.5 rounded-xl text-sm font-semibold transition-colors"
                 >
                   {submitting ? <Loader2 size={18} className="animate-spin" /> : null}
                   {submitting ? t("submitting") : t("submitOrder")}
                 </button>
-                <p className="mt-3 text-xs text-swish-gray-400 text-center">
+                <p className="mt-3 text-xs text-bs-gray-400 text-center">
                   {t("termsNotice")}
                 </p>
               </div>

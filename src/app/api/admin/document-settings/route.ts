@@ -29,7 +29,7 @@ export interface DocumentSettings {
 }
 
 const DEFAULT_SETTINGS: DocumentSettings = {
-  companyName: "Swish Deutschland GmbH",
+  companyName: "Building Solutions GmbH GmbH",
   companyStreet: "Musterstrasse 1",
   companyZip: "10115",
   companyCity: "Berlin",
@@ -37,7 +37,7 @@ const DEFAULT_SETTINGS: DocumentSettings = {
   companyTaxId: "DE123456789",
   companyPhone: "",
   companyEmail: "",
-  companyWebsite: "www.swish-deutschland.de",
+  companyWebsite: "www.buildingsolutions.de",
   bankName: "",
   bankIban: "",
   bankBic: "",

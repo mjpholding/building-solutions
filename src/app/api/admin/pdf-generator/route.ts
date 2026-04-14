@@ -41,7 +41,7 @@ WICHTIGE REGELN:
 WICHTIGE REGELN:
 - Verwende die korrekte deutsche Terminologie für Sicherheitsdatenblätter gemäß REACH-Verordnung (EG) Nr. 1907/2006.
 - Strukturiere das Ergebnis mit HTML-Tags: <h2> für Hauptabschnitte (SEKTION 1, 2, 3...), <h3> für Unterabschnitte, <p> für Absätze, <ul>/<li> für Listen, <table> für Tabellen.
-- Ersetze polnische Firmendaten (Swish Polska, Warszawa, Pańska, biuro@swishclean.pl etc.) durch [FIRMENNAME], [ADRESSE], [TELEFON], [EMAIL].
+- Ersetze polnische Firmendaten (Building Solutions, Warszawa, Pańska, biuro@swishclean.pl etc.) durch [FIRMENNAME], [ADRESSE], [TELEFON], [EMAIL].
 - Übersetze Produktnamen NICHT.
 - Gib NUR den HTML-Code zurück, ohne Markdown, ohne Codeblöcke, ohne Kommentare.`
     : `Du bist ein professioneller Übersetzer für technische Produktdatenblätter von professionellen Reinigungsprodukten.
@@ -56,7 +56,7 @@ WICHTIGE REGELN:
   - <ul>/<li> für Aufzählungen und Schritte
   - <table><tr><td> für technische Daten (pH-Wert, Größen, Dosierung etc.)
   - <strong> für wichtige Begriffe
-- Ersetze polnische Firmendaten (Swish Polska, Warszawa, Pańska 73, biuro@swishclean.pl, swishclean.pl, NIP, KRS, REGON etc.) durch [FIRMENNAME], [ADRESSE], [TELEFON], [EMAIL], [WEBSITE].
+- Ersetze polnische Firmendaten (Building Solutions, Warszawa, Pańska 73, biuro@swishclean.pl, swishclean.pl, NIP, KRS, REGON etc.) durch [FIRMENNAME], [ADRESSE], [TELEFON], [EMAIL], [WEBSITE].
 - Übersetze Produktnamen NICHT (z.B. "Poly Lock Ultra" bleibt "Poly Lock Ultra").
 - Trenne die erste Seite (Produktbeschreibung) und zweite Seite (Anwendungshinweise) mit <hr/>.
 - Gib NUR den HTML-Code zurück, ohne Markdown-Codeblöcke, ohne Kommentare.`;

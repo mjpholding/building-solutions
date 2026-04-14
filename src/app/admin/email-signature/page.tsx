@@ -18,21 +18,21 @@ interface ContactData {
 }
 
 const defaultContact: ContactData = {
-  company: "Swish Deutschland",
+  company: "Building Solutions GmbH",
   address: "Ottostr. 14",
   zip: "50170",
   city: "Kerpen",
   country: "Deutschland",
   phone: "+49 (0) 2273 951 55 77",
   fax: "",
-  email: "info@swish-deutschland.de",
-  website: "www.swish-deutschland.de",
+  email: "info@buildingsolutions.de",
+  website: "www.buildingsolutions.de",
   taxId: "",
   managingDirector: "",
 };
 
 const inputClass =
-  "w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm";
+  "w-full px-3 py-2 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm";
 
 export default function EmailSignaturePage() {
   const [contact, setContact] = useState<ContactData>(defaultContact);
@@ -40,7 +40,7 @@ export default function EmailSignaturePage() {
   const [personRole, setPersonRole] = useState("Vertrieb");
   const [personEmail, setPersonEmail] = useState("");
   const [personPhone, setPersonPhone] = useState("");
-  const [logoUrl, setLogoUrl] = useState("https://swish-deutschland.vercel.app/logo-swish-deutschland.png");
+  const [logoUrl, setLogoUrl] = useState("https://buildingsolutions.vercel.app/logo-buildingsolutions.png");
   const [copied, setCopied] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
 
@@ -226,7 +226,7 @@ export default function EmailSignaturePage() {
           <div className="flex gap-3">
             <button
               onClick={handleCopyRich}
-              className="flex-1 flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl text-sm font-semibold transition-colors"
+              className="flex-1 flex items-center justify-center gap-2 bg-bs-accent hover:bg-bs-accent-dark text-white py-3 rounded-xl text-sm font-semibold transition-colors"
             >
               {copied ? <Check size={16} /> : <Copy size={16} />}
               {copied ? "Kopiert!" : "Signatur kopieren (für E-Mail-Client)"}

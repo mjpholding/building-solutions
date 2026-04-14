@@ -40,7 +40,7 @@ const STATUS_COLORS: Record<string, string> = {
   processing: "bg-yellow-100 text-yellow-700",
   shipped: "bg-purple-100 text-purple-700",
   completed: "bg-green-100 text-green-700",
-  cancelled: "bg-red-100 text-red-700",
+  cancelled: "bg-blue-100 text-bs-accent-dark",
 };
 
 export default function OrdersAdmin() {
@@ -201,7 +201,7 @@ export default function OrdersAdmin() {
                       <button
                         onClick={() => deleteOrder(order.id)}
                         disabled={deletingId === order.id}
-                        className="inline-flex items-center gap-1.5 p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        className="inline-flex items-center gap-1.5 p-2 text-gray-400 hover:text-bs-accent hover:bg-blue-50 rounded-lg transition-colors"
                         title="Löschen"
                       >
                         {deletingId === order.id ? <Loader2 size={14} className="animate-spin" /> : <Trash2 size={14} />}

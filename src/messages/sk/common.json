@@ -1,24 +1,28 @@
 {
   "meta": {
-    "title": "Swish Deutschland – Profesionálne čistiace riešenia",
-    "description": "Odborníci na profesionálne čistiace prostriedky a hygienické riešenia v Nemecku. Od roku 1956."
+    "title": "Building Solutions GmbH – Technológia budov a bezpečnosť",
+    "description": "Váš partner pre bezpečnostné systémy, videodohľad, elektrotechniku a fotovoltaiku v Kerpen a okolí."
   },
   "nav": {
     "home": "Domov",
+    "services": "Služby",
+    "references": "Referencie",
+    "about": "O nás",
+    "career": "Kariéra",
+    "partners": "Partneri",
+    "contact": "Kontakt",
     "products": "Produkty",
     "productAdvisor": "Produktový poradca",
-    "about": "O nás",
     "hygienePlans": "Hygienické plány",
     "downloads": "Na stiahnutie",
-    "contact": "Kontakt",
     "allProducts": "Všetky produkty",
-    "requestQuote": "Vyžiadať ponuku"
+    "requestQuote": "Žiadosť o ponuku"
   },
   "hero": {
-    "title": "Čistota je naša misia",
-    "subtitle": "Profesionálne čistiace riešenia pre váš podnik – overené od roku 1956",
-    "cta": "Objaviť produkty",
-    "ctaSecondary": "Vyžiadať ponuku"
+    "title": "Riešenia pre bezpečnejšie budovy",
+    "subtitle": "Robíme budovy bezpečnejšími, efektívnejšími a komfortnejšími — s integrovanou bezpečnostnou, komunikačnou a elektrotechnikou.",
+    "cta": "Naše služby",
+    "ctaSecondary": "Žiadosť o ponuku"
   },
   "categories": {
     "title": "Kategórie produktov",
@@ -180,14 +184,28 @@
     "images": "Obrázky produktov",
     "dosageTables": "Tabuľky dávkovania"
   },
+  "services": {
+    "title": "Naše služby",
+    "subtitle": "Komplexné riešenia pre technológiu budov a bezpečnosť",
+    "learnMore": "Zistiť viac",
+    "backToServices": "Všetky služby",
+    "notFound": "Služba nenájdená",
+    "overview": "Prehľad",
+    "ourServices": "Naše služby podrobne",
+    "ctaTitle": "Prediskutovať projekt?",
+    "ctaDescription": "Kontaktujte nás pre bezplatnú konzultáciu.",
+    "ctaButton": "Kontaktujte nás",
+    "otherServices": "Ďalšie služby",
+    "allServices": "Zobraziť všetky služby"
+  },
   "footer": {
-    "company": "Swish Deutschland",
-    "address": "Ottostr. 14, 50170 Kerpen",
-    "phone": "+49 (0) 2273 951 55 77",
+    "company": "Building Solutions GmbH",
+    "address": "Ottostraße 14, 50170 Kerpen",
+    "phone": "+49 (0) 2273 951 55 0",
     "rights": "Všetky práva vyhradené",
-    "privacy": "Ochrana súkromia",
+    "privacy": "Zásady ochrany osobných údajov",
     "imprint": "Impressum",
-    "tagline": "Odborníci na profesionálne čistiace riešenia"
+    "tagline": "Váš partner pre technológiu budov a bezpečnosť"
   },
   "common": {
     "learnMore": "Viac informácií",
@@ -319,11 +337,11 @@
     "detailedDescription": "Popis produktu"
   },
   "heroStats": {
-    "since": "Od roku 1956",
-    "founded": "Založenie",
-    "products": "Produktov",
-    "locations": "Pobočiek",
-    "employees": "Zamestnancov"
+    "since": "Building Solutions GmbH",
+    "services": "Oblasti služieb",
+    "quality": "Kvalita",
+    "support": "Servis a podpora",
+    "region": "Región"
   },
   "whySwish": {
     "title": "Prečo Swish?",
@@ -352,5 +370,33 @@
     "navigation": "Navigácia",
     "legalSection": "Právne informácie",
     "expertTagline": "Odborníci na profesionálne čistiace riešenia"
+  },
+  "references": {
+    "title": "Referencie",
+    "subtitle": "Vybrané projekty a spokojní zákazníci",
+    "allCategories": "Všetky",
+    "empty": "Zatiaľ žiadne referencie."
+  },
+  "career": {
+    "title": "Kariéra",
+    "subtitle": "Pridajte sa k nášmu tímu",
+    "noJobs": "Žiadne voľné pozície",
+    "noJobsDescription": "Momentálne nemáme voľné pozície. Pošlite nám iniciatívnu žiadosť.",
+    "applyGeneral": "Poslať žiadosť",
+    "apply": "Prihlásiť sa",
+    "requirements": "Požiadavky",
+    "benefits": "Čo ponúkame",
+    "contactTitle": "Otázky ku kariére?",
+    "contactDescription": "Tešíme sa na váš kontakt."
+  },
+  "partners": {
+    "title": "Naši partneri",
+    "subtitle": "Silné partnerstvá pre najlepšie výsledky",
+    "empty": "Zatiaľ žiadni partneri."
+  },
+  "cta": {
+    "title": "Váš projekt. Naše riešenie.",
+    "subtitle": "Kontaktujte nás pre bezplatnú konzultáciu — nájdeme optimálne riešenie.",
+    "button": "Kontaktujte nás"
   }
 }

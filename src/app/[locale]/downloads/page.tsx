@@ -35,7 +35,7 @@ const categories = [
   {
     key: "safetySheets" as const,
     icon: ShieldCheck,
-    color: "bg-red-50 text-red-600",
+    color: "bg-blue-50 text-bs-accent",
     titleDE: "Sicherheitsdatenblätter",
     descDE: "SDB / SDS gemäß REACH-Verordnung",
   },
@@ -109,18 +109,18 @@ export default function DownloadsPage() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.08 }}
-                      className="group text-left bg-white rounded-2xl border border-swish-gray-100 p-8 hover:shadow-xl hover:border-swish-red/20 transition-all"
+                      className="group text-left bg-white rounded-2xl border border-bs-gray-100 p-8 hover:shadow-xl hover:border-bs-accent/20 transition-all"
                     >
                       <div className="flex items-start justify-between">
                         <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-5 ${cat.color} group-hover:scale-110 transition-transform`}>
                           <Icon size={28} />
                         </div>
-                        <ChevronRight size={20} className="text-gray-300 group-hover:text-swish-red transition-colors mt-2" />
+                        <ChevronRight size={20} className="text-gray-300 group-hover:text-bs-accent transition-colors mt-2" />
                       </div>
-                      <h3 className="text-lg font-bold text-swish-gray-900 group-hover:text-swish-red transition-colors">
+                      <h3 className="text-lg font-bold text-bs-gray-900 group-hover:text-bs-accent transition-colors">
                         {cat.titleDE}
                       </h3>
-                      <p className="text-sm text-swish-gray-500 mt-2">{cat.descDE}</p>
+                      <p className="text-sm text-bs-gray-500 mt-2">{cat.descDE}</p>
                     </motion.button>
                   );
                 })}
@@ -139,14 +139,14 @@ export default function DownloadsPage() {
               {/* Back button */}
               <button
                 onClick={() => setActiveCategory(null)}
-                className="flex items-center gap-2 text-swish-gray-500 hover:text-swish-red font-medium text-sm mb-8 transition-colors"
+                className="flex items-center gap-2 text-bs-gray-500 hover:text-bs-accent font-medium text-sm mb-8 transition-colors"
               >
                 <ArrowLeft size={16} />
                 Zurück zur Übersicht
               </button>
 
               {/* Category title */}
-              <h2 className="text-2xl font-bold text-swish-gray-900 mb-6">
+              <h2 className="text-2xl font-bold text-bs-gray-900 mb-6">
                 {categories.find((c) => c.key === activeCategory)?.titleDE}
               </h2>
 
@@ -159,16 +159,16 @@ export default function DownloadsPage() {
                       href={cat.file}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-5 bg-white rounded-xl border border-gray-200 hover:border-swish-red/30 hover:shadow-lg transition-all group"
+                      className="flex items-center gap-4 p-5 bg-white rounded-xl border border-gray-200 hover:border-bs-accent/30 hover:shadow-lg transition-all group"
                     >
                       <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
                         <BookOpen size={24} className="text-blue-600" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-bold text-gray-900 group-hover:text-swish-red transition-colors">{cat.name}</h3>
+                        <h3 className="font-bold text-gray-900 group-hover:text-bs-accent transition-colors">{cat.name}</h3>
                         <p className="text-sm text-gray-500 mt-0.5">{cat.desc}</p>
                       </div>
-                      <Download size={18} className="text-gray-400 group-hover:text-swish-red transition-colors" />
+                      <Download size={18} className="text-gray-400 group-hover:text-bs-accent transition-colors" />
                     </a>
                   ))}
                 </div>
@@ -191,16 +191,16 @@ export default function DownloadsPage() {
                           href={`/api/product-sheets/view?id=${sheet.id}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-200 hover:border-swish-red/30 hover:shadow-lg transition-all group"
+                          className="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-200 hover:border-bs-accent/30 hover:shadow-lg transition-all group"
                         >
                           <div className="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center flex-shrink-0">
                             <FileText size={20} className="text-purple-600" />
                           </div>
                           <div className="flex-1">
-                            <h3 className="font-medium text-gray-900 group-hover:text-swish-red transition-colors">{sheet.productName}</h3>
+                            <h3 className="font-medium text-gray-900 group-hover:text-bs-accent transition-colors">{sheet.productName}</h3>
                             <p className="text-xs text-gray-400">Produktdatenblatt</p>
                           </div>
-                          <Download size={16} className="text-gray-400 group-hover:text-swish-red transition-colors" />
+                          <Download size={16} className="text-gray-400 group-hover:text-bs-accent transition-colors" />
                         </a>
                       ))}
                     </div>
@@ -225,16 +225,16 @@ export default function DownloadsPage() {
                           href={`/api/product-sheets/view?id=${sheet.id}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-200 hover:border-swish-red/30 hover:shadow-lg transition-all group"
+                          className="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-200 hover:border-bs-accent/30 hover:shadow-lg transition-all group"
                         >
-                          <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <ShieldCheck size={20} className="text-red-600" />
+                          <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <ShieldCheck size={20} className="text-bs-accent" />
                           </div>
                           <div className="flex-1">
-                            <h3 className="font-medium text-gray-900 group-hover:text-swish-red transition-colors">{sheet.productName}</h3>
+                            <h3 className="font-medium text-gray-900 group-hover:text-bs-accent transition-colors">{sheet.productName}</h3>
                             <p className="text-xs text-gray-400">Sicherheitsdatenblatt (SDB)</p>
                           </div>
-                          <Download size={16} className="text-gray-400 group-hover:text-swish-red transition-colors" />
+                          <Download size={16} className="text-gray-400 group-hover:text-bs-accent transition-colors" />
                         </a>
                       ))}
                     </div>
@@ -249,16 +249,16 @@ export default function DownloadsPage() {
                     href="/katalog-pdf/Swish-Deutschland-Katalog-Professional.pdf#page=41"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-5 bg-white rounded-xl border border-gray-200 hover:border-swish-red/30 hover:shadow-lg transition-all group"
+                    className="flex items-center gap-4 p-5 bg-white rounded-xl border border-gray-200 hover:border-bs-accent/30 hover:shadow-lg transition-all group"
                   >
                     <div className="w-12 h-12 bg-cyan-50 rounded-lg flex items-center justify-center flex-shrink-0">
                       <Calculator size={24} className="text-cyan-600" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-gray-900 group-hover:text-swish-red transition-colors">Dosiertabelle — Professional Line</h3>
+                      <h3 className="font-bold text-gray-900 group-hover:text-bs-accent transition-colors">Dosiertabelle — Professional Line</h3>
                       <p className="text-sm text-gray-500 mt-0.5">Dosierungsempfehlungen für alle Professional-Produkte</p>
                     </div>
-                    <Download size={18} className="text-gray-400 group-hover:text-swish-red transition-colors" />
+                    <Download size={18} className="text-gray-400 group-hover:text-bs-accent transition-colors" />
                   </a>
                 </div>
               )}

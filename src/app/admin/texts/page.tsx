@@ -76,7 +76,7 @@ export default function TextsAdmin() {
         <button
           onClick={handleSave}
           disabled={saving || loading}
-          className="flex items-center gap-2 bg-red-600 hover:bg-red-700 disabled:bg-red-300 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition-colors"
+          className="flex items-center gap-2 bg-bs-accent hover:bg-bs-accent-dark disabled:bg-red-300 text-white px-6 py-2.5 rounded-lg text-sm font-medium transition-colors"
         >
           {saving ? <Loader2 size={16} className="animate-spin" /> : saved ? <Check size={16} /> : <Save size={16} />}
           {saved ? "Gespeichert!" : "Speichern"}
@@ -91,7 +91,7 @@ export default function TextsAdmin() {
             onClick={() => setLocale(l.code)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               locale === l.code
-                ? "bg-red-600 text-white"
+                ? "bg-bs-accent text-white"
                 : "text-gray-600 hover:bg-gray-100"
             }`}
           >
@@ -138,14 +138,14 @@ export default function TextsAdmin() {
                             value={value}
                             onChange={(e) => updateValue(section, key, e.target.value)}
                             rows={3}
-                            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm resize-y"
+                            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm resize-y"
                           />
                         ) : (
                           <input
                             type="text"
                             value={typeof value === "string" ? value : ""}
                             onChange={(e) => updateValue(section, key, e.target.value)}
-                            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
+                            className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-bs-accent500 focus:ring-2 focus:ring-red-500/10 outline-none text-sm"
                           />
                         )}
                       </div>

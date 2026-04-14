@@ -74,7 +74,7 @@ export default function DocumentSettingsPage() {
           onClick={handleSave}
           disabled={saving}
           className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-white transition-colors ${
-            saved ? "bg-green-600" : "bg-red-600 hover:bg-red-700"
+            saved ? "bg-green-600" : "bg-bs-accent hover:bg-bs-accent-dark"
           }`}
         >
           {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
@@ -85,7 +85,7 @@ export default function DocumentSettingsPage() {
       {/* Company Info */}
       <section className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
         <div className="flex items-center gap-2 mb-5">
-          <Building2 className="w-5 h-5 text-red-600" />
+          <Building2 className="w-5 h-5 text-bs-accent" />
           <h2 className="text-lg font-bold text-gray-900">Firmendaten</h2>
         </div>
         <div className="grid grid-cols-2 gap-4">
@@ -167,7 +167,7 @@ export default function DocumentSettingsPage() {
       {/* Bank Account */}
       <section className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
         <div className="flex items-center gap-2 mb-5">
-          <Landmark className="w-5 h-5 text-red-600" />
+          <Landmark className="w-5 h-5 text-bs-accent" />
           <h2 className="text-lg font-bold text-gray-900">Bankverbindung</h2>
         </div>
         <div className="grid grid-cols-2 gap-4">
@@ -210,7 +210,7 @@ export default function DocumentSettingsPage() {
       {/* Invoice Texts */}
       <section className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
         <div className="flex items-center gap-2 mb-5">
-          <FileText className="w-5 h-5 text-red-600" />
+          <FileText className="w-5 h-5 text-bs-accent" />
           <h2 className="text-lg font-bold text-gray-900">Rechnungstexte</h2>
         </div>
         <div className="space-y-4">
@@ -273,7 +273,7 @@ export default function DocumentSettingsPage() {
       {/* Legal Note */}
       <section className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
         <div className="flex items-center gap-2 mb-5">
-          <ScrollText className="w-5 h-5 text-red-600" />
+          <ScrollText className="w-5 h-5 text-bs-accent" />
           <h2 className="text-lg font-bold text-gray-900">Rechtliche Angaben</h2>
         </div>
         <div>

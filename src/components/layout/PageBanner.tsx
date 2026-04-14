@@ -57,7 +57,7 @@ export default function PageBanner({ title, subtitle }: { title: string; subtitl
           )}
         </div>
       )}
-      {!hasMedia && <div className="absolute inset-0 bg-gradient-to-br from-swish-gray-900 via-swish-gray-800 to-swish-gray-900" />}
+      {!hasMedia && <div className="absolute inset-0 bg-gradient-to-br from-bs-gray-900 via-bs-gray-800 to-bs-gray-900" />}
       <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/60 z-[1]" />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}>

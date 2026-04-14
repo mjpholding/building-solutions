@@ -44,10 +44,10 @@ export default function WhySwishSection() {
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-swish-gray-900">
+          <h2 className="text-3xl lg:text-4xl font-bold text-bs-gray-900">
             {tw("title")}
           </h2>
-          <p className="mt-4 text-lg text-swish-gray-500 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-bs-gray-500 max-w-2xl mx-auto">
             {t("missionText")}
           </p>
         </motion.div>
@@ -67,10 +67,10 @@ export default function WhySwishSection() {
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5 ${feat.color} group-hover:scale-110 transition-transform duration-300`}>
                   <Icon size={28} />
                 </div>
-                <h3 className="text-lg font-semibold text-swish-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-bs-gray-900 mb-2">
                   {t(feat.titleKey)}
                 </h3>
-                <p className="text-sm text-swish-gray-500 leading-relaxed">
+                <p className="text-sm text-bs-gray-500 leading-relaxed">
                   {tw(feat.descKey)}
                 </p>
               </motion.div>

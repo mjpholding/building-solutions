@@ -38,7 +38,7 @@ const STATUS_COLORS: Record<string, string> = {
   processing: "bg-yellow-100 text-yellow-700",
   shipped: "bg-purple-100 text-purple-700",
   completed: "bg-green-100 text-green-700",
-  cancelled: "bg-red-100 text-red-700",
+  cancelled: "bg-blue-100 text-bs-accent-dark",
 };
 
 interface DocRecord {
@@ -136,7 +136,7 @@ export default function OrderDetail() {
     return (
       <div className="text-center py-20">
         <p className="text-gray-500">Bestellung nicht gefunden</p>
-        <Link href="/admin/orders" className="text-red-600 text-sm mt-2 inline-block">Zurück</Link>
+        <Link href="/admin/orders" className="text-bs-accent text-sm mt-2 inline-block">Zurück</Link>
       </div>
     );
   }
@@ -176,7 +176,7 @@ export default function OrderDetail() {
           <button
             onClick={deleteOrder}
             disabled={deleting}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-bs-accent bg-blue-50 hover:bg-blue-100 border border-bs-accent200 transition-colors"
           >
             {deleting ? <Loader2 size={14} className="animate-spin" /> : <Trash2 size={14} />}
             Löschen
@@ -333,7 +333,7 @@ export default function OrderDetail() {
                   </button>
                   <button
                     onClick={() => deleteDocument(doc.id)}
-                    className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                    className="p-1.5 text-gray-400 hover:text-bs-accent hover:bg-blue-50 rounded transition-colors"
                     title="Löschen"
                   >
                     <Trash2 size={14} />

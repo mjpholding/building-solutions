@@ -16,6 +16,8 @@ export interface HeroConfig {
   pauseAfterLoop: number;
   imageDuration: number;
   bannerEnabled: boolean;
+  ringSpeed: number;
+  earthSpeed: number; // pixels per second for Earth texture rotation
 }
 
 const DEFAULT_CONFIG: HeroConfig = {
@@ -24,6 +26,8 @@ const DEFAULT_CONFIG: HeroConfig = {
   pauseAfterLoop: 10,
   imageDuration: 8,
   bannerEnabled: true,
+  ringSpeed: 8,
+  earthSpeed: 20,
 };
 
 async function getConfig(): Promise<HeroConfig> {
@@ -49,6 +53,8 @@ export async function PUT(request: NextRequest) {
   if (body.pauseAfterLoop !== undefined) config.pauseAfterLoop = body.pauseAfterLoop;
   if (body.imageDuration !== undefined) config.imageDuration = body.imageDuration;
   if (body.bannerEnabled !== undefined) config.bannerEnabled = body.bannerEnabled;
+  if (body.ringSpeed !== undefined) config.ringSpeed = body.ringSpeed;
+  if (body.earthSpeed !== undefined) config.earthSpeed = body.earthSpeed;
 
   await storeSet("hero-config", config);
   return NextResponse.json(config);

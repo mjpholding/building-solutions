@@ -32,7 +32,7 @@ export default function LanguageSwitcher() {
     <div ref={ref} className="fixed bottom-6 right-6 z-[100]">
       <button
         onClick={() => setOpen(!open)}
-        className="w-12 h-12 rounded-full bg-white shadow-lg border border-swish-gray-200 flex items-center justify-center text-2xl hover:shadow-xl hover:scale-105 transition-all"
+        className="w-12 h-12 rounded-full bg-white shadow-lg border border-bs-gray-200 flex items-center justify-center text-2xl hover:shadow-xl hover:scale-105 transition-all"
         aria-label="Select language"
       >
         {localeFlags[locale]}
@@ -45,17 +45,17 @@ export default function LanguageSwitcher() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
             transition={{ duration: 0.15 }}
-            className="absolute bottom-full right-0 mb-2 bg-white rounded-2xl shadow-2xl border border-swish-gray-200 py-2 min-w-[200px] max-h-[70vh] overflow-y-auto"
+            className="absolute bottom-full right-0 mb-2 bg-white rounded-2xl shadow-2xl border border-bs-gray-200 py-2 min-w-[200px] max-h-[70vh] overflow-y-auto"
           >
-            <p className="px-4 py-2 text-[10px] font-semibold uppercase tracking-wider text-swish-gray-400">Sprache / Language</p>
+            <p className="px-4 py-2 text-[10px] font-semibold uppercase tracking-wider text-bs-gray-400">Sprache / Language</p>
             {locales.map((loc) => (
               <button
                 key={loc}
                 onClick={() => switchLocale(loc)}
                 className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
                   loc === locale
-                    ? "text-swish-red bg-red-50 font-medium"
-                    : "text-swish-gray-700 hover:bg-swish-gray-50"
+                    ? "text-bs-accent bg-blue-50 font-medium"
+                    : "text-bs-gray-700 hover:bg-bs-gray-50"
                 }`}
               >
                 <span className="text-lg">{localeFlags[loc]}</span>
