@@ -391,7 +391,19 @@
     "title": "Referencat",
     "subtitle": "Projekte të zgjedhura dhe klientë të kënaqur",
     "allCategories": "Të gjitha",
-    "empty": "Ende nuk ka referenca."
+    "empty": "Ende nuk ka referenca.",
+    "backToList": "Kthehu në listë",
+    "projectData": "Të dhënat e projektit",
+    "client": "Klienti",
+    "address": "Vendndodhja",
+    "year": "Viti",
+    "area": "Sipërfaqja / të dhënat",
+    "scope": "Gama e punimeve",
+    "featured": "I spikatur",
+    "requestSimilar": "Kërko një projekt të ngjashëm",
+    "relatedProjects": "Projekte të ngjashme",
+    "notFound": "Projekti nuk u gjet",
+    "notFoundDescription": "Kjo referencë nuk ekziston ose është hequr."
   },
   "career": {
     "title": "Karriera",

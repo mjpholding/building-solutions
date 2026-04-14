@@ -391,7 +391,19 @@
     "title": "Reference",
     "subtitle": "Odabrani projekti i zadovoljni klijenti",
     "allCategories": "Sve",
-    "empty": "Još nema referenci."
+    "empty": "Još nema referenci.",
+    "backToList": "Natrag na pregled",
+    "projectData": "Podaci projekta",
+    "client": "Naručitelj",
+    "address": "Lokacija",
+    "year": "Godina",
+    "area": "Površina / podaci",
+    "scope": "Opseg radova",
+    "featured": "Istaknuto",
+    "requestSimilar": "Zatraži sličan projekt",
+    "relatedProjects": "Srodni projekti",
+    "notFound": "Projekt nije pronađen",
+    "notFoundDescription": "Ova referenca ne postoji ili je uklonjena."
   },
   "career": {
     "title": "Karijera",

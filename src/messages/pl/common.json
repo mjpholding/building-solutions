@@ -391,7 +391,19 @@
     "title": "Referencje",
     "subtitle": "Wybrane projekty i zadowoleni klienci",
     "allCategories": "Wszystkie",
-    "empty": "Brak referencji."
+    "empty": "Brak referencji.",
+    "backToList": "Powrót do listy",
+    "projectData": "Dane projektu",
+    "client": "Zleceniodawca",
+    "address": "Lokalizacja",
+    "year": "Rok",
+    "area": "Powierzchnia / dane",
+    "scope": "Zakres prac",
+    "featured": "Wyróżnione",
+    "requestSimilar": "Zapytaj o podobny projekt",
+    "relatedProjects": "Powiązane projekty",
+    "notFound": "Projekt nie znaleziony",
+    "notFoundDescription": "Ta referencja nie istnieje lub została usunięta."
   },
   "career": {
     "title": "Kariera",

@@ -391,7 +391,19 @@
     "title": "References",
     "subtitle": "Selected projects and satisfied clients",
     "allCategories": "All",
-    "empty": "No references yet."
+    "empty": "No references yet.",
+    "backToList": "Back to overview",
+    "projectData": "Project data",
+    "client": "Client",
+    "address": "Location",
+    "year": "Year",
+    "area": "Area / key facts",
+    "scope": "Scope of work",
+    "featured": "Highlight",
+    "requestSimilar": "Request a similar project",
+    "relatedProjects": "Related projects",
+    "notFound": "Project not found",
+    "notFoundDescription": "This reference does not exist or has been removed."
   },
   "career": {
     "title": "Career",

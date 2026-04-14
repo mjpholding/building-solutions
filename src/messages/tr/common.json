@@ -391,7 +391,19 @@
     "title": "Referanslar",
     "subtitle": "Seçilmiş projeler ve memnun müşteriler",
     "allCategories": "Tümü",
-    "empty": "Henüz referans yok."
+    "empty": "Henüz referans yok.",
+    "backToList": "Listeye dön",
+    "projectData": "Proje verileri",
+    "client": "Müşteri",
+    "address": "Konum",
+    "year": "Yıl",
+    "area": "Alan / veriler",
+    "scope": "İş kapsamı",
+    "featured": "Öne çıkan",
+    "requestSimilar": "Benzer proje talep et",
+    "relatedProjects": "İlgili projeler",
+    "notFound": "Proje bulunamadı",
+    "notFoundDescription": "Bu referans mevcut değil veya kaldırılmış."
   },
   "career": {
     "title": "Kariyer",

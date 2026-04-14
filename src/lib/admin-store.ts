@@ -56,6 +56,7 @@ async function redisSet(key: string, value: unknown): Promise<void> {
 function filePath(key: string): string {
   if (key === "contact") return path.join(process.cwd(), "src", "data", "contact.json");
   if (key === "products") return path.join(process.cwd(), "src", "data", "products.json");
+  if (key === "references") return path.join(process.cwd(), "src", "data", "references.json");
   if (key.startsWith("texts:")) {
     const locale = key.split(":")[1];
     return path.join(process.cwd(), "src", "messages", locale, "common.json");
