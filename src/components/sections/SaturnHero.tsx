@@ -163,37 +163,18 @@ export default function SaturnHero() {
   const [earthAngle, setEarthAngle] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [ringAngle, setRingAngle] = useState(0);
-  const earthWrapperRef = useRef<HTMLDivElement | null>(null);
   const dragStateRef = useRef<{ active: boolean; lastX: number; moved: boolean }>({
     active: false,
     lastX: 0,
     moved: false,
   });
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const rafRef = useRef<number>(0);
-  const lastTimeRef = useRef<number>(0);
 
-  useEffect(() => {
-    fetch("/api/services").then((r) => r.json()).then(setServices).catch(() => {});
-  }, []);
-
-  useEffect(() => {
-    fetch("/api/admin/hero")
-      .then((r) => r.json())
-      .then((d) => {
-        if (d.ringSpeed !== undefined) setRingSpeed(d.ringSpeed);
-      })
-      .catch(() => {});
-  }, []);
-
-  // Earth drag — pointerdown on wrapper, move/up on window (works when cursor leaves the globe)
-  useEffect(() => {
-    const el = earthWrapperRef.current;
+  // React-19 ref callback that attaches drag listeners when the earth
+  // wrapper mounts and cleans them up when it unmounts.
+  const attachEarthDrag = useCallback((el: HTMLDivElement | null) => {
     if (!el) return;
 
     const onDown = (e: PointerEvent) => {
-      // Let the Kerpen pin handle its own click
       if ((e.target as HTMLElement).closest("[data-kerpen-pin]")) return;
       dragStateRef.current = { active: true, lastX: e.clientX, moved: false };
       el.style.cursor = "grabbing";
@@ -217,13 +198,31 @@ export default function SaturnHero() {
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
     window.addEventListener("pointercancel", onUp);
+
     return () => {
       el.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
       window.removeEventListener("pointercancel", onUp);
     };
-  }, [slides.length]);
+  }, []);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const rafRef = useRef<number>(0);
+  const lastTimeRef = useRef<number>(0);
+
+  useEffect(() => {
+    fetch("/api/services").then((r) => r.json()).then(setServices).catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/admin/hero")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.ringSpeed !== undefined) setRingSpeed(d.ringSpeed);
+      })
+      .catch(() => {});
+  }, []);
 
   // Ring rotation
   useEffect(() => {
@@ -434,7 +433,7 @@ export default function SaturnHero() {
 
                 return (
                   <div
-                    ref={earthWrapperRef}
+                    ref={attachEarthDrag}
                     className="relative rounded-full select-none"
                     style={{
                       width: PLANET_SIZE,
