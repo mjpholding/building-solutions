@@ -536,12 +536,12 @@ export default function SaturnHero() {
                             stroke="rgba(19,35,45,0.6)"
                             strokeWidth="0.6"
                           />
-                          {/* Translucent disc with türkis border */}
+                          {/* Türkis ring only — no white fill */}
                           <circle
                             cx="24"
                             cy="22"
                             r="20"
-                            fill="rgba(255,255,255,0.55)"
+                            fill="none"
                             stroke="rgba(49,207,179,0.7)"
                             strokeWidth="1.6"
                           />
