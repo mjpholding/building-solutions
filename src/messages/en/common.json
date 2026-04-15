@@ -10,6 +10,7 @@
     "about": "About Us",
     "career": "Career",
     "partners": "Partners",
+    "certifications": "Certifications",
     "contact": "Contact",
     "products": "Products",
     "productAdvisor": "Product Advisor",
@@ -427,5 +428,62 @@
     "title": "Your Project. Our Solution.",
     "subtitle": "Contact us for a free consultation — we'll find the optimal solution for your requirements.",
     "button": "Get in touch now"
+  },
+  "certifications": {
+    "title": "Certified.",
+    "subtitle": "Quality, security, compliance — verified by independent bodies.",
+    "intro": "Our company and products are certified by the relevant accreditation bodies. Our quality management guarantees consistent product and service quality. We have proven our suitability for public tenders through PQ-VOB pre-qualification. We are certified as a specialist company according to industry-specific standards for fire alarm, voice alarm, lift and intrusion detection systems, and as a qualified expert in handling asbestos.",
+    "iso9001Title": "ISO 9001",
+    "iso9001Label": "Certified",
+    "iso9001Desc": "Quality management to international standard.",
+    "pqvobTitle": "PQ-VOB",
+    "pqvobLabel": "Pre-qualification",
+    "pqvobDesc": "Proof of suitability for public tenders.",
+    "trgs519Title": "TRGS 519",
+    "trgs519Label": "Asbestos",
+    "trgs519Desc": "TÜV SÜD — qualified expert for handling asbestos.",
+    "din14675Title": "DIN 14675",
+    "din14675Label": "Fire & Voice alarm",
+    "din14675Desc": "Fire alarm and voice alarm systems — specialist company."
+  },
+  "stats": {
+    "title": "Experienced.",
+    "description": "Building Solutions GmbH stands for efficiency, expertise and inventiveness. There is nothing we cannot make possible. New challenges give us the opportunity to grow ourselves and our team.",
+    "since": "2010",
+    "sinceLabel": "Founded",
+    "team": "+50",
+    "teamLabel": "Employees",
+    "revenue": "+5 M",
+    "revenueLabel": "Euro turnover"
+  },
+  "process": {
+    "title": "Turnkey.",
+    "description": "From the first consultation to commissioning: we accompany and support your individual security solution and ensure smooth processes during planning, installation and start-up.",
+    "step1": "Consultation",
+    "step2": "Component selection",
+    "step3": "Programming",
+    "step4": "Installation"
+  },
+  "industries": {
+    "title": "Industry-specific.",
+    "description": "Every industry has its own specific requirements for the safety of people, buildings and property. We know the criteria and deliver solutions with the highest level of security.",
+    "list": [
+      "Office buildings",
+      "Shopping centres",
+      "Energy suppliers",
+      "Fire, police, rescue services",
+      "Airports",
+      "Healthcare",
+      "Courts and correctional facilities",
+      "Industry",
+      "Culture, leisure, sports facilities",
+      "Logistics",
+      "Public institutions",
+      "Public transport",
+      "Car parks",
+      "Schools, kindergartens, campus",
+      "Tunnels",
+      "Residential, student housing"
+    ]
   }
 }

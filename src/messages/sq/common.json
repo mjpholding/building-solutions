@@ -10,6 +10,7 @@
     "about": "Rreth nesh",
     "career": "Karriera",
     "partners": "Partnerët",
+    "certifications": "Certifikatat",
     "contact": "Kontakti",
     "products": "Produktet",
     "productAdvisor": "Këshilluesi i produkteve",
@@ -427,5 +428,62 @@
     "title": "Projekti juaj. Zgjidhja jonë.",
     "subtitle": "Na kontaktoni për një konsultë falas — do të gjejmë zgjidhjen optimale.",
     "button": "Na kontaktoni tani"
+  },
+  "certifications": {
+    "title": "Të certifikuar.",
+    "subtitle": "Cilësia, siguria, përputhshmëria — të vërtetuara nga organe të pavarura.",
+    "intro": "Kompania jonë dhe produktet tona janë të certifikuara nga organet përkatëse të akreditimit. Sistemi ynë i menaxhimit të cilësisë ju garanton cilësi konsistente të produkteve dhe shërbimeve. Përshtatshmërinë për tenderë publikë e kemi vërtetuar me parakualifikimin PQ-VOB. Jemi të certifikuar si kompani e specializuar sipas standardeve të industrisë për sistemet e zjarrit, alarmin zanor, ashensorët dhe alarmet e thyerjes, si dhe si ekspertë të kualifikuar për trajtimin e asbestit.",
+    "iso9001Title": "ISO 9001",
+    "iso9001Label": "Certifikuar",
+    "iso9001Desc": "Menaxhimi i cilësisë sipas standardit ndërkombëtar.",
+    "pqvobTitle": "PQ-VOB",
+    "pqvobLabel": "Parakualifikim",
+    "pqvobDesc": "Dëshmi e përshtatshmërisë për tenderë publikë.",
+    "trgs519Title": "TRGS 519",
+    "trgs519Label": "Asbesti",
+    "trgs519Desc": "TÜV SÜD — ekspert i kualifikuar për trajtimin e asbestit.",
+    "din14675Title": "DIN 14675",
+    "din14675Label": "BMA dhe SAA",
+    "din14675Desc": "Sistemet e zjarrit dhe alarmit zanor — specialist."
+  },
+  "stats": {
+    "title": "Të përvojshëm.",
+    "description": "Building Solutions GmbH përfaqëson efikasitetin, kompetencën dhe shpikjen.",
+    "since": "2010",
+    "sinceLabel": "Themeluar",
+    "team": "+50",
+    "teamLabel": "Punonjës",
+    "revenue": "+5 mln",
+    "revenueLabel": "Euro xhiro"
+  },
+  "process": {
+    "title": "Çelës në dorë.",
+    "description": "Nga konsultimi deri tek vënia në punë.",
+    "step1": "Konsultim",
+    "step2": "Përzgjedhje komponentësh",
+    "step3": "Programim",
+    "step4": "Montim"
+  },
+  "industries": {
+    "title": "Specifike për industrinë.",
+    "description": "Çdo industri ka kërkesat e veta për sigurinë.",
+    "list": [
+      "Ndërtesa zyrash",
+      "Qendra tregtare",
+      "Furnizues energjie",
+      "Zjarrfikës, polici, shërbime shpëtimi",
+      "Aeroporte",
+      "Shëndetësi",
+      "Gjykata dhe burgje",
+      "Industri",
+      "Kulturë, kohë e lirë, sport",
+      "Logjistikë",
+      "Institucione publike",
+      "Transport publik",
+      "Parkingje",
+      "Shkolla, kopshte, kampuse",
+      "Tunele",
+      "Banesa, konvikte studentore"
+    ]
   }
 }

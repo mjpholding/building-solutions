@@ -10,6 +10,7 @@
     "about": "O nas",
     "career": "Kariera",
     "partners": "Partnerzy",
+    "certifications": "Certyfikaty",
     "contact": "Kontakt",
     "products": "Produkty",
     "productAdvisor": "Doradca produktowy",
@@ -427,5 +428,62 @@
     "title": "Twój projekt. Nasze rozwiązanie.",
     "subtitle": "Skontaktuj się z nami w sprawie bezpłatnej konsultacji — znajdziemy optymalne rozwiązanie.",
     "button": "Skontaktuj się"
+  },
+  "certifications": {
+    "title": "Certyfikowani.",
+    "subtitle": "Jakość, bezpieczeństwo, zgodność — potwierdzone przez niezależne instytucje.",
+    "intro": "Nasza firma i nasze produkty są certyfikowane przez właściwe jednostki akredytacyjne. System zarządzania jakością gwarantuje stałą jakość produktów i usług. Spełnienie wymagań przetargów publicznych potwierdziliśmy prekwalifikacją PQ-VOB. Jesteśmy certyfikowani jako firma specjalistyczna zgodnie z normami branżowymi dla systemów sygnalizacji pożaru, dźwiękowych systemów ostrzegawczych, dźwigów i sygnalizacji włamania, a także jako wykwalifikowany rzeczoznawca w pracy z azbestem.",
+    "iso9001Title": "ISO 9001",
+    "iso9001Label": "Certyfikat",
+    "iso9001Desc": "Zarządzanie jakością wg normy międzynarodowej.",
+    "pqvobTitle": "PQ-VOB",
+    "pqvobLabel": "Prekwalifikacja",
+    "pqvobDesc": "Potwierdzenie zdolności do udziału w przetargach publicznych.",
+    "trgs519Title": "TRGS 519",
+    "trgs519Label": "Azbest",
+    "trgs519Desc": "TÜV SÜD — uprawniony rzeczoznawca w pracy z azbestem.",
+    "din14675Title": "DIN 14675",
+    "din14675Label": "BMA i SAA",
+    "din14675Desc": "Systemy sygnalizacji pożaru i dźwiękowe systemy ostrzegawcze — firma specjalistyczna."
+  },
+  "stats": {
+    "title": "Doświadczenie.",
+    "description": "Building Solutions GmbH to efektywność, kompetencja i kreatywność inżynierska. Nie ma rzeczy niemożliwych — nowe wyzwania pozwalają nam i naszemu zespołowi stale się rozwijać.",
+    "since": "2010",
+    "sinceLabel": "Założenie",
+    "team": "+50",
+    "teamLabel": "Pracowników",
+    "revenue": "+5 mln",
+    "revenueLabel": "Euro obrotu"
+  },
+  "process": {
+    "title": "Pod klucz.",
+    "description": "Od konsultacji po uruchomienie: prowadzimy Państwa indywidualne rozwiązanie bezpieczeństwa i dbamy o sprawny przebieg planowania, montażu i uruchomienia.",
+    "step1": "Doradztwo",
+    "step2": "Dobór komponentów",
+    "step3": "Programowanie",
+    "step4": "Montaż"
+  },
+  "industries": {
+    "title": "Specyfika branży.",
+    "description": "Każda branża ma własne wymagania dotyczące bezpieczeństwa osób, budynków i mienia. Znamy te kryteria i dostarczamy rozwiązania o najwyższym poziomie bezpieczeństwa.",
+    "list": [
+      "Biurowce",
+      "Centra handlowe",
+      "Energetyka",
+      "Straż, policja, ratownictwo",
+      "Lotniska",
+      "Ochrona zdrowia",
+      "Sądy i więziennictwo",
+      "Przemysł",
+      "Obiekty kultury, rekreacji i sportu",
+      "Logistyka",
+      "Instytucje publiczne",
+      "Komunikacja publiczna",
+      "Parkingi",
+      "Szkoły, przedszkola, kampusy",
+      "Tunele",
+      "Budownictwo mieszkaniowe, akademiki"
+    ]
   }
 }

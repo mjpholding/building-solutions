@@ -10,6 +10,7 @@
     "about": "Über uns",
     "career": "Karriere",
     "partners": "Partner",
+    "certifications": "Zertifikate",
     "contact": "Kontakt",
     "products": "Produkte",
     "productAdvisor": "Produktberater",
@@ -427,5 +428,62 @@
     "navigation": "Navigation",
     "legalSection": "Rechtliches",
     "expertTagline": "Experten für professionelle Reinigungslösungen"
+  },
+  "certifications": {
+    "title": "Zertifiziert.",
+    "subtitle": "Qualität, Sicherheit, Compliance — durch unabhängige Stellen bestätigt.",
+    "intro": "Unser Unternehmen und unsere Produkte sind von den relevanten Zulassungsgesellschaften zertifiziert. Unser Qualitätsmanagement sichert Ihnen gleichbleibende Produkt- und Leistungsqualität zu. Die Eignung für öffentliche Vergabeverfahren haben wir durch Präqualifizierung nach PQ-VOB nachgewiesen. Wir sind als Fachfirma gemäß den branchenspezifischen Normen für Brandmelde-, Sprachalarmierungs-, Aufzugs- und Einbruchmeldeanlagen sowie als sachkundige Verantwortliche im Umgang mit Asbest zertifiziert.",
+    "iso9001Title": "ISO 9001",
+    "iso9001Label": "Zertifiziert",
+    "iso9001Desc": "Qualitätsmanagement nach internationalem Standard.",
+    "pqvobTitle": "PQ-VOB",
+    "pqvobLabel": "Präqualifizierung",
+    "pqvobDesc": "Nachweis der Eignung für öffentliche Vergabeverfahren.",
+    "trgs519Title": "TRGS 519",
+    "trgs519Label": "Asbest",
+    "trgs519Desc": "TÜV SÜD — sachkundige Verantwortliche im Umgang mit Asbest.",
+    "din14675Title": "DIN 14675",
+    "din14675Label": "BMA und SAA",
+    "din14675Desc": "Brandmelde- und Sprachalarmierungsanlagen — Fachfirma."
+  },
+  "stats": {
+    "title": "Erfahren.",
+    "description": "Die Building Solutions GmbH steht für Effizienz, Kompetenz und Erfindergeist. Es gibt nichts, was wir nicht möglich machen. Neue Herausforderungen bieten uns die Möglichkeit, uns und unsere Mitarbeiter weiterzuentwickeln.",
+    "since": "2010",
+    "sinceLabel": "Gegründet",
+    "team": "+50",
+    "teamLabel": "Mitarbeiter",
+    "revenue": "+5 Mio.",
+    "revenueLabel": "Euro Umsatz"
+  },
+  "process": {
+    "title": "Schlüsselfertig.",
+    "description": "Vom Beratungsgespräch bis zur Inbetriebnahme: Wir begleiten und betreuen Ihre individuelle Sicherheitslösung und sorgen für reibungslose Abläufe bei Planung, Montage und Inbetriebnahme.",
+    "step1": "Beratung",
+    "step2": "Komponentenwahl",
+    "step3": "Programmierung",
+    "step4": "Montage"
+  },
+  "industries": {
+    "title": "Branchenspezifisch.",
+    "description": "Jede Branche hat ihre spezifischen Anforderungen an die Sicherheit von Personen, Gebäuden und Eigentum. Wir kennen die Kriterien und liefern Lösungen mit höchster Sicherheitsstufe.",
+    "list": [
+      "Bürogebäude",
+      "Einkaufszentren",
+      "Energieversorger",
+      "Feuerwehr, Polizei, Rettungswesen",
+      "Flughäfen",
+      "Gesundheitswesen",
+      "Gerichte und Justizvollzug",
+      "Industrie",
+      "Kultur-, Freizeit-, Sporteinrichtungen",
+      "Logistik",
+      "Öffentliche Einrichtungen",
+      "Öffentlicher Personennahverkehr",
+      "Parkhäuser",
+      "Schulen, Kindergärten, Campus",
+      "Tunnel",
+      "Wohnungsbau, Studentenwohnheime"
+    ]
   }
 }

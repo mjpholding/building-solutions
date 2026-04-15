@@ -10,6 +10,7 @@
     "about": "O nama",
     "career": "Karijera",
     "partners": "Partneri",
+    "certifications": "Certifikati",
     "contact": "Kontakt",
     "products": "Proizvodi",
     "productAdvisor": "Savjetnik za proizvode",
@@ -427,5 +428,62 @@
     "title": "Vaš projekt. Naše rješenje.",
     "subtitle": "Kontaktirajte nas za besplatno savjetovanje — pronaći ćemo optimalno rješenje.",
     "button": "Kontaktirajte nas"
+  },
+  "certifications": {
+    "title": "Certificirani.",
+    "subtitle": "Kvaliteta, sigurnost, sukladnost — potvrđeni od nezavisnih tijela.",
+    "intro": "Naša tvrtka i proizvodi certificirani su od relevantnih akreditacijskih tijela. Sustav upravljanja kvalitetom jamči vam dosljednu kvalitetu proizvoda i usluga. Sposobnost za javne natječaje dokazali smo PQ-VOB prekvalifikacijom. Certificirani smo kao specijalizirana tvrtka prema specifičnim industrijskim normama za vatrodojavne sustave, sustave glasovnog uzbunjivanja, dizala i protuprovalne sustave te kao stručno odgovorna osoba za rad s azbestom.",
+    "iso9001Title": "ISO 9001",
+    "iso9001Label": "Certificirano",
+    "iso9001Desc": "Upravljanje kvalitetom prema međunarodnom standardu.",
+    "pqvobTitle": "PQ-VOB",
+    "pqvobLabel": "Prekvalifikacija",
+    "pqvobDesc": "Dokaz sposobnosti za javne natječaje.",
+    "trgs519Title": "TRGS 519",
+    "trgs519Label": "Azbest",
+    "trgs519Desc": "TÜV SÜD — kvalificirani stručnjak za rad s azbestom.",
+    "din14675Title": "DIN 14675",
+    "din14675Label": "BMA i SAA",
+    "din14675Desc": "Vatrodojavni sustavi i sustavi glasovnog uzbunjivanja — specijalist."
+  },
+  "stats": {
+    "title": "Iskusni.",
+    "description": "Building Solutions GmbH znači učinkovitost, kompetenciju i inventivnost. Nema ničega što ne možemo ostvariti.",
+    "since": "2010",
+    "sinceLabel": "Osnovano",
+    "team": "+50",
+    "teamLabel": "Zaposlenika",
+    "revenue": "+5 mil.",
+    "revenueLabel": "Eura prometa"
+  },
+  "process": {
+    "title": "Ključ u ruke.",
+    "description": "Od savjetovanja do puštanja u rad: pratimo vaše rješenje sigurnosti.",
+    "step1": "Savjetovanje",
+    "step2": "Odabir komponenti",
+    "step3": "Programiranje",
+    "step4": "Montaža"
+  },
+  "industries": {
+    "title": "Specifično za industriju.",
+    "description": "Svaka industrija ima svoje zahtjeve za sigurnost osoba i objekata.",
+    "list": [
+      "Uredske zgrade",
+      "Trgovački centri",
+      "Opskrbljivači energijom",
+      "Vatrogasci, policija, hitne službe",
+      "Zračne luke",
+      "Zdravstvo",
+      "Sudovi i zatvori",
+      "Industrija",
+      "Kultura, slobodno vrijeme, sport",
+      "Logistika",
+      "Javne ustanove",
+      "Javni prijevoz",
+      "Parkirališta",
+      "Škole, vrtići, kampusi",
+      "Tuneli",
+      "Stambene zgrade, studentski domovi"
+    ]
   }
 }

@@ -16,6 +16,7 @@ const allNavItems = [
   { href: "/uber-uns", labelKey: "about", slug: "uber-uns" },
   { href: "/karriere", labelKey: "career", slug: "karriere" },
   { href: "/partner", labelKey: "partners", slug: "partner" },
+  { href: "/zertifikate", labelKey: "certifications", slug: "zertifikate" },
   { href: "/kontakt", labelKey: "contact", slug: "kontakt" },
   { href: "/produkte", labelKey: "products", slug: "produkte" },
   { href: "/produktberater", labelKey: "productAdvisor", slug: "produktberater" },

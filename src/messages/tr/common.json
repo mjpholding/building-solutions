@@ -10,6 +10,7 @@
     "about": "Hakkımızda",
     "career": "Kariyer",
     "partners": "Ortaklar",
+    "certifications": "Sertifikalar",
     "contact": "İletişim",
     "products": "Ürünler",
     "productAdvisor": "Ürün Danışmanı",
@@ -427,5 +428,62 @@
     "title": "Projeniz. Çözümümüz.",
     "subtitle": "Ücretsiz danışmanlık için bize ulaşın — gereksinimleriniz için en uygun çözümü bulalım.",
     "button": "Şimdi iletişime geçin"
+  },
+  "certifications": {
+    "title": "Sertifikalı.",
+    "subtitle": "Kalite, güvenlik, uyumluluk — bağımsız kuruluşlar tarafından onaylı.",
+    "intro": "Şirketimiz ve ürünlerimiz ilgili akreditasyon kuruluşları tarafından sertifikalandırılmıştır. Kalite yönetim sistemimiz size sürekli ürün ve hizmet kalitesi garanti eder. Kamu ihalelerine uygunluğumuzu PQ-VOB ön yeterlilik ile kanıtladık. Yangın alarm, sesli uyarı, asansör ve hırsızlık alarm sistemleri için sektöre özgü standartlara göre uzman şirket olarak ve asbest ile çalışmada nitelikli sorumlu olarak sertifikalıyız.",
+    "iso9001Title": "ISO 9001",
+    "iso9001Label": "Sertifikalı",
+    "iso9001Desc": "Uluslararası standarda göre kalite yönetimi.",
+    "pqvobTitle": "PQ-VOB",
+    "pqvobLabel": "Ön yeterlilik",
+    "pqvobDesc": "Kamu ihaleleri için yeterlilik belgesi.",
+    "trgs519Title": "TRGS 519",
+    "trgs519Label": "Asbest",
+    "trgs519Desc": "TÜV SÜD — asbest ile çalışmada nitelikli uzman.",
+    "din14675Title": "DIN 14675",
+    "din14675Label": "BMA ve SAA",
+    "din14675Desc": "Yangın alarm ve sesli uyarı sistemleri — uzman firma."
+  },
+  "stats": {
+    "title": "Deneyimli.",
+    "description": "Building Solutions GmbH; verimlilik, uzmanlık ve mucitlik anlamına gelir.",
+    "since": "2010",
+    "sinceLabel": "Kuruluş",
+    "team": "+50",
+    "teamLabel": "Çalışan",
+    "revenue": "+5 M",
+    "revenueLabel": "Euro ciro"
+  },
+  "process": {
+    "title": "Anahtar teslim.",
+    "description": "Danışmanlıktan devreye almaya kadar.",
+    "step1": "Danışmanlık",
+    "step2": "Bileşen seçimi",
+    "step3": "Programlama",
+    "step4": "Montaj"
+  },
+  "industries": {
+    "title": "Sektöre özgü.",
+    "description": "Her sektörün kendine özgü güvenlik gereksinimleri vardır.",
+    "list": [
+      "Ofis binaları",
+      "Alışveriş merkezleri",
+      "Enerji tedarikçileri",
+      "İtfaiye, polis, kurtarma",
+      "Havalimanları",
+      "Sağlık",
+      "Mahkemeler ve cezaevleri",
+      "Endüstri",
+      "Kültür, boş zaman, spor",
+      "Lojistik",
+      "Kamu kurumları",
+      "Toplu taşıma",
+      "Otoparklar",
+      "Okullar, anaokulları, kampüsler",
+      "Tüneller",
+      "Konut, öğrenci yurtları"
+    ]
   }
 }

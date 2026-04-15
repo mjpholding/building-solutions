@@ -10,6 +10,7 @@
     "about": "O nás",
     "career": "Kariéra",
     "partners": "Partneri",
+    "certifications": "Certifikáty",
     "contact": "Kontakt",
     "products": "Produkty",
     "productAdvisor": "Produktový poradca",
@@ -427,5 +428,62 @@
     "title": "Váš projekt. Naše riešenie.",
     "subtitle": "Kontaktujte nás pre bezplatnú konzultáciu — nájdeme optimálne riešenie.",
     "button": "Kontaktujte nás"
+  },
+  "certifications": {
+    "title": "Certifikovaní.",
+    "subtitle": "Kvalita, bezpečnosť, súlad — potvrdené nezávislými orgánmi.",
+    "intro": "Naša spoločnosť a produkty sú certifikované príslušnými akreditačnými orgánmi. Systém manažérstva kvality vám zaručuje konzistentnú kvalitu produktov a služieb. Spôsobilosť pre verejné obstarávanie sme preukázali predkvalifikáciou PQ-VOB. Sme certifikovaní ako špecializovaná firma podľa odvetvových noriem pre systémy požiarnej signalizácie, hlasovej výstrahy, výťahov a zabezpečovacích systémov, ako aj kvalifikovaný odborník pre prácu s azbestom.",
+    "iso9001Title": "ISO 9001",
+    "iso9001Label": "Certifikát",
+    "iso9001Desc": "Manažérstvo kvality podľa medzinárodnej normy.",
+    "pqvobTitle": "PQ-VOB",
+    "pqvobLabel": "Predkvalifikácia",
+    "pqvobDesc": "Doklad o spôsobilosti pre verejné obstarávanie.",
+    "trgs519Title": "TRGS 519",
+    "trgs519Label": "Azbest",
+    "trgs519Desc": "TÜV SÜD — kvalifikovaný odborník pre prácu s azbestom.",
+    "din14675Title": "DIN 14675",
+    "din14675Label": "BMA a SAA",
+    "din14675Desc": "Systémy požiarnej signalizácie a hlasovej výstrahy — špecialista."
+  },
+  "stats": {
+    "title": "Skúsenosť.",
+    "description": "Building Solutions GmbH znamená efektívnosť, kompetenciu a vynaliezavosť.",
+    "since": "2010",
+    "sinceLabel": "Založené",
+    "team": "+50",
+    "teamLabel": "Zamestnancov",
+    "revenue": "+5 mil.",
+    "revenueLabel": "Eur obratu"
+  },
+  "process": {
+    "title": "Na kľúč.",
+    "description": "Od konzultácie po uvedenie do prevádzky.",
+    "step1": "Poradenstvo",
+    "step2": "Výber komponentov",
+    "step3": "Programovanie",
+    "step4": "Montáž"
+  },
+  "industries": {
+    "title": "Špecifické pre odvetvie.",
+    "description": "Každé odvetvie má svoje špecifické požiadavky na bezpečnosť.",
+    "list": [
+      "Kancelárske budovy",
+      "Nákupné centrá",
+      "Energetické spoločnosti",
+      "Hasiči, polícia, záchranné služby",
+      "Letiská",
+      "Zdravotníctvo",
+      "Súdy a väzenstvo",
+      "Priemysel",
+      "Kultúra, voľný čas, šport",
+      "Logistika",
+      "Verejné inštitúcie",
+      "Verejná doprava",
+      "Parkoviská",
+      "Školy, škôlky, kampusy",
+      "Tunely",
+      "Bývanie, internáty"
+    ]
   }
 }
