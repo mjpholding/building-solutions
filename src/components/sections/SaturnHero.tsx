@@ -517,7 +517,7 @@ export default function SaturnHero() {
                           left: pinLeft,
                           top: pinTop,
                           transform: `translate(-50%, -100%) scale(${pinScale})`,
-                          opacity: 0.7 + 0.3 * pinDepth,
+                          opacity: 0.45 + 0.35 * pinDepth,
                           filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.45))",
                         }}
                         title="Building Solutions · Ottostraße 14, 50170 Kerpen"
@@ -532,20 +532,20 @@ export default function SaturnHero() {
                           {/* Tip / arrow pointing to the location */}
                           <path
                             d="M24 60 L16 44 L32 44 Z"
-                            fill="#31cfb3"
-                            stroke="#13232d"
-                            strokeWidth="0.8"
+                            fill="rgba(49,207,179,0.75)"
+                            stroke="rgba(19,35,45,0.6)"
+                            strokeWidth="0.6"
                           />
-                          {/* White disc with türkis border */}
+                          {/* Translucent disc with türkis border */}
                           <circle
                             cx="24"
                             cy="22"
                             r="20"
-                            fill="#ffffff"
-                            stroke="#31cfb3"
-                            strokeWidth="2.2"
+                            fill="rgba(255,255,255,0.55)"
+                            stroke="rgba(49,207,179,0.7)"
+                            strokeWidth="1.6"
                           />
-                          {/* BS logo image */}
+                          {/* BS logo image, slightly translucent */}
                           <image
                             href="/logo-bs.png"
                             x="7"
@@ -553,6 +553,7 @@ export default function SaturnHero() {
                             width="34"
                             height="34"
                             preserveAspectRatio="xMidYMid meet"
+                            opacity="0.85"
                           />
                         </svg>
                         <div className="absolute left-1/2 -translate-x-1/2 top-[-42px] opacity-0 group-hover:opacity-100 transition-opacity bg-bs-mitternacht text-white text-[11px] font-medium px-2.5 py-1.5 rounded whitespace-nowrap pointer-events-none">
