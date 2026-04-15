@@ -156,7 +156,7 @@ export default function KarrierePage() {
               return (
                 <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
                   className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow">
-                  <div className="w-12 h-12 bg-bs-tuerkis rounded-xl flex items-center justify-center mb-4 shadow-md shadow-bs-tuerkis/25">
+                  <div className="w-12 h-12 bg-gradient-to-br from-bs-tuerkisblau to-bs-tuerkis rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-bs-tuerkis/25">
                     <Icon size={22} className="text-white" />
                   </div>
                   <h3 className="font-bold text-gray-900 mb-2">{b.title}</h3>

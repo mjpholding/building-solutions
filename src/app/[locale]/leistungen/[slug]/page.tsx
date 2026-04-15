@@ -70,7 +70,7 @@ export default function ServiceDetailPage() {
             animate={{ opacity: 1, y: 0 }}
             className="flex items-start gap-6"
           >
-            <div className="w-16 h-16 lg:w-20 lg:h-20 bg-bs-tuerkis rounded-2xl flex items-center justify-center flex-shrink-0">
+            <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-bs-tuerkisblau to-bs-tuerkis rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-bs-tuerkis/30">
               <Icon size={36} className="text-white" />
             </div>
             <div>

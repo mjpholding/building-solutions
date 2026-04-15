@@ -49,7 +49,7 @@ export default function ContactPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
               className="bg-white p-6 rounded-2xl border border-bs-gray-100 shadow-sm">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-bs-tuerkis rounded-xl flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-gradient-to-br from-bs-tuerkisblau to-bs-tuerkis rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-bs-tuerkis/20">
                   <MapPin size={22} className="text-white" />
                 </div>
                 <div>
@@ -62,7 +62,7 @@ export default function ContactPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
               className="bg-white p-6 rounded-2xl border border-bs-gray-100 shadow-sm">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-bs-tuerkis rounded-xl flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-gradient-to-br from-bs-tuerkisblau to-bs-tuerkis rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-bs-tuerkis/20">
                   <Phone size={22} className="text-white" />
                 </div>
                 <div>
@@ -77,7 +77,7 @@ export default function ContactPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
               className="bg-white p-6 rounded-2xl border border-bs-gray-100 shadow-sm">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-bs-tuerkis rounded-xl flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 bg-gradient-to-br from-bs-tuerkisblau to-bs-tuerkis rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-bs-tuerkis/20">
                   <Mail size={22} className="text-white" />
                 </div>
                 <div>

@@ -58,7 +58,7 @@ export default function LeistungenPage() {
                   >
                     {/* Icon header */}
                     <div className="bg-bs-mitternacht p-6 flex items-center gap-4">
-                      <div className="w-14 h-14 bg-bs-tuerkis rounded-xl flex items-center justify-center">
+                      <div className="w-14 h-14 bg-gradient-to-br from-bs-tuerkisblau to-bs-tuerkis rounded-xl flex items-center justify-center shadow-lg shadow-bs-tuerkis/25">
                         <Icon size={28} className="text-white" />
                       </div>
                       <div>

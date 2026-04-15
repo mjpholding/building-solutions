@@ -76,7 +76,7 @@ export default function AboutPage() {
                   transition={{ delay: i * 0.08 }}
                   className="group p-8 bg-white rounded-2xl border border-bs-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-bs-tuerkis flex items-center justify-center mb-5 shadow-lg shadow-bs-tuerkis/20 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-bs-tuerkisblau to-bs-tuerkis flex items-center justify-center mb-5 shadow-lg shadow-bs-tuerkis/25 group-hover:scale-110 transition-transform duration-300">
                     <Icon size={28} className="text-white" strokeWidth={1.8} />
                   </div>
                   <h3 className="font-bold text-lg text-bs-gray-900">{t(val.titleKey)}</h3>
@@ -104,7 +104,7 @@ export default function AboutPage() {
                   transition={{ delay: i * 0.08 }}
                   className="text-center p-6 bg-bs-gray-50 rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="w-14 h-14 mx-auto rounded-xl bg-bs-tuerkis flex items-center justify-center mb-4 shadow-md shadow-bs-tuerkis/25">
+                  <div className="w-14 h-14 mx-auto rounded-xl bg-gradient-to-br from-bs-tuerkisblau to-bs-tuerkis flex items-center justify-center mb-4 shadow-lg shadow-bs-tuerkis/25">
                     <Icon size={24} className="text-white" strokeWidth={1.8} />
                   </div>
                   <p className="text-sm text-bs-gray-700 font-semibold leading-relaxed">{t(item.key)}</p>
