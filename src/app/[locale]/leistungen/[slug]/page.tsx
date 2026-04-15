@@ -16,16 +16,6 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   Shield, Camera, AlertTriangle, Radio, Zap, Wrench, Sun,
 };
 
-const categoryColors: Record<string, string> = {
-  security: "from-blue-500 to-blue-700",
-  video: "from-cyan-500 to-cyan-700",
-  hazard: "from-orange-500 to-orange-700",
-  communication: "from-violet-500 to-violet-700",
-  electrical: "from-yellow-500 to-yellow-700",
-  repairs: "from-slate-500 to-slate-700",
-  pv: "from-green-500 to-green-700",
-};
-
 export default function ServiceDetailPage() {
   const params = useParams();
   const slug = params.slug as string;
@@ -65,13 +55,12 @@ export default function ServiceDetailPage() {
   }
 
   const Icon = iconMap[service.icon] || Shield;
-  const gradient = categoryColors[service.category] || "from-bs-accent to-bs-accent-dark";
   const otherServices = allServices.filter((s) => s.id !== service.id).slice(0, 3);
 
   return (
     <>
       {/* Hero */}
-      <div className={`bg-gradient-to-br ${gradient} text-white`}>
+      <div className="bg-bs-mitternacht text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
           <Link href="/leistungen" className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm mb-6 transition-colors">
             <ArrowLeft size={16} /> {t("backToServices")}
@@ -81,7 +70,7 @@ export default function ServiceDetailPage() {
             animate={{ opacity: 1, y: 0 }}
             className="flex items-start gap-6"
           >
-            <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm flex-shrink-0">
+            <div className="w-16 h-16 lg:w-20 lg:h-20 bg-bs-tuerkis rounded-2xl flex items-center justify-center flex-shrink-0">
               <Icon size={36} className="text-white" />
             </div>
             <div>
@@ -119,7 +108,7 @@ export default function ServiceDetailPage() {
                     transition={{ delay: 0.2 + i * 0.05 }}
                     className="flex items-start gap-3 bg-gray-50 rounded-xl p-4"
                   >
-                    <CheckCircle2 size={20} className="text-green-500 flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 size={20} className="text-bs-tuerkis flex-shrink-0 mt-0.5" />
                     <span className="text-sm text-gray-700 font-medium">{feature}</span>
                   </motion.div>
                 ))}

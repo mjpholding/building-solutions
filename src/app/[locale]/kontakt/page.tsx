@@ -49,8 +49,8 @@ export default function ContactPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
               className="bg-white p-6 rounded-2xl border border-bs-gray-100 shadow-sm">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MapPin size={22} className="text-bs-accent" />
+                <div className="w-12 h-12 bg-bs-tuerkis rounded-xl flex items-center justify-center flex-shrink-0">
+                  <MapPin size={22} className="text-white" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-bs-gray-900">{t("address")}</h3>
@@ -62,8 +62,8 @@ export default function ContactPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
               className="bg-white p-6 rounded-2xl border border-bs-gray-100 shadow-sm">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Phone size={22} className="text-bs-accent" />
+                <div className="w-12 h-12 bg-bs-tuerkis rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Phone size={22} className="text-white" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-bs-gray-900">{t("phone")}</h3>
@@ -77,8 +77,8 @@ export default function ContactPage() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
               className="bg-white p-6 rounded-2xl border border-bs-gray-100 shadow-sm">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Mail size={22} className="text-bs-accent" />
+                <div className="w-12 h-12 bg-bs-tuerkis rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Mail size={22} className="text-white" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-bs-gray-900">{t("email")}</h3>

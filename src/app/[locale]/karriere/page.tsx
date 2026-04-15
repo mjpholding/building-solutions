@@ -138,7 +138,7 @@ export default function KarrierePage() {
       </section>
 
       {/* Was erwartet dich bei uns */}
-      <section className="py-16 bg-gradient-to-br from-bs-gray-50 to-blue-50/30">
+      <section className="py-16 bg-bs-gray-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl font-bold text-gray-900 mb-10 text-center">
             Das erwartet dich bei uns
@@ -156,7 +156,7 @@ export default function KarrierePage() {
               return (
                 <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
                   className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-shadow">
-                  <div className="w-12 h-12 bg-gradient-to-br from-bs-accent to-bs-accent-light rounded-xl flex items-center justify-center mb-4 shadow-md">
+                  <div className="w-12 h-12 bg-bs-tuerkis rounded-xl flex items-center justify-center mb-4 shadow-md shadow-bs-tuerkis/25">
                     <Icon size={22} className="text-white" />
                   </div>
                   <h3 className="font-bold text-gray-900 mb-2">{b.title}</h3>

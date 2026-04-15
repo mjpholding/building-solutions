@@ -14,16 +14,6 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   Shield, Camera, AlertTriangle, Radio, Zap, Wrench, Sun,
 };
 
-const categoryColors: Record<string, string> = {
-  security: "from-blue-500 to-blue-700",
-  video: "from-cyan-500 to-cyan-700",
-  hazard: "from-orange-500 to-orange-700",
-  communication: "from-violet-500 to-violet-700",
-  electrical: "from-yellow-500 to-yellow-700",
-  repairs: "from-slate-500 to-slate-700",
-  pv: "from-green-500 to-green-700",
-};
-
 export default function LeistungenPage() {
   const t = useTranslations("services");
   const [services, setServices] = useState<Service[]>([]);
@@ -54,7 +44,6 @@ export default function LeistungenPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => {
               const Icon = iconMap[service.icon] || Shield;
-              const gradient = categoryColors[service.category] || "from-bs-accent to-bs-accent-dark";
 
               return (
                 <motion.div
@@ -65,11 +54,11 @@ export default function LeistungenPage() {
                 >
                   <Link
                     href={`/leistungen/${service.slug}`}
-                    className="group block bg-white rounded-2xl border border-gray-200 hover:border-bs-accent/30 hover:shadow-xl transition-all duration-300 overflow-hidden h-full"
+                    className="group block bg-white rounded-2xl border border-gray-200 hover:border-bs-tuerkis/40 hover:shadow-xl transition-all duration-300 overflow-hidden h-full"
                   >
                     {/* Icon header */}
-                    <div className={`bg-gradient-to-br ${gradient} p-6 flex items-center gap-4`}>
-                      <div className="w-14 h-14 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <div className="bg-bs-mitternacht p-6 flex items-center gap-4">
+                      <div className="w-14 h-14 bg-bs-tuerkis rounded-xl flex items-center justify-center">
                         <Icon size={28} className="text-white" />
                       </div>
                       <div>
