@@ -63,7 +63,7 @@ export default function PageBanner({ title, subtitle }: { title: string; subtitl
             src="/hero/dashboard-hero.jpg"
             alt=""
             className="absolute inset-0 w-full h-full object-cover"
-            style={{ objectPosition: "center bottom" }}
+            style={{ objectPosition: "center 60%" }}
           />
           {/* fallback mitternacht if image is missing */}
           <div className="absolute inset-0 bg-bs-mitternacht -z-10" />
