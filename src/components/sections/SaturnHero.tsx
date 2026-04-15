@@ -17,13 +17,14 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
 };
 
 // --- ROTATING EARTH COMPONENT (controlled, no auto-rotate) ---
-function RotatingEarth({ size, angle }: { size: number; angle: number }) {
+function RotatingEarth({ size, angle, tilt }: { size: number; angle: number; tilt: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const textureRef = useRef<HTMLImageElement | null>(null);
   const textureLoaded = useRef(false);
   const renderSizeRef = useRef(0);
   const rRef = useRef(0);
   const angleRef = useRef(angle);
+  const tiltRef = useRef(tilt);
   const drawRef = useRef<() => void>(() => {});
 
   // Setup canvas + texture load (once per size)
@@ -71,7 +72,14 @@ function RotatingEarth({ size, angle }: { size: number; angle: number }) {
         }
         const texData = (window as unknown as Record<string, unknown>).__earthTexData as Uint8ClampedArray;
 
-        const rotRad = (angleRef.current * Math.PI) / 180;
+        // Inverse rotation: world point V from screen point (nx, -ny, nz)
+        // V = R_X(-pitch) · R_Y(-yaw) · (nx, -ny, nz)
+        const yaw = (angleRef.current * Math.PI) / 180;
+        const pitch = (tiltRef.current * Math.PI) / 180;
+        const cy = Math.cos(yaw);
+        const sy = Math.sin(yaw);
+        const cp = Math.cos(pitch);
+        const sp = Math.sin(pitch);
 
         for (let py = 0; py < S; py++) {
           for (let px = 0; px < S; px++) {
@@ -81,8 +89,17 @@ function RotatingEarth({ size, angle }: { size: number; angle: number }) {
             if (d2 > 1) continue;
 
             const nz = Math.sqrt(1 - d2);
-            const lat = Math.asin(-ny);
-            const lon = Math.atan2(nx, nz) + rotRad;
+            // R_Y(-yaw) on (nx, -ny, nz)
+            const ux = nx * cy + nz * sy;
+            const uy = -ny;
+            const uz = -nx * sy + nz * cy;
+            // R_X(-pitch) on (ux, uy, uz)
+            const vx = ux;
+            const vy = uy * cp + uz * sp;
+            const vz = -uy * sp + uz * cp;
+
+            const lat = Math.asin(Math.max(-1, Math.min(1, vy)));
+            const lon = Math.atan2(vx, vz);
 
             let u = ((lon / Math.PI + 1) / 2) % 1;
             if (u < 0) u += 1;
@@ -131,11 +148,12 @@ function RotatingEarth({ size, angle }: { size: number; angle: number }) {
     };
   }, [size]);
 
-  // Redraw whenever angle changes
+  // Redraw whenever angle or tilt changes
   useEffect(() => {
     angleRef.current = angle;
+    tiltRef.current = tilt;
     drawRef.current();
-  }, [angle]);
+  }, [angle, tilt]);
 
   return (
     <div className="relative" style={{ width: size, height: size }}>
@@ -161,11 +179,13 @@ export default function SaturnHero() {
   const [ringSpeed, setRingSpeed] = useState(8);
   // Earth is user-controlled: starts showing Europe (~Greenwich centered), drag to rotate
   const [earthAngle, setEarthAngle] = useState(0);
+  const [earthTilt, setEarthTilt] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [ringAngle, setRingAngle] = useState(0);
-  const dragStateRef = useRef<{ active: boolean; lastX: number; moved: boolean }>({
+  const dragStateRef = useRef<{ active: boolean; lastX: number; lastY: number; moved: boolean }>({
     active: false,
     lastX: 0,
+    lastY: 0,
     moved: false,
   });
 
@@ -176,7 +196,7 @@ export default function SaturnHero() {
 
     const onDown = (e: PointerEvent) => {
       if ((e.target as HTMLElement).closest("[data-kerpen-pin]")) return;
-      dragStateRef.current = { active: true, lastX: e.clientX, moved: false };
+      dragStateRef.current = { active: true, lastX: e.clientX, lastY: e.clientY, moved: false };
       el.style.cursor = "grabbing";
       e.preventDefault();
     };
@@ -184,9 +204,13 @@ export default function SaturnHero() {
       const s = dragStateRef.current;
       if (!s.active) return;
       const dx = e.clientX - s.lastX;
+      const dy = e.clientY - s.lastY;
       s.lastX = e.clientX;
-      if (Math.abs(dx) > 0) s.moved = true;
+      s.lastY = e.clientY;
+      if (Math.abs(dx) > 0 || Math.abs(dy) > 0) s.moved = true;
       setEarthAngle((a) => a - dx * 0.4);
+      // Pitch clamped to ±85° so the globe never flips upside-down
+      setEarthTilt((p) => Math.max(-85, Math.min(85, p + dy * 0.4)));
     };
     const onUp = () => {
       if (!dragStateRef.current.active) return;
@@ -418,15 +442,31 @@ export default function SaturnHero() {
                 const KERPEN_LAT = 50.87;
                 const KERPEN_LON = 6.68;
                 const latRad = (KERPEN_LAT * Math.PI) / 180;
-                const lonRad = ((KERPEN_LON - earthAngle) * Math.PI) / 180;
-                const cosLat = Math.cos(latRad);
-                const pinNx = cosLat * Math.sin(lonRad);
-                const pinNy = -Math.sin(latRad);
-                const pinNz = cosLat * Math.cos(lonRad);
-                const pinVisible = pinNz > 0.12;
-                const pinLeft = PLANET_SIZE / 2 + pinNx * (PLANET_SIZE / 2);
-                const pinTop = PLANET_SIZE / 2 + pinNy * (PLANET_SIZE / 2);
-                const pinScale = 0.85 + 0.25 * Math.max(0, pinNz);
+                const lonRad = (KERPEN_LON * Math.PI) / 180;
+                // World-space unit vector for Kerpen
+                const Vx = Math.cos(latRad) * Math.sin(lonRad);
+                const Vy = Math.sin(latRad);
+                const Vz = Math.cos(latRad) * Math.cos(lonRad);
+                // Apply globe rotation: R_Y(yaw) · R_X(pitch) · V
+                const yaw = (earthAngle * Math.PI) / 180;
+                const pitch = (earthTilt * Math.PI) / 180;
+                const cyP = Math.cos(yaw);
+                const syP = Math.sin(yaw);
+                const cpP = Math.cos(pitch);
+                const spP = Math.sin(pitch);
+                // R_X(pitch)
+                const px1 = Vx;
+                const py1 = Vy * cpP - Vz * spP;
+                const pz1 = Vy * spP + Vz * cpP;
+                // R_Y(yaw)
+                const qx = px1 * cyP - pz1 * syP;
+                const qy = py1;
+                const qz = px1 * syP + pz1 * cyP;
+                const pinVisible = qz > 0.12;
+                const pinLeft = PLANET_SIZE / 2 + qx * (PLANET_SIZE / 2);
+                const pinTop = PLANET_SIZE / 2 - qy * (PLANET_SIZE / 2);
+                const pinScale = 0.85 + 0.25 * Math.max(0, qz);
+                const pinDepth = qz;
                 const mapsUrl =
                   "https://www.google.com/maps/dir/?api=1&destination=" +
                   encodeURIComponent("Ottostraße 14, 50170 Kerpen, Germany");
@@ -447,7 +487,7 @@ export default function SaturnHero() {
                       className="absolute inset-0 rounded-full overflow-hidden pointer-events-none"
                       style={{ opacity: 0.45, mixBlendMode: "screen" }}
                     >
-                      <RotatingEarth size={PLANET_SIZE} angle={earthAngle} />
+                      <RotatingEarth size={PLANET_SIZE} angle={earthAngle} tilt={earthTilt} />
                     </div>
                     {/* Atmospheric türkis rim */}
                     <div
@@ -477,7 +517,7 @@ export default function SaturnHero() {
                           left: pinLeft,
                           top: pinTop,
                           transform: `translate(-50%, -100%) scale(${pinScale})`,
-                          opacity: 0.7 + 0.3 * pinNz,
+                          opacity: 0.7 + 0.3 * pinDepth,
                           filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.45))",
                         }}
                         title="Building Solutions · Ottostraße 14, 50170 Kerpen"
