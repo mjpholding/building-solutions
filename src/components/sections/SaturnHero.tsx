@@ -163,7 +163,12 @@ export default function SaturnHero() {
   const [earthAngle, setEarthAngle] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [ringAngle, setRingAngle] = useState(0);
-  const dragRef = useRef<{ active: boolean; lastX: number }>({ active: false, lastX: 0 });
+  const earthWrapperRef = useRef<HTMLDivElement | null>(null);
+  const dragStateRef = useRef<{ active: boolean; lastX: number; moved: boolean }>({
+    active: false,
+    lastX: 0,
+    moved: false,
+  });
   const videoRef = useRef<HTMLVideoElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const rafRef = useRef<number>(0);
@@ -181,6 +186,44 @@ export default function SaturnHero() {
       })
       .catch(() => {});
   }, []);
+
+  // Earth drag — pointerdown on wrapper, move/up on window (works when cursor leaves the globe)
+  useEffect(() => {
+    const el = earthWrapperRef.current;
+    if (!el) return;
+
+    const onDown = (e: PointerEvent) => {
+      // Let the Kerpen pin handle its own click
+      if ((e.target as HTMLElement).closest("[data-kerpen-pin]")) return;
+      dragStateRef.current = { active: true, lastX: e.clientX, moved: false };
+      el.style.cursor = "grabbing";
+      e.preventDefault();
+    };
+    const onMove = (e: PointerEvent) => {
+      const s = dragStateRef.current;
+      if (!s.active) return;
+      const dx = e.clientX - s.lastX;
+      s.lastX = e.clientX;
+      if (Math.abs(dx) > 0) s.moved = true;
+      setEarthAngle((a) => a - dx * 0.4);
+    };
+    const onUp = () => {
+      if (!dragStateRef.current.active) return;
+      dragStateRef.current.active = false;
+      el.style.cursor = "grab";
+    };
+
+    el.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
+    return () => {
+      el.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+    };
+  }, [slides.length]);
 
   // Ring rotation
   useEffect(() => {
@@ -391,31 +434,13 @@ export default function SaturnHero() {
 
                 return (
                   <div
+                    ref={earthWrapperRef}
                     className="relative rounded-full select-none"
                     style={{
                       width: PLANET_SIZE,
                       height: PLANET_SIZE,
                       cursor: "grab",
                       touchAction: "none",
-                    }}
-                    onPointerDown={(e) => {
-                      (e.currentTarget as HTMLDivElement).setPointerCapture(e.pointerId);
-                      dragRef.current = { active: true, lastX: e.clientX };
-                    }}
-                    onPointerMove={(e) => {
-                      if (!dragRef.current.active) return;
-                      const dx = e.clientX - dragRef.current.lastX;
-                      dragRef.current.lastX = e.clientX;
-                      setEarthAngle((a) => a - dx * 0.4);
-                    }}
-                    onPointerUp={(e) => {
-                      try {
-                        (e.currentTarget as HTMLDivElement).releasePointerCapture(e.pointerId);
-                      } catch {}
-                      dragRef.current = { active: false, lastX: 0 };
-                    }}
-                    onPointerCancel={() => {
-                      dragRef.current = { active: false, lastX: 0 };
                     }}
                   >
                     {/* Translucent Earth so the hero photo shows through */}
@@ -441,7 +466,13 @@ export default function SaturnHero() {
                         href={mapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        onPointerDown={(e) => e.stopPropagation()}
+                        data-kerpen-pin
+                        onClick={(e) => {
+                          if (dragStateRef.current.moved) {
+                            e.preventDefault();
+                            dragStateRef.current.moved = false;
+                          }
+                        }}
                         className="absolute z-30 group"
                         style={{
                           left: pinLeft,
