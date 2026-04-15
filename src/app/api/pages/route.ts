@@ -25,7 +25,7 @@ export async function GET() {
         { slug: "kontakt", path: "/kontakt", enabled: true },
         { slug: "referenzen", path: "/referenzen", enabled: true },
         { slug: "karriere", path: "/karriere", enabled: true },
-        { slug: "partner", path: "/partner", enabled: true },
+        { slug: "partner", path: "/partner", enabled: false },
         { slug: "zertifikate", path: "/zertifikate", enabled: true },
         { slug: "impressum", path: "/impressum", enabled: true },
         { slug: "datenschutz", path: "/datenschutz", enabled: true },

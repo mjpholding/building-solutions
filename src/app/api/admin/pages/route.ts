@@ -23,7 +23,7 @@ const DEFAULT_PAGES: PageEntry[] = [
   { slug: "kontakt", label: "Kontakt", path: "/kontakt", group: "main", enabled: true },
   { slug: "referenzen", label: "Referenzen", path: "/referenzen", group: "main", enabled: true },
   { slug: "karriere", label: "Karriere", path: "/karriere", group: "main", enabled: true },
-  { slug: "partner", label: "Partner", path: "/partner", group: "main", enabled: true },
+  { slug: "partner", label: "Partner", path: "/partner", group: "main", enabled: false },
   { slug: "zertifikate", label: "Zertifikate", path: "/zertifikate", group: "main", enabled: true },
 
   // Rechtliches

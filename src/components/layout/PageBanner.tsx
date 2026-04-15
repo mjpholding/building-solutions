@@ -57,8 +57,19 @@ export default function PageBanner({ title, subtitle }: { title: string; subtitl
           )}
         </div>
       )}
-      {!hasMedia && <div className="absolute inset-0 bg-gradient-to-br from-bs-gray-900 via-bs-gray-800 to-bs-gray-900" />}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/70 to-black/60 z-[1]" />
+      {!hasMedia && (
+        <>
+          <img
+            src="/hero/dashboard-hero.jpg"
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ objectPosition: "center bottom" }}
+          />
+          {/* fallback mitternacht if image is missing */}
+          <div className="absolute inset-0 bg-bs-mitternacht -z-10" />
+        </>
+      )}
+      <div className="absolute inset-0 bg-gradient-to-r from-bs-mitternacht/90 via-bs-mitternacht/70 to-bs-mitternacht/40 z-[1]" />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="text-3xl lg:text-4xl font-bold text-white">{title}</h1>
