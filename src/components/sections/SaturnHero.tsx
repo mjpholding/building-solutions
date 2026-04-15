@@ -370,8 +370,27 @@ export default function SaturnHero() {
                 <div className="absolute inset-0 rounded-full shadow-[inset_0_0_60px_rgba(0,0,0,0.5)]" />
               </div>
             ) : (
-              /* Earth fallback */
-              <RotatingEarth size={PLANET_SIZE} speed={earthSpeed} />
+              /* Earth fallback — translucent so the hero photo shows through */
+              <div
+                className="relative rounded-full"
+                style={{ width: PLANET_SIZE, height: PLANET_SIZE }}
+              >
+                <div
+                  className="absolute inset-0 rounded-full overflow-hidden"
+                  style={{ opacity: 0.45, mixBlendMode: "screen" }}
+                >
+                  <RotatingEarth size={PLANET_SIZE} speed={earthSpeed} />
+                </div>
+                {/* atmospheric rim so the planet stays readable */}
+                <div
+                  className="absolute inset-0 rounded-full pointer-events-none"
+                  style={{
+                    boxShadow:
+                      "inset 0 0 40px rgba(49, 207, 179, 0.18), 0 0 60px 2px rgba(49, 207, 179, 0.15)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                  }}
+                />
+              </div>
             )}
           </motion.div>
         </div>
