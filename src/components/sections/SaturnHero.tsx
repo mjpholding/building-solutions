@@ -381,7 +381,7 @@ export default function SaturnHero() {
         </svg>
 
         {/* Items BEHIND */}
-        <div className="absolute inset-0 flex items-center justify-center z-[5]">
+        <div className="absolute inset-0 flex items-center justify-center z-[5] pointer-events-none">
           <div className="relative" style={{ width: 0, height: 0 }}>
             {behind.map(renderItem)}
           </div>
@@ -533,7 +533,7 @@ export default function SaturnHero() {
         </svg>
 
         {/* Items IN FRONT */}
-        <div className="absolute inset-0 flex items-center justify-center z-[30]">
+        <div className="absolute inset-0 flex items-center justify-center z-[30] pointer-events-none">
           <div className="relative" style={{ width: 0, height: 0 }}>
             {front.map(renderItem)}
           </div>
