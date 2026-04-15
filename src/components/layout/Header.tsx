@@ -101,21 +101,25 @@ export default function Header() {
               </span>
               {customer && <span className="w-2 h-2 bg-green-500 rounded-full" />}
             </Link>
-            <div className={`w-px h-6 ${isHome ? "bg-white/20" : "bg-bs-gray-200"}`} />
-            <button
-              onClick={() => setCartOpen(true)}
-              className={`relative flex items-center gap-2 px-3 py-2 rounded-lg transition-colors text-sm ${
-                isHome ? "text-white/70 hover:bg-white/10" : "text-bs-gray-600 hover:bg-bs-gray-50"
-              }`}
-              aria-label="Warenkorb"
-            >
-              <ShoppingBag size={18} />
-              {totalItems > 0 && (
-                <span className="bg-bs-accent text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center">
-                  {totalItems}
-                </span>
-              )}
-            </button>
+            {isPageEnabled("produkte") && (
+              <>
+                <div className={`w-px h-6 ${isHome ? "bg-white/20" : "bg-bs-gray-200"}`} />
+                <button
+                  onClick={() => setCartOpen(true)}
+                  className={`relative flex items-center gap-2 px-3 py-2 rounded-lg transition-colors text-sm ${
+                    isHome ? "text-white/70 hover:bg-white/10" : "text-bs-gray-600 hover:bg-bs-gray-50"
+                  }`}
+                  aria-label="Warenkorb"
+                >
+                  <ShoppingBag size={18} />
+                  {totalItems > 0 && (
+                    <span className="bg-bs-accent text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[20px] text-center">
+                      {totalItems}
+                    </span>
+                  )}
+                </button>
+              </>
+            )}
             <Link
               href="/kontakt"
               className={`ml-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md whitespace-nowrap ${
