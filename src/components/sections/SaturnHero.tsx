@@ -289,25 +289,26 @@ export default function SaturnHero() {
   const ringVisualRY = RING_R * Math.sin(TILT_RAD); // how tall the ellipse looks
 
   return (
-    <section className="relative w-full min-h-screen bg-[#0a0e1a] overflow-hidden flex items-center">
-      {/* Space background */}
+    <section className="relative w-full min-h-screen bg-bs-mitternacht overflow-hidden flex items-center">
+      {/* Architectural background photo */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-[55%] -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-blue-900/[0.06] rounded-full blur-[200px]" />
-        <div className="absolute inset-0 opacity-40" style={{
-          backgroundImage: `
-            radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.8) 0%, transparent 100%),
-            radial-gradient(1.5px 1.5px at 25% 65%, rgba(255,255,255,0.6) 0%, transparent 100%),
-            radial-gradient(1px 1px at 45% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
-            radial-gradient(1px 1px at 60% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
-            radial-gradient(1.5px 1.5px at 75% 35%, rgba(255,255,255,0.6) 0%, transparent 100%),
-            radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.7) 0%, transparent 100%),
-            radial-gradient(1px 1px at 95% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
-            radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,0.4) 0%, transparent 100%),
-            radial-gradient(1px 1px at 35% 90%, rgba(255,255,255,0.6) 0%, transparent 100%),
-            radial-gradient(1.5px 1.5px at 5% 75%, rgba(255,255,255,0.5) 0%, transparent 100%)
-          `,
-        }} />
+        <img
+          src="/hero/dashboard-hero.jpg"
+          alt=""
+          className="w-full h-full object-cover object-center"
+          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+        />
+        {/* fallback gradient behind the image */}
+        <div
+          className="absolute inset-0 -z-10"
+          style={{ background: "radial-gradient(ellipse at 70% 30%, #06373c 0%, #13232d 55%, #0a171d 100%)" }}
+        />
       </div>
+
+      {/* Brand overlays — match the site palette */}
+      <div className="absolute inset-0 bg-gradient-to-r from-bs-mitternacht/92 via-bs-mitternacht/55 to-bs-mitternacht/20" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-bs-mitternacht to-transparent" />
+      <div className="absolute -right-20 top-1/3 w-[600px] h-[600px] rounded-full bg-bs-tuerkis/10 blur-[120px] pointer-events-none" />
 
       {/* Left content */}
       <div className="absolute left-6 lg:left-16 xl:left-24 top-1/2 -translate-y-1/2 z-40 max-w-md">
