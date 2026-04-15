@@ -5,57 +5,138 @@ import { useTranslations } from "next-intl";
 export default function ReferencePlaceholder({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   const t = useTranslations("references");
 
-  const svgSize = size === "lg" ? 120 : size === "sm" ? 48 : 80;
-  const textCls =
+  const labelCls =
     size === "lg"
-      ? "text-base"
+      ? "text-base px-5 py-2"
       : size === "sm"
-        ? "text-[11px]"
-        : "text-sm";
+        ? "text-[11px] px-3 py-1.5"
+        : "text-sm px-4 py-1.5";
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center gap-3 p-6 bg-gradient-to-br from-bs-hellgrau via-white to-bs-grau text-bs-mitternacht/60">
+    <div className="relative w-full h-full overflow-hidden bg-gradient-to-br from-bs-hellgrau via-white to-bs-grau">
       <svg
-        width={svgSize}
-        height={svgSize}
-        viewBox="0 0 96 96"
+        viewBox="0 0 400 250"
+        preserveAspectRatio="xMidYMid slice"
+        className="absolute inset-0 w-full h-full text-bs-mitternacht/45"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1"
+        strokeWidth="0.9"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="opacity-55"
         aria-hidden="true"
       >
-        {/* rough ground line */}
-        <path d="M6 82 Q12 80 18 82 T30 82 T44 82 T58 82 T72 82 T90 82" />
-        {/* main building outline (slightly wobbly to feel sketched) */}
-        <path d="M20 82 L20 36 Q20 34 22 34 L52 34 Q54 34 54 36 L54 82" />
-        {/* pitched roof */}
-        <path d="M16 36 L37 18 L58 36" />
-        {/* side wing */}
-        <path d="M54 82 L54 48 L76 48 L76 82" />
-        {/* wing roof */}
-        <path d="M52 48 L65 40 L78 48" />
-        {/* windows — grid */}
-        <rect x="24" y="42" width="8" height="10" rx="0.5" />
-        <rect x="36" y="42" width="8" height="10" rx="0.5" />
-        <rect x="24" y="58" width="8" height="10" rx="0.5" />
-        <rect x="36" y="58" width="8" height="10" rx="0.5" />
-        <rect x="58" y="54" width="7" height="8" rx="0.5" />
-        <rect x="67" y="54" width="7" height="8" rx="0.5" />
-        <rect x="58" y="66" width="7" height="8" rx="0.5" />
-        <rect x="67" y="66" width="7" height="8" rx="0.5" />
-        {/* door */}
-        <path d="M30 82 L30 74 Q30 72 32 72 L38 72 Q40 72 40 74 L40 82" />
-        {/* subtle pencil texture */}
-        <path d="M22 38 L52 38" opacity="0.3" />
-        <path d="M20 42 L22 40" opacity="0.3" />
-        <path d="M56 50 L76 50" opacity="0.3" />
+        {/* horizon / pavement */}
+        <path d="M0 215 Q60 213 120 215 T240 215 T360 215 T400 215" />
+        <path d="M0 222 L400 222" opacity="0.35" strokeDasharray="2 4" />
+
+        {/* === LEFT TOWER — mid-rise office === */}
+        <path d="M30 215 L30 75 L110 75 L110 215" />
+        <path d="M30 75 L110 75 L110 70 L30 70 Z" />
+        {/* window grid 6 rows × 4 cols */}
+        {[0, 1, 2, 3, 4, 5].map((row) => (
+          <g key={`l-${row}`}>
+            {[0, 1, 2, 3].map((col) => (
+              <rect
+                key={col}
+                x={38 + col * 17}
+                y={88 + row * 19}
+                width="11"
+                height="13"
+                strokeWidth="0.7"
+              />
+            ))}
+          </g>
+        ))}
+        {/* entrance canopy */}
+        <path d="M55 215 L55 200 L85 200 L85 215" />
+        <path d="M50 200 L90 200" />
+        <path d="M62 215 L62 205 L78 205 L78 215" strokeWidth="0.7" />
+
+        {/* === CENTER HIGH-RISE — taller, glass curtain === */}
+        <path d="M140 215 L140 30 L240 30 L240 215" />
+        <path d="M140 30 L240 30 L240 24 L140 24 Z" />
+        {/* mast / antenna */}
+        <path d="M188 24 L188 8 M192 24 L192 14" strokeWidth="0.7" />
+        {/* vertical mullions every column */}
+        {[0, 1, 2, 3, 4, 5, 6].map((col) => (
+          <path
+            key={`v-${col}`}
+            d={`M${148 + col * 13} 36 L${148 + col * 13} 210`}
+            strokeWidth="0.4"
+            opacity="0.7"
+          />
+        ))}
+        {/* horizontal floor lines */}
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((row) => (
+          <path
+            key={`h-${row}`}
+            d={`M148 ${42 + row * 13} L240 ${42 + row * 13}`}
+            strokeWidth="0.4"
+            opacity="0.55"
+          />
+        ))}
+        {/* podium / lobby */}
+        <path d="M140 215 L140 195 L240 195 L240 215" />
+        <path d="M170 215 L170 200 L210 200 L210 215" />
+        <path d="M178 215 L178 205 L186 205 L186 215" strokeWidth="0.7" />
+        <path d="M194 215 L194 205 L202 205 L202 215" strokeWidth="0.7" />
+        {/* sign band */}
+        <path d="M150 198 L230 198" strokeWidth="0.6" opacity="0.5" />
+
+        {/* === RIGHT BUILDING — wide low-rise commercial === */}
+        <path d="M270 215 L270 110 L380 110 L380 215" />
+        <path d="M270 110 L380 110 L380 104 L270 104 Z" />
+        {/* horizontal bands of strip windows */}
+        {[0, 1, 2, 3, 4].map((row) => (
+          <g key={`r-${row}`}>
+            <path
+              d={`M278 ${122 + row * 19} L372 ${122 + row * 19}`}
+              strokeWidth="0.5"
+            />
+            <path
+              d={`M278 ${132 + row * 19} L372 ${132 + row * 19}`}
+              strokeWidth="0.5"
+            />
+            {/* mullions inside strip */}
+            {[0, 1, 2, 3, 4, 5].map((col) => (
+              <path
+                key={col}
+                d={`M${290 + col * 16} ${122 + row * 19} L${290 + col * 16} ${132 + row * 19}`}
+                strokeWidth="0.4"
+                opacity="0.6"
+              />
+            ))}
+          </g>
+        ))}
+        {/* glass entrance with revolving door */}
+        <path d="M310 215 L310 198 L340 198 L340 215" />
+        <path d="M325 215 L325 200" strokeWidth="0.6" />
+        <circle cx="325" cy="207" r="3" strokeWidth="0.5" opacity="0.7" />
+        {/* awning */}
+        <path d="M305 198 L345 198" />
+
+        {/* foreground details — tree silhouettes */}
+        <g opacity="0.45">
+          <circle cx="125" cy="208" r="9" strokeWidth="0.6" />
+          <path d="M125 217 L125 215" strokeWidth="0.6" />
+          <circle cx="255" cy="206" r="11" strokeWidth="0.6" />
+          <path d="M255 217 L255 213" strokeWidth="0.6" />
+        </g>
+
+        {/* sketchy double-strokes for hand-drawn feel */}
+        <path d="M30 75 L110 75" opacity="0.35" strokeWidth="0.5" transform="translate(0.4 0.6)" />
+        <path d="M140 30 L240 30" opacity="0.35" strokeWidth="0.5" transform="translate(0.4 0.6)" />
+        <path d="M270 110 L380 110" opacity="0.35" strokeWidth="0.5" transform="translate(0.4 0.6)" />
       </svg>
-      <span className={`${textCls} font-medium italic tracking-wide text-bs-mitternacht/60`}>
-        {t("imageComingSoon")}
-      </span>
+
+      {/* caption */}
+      <div className="absolute inset-x-0 bottom-3 flex justify-center pointer-events-none">
+        <span
+          className={`${labelCls} bg-white/85 backdrop-blur-sm text-bs-mitternacht/75 font-medium italic tracking-wide rounded-full shadow-sm border border-white/60`}
+        >
+          {t("imageComingSoon")}
+        </span>
+      </div>
     </div>
   );
 }
