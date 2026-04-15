@@ -524,35 +524,36 @@ export default function SaturnHero() {
                         aria-label="Building Solutions — auf Google Maps öffnen"
                       >
                         <svg
-                          width="38"
-                          height="50"
-                          viewBox="0 0 38 50"
+                          width="48"
+                          height="60"
+                          viewBox="0 0 48 60"
                           className="transition-transform group-hover:scale-110"
                         >
-                          <defs>
-                            <linearGradient id="bsPinFill" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="0%" stopColor="#31cfb3" />
-                              <stop offset="100%" stopColor="#06373c" />
-                            </linearGradient>
-                          </defs>
+                          {/* Tip / arrow pointing to the location */}
                           <path
-                            d="M19 48 L5 24 C1.5 17 3.5 8 11 4 C17 1 21 1 27 4 C34.5 8 36.5 17 33 24 Z"
-                            fill="url(#bsPinFill)"
-                            stroke="#13232d"
-                            strokeWidth="1.2"
-                          />
-                          <circle cx="19" cy="17" r="8" fill="#13232d" />
-                          <text
-                            x="19"
-                            y="20.5"
-                            textAnchor="middle"
-                            fontSize="9"
-                            fontWeight="800"
+                            d="M24 60 L16 44 L32 44 Z"
                             fill="#31cfb3"
-                            style={{ letterSpacing: "0.5px" }}
-                          >
-                            BS
-                          </text>
+                            stroke="#13232d"
+                            strokeWidth="0.8"
+                          />
+                          {/* White disc with türkis border */}
+                          <circle
+                            cx="24"
+                            cy="22"
+                            r="20"
+                            fill="#ffffff"
+                            stroke="#31cfb3"
+                            strokeWidth="2.2"
+                          />
+                          {/* BS logo image */}
+                          <image
+                            href="/logo-bs.png"
+                            x="7"
+                            y="5"
+                            width="34"
+                            height="34"
+                            preserveAspectRatio="xMidYMid meet"
+                          />
                         </svg>
                         <div className="absolute left-1/2 -translate-x-1/2 top-[-42px] opacity-0 group-hover:opacity-100 transition-opacity bg-bs-mitternacht text-white text-[11px] font-medium px-2.5 py-1.5 rounded whitespace-nowrap pointer-events-none">
                           Building Solutions · Kerpen
