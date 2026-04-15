@@ -16,44 +16,40 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; className?: s
   Shield, Camera, AlertTriangle, Radio, Zap, Wrench, Sun,
 };
 
-// --- ROTATING EARTH COMPONENT ---
-function RotatingEarth({ size, speed }: { size: number; speed: number }) {
+// --- ROTATING EARTH COMPONENT (controlled, no auto-rotate) ---
+function RotatingEarth({ size, angle }: { size: number; angle: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const angleRef = useRef(0);
-  const rafRef = useRef<number>(0);
-  const lastRef = useRef<number>(0);
   const textureRef = useRef<HTMLImageElement | null>(null);
   const textureLoaded = useRef(false);
+  const renderSizeRef = useRef(0);
+  const rRef = useRef(0);
+  const angleRef = useRef(angle);
+  const drawRef = useRef<() => void>(() => {});
 
+  // Setup canvas + texture load (once per size)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Render at 3/4 resolution for balance of quality and performance
     const renderSize = Math.round(size * 0.75);
     canvas.width = renderSize;
     canvas.height = renderSize;
-    const r = renderSize / 2;
-
-    // Load texture
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.src = "/earth-texture-hq.jpg";
-    img.onload = () => {
-      textureRef.current = img;
-      textureLoaded.current = true;
-    };
+    renderSizeRef.current = renderSize;
+    rRef.current = renderSize / 2;
 
     const draw = () => {
+      const r = rRef.current;
+      const S = renderSizeRef.current;
+      if (!S) return;
+
       ctx.clearRect(0, 0, size, size);
       ctx.save();
       ctx.beginPath();
       ctx.arc(r, r, r, 0, Math.PI * 2);
       ctx.clip();
 
-      const S = renderSize;
       if (!textureLoaded.current || !textureRef.current) {
         ctx.fillStyle = "#0d3b6e";
         ctx.fillRect(0, 0, S, S);
@@ -65,15 +61,15 @@ function RotatingEarth({ size, speed }: { size: number; speed: number }) {
         const imgData = ctx.createImageData(S, S);
         const data = imgData.data;
 
-        // Read texture once
-        if (!(window as unknown as Record<string,unknown>).__earthTexData) {
+        if (!(window as unknown as Record<string, unknown>).__earthTexData) {
           const oc = document.createElement("canvas");
-          oc.width = tw; oc.height = th;
+          oc.width = tw;
+          oc.height = th;
           const oCtx = oc.getContext("2d")!;
           oCtx.drawImage(tex, 0, 0);
-          (window as unknown as Record<string,unknown>).__earthTexData = oCtx.getImageData(0, 0, tw, th).data;
+          (window as unknown as Record<string, unknown>).__earthTexData = oCtx.getImageData(0, 0, tw, th).data;
         }
-        const texData = (window as unknown as Record<string,unknown>).__earthTexData as Uint8ClampedArray;
+        const texData = (window as unknown as Record<string, unknown>).__earthTexData as Uint8ClampedArray;
 
         const rotRad = (angleRef.current * Math.PI) / 180;
 
@@ -90,18 +86,17 @@ function RotatingEarth({ size, speed }: { size: number; speed: number }) {
 
             let u = ((lon / Math.PI + 1) / 2) % 1;
             if (u < 0) u += 1;
-            const v = (-lat / Math.PI + 0.5);
+            const v = -lat / Math.PI + 0.5;
 
             const tx = Math.floor(u * (tw - 1));
             const ty = Math.floor(v * (th - 1));
             const ti = (ty * tw + tx) * 4;
 
-            // Diffuse lighting from top-left
-            const dot = nx * -0.4 + (-ny) * -0.5 + nz * 0.76;
+            const dot = nx * -0.4 + -ny * -0.5 + nz * 0.76;
             const light = Math.max(0.1, Math.min(1, dot * 0.65 + 0.5));
 
             const idx = (py * S + px) * 4;
-            data[idx]     = Math.min(255, (texData[ti] || 0) * light);
+            data[idx] = Math.min(255, (texData[ti] || 0) * light);
             data[idx + 1] = Math.min(255, (texData[ti + 1] || 0) * light);
             data[idx + 2] = Math.min(255, (texData[ti + 2] || 0) * light);
             data[idx + 3] = 255;
@@ -110,7 +105,6 @@ function RotatingEarth({ size, speed }: { size: number; speed: number }) {
         ctx.putImageData(imgData, 0, 0);
       }
 
-      // Atmosphere rim
       const rimGrad = ctx.createRadialGradient(r, r, r * 0.88, r, r, r);
       rimGrad.addColorStop(0, "rgba(80,160,255,0)");
       rimGrad.addColorStop(0.6, "rgba(80,160,255,0.06)");
@@ -122,31 +116,37 @@ function RotatingEarth({ size, speed }: { size: number; speed: number }) {
 
       ctx.restore();
     };
+    drawRef.current = draw;
 
-    const animate = (time: number) => {
-      if (lastRef.current) {
-        const delta = (time - lastRef.current) / 1000;
-        angleRef.current = (angleRef.current + speed * 0.15 * delta) % 360;
-      }
-      lastRef.current = time;
+    // Placeholder draw while texture loads
+    draw();
+
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = "/earth-texture-hq.jpg";
+    img.onload = () => {
+      textureRef.current = img;
+      textureLoaded.current = true;
       draw();
-      rafRef.current = requestAnimationFrame(animate);
     };
-    rafRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [size, speed]);
+  }, [size]);
+
+  // Redraw whenever angle changes
+  useEffect(() => {
+    angleRef.current = angle;
+    drawRef.current();
+  }, [angle]);
 
   return (
     <div className="relative" style={{ width: size, height: size }}>
-      {/* Outer atmosphere glow */}
-      <div className="absolute -inset-6 rounded-full" style={{
-        background: "radial-gradient(circle, rgba(70,150,255,0.18) 46%, rgba(40,100,220,0.08) 54%, transparent 68%)",
-      }} />
-      <canvas
-        ref={canvasRef}
-        className="rounded-full"
-        style={{ width: size, height: size }}
+      <div
+        className="absolute -inset-6 rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(70,150,255,0.18) 46%, rgba(40,100,220,0.08) 54%, transparent 68%)",
+        }}
       />
+      <canvas ref={canvasRef} className="rounded-full" style={{ width: size, height: size }} />
     </div>
   );
 }
@@ -159,9 +159,11 @@ export default function SaturnHero() {
 
   const [services, setServices] = useState<Service[]>([]);
   const [ringSpeed, setRingSpeed] = useState(8);
-  const [earthSpeed, setEarthSpeed] = useState(20);
+  // Earth is user-controlled: starts showing Europe (~Greenwich centered), drag to rotate
+  const [earthAngle, setEarthAngle] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [ringAngle, setRingAngle] = useState(0);
+  const dragRef = useRef<{ active: boolean; lastX: number }>({ active: false, lastX: 0 });
   const videoRef = useRef<HTMLVideoElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const rafRef = useRef<number>(0);
@@ -176,7 +178,6 @@ export default function SaturnHero() {
       .then((r) => r.json())
       .then((d) => {
         if (d.ringSpeed !== undefined) setRingSpeed(d.ringSpeed);
-        if (d.earthSpeed !== undefined) setEarthSpeed(d.earthSpeed);
       })
       .catch(() => {});
   }, []);
@@ -370,27 +371,127 @@ export default function SaturnHero() {
                 <div className="absolute inset-0 rounded-full shadow-[inset_0_0_60px_rgba(0,0,0,0.5)]" />
               </div>
             ) : (
-              /* Earth fallback — translucent so the hero photo shows through */
-              <div
-                className="relative rounded-full"
-                style={{ width: PLANET_SIZE, height: PLANET_SIZE }}
-              >
-                <div
-                  className="absolute inset-0 rounded-full overflow-hidden"
-                  style={{ opacity: 0.45, mixBlendMode: "screen" }}
-                >
-                  <RotatingEarth size={PLANET_SIZE} speed={earthSpeed} />
-                </div>
-                {/* atmospheric rim so the planet stays readable */}
-                <div
-                  className="absolute inset-0 rounded-full pointer-events-none"
-                  style={{
-                    boxShadow:
-                      "inset 0 0 40px rgba(49, 207, 179, 0.18), 0 0 60px 2px rgba(49, 207, 179, 0.15)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                  }}
-                />
-              </div>
+              /* Earth — controlled, drag to rotate, with Kerpen pin */
+              (() => {
+                const KERPEN_LAT = 50.87;
+                const KERPEN_LON = 6.68;
+                const latRad = (KERPEN_LAT * Math.PI) / 180;
+                const lonRad = ((KERPEN_LON - earthAngle) * Math.PI) / 180;
+                const cosLat = Math.cos(latRad);
+                const pinNx = cosLat * Math.sin(lonRad);
+                const pinNy = -Math.sin(latRad);
+                const pinNz = cosLat * Math.cos(lonRad);
+                const pinVisible = pinNz > 0.12;
+                const pinLeft = PLANET_SIZE / 2 + pinNx * (PLANET_SIZE / 2);
+                const pinTop = PLANET_SIZE / 2 + pinNy * (PLANET_SIZE / 2);
+                const pinScale = 0.85 + 0.25 * Math.max(0, pinNz);
+                const mapsUrl =
+                  "https://www.google.com/maps/dir/?api=1&destination=" +
+                  encodeURIComponent("Ottostraße 14, 50170 Kerpen, Germany");
+
+                return (
+                  <div
+                    className="relative rounded-full select-none"
+                    style={{
+                      width: PLANET_SIZE,
+                      height: PLANET_SIZE,
+                      cursor: "grab",
+                      touchAction: "none",
+                    }}
+                    onPointerDown={(e) => {
+                      (e.currentTarget as HTMLDivElement).setPointerCapture(e.pointerId);
+                      dragRef.current = { active: true, lastX: e.clientX };
+                    }}
+                    onPointerMove={(e) => {
+                      if (!dragRef.current.active) return;
+                      const dx = e.clientX - dragRef.current.lastX;
+                      dragRef.current.lastX = e.clientX;
+                      setEarthAngle((a) => a - dx * 0.4);
+                    }}
+                    onPointerUp={(e) => {
+                      try {
+                        (e.currentTarget as HTMLDivElement).releasePointerCapture(e.pointerId);
+                      } catch {}
+                      dragRef.current = { active: false, lastX: 0 };
+                    }}
+                    onPointerCancel={() => {
+                      dragRef.current = { active: false, lastX: 0 };
+                    }}
+                  >
+                    {/* Translucent Earth so the hero photo shows through */}
+                    <div
+                      className="absolute inset-0 rounded-full overflow-hidden pointer-events-none"
+                      style={{ opacity: 0.45, mixBlendMode: "screen" }}
+                    >
+                      <RotatingEarth size={PLANET_SIZE} angle={earthAngle} />
+                    </div>
+                    {/* Atmospheric türkis rim */}
+                    <div
+                      className="absolute inset-0 rounded-full pointer-events-none"
+                      style={{
+                        boxShadow:
+                          "inset 0 0 40px rgba(49, 207, 179, 0.18), 0 0 60px 2px rgba(49, 207, 179, 0.15)",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                      }}
+                    />
+
+                    {/* Kerpen pin → Google Maps direction */}
+                    {pinVisible && (
+                      <a
+                        href={mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onPointerDown={(e) => e.stopPropagation()}
+                        className="absolute z-30 group"
+                        style={{
+                          left: pinLeft,
+                          top: pinTop,
+                          transform: `translate(-50%, -100%) scale(${pinScale})`,
+                          opacity: 0.7 + 0.3 * pinNz,
+                          filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.45))",
+                        }}
+                        title="Building Solutions · Ottostraße 14, 50170 Kerpen"
+                        aria-label="Building Solutions — auf Google Maps öffnen"
+                      >
+                        <svg
+                          width="38"
+                          height="50"
+                          viewBox="0 0 38 50"
+                          className="transition-transform group-hover:scale-110"
+                        >
+                          <defs>
+                            <linearGradient id="bsPinFill" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="0%" stopColor="#31cfb3" />
+                              <stop offset="100%" stopColor="#06373c" />
+                            </linearGradient>
+                          </defs>
+                          <path
+                            d="M19 48 L5 24 C1.5 17 3.5 8 11 4 C17 1 21 1 27 4 C34.5 8 36.5 17 33 24 Z"
+                            fill="url(#bsPinFill)"
+                            stroke="#13232d"
+                            strokeWidth="1.2"
+                          />
+                          <circle cx="19" cy="17" r="8" fill="#13232d" />
+                          <text
+                            x="19"
+                            y="20.5"
+                            textAnchor="middle"
+                            fontSize="9"
+                            fontWeight="800"
+                            fill="#31cfb3"
+                            style={{ letterSpacing: "0.5px" }}
+                          >
+                            BS
+                          </text>
+                        </svg>
+                        <div className="absolute left-1/2 -translate-x-1/2 top-[-42px] opacity-0 group-hover:opacity-100 transition-opacity bg-bs-mitternacht text-white text-[11px] font-medium px-2.5 py-1.5 rounded whitespace-nowrap pointer-events-none">
+                          Building Solutions · Kerpen
+                        </div>
+                      </a>
+                    )}
+                  </div>
+                );
+              })()
             )}
           </motion.div>
         </div>
