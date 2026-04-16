@@ -232,7 +232,7 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
                   icon={<MapPin size={16} />}
                   label={t("address")}
                   value={ref.address}
-                  href={googleStreetViewUrl(ref.address)}
+                  href={googleMapsUrl(ref.address)}
                 />
               )}
               {ref.year && (
@@ -332,8 +332,6 @@ function InfoRow({
   return <div className="flex gap-3">{body}</div>;
 }
 
-function googleStreetViewUrl(address: string): string {
-  const q = encodeURIComponent(address);
-  // layer=c turns on Street View; Maps falls back to a normal view if no panorama is available
-  return `https://www.google.com/maps?q=${q}&layer=c`;
+function googleMapsUrl(address: string): string {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 }

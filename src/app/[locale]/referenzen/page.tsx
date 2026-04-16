@@ -108,13 +108,13 @@ export default function ReferenzenPage({ params }: { params: Promise<{ locale: s
                               e.preventDefault();
                               e.stopPropagation();
                               window.open(
-                                `https://www.google.com/maps?q=${encodeURIComponent(ref.address!)}&layer=c`,
+                                `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ref.address!)}`,
                                 "_blank",
                                 "noopener"
                               );
                             }}
                             className="flex items-center gap-1 hover:text-bs-tuerkisblau transition-colors"
-                            title="In Google Maps (Street View) öffnen"
+                            title="In Google Maps öffnen"
                           >
                             <MapPin size={12} /> {ref.address}
                           </button>
