@@ -1,6 +1,6 @@
 import { getRequestConfig } from 'next-intl/server';
 import { routing } from './routing';
-import { storeGet } from '@/lib/admin-store';
+import { storeGetEdge } from '@/lib/store-edge';
 
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale;
@@ -16,7 +16,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   // In dev the same key maps back to the file, so this is effectively a no-op.
   let live: Record<string, unknown> | null = null;
   try {
-    live = (await storeGet(`texts:${locale}`)) as Record<string, unknown> | null;
+    live = (await storeGetEdge(`texts:${locale}`)) as Record<string, unknown> | null;
   } catch {
     live = null;
   }
