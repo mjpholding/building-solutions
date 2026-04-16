@@ -356,13 +356,14 @@ export default function SaturnHero() {
   const ringVisualRY = RING_R * Math.sin(TILT_RAD); // how tall the ellipse looks
 
   return (
-    <section className="relative w-full min-h-screen bg-bs-mitternacht overflow-hidden flex items-center">
+    <section className="relative w-full min-h-[85vh] lg:min-h-screen bg-bs-mitternacht overflow-hidden flex items-center">
       {/* Architectural background photo */}
       <div className="absolute inset-0">
         <img
           src="/hero/dashboard-hero.jpg"
           alt=""
           className="w-full h-full object-cover object-center"
+          style={{ objectPosition: "center 70%" }}
           onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
         />
         {/* fallback gradient behind the image */}
@@ -378,7 +379,7 @@ export default function SaturnHero() {
       <div className="absolute -right-20 top-1/3 w-[600px] h-[600px] rounded-full bg-bs-tuerkis/10 blur-[120px] pointer-events-none" />
 
       {/* Left content */}
-      <div className="absolute left-6 lg:left-16 xl:left-24 top-1/2 -translate-y-1/2 z-40 max-w-md">
+      <div className="relative lg:absolute lg:left-16 xl:left-24 lg:top-1/2 lg:-translate-y-1/2 z-40 max-w-md w-full px-6 pt-28 pb-16 lg:px-0 lg:pt-0 lg:pb-0">
         <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
           <h1 className="text-3xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-5">{t("title")}</h1>
           <p className="text-white/40 text-sm lg:text-base leading-relaxed mb-8 max-w-sm">{t("subtitle")}</p>
@@ -393,8 +394,8 @@ export default function SaturnHero() {
         </motion.div>
       </div>
 
-      {/* === SATURN SYSTEM === */}
-      <div className="absolute z-10" style={{
+      {/* === SATURN SYSTEM === (hidden on mobile so it never overlaps copy) */}
+      <div className="absolute z-10 hidden lg:block" style={{
         right: "8%", top: "50%", transform: "translateY(-50%)",
         width: `${RING_R * 2 + 160}px`, height: `${RING_R * 2 + 160}px`,
       }}>
