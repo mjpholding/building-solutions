@@ -101,7 +101,24 @@ export default function ReferenzenPage({ params }: { params: Promise<{ locale: s
                       <h3 className="font-bold text-bs-mitternacht mb-1 group-hover:text-bs-tuerkisblau transition-colors">{ref.title}</h3>
                       <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-3">
                         {ref.client && <span className="flex items-center gap-1"><Building2 size={12} /> {ref.client}</span>}
-                        {ref.address && <span className="flex items-center gap-1"><MapPin size={12} /> {ref.address}</span>}
+                        {ref.address && (
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              window.open(
+                                `https://www.google.com/maps?q=${encodeURIComponent(ref.address!)}&layer=c`,
+                                "_blank",
+                                "noopener"
+                              );
+                            }}
+                            className="flex items-center gap-1 hover:text-bs-tuerkisblau transition-colors"
+                            title="In Google Maps (Street View) öffnen"
+                          >
+                            <MapPin size={12} /> {ref.address}
+                          </button>
+                        )}
                         {ref.year && <span className="flex items-center gap-1"><Calendar size={12} /> {ref.year}</span>}
                       </div>
                       {ref.description && <p className="text-sm text-gray-600 line-clamp-3">{ref.description}</p>}

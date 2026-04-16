@@ -228,7 +228,12 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
                 <InfoRow icon={<Building2 size={16} />} label={t("client")} value={ref.client} />
               )}
               {ref.address && (
-                <InfoRow icon={<MapPin size={16} />} label={t("address")} value={ref.address} />
+                <InfoRow
+                  icon={<MapPin size={16} />}
+                  label={t("address")}
+                  value={ref.address}
+                  href={googleStreetViewUrl(ref.address)}
+                />
               )}
               {ref.year && (
                 <InfoRow icon={<Calendar size={16} />} label={t("year")} value={String(ref.year)} />
@@ -283,16 +288,52 @@ export default function ReferenzDetailPage({ params }: { params: Promise<{ slug:
   );
 }
 
-function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
-  return (
-    <div className="flex gap-3">
+function InfoRow({
+  icon,
+  label,
+  value,
+  href,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  href?: string;
+}) {
+  const body = (
+    <>
       <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-white flex items-center justify-center text-bs-tuerkisblau">
         {icon}
       </div>
       <div className="flex-1 min-w-0">
         <div className="text-xs text-gray-500 uppercase tracking-wide">{label}</div>
-        <div className="text-sm font-medium text-bs-mitternacht break-words">{value}</div>
+        <div
+          className={`text-sm font-medium break-words ${
+            href ? "text-bs-tuerkisblau hover:text-bs-tuerkis underline decoration-bs-tuerkis/30 underline-offset-2" : "text-bs-mitternacht"
+          }`}
+        >
+          {value}
+        </div>
       </div>
-    </div>
+    </>
   );
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex gap-3 transition-colors"
+        title="In Google Maps öffnen"
+      >
+        {body}
+      </a>
+    );
+  }
+  return <div className="flex gap-3">{body}</div>;
+}
+
+function googleStreetViewUrl(address: string): string {
+  const q = encodeURIComponent(address);
+  // layer=c turns on Street View; Maps falls back to a normal view if no panorama is available
+  return `https://www.google.com/maps?q=${q}&layer=c`;
 }
