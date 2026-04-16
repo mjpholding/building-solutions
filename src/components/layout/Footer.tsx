@@ -117,9 +117,6 @@ export default function Footer() {
           <p className="text-bs-gray-500 text-xs">
             &copy; {new Date().getFullYear()} {t("company")}. {t("rights")}.
           </p>
-          <p className="text-bs-gray-600 text-xs">
-            {tL("expertTagline")}
-          </p>
         </div>
       </div>
     </footer>
