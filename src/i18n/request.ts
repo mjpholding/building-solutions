@@ -1,5 +1,6 @@
 import { getRequestConfig } from 'next-intl/server';
 import { routing } from './routing';
+import { storeGet } from '@/lib/admin-store';
 
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale;
@@ -8,8 +9,22 @@ export default getRequestConfig(async ({ requestLocale }) => {
     locale = routing.defaultLocale;
   }
 
-  return {
-    locale,
-    messages: (await import(`../messages/${locale}/common.json`)).default,
-  };
+  // Build-time bundled translations (always present)
+  const bundled = (await import(`../messages/${locale}/common.json`)).default;
+
+  // Admin-editable overrides — in prod they live in Redis under `texts:<locale>`.
+  // In dev the same key maps back to the file, so this is effectively a no-op.
+  let live: Record<string, unknown> | null = null;
+  try {
+    live = (await storeGet(`texts:${locale}`)) as Record<string, unknown> | null;
+  } catch {
+    live = null;
+  }
+
+  const messages =
+    live && typeof live === 'object' && Object.keys(live).length > 0
+      ? (live as Record<string, unknown>)
+      : bundled;
+
+  return { locale, messages };
 });
