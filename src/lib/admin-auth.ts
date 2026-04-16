@@ -4,7 +4,21 @@ import { storeGet, storeSet } from "./admin-store";
 
 const COOKIE_NAME = "admin_session";
 const SESSION_DURATION = 24 * 60 * 60 * 1000; // 24h
-const HMAC_SECRET = process.env.ADMIN_SECRET || "swish-admin-secret-2024";
+
+// HMAC secret — resolved lazily so `next build` (which sets NODE_ENV to
+// production but may not have runtime envs) doesn't crash. Any runtime
+// call that actually needs the secret will throw if it's not set in
+// production.
+function getHmacSecret(): string {
+  const s = process.env.ADMIN_SECRET;
+  if (s) return s;
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(
+      "ADMIN_SECRET is required in production. Set it in Vercel → Environment Variables."
+    );
+  }
+  return "dev-only-admin-secret-change-me";
+}
 
 export interface AdminUser {
   id: string;
@@ -33,7 +47,12 @@ function hashPassword(password: string): string {
 }
 
 export function verifyPassword(password: string): boolean {
-  // Legacy single-password mode (fallback when no users exist)
+  // Legacy single-password mode (fallback when no users exist).
+  // In production the env var is mandatory — otherwise 'admin123' would
+  // let anyone bootstrap the system.
+  if (process.env.NODE_ENV === "production" && !process.env.ADMIN_PASSWORD) {
+    return false;
+  }
   const legacyPw = process.env.ADMIN_PASSWORD || "admin123";
   return password === legacyPw;
 }
@@ -76,7 +95,7 @@ export async function createSessionToken(userId: string): Promise<string> {
   const timestamp = Date.now().toString();
   const payload = `${userId}.${timestamp}`;
   const hmac = crypto
-    .createHmac("sha256", HMAC_SECRET)
+    .createHmac("sha256", getHmacSecret())
     .update(payload)
     .digest("hex");
   return `${userId}.${timestamp}.${hmac}`;
@@ -90,7 +109,7 @@ export async function verifySessionToken(
     if (parts.length !== 3) return { valid: false };
     const [userId, timestamp, hmac] = parts;
     const expected = crypto
-      .createHmac("sha256", HMAC_SECRET)
+      .createHmac("sha256", getHmacSecret())
       .update(`${userId}.${timestamp}`)
       .digest("hex");
     if (hmac !== expected) return { valid: false };

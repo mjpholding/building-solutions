@@ -23,10 +23,21 @@ export interface Customer {
 
 export type CustomerPublic = Omit<Customer, "passwordHash">;
 
-const SALT = "swish-customer-2026";
+// Customer password pepper — resolved lazily. In prod it MUST be set;
+// hashing will throw otherwise (so build-time tree-shaking doesn't crash).
+function getSalt(): string {
+  const s = process.env.CUSTOMER_AUTH_SALT;
+  if (s) return s;
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(
+      "CUSTOMER_AUTH_SALT is required in production. Set it in Vercel → Environment Variables."
+    );
+  }
+  return "dev-only-customer-salt-change-me";
+}
 
 export function hashPassword(password: string): string {
-  return crypto.createHmac("sha256", SALT).update(password).digest("hex");
+  return crypto.createHmac("sha256", getSalt()).update(password).digest("hex");
 }
 
 export function verifyPassword(password: string, hash: string): boolean {
@@ -53,7 +64,7 @@ export async function getCustomerById(id: string): Promise<Customer | undefined>
 
 export function createCustomerSession(customerId: string): string {
   const payload = `${customerId}:${Date.now()}`;
-  const sig = crypto.createHmac("sha256", SALT + "-session").update(payload).digest("hex");
+  const sig = crypto.createHmac("sha256", getSalt() + "-session").update(payload).digest("hex");
   return Buffer.from(`${payload}:${sig}`).toString("base64");
 }
 
@@ -63,7 +74,7 @@ export function verifyCustomerSession(token: string): string | null {
     const parts = decoded.split(":");
     if (parts.length !== 3) return null;
     const [customerId, timestamp, sig] = parts;
-    const expected = crypto.createHmac("sha256", SALT + "-session").update(`${customerId}:${timestamp}`).digest("hex");
+    const expected = crypto.createHmac("sha256", getSalt() + "-session").update(`${customerId}:${timestamp}`).digest("hex");
     if (sig !== expected) return null;
     // 30 day session
     if (Date.now() - parseInt(timestamp) > 30 * 24 * 60 * 60 * 1000) return null;

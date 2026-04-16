@@ -8,11 +8,34 @@ const resend = process.env.RESEND_API_KEY
 const FROM = process.env.EMAIL_FROM || "Building Solutions GmbH <info@buildingsolutions.de>";
 const TO = "info@buildingsolutions.de";
 
+const EMAIL_RE = /^[^\s@<>"]+@[^\s@<>"]+\.[^\s@<>"]+$/;
+
+const oneLine = (v: unknown, max = 200) =>
+  String(v ?? "").replace(/[\r\n]+/g, " ").trim().slice(0, max);
+const clipText = (v: unknown, max = 4000) => String(v ?? "").trim().slice(0, max);
+const escapeHtml = (v: unknown) =>
+  String(v ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
 export async function POST(request: NextRequest) {
-  const { firstName, lastName, email, company, phone, message } = await request.json();
+  const raw = await request.json().catch(() => ({}));
+
+  const firstName = oneLine(raw.firstName, 100);
+  const lastName = oneLine(raw.lastName, 100);
+  const email = oneLine(raw.email, 200);
+  const company = oneLine(raw.company, 150);
+  const phone = oneLine(raw.phone, 60);
+  const message = clipText(raw.message);
 
   if (!firstName || !email || !message) {
     return NextResponse.json({ error: "Pflichtfelder fehlen" }, { status: 400 });
+  }
+  if (!EMAIL_RE.test(email)) {
+    return NextResponse.json({ error: "Ungültige E-Mail-Adresse" }, { status: 400 });
   }
 
   // Always try to send email
@@ -22,22 +45,22 @@ export async function POST(request: NextRequest) {
         from: FROM,
         to: TO,
         replyTo: email,
-        subject: `Kontaktanfrage von ${firstName} ${lastName || ""} ${company ? `(${company})` : ""}`.trim(),
+        subject: `Kontaktanfrage von ${firstName} ${lastName} ${company ? `(${company})` : ""}`.trim(),
         html: `
           <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
-            <div style="background:#dc2626;color:white;padding:16px 24px;border-radius:8px 8px 0 0;">
+            <div style="background:#06373c;color:white;padding:16px 24px;border-radius:8px 8px 0 0;">
               <h2 style="margin:0;font-size:18px;">Neue Kontaktanfrage</h2>
             </div>
             <div style="background:#f9fafb;padding:24px;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 8px 8px;">
               <table style="width:100%;font-size:14px;">
-                <tr><td style="padding:6px 0;color:#6b7280;width:120px;">Name:</td><td style="padding:6px 0;font-weight:bold;">${firstName} ${lastName || ""}</td></tr>
-                <tr><td style="padding:6px 0;color:#6b7280;">E-Mail:</td><td style="padding:6px 0;"><a href="mailto:${email}">${email}</a></td></tr>
-                ${company ? `<tr><td style="padding:6px 0;color:#6b7280;">Firma:</td><td style="padding:6px 0;">${company}</td></tr>` : ""}
-                ${phone ? `<tr><td style="padding:6px 0;color:#6b7280;">Telefon:</td><td style="padding:6px 0;">${phone}</td></tr>` : ""}
+                <tr><td style="padding:6px 0;color:#6b7280;width:120px;">Name:</td><td style="padding:6px 0;font-weight:bold;">${escapeHtml(firstName)} ${escapeHtml(lastName)}</td></tr>
+                <tr><td style="padding:6px 0;color:#6b7280;">E-Mail:</td><td style="padding:6px 0;"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
+                ${company ? `<tr><td style="padding:6px 0;color:#6b7280;">Firma:</td><td style="padding:6px 0;">${escapeHtml(company)}</td></tr>` : ""}
+                ${phone ? `<tr><td style="padding:6px 0;color:#6b7280;">Telefon:</td><td style="padding:6px 0;">${escapeHtml(phone)}</td></tr>` : ""}
               </table>
               <div style="margin-top:16px;padding:16px;background:white;border-radius:8px;border:1px solid #e5e7eb;">
                 <p style="margin:0 0 4px;font-size:12px;color:#6b7280;">Nachricht:</p>
-                <p style="margin:0;white-space:pre-wrap;">${message}</p>
+                <p style="margin:0;white-space:pre-wrap;">${escapeHtml(message)}</p>
               </div>
             </div>
           </div>

@@ -29,7 +29,7 @@ export interface DocumentSettings {
 }
 
 const DEFAULT_SETTINGS: DocumentSettings = {
-  companyName: "Building Solutions GmbH GmbH",
+  companyName: "Building Solutions GmbH",
   companyStreet: "Musterstrasse 1",
   companyZip: "10115",
   companyCity: "Berlin",

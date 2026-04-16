@@ -84,3 +84,17 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--bs-accent);
 }
+
+/* Content-protection basics (non-admin pages).
+   Applied on <body data-protect>, body[data-protect] in layout.
+   Blocks image dragging + long-press save menus; text remains selectable
+   so visitors can still copy addresses / phone numbers etc. */
+body[data-protect] img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
+}
+
