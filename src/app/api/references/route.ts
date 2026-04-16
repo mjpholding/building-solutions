@@ -1,17 +1,16 @@
 import { NextResponse } from "next/server";
-import fs from "fs/promises";
-import path from "path";
 import { storeGet } from "@/lib/admin-store";
 
+// Always read live: admin edits go to the store and must show up immediately.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
-  try {
-    const raw = await fs.readFile(
-      path.join(process.cwd(), "src", "data", "references.json"),
-      "utf-8"
-    );
-    return NextResponse.json(JSON.parse(raw));
-  } catch {
-    const refs = (await storeGet("references")) as unknown[] || [];
-    return NextResponse.json(refs);
-  }
+  // storeGet prefers Redis; if Redis is empty it auto-seeds from the bundled
+  // src/data/references.json file and caches the result. Either way, every
+  // admin save through PUT /api/admin/references is reflected here.
+  const refs = (await storeGet("references")) as unknown[] | null;
+  return NextResponse.json(refs ?? [], {
+    headers: { "Cache-Control": "no-store, must-revalidate" },
+  });
 }

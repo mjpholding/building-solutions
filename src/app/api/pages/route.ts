@@ -11,6 +11,11 @@ interface PageVisibilityConfig {
   pages: PageEntry[];
 }
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+const NO_STORE = { headers: { "Cache-Control": "no-store, must-revalidate" } };
+
 // Public endpoint — returns only slug, path, enabled status (no admin labels)
 export async function GET() {
   const config = (await storeGet("page-visibility")) as PageVisibilityConfig | null;
@@ -31,12 +36,12 @@ export async function GET() {
         { slug: "datenschutz", path: "/datenschutz", enabled: true },
         { slug: "konto", path: "/konto", enabled: true },
       ],
-    });
+    }, NO_STORE);
   }
 
   const pages = config.pages
     .filter((p) => p.enabled)
     .map(({ slug, path, enabled }) => ({ slug, path, enabled }));
 
-  return NextResponse.json({ pages });
+  return NextResponse.json({ pages }, NO_STORE);
 }
