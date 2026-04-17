@@ -221,6 +221,25 @@ export default function HeroManagePage() {
             <span className="text-sm font-mono text-gray-600 w-12 text-center">{config.bannerPositionY ?? 50}%</span>
           </div>
           <p className="text-xs text-gray-400 mt-1">Vertikale Position des Hero-Bildes auf Unterseiten (Leistungen, Kontakt usw.)</p>
+          {/* Live preview */}
+          <div className="mt-3 relative overflow-hidden rounded-lg h-32 bg-gray-900">
+            {(() => {
+              const activeSlide = config.slides.find(s => s.active);
+              const previewUrl = activeSlide ? previews[activeSlide.id] : null;
+              return (
+                <img
+                  src={previewUrl || "/hero/dashboard-hero.jpg"}
+                  alt="Banner-Vorschau"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  style={{ objectPosition: `center ${config.bannerPositionY ?? 50}%` }}
+                />
+              );
+            })()}
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/50 to-gray-900/20" />
+            <div className="relative z-10 flex items-end h-full p-4">
+              <span className="text-white text-sm font-semibold">Vorschau — Unterseiten-Banner</span>
+            </div>
+          </div>
         </div>
         <div className="mt-4 flex items-center justify-between p-4 bg-gray-50 rounded-lg">
           <div>

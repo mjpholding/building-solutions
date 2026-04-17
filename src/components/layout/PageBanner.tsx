@@ -49,7 +49,7 @@ export default function PageBanner({ title, subtitle }: { title: string; subtitl
   const posY = hero.bannerPositionY ?? 50;
 
   return (
-    <div className="relative overflow-hidden h-52 lg:h-64 flex items-end pb-8">
+    <div className="relative overflow-hidden h-56 sm:h-60 lg:h-72 flex items-end pb-8">
       {hasMedia && activeSlide && (
         <div className="absolute inset-0 z-0">
           {activeSlide.type === "video" ? (

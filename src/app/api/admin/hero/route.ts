@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/admin-auth";
 import { storeGet, storeSet } from "@/lib/admin-store";
 
+// Must be dynamic — admin changes must be reflected immediately
+export const dynamic = "force-dynamic";
+
 export interface HeroSlide {
   id: string;
   type: "image" | "video";
