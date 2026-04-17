@@ -55,68 +55,95 @@ E-Mail: info@buildingsolutions.de</p>
 <h3>5. Ihre Rechte</h3>
 <p>Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten. Bitte wenden Sie sich dazu an die oben genannte verantwortliche Stelle.</p>`;
 
-const DEFAULT_AGB = `<p><strong>Building Solutions GmbH</strong><br/>(eine Marke der Building Solutions GmbH)</p>
-<p>Vertrieb von Reinigungs-, Hygiene- und Pflegeprodukten (B2B)<br/>Stand: März 2026</p>
+const DEFAULT_AGB = `<p><strong>Building Solutions GmbH</strong><br/>Ottostraße 14, 50170 Kerpen<br/>Stand: April 2026</p>
 
 <h3>1. Geltungsbereich</h3>
-<p>1.1 Diese Allgemeinen Geschäftsbedingungen gelten für sämtliche Lieferungen und Leistungen der Building Solutions GmbH, Ottostraße 14, 50170 Kerpen, unter der Marke „Building Solutions GmbH".</p>
-<p>1.2 Das Angebot richtet sich ausschließlich an Unternehmer im Sinne des § 14 BGB sowie an juristische Personen des öffentlichen Rechts.</p>
-<p>1.3 Entgegenstehende oder abweichende Bedingungen des Kunden werden nicht anerkannt, es sei denn, ihrer Geltung wird ausdrücklich schriftlich zugestimmt.</p>
+<p>1.1 Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für sämtliche Verträge, Lieferungen und Leistungen der Building Solutions GmbH, Ottostraße 14, 50170 Kerpen (nachfolgend \u201eAuftragnehmer\u201c), im Bereich Sicherheitstechnik, Kommunikationstechnik, Elektrotechnik und verwandter Dienstleistungen.</p>
+<p>1.2 Das Angebot richtet sich an Unternehmer im Sinne des § 14 BGB, juristische Personen des öffentlichen Rechts sowie Verbraucher, soweit nicht einzelne Klauseln ausdrücklich nur für Unternehmer gelten.</p>
+<p>1.3 Abweichende, entgegenstehende oder ergänzende AGB des Auftraggebers werden nur dann Vertragsbestandteil, wenn der Auftragnehmer ihrer Geltung ausdrücklich schriftlich zugestimmt hat.</p>
 
-<h3>2. Vertragsgegenstand</h3>
-<p>2.1 Gegenstand des Vertrages ist der Vertrieb von Reinigungs-, Hygiene- und Pflegeprodukten sowie ergänzender Dienstleistungen.</p>
-<p>2.2 Produktdarstellungen (z. B. im Online-Shop oder Katalog) stellen kein verbindliches Angebot dar, sondern eine Aufforderung zur Abgabe einer Bestellung.</p>
+<h3>2. Leistungsumfang</h3>
+<p>2.1 Der Auftragnehmer erbringt insbesondere folgende Leistungen:</p>
+<ul>
+<li>Planung, Installation und Wartung von Sicherheitssystemen (Einbruchmeldeanlagen, Zutrittskontrolle)</li>
+<li>Videoüberwachungssysteme (CCTV-Planung, Montage, Inbetriebnahme)</li>
+<li>Gefahrenmanagement (Brandmeldeanlagen, Rauch- und Gaswarnmelder)</li>
+<li>Kommunikationstechnik (Netzwerkinfrastruktur, Sprechanlagen, Telefonanlagen)</li>
+<li>Elektrotechnische Installationen und Prüfungen</li>
+<li>Reparatur und Instandhaltung technischer Geräte und Anlagen</li>
+<li>Photovoltaikanlagen (Planung, Installation, Inbetriebnahme)</li>
+</ul>
+<p>2.2 Der genaue Leistungsumfang ergibt sich aus dem jeweiligen Angebot bzw. der Auftragsbestätigung.</p>
+<p>2.3 Darstellungen auf der Website stellen kein verbindliches Angebot dar, sondern eine unverbindliche Leistungsbeschreibung.</p>
 
 <h3>3. Vertragsschluss</h3>
-<p>3.1 Ein Vertrag kommt erst durch Auftragsbestätigung oder Lieferung durch die Building Solutions GmbH zustande.</p>
-<p>3.2 Angebote sind freibleibend und unverbindlich, sofern sie nicht ausdrücklich als verbindlich gekennzeichnet sind.</p>
+<p>3.1 Ein Vertrag kommt erst durch schriftliche Auftragsbestätigung oder Beginn der Leistungserbringung durch den Auftragnehmer zustande.</p>
+<p>3.2 Angebote des Auftragnehmers sind freibleibend und 30 Tage gültig, sofern nicht anders angegeben.</p>
+<p>3.3 Änderungen und Ergänzungen des Vertrages bedürfen der Schriftform.</p>
 
 <h3>4. Preise und Zahlungsbedingungen</h3>
-<p>4.1 Alle Preise verstehen sich netto zuzüglich der jeweils geltenden gesetzlichen Umsatzsteuer.</p>
-<p>4.2 Rechnungen sind, sofern nicht anders vereinbart, innerhalb von 14 Tagen ohne Abzug zahlbar.</p>
-<p>4.3 Bei Zahlungsverzug gelten Verzugszinsen in Höhe von 9 Prozentpunkten über dem Basiszinssatz (§ 288 Abs. 2 BGB).</p>
-<p>4.4 Die Building Solutions GmbH ist berechtigt, bei Zahlungsverzug weitere Lieferungen zurückzuhalten.</p>
+<p>4.1 Alle Preise verstehen sich in Euro netto zuzüglich der jeweils geltenden gesetzlichen Umsatzsteuer sowie etwaiger Material- und Fahrtkosten, sofern im Angebot nicht anders ausgewiesen.</p>
+<p>4.2 Rechnungen sind, sofern nicht anders vereinbart, innerhalb von 14 Tagen ab Rechnungsdatum ohne Abzug zahlbar.</p>
+<p>4.3 Bei Zahlungsverzug gelten Verzugszinsen in gesetzlicher Höhe: 5 Prozentpunkte über dem Basiszinssatz bei Verbrauchern (§ 288 Abs. 1 BGB), 9 Prozentpunkte über dem Basiszinssatz bei Unternehmern (§ 288 Abs. 2 BGB).</p>
+<p>4.4 Der Auftragnehmer ist berechtigt, bei Zahlungsverzug weitere Leistungen zurückzuhalten oder Vorauszahlung zu verlangen.</p>
+<p>4.5 Bei Aufträgen mit einem Gesamtwert über 5.000\u00a0\u20ac netto kann der Auftragnehmer Abschlagszahlungen entsprechend dem Leistungsfortschritt verlangen.</p>
 
-<h3>5. Lieferung und Gefahrübergang</h3>
-<p>5.1 Liefertermine sind unverbindlich, sofern nicht ausdrücklich schriftlich als verbindlich vereinbart.</p>
-<p>5.2 Die Lieferung erfolgt auf Rechnung und Gefahr des Kunden.</p>
-<p>5.3 Mit Übergabe an den Transportdienstleister geht die Gefahr auf den Kunden über.</p>
+<h3>5. Ausführung und Termine</h3>
+<p>5.1 Leistungstermine sind nur verbindlich, wenn sie ausdrücklich schriftlich als verbindlich vereinbart wurden.</p>
+<p>5.2 Der Auftraggeber hat die notwendigen Voraussetzungen für die Leistungserbringung rechtzeitig zu schaffen (z.\u00a0B. Zugang zum Objekt, Stromversorgung, Baufreiheit).</p>
+<p>5.3 Verzögerungen durch höhere Gewalt, Lieferengpässe oder vom Auftraggeber zu vertretende Umstände berechtigen den Auftragnehmer zur angemessenen Terminverschiebung.</p>
+<p>5.4 Der Auftraggeber wird über absehbare Verzögerungen unverzüglich informiert.</p>
 
-<h3>6. Eigentumsvorbehalt</h3>
-<p>6.1 Die gelieferten Waren bleiben bis zur vollständigen Bezahlung sämtlicher Forderungen Eigentum der Building Solutions GmbH.</p>
-<p>6.2 Der Kunde ist berechtigt, die Ware im ordentlichen Geschäftsgang weiterzuveräußern.</p>
+<h3>6. Abnahme</h3>
+<p>6.1 Nach Fertigstellung der Leistung ist der Auftraggeber zur Abnahme verpflichtet.</p>
+<p>6.2 Die Abnahme gilt als erfolgt, wenn der Auftraggeber die Leistung nicht innerhalb von 12 Werktagen nach Fertigstellungsmitteilung unter Angabe konkreter Mängel schriftlich beanstandet.</p>
+<p>6.3 Unwesentliche Mängel berechtigen nicht zur Verweigerung der Abnahme.</p>
 
-<h3>7. Mängel und Gewährleistung</h3>
-<p>7.1 Der Kunde ist verpflichtet, die Ware unverzüglich nach Erhalt zu prüfen.</p>
-<p>7.2 Offensichtliche Mängel sind innerhalb von 5 Werktagen schriftlich anzuzeigen.</p>
-<p>7.3 Bei berechtigten Mängeln erfolgt nach Wahl der Building Solutions GmbH Nachbesserung oder Ersatzlieferung.</p>
+<h3>7. Gewährleistung</h3>
+<p>7.1 Der Auftragnehmer gewährleistet, dass die erbrachten Leistungen den anerkannten Regeln der Technik und den vertraglich vereinbarten Anforderungen entsprechen.</p>
+<p>7.2 Mängel sind unverzüglich nach Feststellung schriftlich anzuzeigen.</p>
+<p>7.3 Bei berechtigten Mängelrügen hat der Auftragnehmer das Recht zur Nachbesserung innerhalb einer angemessenen Frist.</p>
+<p>7.4 Die Gewährleistungsfrist beträgt 2 Jahre ab Abnahme, sofern nicht gesetzlich eine längere Frist vorgeschrieben ist.</p>
+<p>7.5 Verschleißteile (z.\u00a0B. Batterien, Leuchtmittel, Sicherungen) sind von der Gewährleistung ausgenommen, sofern diese einer normalen Abnutzung unterliegen.</p>
 
-<h3>8. Produkthaftung und Anwendungshinweise</h3>
-<p>8.1 Die gelieferten Produkte sind ausschließlich gemäß den jeweiligen Produktdatenblättern, Sicherheitsdatenblättern und Anwendungshinweisen zu verwenden.</p>
-<p>8.2 Der Kunde ist verpflichtet, seine Mitarbeiter entsprechend einzuweisen und die geltenden Sicherheits- und Arbeitsschutzvorschriften einzuhalten.</p>
-<p>8.3 Eine Haftung für Schäden, die aus unsachgemäßer Anwendung, falscher Dosierung oder nicht bestimmungsgemäßem Gebrauch entstehen, ist ausgeschlossen.</p>
-<p>8.4 Zu allen Produkten werden auf Anfrage Sicherheitsdatenblätter gemäß geltenden gesetzlichen Anforderungen bereitgestellt.</p>
-<p>8.5 Für bestimmte Produkte stehen zusätzlich Notfallinformationen (z. B. Giftnotruf) zur Verfügung, die in den jeweiligen Sicherheitsdatenblättern ausgewiesen sind.</p>
-<p>8.6 Der Kunde ist verpflichtet, diese Informationen im Betrieb zugänglich zu machen und entsprechend zu berücksichtigen.</p>
+<h3>8. Haftung</h3>
+<p>8.1 Der Auftragnehmer haftet unbeschränkt bei Vorsatz, grober Fahrlässigkeit sowie bei Verletzung von Leben, Körper oder Gesundheit.</p>
+<p>8.2 Bei leichter Fahrlässigkeit haftet der Auftragnehmer nur bei Verletzung wesentlicher Vertragspflichten (Kardinalpflichten) und beschränkt auf den vertragstypischen, vorhersehbaren Schaden.</p>
+<p>8.3 Die Haftung für mittelbare Schäden, insbesondere Produktionsausfälle, entgangenen Gewinn oder Datenverlust, ist ausgeschlossen, soweit gesetzlich zulässig.</p>
+<p>8.4 Die Haftungsbeschränkungen gelten nicht, soweit der Auftragnehmer einen Mangel arglistig verschwiegen oder eine Garantie für die Beschaffenheit übernommen hat.</p>
 
-<h3>9. Haftung</h3>
-<p>9.1 Die Building Solutions GmbH haftet unbeschränkt bei: Vorsatz, grober Fahrlässigkeit, Verletzung von Leben, Körper oder Gesundheit.</p>
-<p>9.2 Bei leichter Fahrlässigkeit haftet das Unternehmen nur bei Verletzung wesentlicher Vertragspflichten und beschränkt auf den vorhersehbaren, typischen Schaden.</p>
-<p>9.3 Eine Haftung für mittelbare Schäden, insbesondere entgangenen Gewinn oder Betriebsunterbrechungen, ist ausgeschlossen, soweit gesetzlich zulässig.</p>
+<h3>9. Eigentumsvorbehalt</h3>
+<p>9.1 Gelieferte Materialien und Geräte bleiben bis zur vollständigen Bezahlung sämtlicher Forderungen Eigentum des Auftragnehmers.</p>
+<p>9.2 Der Auftraggeber ist verpflichtet, die Vorbehaltsware pfleglich zu behandeln.</p>
 
-<h3>10. Rückgabe und Widerruf</h3>
-<p>10.1 Ein Widerrufsrecht besteht nicht, da sich das Angebot ausschließlich an Unternehmer richtet.</p>
-<p>10.2 Rückgaben sind nur nach vorheriger Vereinbarung möglich.</p>
+<h3>10. Stornierung und Kündigung</h3>
+<p>10.1 Der Auftraggeber kann den Vertrag vor Leistungsbeginn kündigen. In diesem Fall steht dem Auftragnehmer ein Anspruch auf Vergütung der bereits erbrachten Leistungen sowie auf Ersatz entstandener Aufwendungen zu.</p>
+<p>10.2 Eine Kündigung nach Beginn der Leistungserbringung ist nur aus wichtigem Grund möglich.</p>
+<p>10.3 Die Kündigung bedarf der Schriftform.</p>
 
-<h3>11. Datenschutz</h3>
-<p>Die Verarbeitung personenbezogener Daten erfolgt gemäß der Datenschutzerklärung auf unserer Website.</p>
+<h3>11. Wartungsverträge</h3>
+<p>11.1 Wartungsverträge haben eine Mindestlaufzeit von 12 Monaten und verlängern sich automatisch um jeweils weitere 12 Monate, sofern sie nicht 3 Monate vor Ablauf schriftlich gekündigt werden.</p>
+<p>11.2 Der Umfang der Wartungsleistungen ergibt sich aus dem jeweiligen Wartungsvertrag.</p>
+<p>11.3 Der Auftragnehmer ist berechtigt, die Wartungsvergütung bei gestiegenen Kosten mit einer Ankündigungsfrist von 4 Wochen anzupassen. Bei einer Erhöhung von mehr als 5\u00a0% hat der Auftraggeber ein Sonderkündigungsrecht.</p>
 
-<h3>12. Gerichtsstand und Recht</h3>
-<p>12.1 Gerichtsstand ist Köln, sofern gesetzlich zulässig.</p>
-<p>12.2 Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts.</p>
+<h3>12. Datenschutz</h3>
+<p>12.1 Die Verarbeitung personenbezogener Daten erfolgt gemäß der Datenschutzerklärung auf unserer Website und den geltenden datenschutzrechtlichen Bestimmungen (DSGVO, BDSG).</p>
+<p>12.2 Soweit im Rahmen der Leistungserbringung personenbezogene Daten des Auftraggebers verarbeitet werden (z.\u00a0B. bei Videoüberwachungs- oder Zutrittskontrollsystemen), wird bei Bedarf eine Vereinbarung zur Auftragsverarbeitung gemäß Art.\u00a028 DSGVO geschlossen.</p>
 
-<h3>13. Salvatorische Klausel</h3>
-<p>Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>`;
+<h3>13. Geheimhaltung</h3>
+<p>13.1 Beide Vertragsparteien verpflichten sich, alle im Rahmen der Zusammenarbeit erhaltenen vertraulichen Informationen, insbesondere technische Details zu Sicherheitssystemen und Gebäudeinfrastruktur, geheim zu halten.</p>
+<p>13.2 Diese Verpflichtung besteht auch nach Beendigung des Vertragsverhältnisses fort.</p>
+
+<h3>14. Gerichtsstand und anwendbares Recht</h3>
+<p>14.1 Für sämtliche Streitigkeiten aus dem Vertragsverhältnis zwischen Unternehmern ist der Gerichtsstand Köln.</p>
+<p>14.2 Für Verbraucher gilt der gesetzliche Gerichtsstand.</p>
+<p>14.3 Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts (CISG).</p>
+
+<h3>15. Streitbeilegung</h3>
+<p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>. Wir sind weder verpflichtet noch bereit, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+<h3>16. Salvatorische Klausel</h3>
+<p>Sollten einzelne Bestimmungen dieser AGB ganz oder teilweise unwirksam sein oder werden, so wird dadurch die Wirksamkeit der übrigen Bestimmungen nicht berührt. An die Stelle der unwirksamen Bestimmung tritt eine Regelung, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.</p>`;
 
 // Public GET — no auth needed
 export async function GET(request: NextRequest) {
