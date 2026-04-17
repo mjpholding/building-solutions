@@ -15,6 +15,7 @@ export interface HeroSettings {
   pauseAfterLoop: number;
   imageDuration: number;
   bannerEnabled: boolean;
+  bannerPositionY: number;
 }
 
 export function useHero(): HeroSettings {
@@ -24,6 +25,7 @@ export function useHero(): HeroSettings {
     pauseAfterLoop: 10,
     imageDuration: 8,
     bannerEnabled: true,
+    bannerPositionY: 50,
   });
 
   useEffect(() => {
@@ -67,6 +69,7 @@ export function useHero(): HeroSettings {
           pauseAfterLoop: config.pauseAfterLoop || 10,
           imageDuration: config.imageDuration || 8,
           bannerEnabled: config.bannerEnabled !== false,
+          bannerPositionY: config.bannerPositionY ?? 50,
         };
 
         setSettings(result);

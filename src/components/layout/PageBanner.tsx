@@ -51,9 +51,9 @@ export default function PageBanner({ title, subtitle }: { title: string; subtitl
       {hasMedia && activeSlide && (
         <div className="absolute inset-0 z-0">
           {activeSlide.type === "video" ? (
-            <video ref={videoRef} key={activeSlide.url + currentSlide} src={activeSlide.url} autoPlay muted playsInline onTimeUpdate={handleTimeUpdate} className="absolute inset-0 w-full h-full object-cover object-center" />
+            <video ref={videoRef} key={activeSlide.url + currentSlide} src={activeSlide.url} autoPlay muted playsInline onTimeUpdate={handleTimeUpdate} className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: `center ${hero.bannerPositionY}%` }} />
           ) : (
-            <img src={activeSlide.url} alt="" className="absolute inset-0 w-full h-full object-cover object-center" />
+            <img src={activeSlide.url} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: `center ${hero.bannerPositionY}%` }} />
           )}
         </div>
       )}

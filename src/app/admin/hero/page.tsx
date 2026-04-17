@@ -24,11 +24,12 @@ interface HeroConfig {
   bannerEnabled: boolean;
   ringSpeed: number;
   earthSpeed: number;
+  bannerPositionY: number;
 }
 
 export default function HeroManagePage() {
   const [config, setConfig] = useState<HeroConfig>({
-    slides: [], pauseBetween: 1, pauseAfterLoop: 10, imageDuration: 8, bannerEnabled: true, ringSpeed: 8, earthSpeed: 20,
+    slides: [], pauseBetween: 1, pauseAfterLoop: 10, imageDuration: 8, bannerEnabled: true, ringSpeed: 8, earthSpeed: 20, bannerPositionY: 50,
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -208,6 +209,18 @@ export default function HeroManagePage() {
             <span className="text-sm font-mono text-gray-600 w-16 text-center">{config.earthSpeed || 20} px/s</span>
           </div>
           <p className="text-xs text-gray-400 mt-1">Drehgeschwindigkeit der Erde (nur sichtbar ohne Hero-Medien)</p>
+        </div>
+        <div className="mt-4">
+          <label className="block text-sm font-medium text-gray-700 mb-1">Banner-Bildposition (Unterseiten)</label>
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-gray-400">Oben</span>
+            <input type="range" min="0" max="100" step="5" value={config.bannerPositionY ?? 50}
+              onChange={(e) => setConfig(prev => ({ ...prev, bannerPositionY: parseInt(e.target.value) }))}
+              className="flex-1" />
+            <span className="text-xs text-gray-400">Unten</span>
+            <span className="text-sm font-mono text-gray-600 w-12 text-center">{config.bannerPositionY ?? 50}%</span>
+          </div>
+          <p className="text-xs text-gray-400 mt-1">Vertikale Position des Hero-Bildes auf Unterseiten (Leistungen, Kontakt usw.)</p>
         </div>
         <div className="mt-4 flex items-center justify-between p-4 bg-gray-50 rounded-lg">
           <div>

@@ -17,7 +17,8 @@ export interface HeroConfig {
   imageDuration: number;
   bannerEnabled: boolean;
   ringSpeed: number;
-  earthSpeed: number; // pixels per second for Earth texture rotation
+  earthSpeed: number;
+  bannerPositionY: number; // 0-100, vertical position of banner image on subpages
 }
 
 const DEFAULT_CONFIG: HeroConfig = {
@@ -28,6 +29,7 @@ const DEFAULT_CONFIG: HeroConfig = {
   bannerEnabled: true,
   ringSpeed: 8,
   earthSpeed: 20,
+  bannerPositionY: 50,
 };
 
 async function getConfig(): Promise<HeroConfig> {
@@ -55,6 +57,7 @@ export async function PUT(request: NextRequest) {
   if (body.bannerEnabled !== undefined) config.bannerEnabled = body.bannerEnabled;
   if (body.ringSpeed !== undefined) config.ringSpeed = body.ringSpeed;
   if (body.earthSpeed !== undefined) config.earthSpeed = body.earthSpeed;
+  if (body.bannerPositionY !== undefined) config.bannerPositionY = body.bannerPositionY;
 
   await storeSet("hero-config", config);
   return NextResponse.json(config);
