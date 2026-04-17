@@ -29,18 +29,18 @@ export function useHero(): HeroSettings {
   });
 
   useEffect(() => {
-    // Check cache first
+    // Use cache as immediate placeholder (avoids flash)
     const cached = sessionStorage.getItem("hero-settings");
     if (cached) {
       try {
         const parsed = JSON.parse(cached);
         if (parsed.slides?.length > 0) {
           setSettings(parsed);
-          return; // use cache, don't fetch again
         }
       } catch {}
     }
 
+    // Always fetch fresh data so admin changes are reflected
     fetch("/api/admin/hero")
       .then((r) => r.json())
       .then(async (config) => {
@@ -73,7 +73,6 @@ export function useHero(): HeroSettings {
         };
 
         setSettings(result);
-        // Cache for this session
         sessionStorage.setItem("hero-settings", JSON.stringify(result));
       })
       .catch(() => {});

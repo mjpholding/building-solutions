@@ -376,7 +376,7 @@ export default function SaturnHero() {
       {/* Brand overlays — match the site palette */}
       <div className="absolute inset-0 bg-gradient-to-r from-bs-mitternacht/92 via-bs-mitternacht/55 to-bs-mitternacht/20" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-bs-mitternacht to-transparent" />
-      <div className="absolute -right-20 top-1/3 w-[600px] h-[600px] rounded-full bg-bs-tuerkis/10 blur-[120px] pointer-events-none" />
+      <div className="absolute -right-20 top-1/3 w-[300px] h-[300px] lg:w-[600px] lg:h-[600px] rounded-full bg-bs-tuerkis/10 blur-[120px] pointer-events-none" />
 
       {/* Left content */}
       <div className="relative lg:absolute lg:left-16 xl:left-24 lg:top-1/2 lg:-translate-y-1/2 z-40 max-w-md w-full px-6 pt-28 pb-16 lg:px-0 lg:pt-0 lg:pb-0">
