@@ -29,7 +29,7 @@ const DEFAULT_PAGES: PageEntry[] = [
   // Rechtliches
   { slug: "impressum", label: "Impressum", path: "/impressum", group: "legal", enabled: true, locked: true },
   { slug: "datenschutz", label: "Datenschutz", path: "/datenschutz", group: "legal", enabled: true, locked: true },
-  { slug: "agb", label: "AGB", path: "/agb", group: "legal", enabled: false },
+  { slug: "agb", label: "AGB", path: "/agb", group: "legal", enabled: true },
 
   // Shop (disabled by default)
   { slug: "produkte", label: "Shop / Produkte", path: "/produkte", group: "shop", enabled: false },

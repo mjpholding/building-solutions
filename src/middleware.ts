@@ -13,7 +13,7 @@ const TOGGLEABLE_PATHS = [
 // Pages disabled by default (shop features)
 const DISABLED_BY_DEFAULT = new Set([
   'produkte', 'produktberater', 'hygieneplane', 'downloads',
-  'ai-berater', 'agb', 'bestellung', 'kasse',
+  'ai-berater', 'bestellung', 'kasse',
 ]);
 
 const locales = ['de', 'en', 'pl', 'tr', 'ru', 'uk', 'sk', 'sq', 'hr'];

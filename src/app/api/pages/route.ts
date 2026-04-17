@@ -34,6 +34,7 @@ export async function GET() {
         { slug: "zertifikate", path: "/zertifikate", enabled: true },
         { slug: "impressum", path: "/impressum", enabled: true },
         { slug: "datenschutz", path: "/datenschutz", enabled: true },
+        { slug: "agb", path: "/agb", enabled: true },
         { slug: "konto", path: "/konto", enabled: true },
       ],
     }, NO_STORE);
