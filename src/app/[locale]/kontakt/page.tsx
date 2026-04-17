@@ -1,41 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import {} from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import PageBanner from "@/components/layout/PageBanner";
-import { MapPin, Phone, Mail, Send, CheckCircle2 } from "lucide-react";
+import { MapPin, Phone, Mail, Send } from "lucide-react";
 import contactData from "@/data/contact.json";
 
 export default function ContactPage() {
   const t = useTranslations("contact");
-  const [submitted, setSubmitted] = useState(false);
-  const [sending, setSending] = useState(false);
-
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSending(true);
     const form = e.target as HTMLFormElement;
     const data = new FormData(form);
-    try {
-      await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName: data.get("firstName"),
-          lastName: data.get("lastName"),
-          email: data.get("email"),
-          company: data.get("company"),
-          phone: data.get("phone"),
-          message: data.get("message"),
-        }),
-      });
-      setSubmitted(true);
-    } catch {
-      setSubmitted(true);
-    } finally {
-      setSending(false);
-    }
+
+    const firstName = data.get("firstName") || "";
+    const lastName = data.get("lastName") || "";
+    const email = data.get("email") || "";
+    const company = data.get("company") || "";
+    const phone = data.get("phone") || "";
+    const message = data.get("message") || "";
+
+    const subject = `Kontaktanfrage von ${firstName} ${lastName}${company ? ` (${company})` : ""}`;
+    const body = [
+      `Name: ${firstName} ${lastName}`,
+      company ? `Firma: ${company}` : "",
+      `E-Mail: ${email}`,
+      phone ? `Telefon: ${phone}` : "",
+      "",
+      "Nachricht:",
+      message,
+    ].filter(Boolean).join("\n");
+
+    window.location.href = `mailto:${contactData.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(String(body))}`;
   }
 
   return (
@@ -94,12 +91,6 @@ export default function ContactPage() {
           <div className="lg:col-span-2">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
               className="bg-white p-8 rounded-2xl border border-bs-gray-100 shadow-sm">
-              {submitted ? (
-                <div className="text-center py-12">
-                  <CheckCircle2 size={56} className="text-green-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-bs-gray-900">{t("form.success")}</h3>
-                </div>
-              ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
@@ -129,12 +120,11 @@ export default function ContactPage() {
                     <label className="block text-sm font-medium text-bs-gray-700 mb-1.5">{t("form.message")}</label>
                     <textarea name="message" rows={5} required className="w-full px-4 py-3 rounded-xl border border-bs-gray-200 focus:border-bs-accent focus:ring-2 focus:ring-bs-accent/10 outline-none text-sm transition-all resize-none" />
                   </div>
-                  <button type="submit" disabled={sending} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-bs-accent hover:bg-bs-accent-dark text-white px-8 py-3.5 rounded-xl font-semibold text-sm transition-all shadow-sm hover:shadow-md disabled:opacity-50">
+                  <button type="submit" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-bs-accent hover:bg-bs-accent-dark text-white px-8 py-3.5 rounded-xl font-semibold text-sm transition-all shadow-sm hover:shadow-md">
                     <Send size={16} />
-                    {sending ? "Wird gesendet..." : t("form.submit")}
+                    {t("form.submit")}
                   </button>
                 </form>
-              )}
             </motion.div>
           </div>
         </div>
