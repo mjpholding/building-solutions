@@ -46,14 +46,16 @@ export default function PageBanner({ title, subtitle }: { title: string; subtitl
   const activeSlide = slides[currentSlide];
   const hasMedia = bannerEnabled && slides.length > 0;
 
+  const posY = hero.bannerPositionY ?? 50;
+
   return (
     <div className="relative overflow-hidden h-52 lg:h-64 flex items-end pb-8">
       {hasMedia && activeSlide && (
         <div className="absolute inset-0 z-0">
           {activeSlide.type === "video" ? (
-            <video ref={videoRef} key={activeSlide.url + currentSlide} src={activeSlide.url} autoPlay muted playsInline onTimeUpdate={handleTimeUpdate} className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: `center ${hero.bannerPositionY}%` }} />
+            <video ref={videoRef} key={activeSlide.url + currentSlide} src={activeSlide.url} autoPlay muted playsInline onTimeUpdate={handleTimeUpdate} className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: `center ${posY}%` }} />
           ) : (
-            <img src={activeSlide.url} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: `center ${hero.bannerPositionY}%` }} />
+            <img src={activeSlide.url} alt="" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: `center ${posY}%` }} />
           )}
         </div>
       )}
@@ -63,7 +65,7 @@ export default function PageBanner({ title, subtitle }: { title: string; subtitl
             src="/hero/dashboard-hero.jpg"
             alt=""
             className="absolute inset-0 w-full h-full object-cover"
-            style={{ objectPosition: "center 60%" }}
+            style={{ objectPosition: `center ${posY}%` }}
           />
           {/* fallback mitternacht if image is missing */}
           <div className="absolute inset-0 bg-bs-mitternacht -z-10" />
