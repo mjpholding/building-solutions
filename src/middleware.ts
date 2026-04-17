@@ -7,8 +7,11 @@ const intlMiddleware = createMiddleware(routing);
 const TOGGLEABLE_PATHS = [
   'leistungen', 'uber-uns', 'kontakt', 'referenzen', 'karriere', 'partner',
   'produkte', 'produktberater', 'konto', 'hygieneplane', 'downloads', 'ai-berater',
-  'agb', 'bestellung', 'kasse',
+  'bestellung', 'kasse',
 ];
+
+// Legal pages must always be accessible (legal requirement) — never block these
+const ALWAYS_ALLOWED = new Set(['agb', 'impressum', 'datenschutz']);
 
 // Pages disabled by default (shop features)
 const DISABLED_BY_DEFAULT = new Set([
@@ -65,6 +68,10 @@ export default async function middleware(request: NextRequest) {
   }
 
   const slug = extractPageSlug(pathname);
+
+  if (slug && ALWAYS_ALLOWED.has(slug)) {
+    return intlMiddleware(request);
+  }
 
   if (slug && TOGGLEABLE_PATHS.includes(slug)) {
     const baseUrl = request.nextUrl.origin;
