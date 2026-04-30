@@ -104,8 +104,10 @@ function BusinessCard({
 }) {
   const size = SIZE_PRESETS[settings.size];
   const corner = CORNER_PRESETS[settings.corner];
-  const primary = locations[person.primaryLocationIdx] || locations[0];
-  const secondary = locations.find((_, i) => i !== person.primaryLocationIdx);
+  // Pozycja jest stała: locations[0] zawsze po lewej, locations[1] zawsze po prawej.
+  // Pełny adres (ulica + PLZ) pokazuje się tylko na wybranej u pracownika lokalizacji „głównej".
+  const left = locations[0];
+  const right = locations[1];
 
   return (
     <div
@@ -182,7 +184,8 @@ function BusinessCard({
         )}
       </div>
 
-      {/* Adresy (dwie kolumny: primary lewo z pełnym adresem, secondary prawo z samą nazwą) */}
+      {/* Adresy: locations[0] zawsze po lewej, locations[1] zawsze po prawej.
+          Pełny adres (ulica + PLZ) pokazuje się tylko na lokalizacji wybranej jako „Hauptstandort". */}
       <div
         style={{
           position: "absolute",
@@ -196,16 +199,28 @@ function BusinessCard({
           lineHeight: 1.4,
         }}
       >
-        <div>
-          <div style={{ fontWeight: 500 }}>{primary.company}</div>
-          <div style={{ fontWeight: 500 }}>{primary.label}</div>
-          {primary.street && <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{primary.street}</div>}
-          {primary.zipCity && <div style={{ color: COLOR_TEAL }}>{primary.zipCity}</div>}
-        </div>
-        {secondary && (
+        {left && (
           <div>
-            <div style={{ fontWeight: 500 }}>{secondary.company}</div>
-            <div style={{ fontWeight: 500 }}>{secondary.label}</div>
+            <div style={{ fontWeight: 500 }}>{left.company}</div>
+            <div style={{ fontWeight: 500 }}>{left.label}</div>
+            {person.primaryLocationIdx === 0 && left.street && (
+              <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{left.street}</div>
+            )}
+            {person.primaryLocationIdx === 0 && left.zipCity && (
+              <div style={{ color: COLOR_TEAL }}>{left.zipCity}</div>
+            )}
+          </div>
+        )}
+        {right && (
+          <div>
+            <div style={{ fontWeight: 500 }}>{right.company}</div>
+            <div style={{ fontWeight: 500 }}>{right.label}</div>
+            {person.primaryLocationIdx === 1 && right.street && (
+              <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{right.street}</div>
+            )}
+            {person.primaryLocationIdx === 1 && right.zipCity && (
+              <div style={{ color: COLOR_TEAL }}>{right.zipCity}</div>
+            )}
           </div>
         )}
       </div>
@@ -335,8 +350,20 @@ export default function BusinessCardsPage() {
     // Renderuj HTML z osadzonym fontem Inter — aby wydruk wyglądał tak jak podgląd
     const cardsHtml = config.persons
       .map((p) => {
-        const primary = config.locations[p.primaryLocationIdx] || config.locations[0];
-        const secondary = config.locations.find((_, i) => i !== p.primaryLocationIdx);
+        // Stała pozycja: locations[0] = lewa kolumna, locations[1] = prawa.
+        // Pełny adres pokazuje się tylko na wybranej u pracownika lokalizacji „głównej".
+        const left = config.locations[0];
+        const right = config.locations[1];
+        const renderLoc = (loc: Location | undefined, isPrimary: boolean) => {
+          if (!loc) return "";
+          return `
+            <div>
+              <div class="bold">${escape(loc.company)}</div>
+              <div class="bold">${escape(loc.label)}</div>
+              ${isPrimary && loc.street ? `<div class="teal">${escape(loc.street)}</div>` : ""}
+              ${isPrimary && loc.zipCity ? `<div class="teal">${escape(loc.zipCity)}</div>` : ""}
+            </div>`;
+        };
         return `
         <div class="card">
           <img src="${LOGO_URL}" alt="" class="logo" />
@@ -350,17 +377,8 @@ export default function BusinessCardsPage() {
             ${p.email ? `<span class="lbl">E:</span><span>${escape(p.email)}</span>` : ""}
           </div>
           <div class="addr">
-            <div>
-              <div class="bold">${escape(primary.company)}</div>
-              <div class="bold">${escape(primary.label)}</div>
-              ${primary.street ? `<div class="teal">${escape(primary.street)}</div>` : ""}
-              ${primary.zipCity ? `<div class="teal">${escape(primary.zipCity)}</div>` : ""}
-            </div>
-            ${secondary ? `
-            <div>
-              <div class="bold">${escape(secondary.company)}</div>
-              <div class="bold">${escape(secondary.label)}</div>
-            </div>` : ""}
+            ${renderLoc(left, p.primaryLocationIdx === 0)}
+            ${renderLoc(right, p.primaryLocationIdx === 1)}
           </div>
         </div>`;
       })
