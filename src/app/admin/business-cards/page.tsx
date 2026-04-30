@@ -216,8 +216,9 @@ function BusinessCard({
       </div>
 
       {/* Adresy: locations[0] zawsze po lewej, locations[1] zawsze po prawej.
-          person  → pełny adres tylko na lokalizacji wybranej jako „Hauptstandort", prefix z nazwą firmy
-          company → oba adresy pełne, bez prefiksu z nazwą firmy (firma jest u góry karty) */}
+          Wzorzec wg „BS_Visitenkarten_06_RZ (Allgemein).pdf":
+          – bez prefiksu z nazwą firmy w bloku adresów (firma jest jedynie u góry karty)
+          – zawsze pełna informacja: Bezeichnung (granat) + Straße (turkus) + PLZ + Stadt (turkus). */}
       <div
         style={{
           position: "absolute",
@@ -233,26 +234,16 @@ function BusinessCard({
       >
         {left && (
           <div>
-            {!isCompany && <div style={{ fontWeight: 500 }}>{left.company}</div>}
             <div style={{ fontWeight: 500 }}>{left.label}</div>
-            {(isCompany || person.primaryLocationIdx === 0) && left.street && (
-              <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{left.street}</div>
-            )}
-            {(isCompany || person.primaryLocationIdx === 0) && left.zipCity && (
-              <div style={{ color: COLOR_TEAL }}>{left.zipCity}</div>
-            )}
+            {left.street && <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{left.street}</div>}
+            {left.zipCity && <div style={{ color: COLOR_TEAL }}>{left.zipCity}</div>}
           </div>
         )}
         {right && (
           <div>
-            {!isCompany && <div style={{ fontWeight: 500 }}>{right.company}</div>}
             <div style={{ fontWeight: 500 }}>{right.label}</div>
-            {(isCompany || person.primaryLocationIdx === 1) && right.street && (
-              <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{right.street}</div>
-            )}
-            {(isCompany || person.primaryLocationIdx === 1) && right.zipCity && (
-              <div style={{ color: COLOR_TEAL }}>{right.zipCity}</div>
-            )}
+            {right.street && <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{right.street}</div>}
+            {right.zipCity && <div style={{ color: COLOR_TEAL }}>{right.zipCity}</div>}
           </div>
         )}
       </div>
@@ -396,18 +387,16 @@ export default function BusinessCardsPage() {
       .map((p) => {
         const isCompany = (p.kind || "person") === "company";
         // Stała pozycja: locations[0] = lewa kolumna, locations[1] = prawa.
-        // person  → pełny adres tylko na primary; prefix z nazwą firmy
-        // company → oba pełne, bez prefiksu z nazwą firmy
+        // Wzorzec PDF Allgemein: bez prefiksu z nazwą firmy, zawsze pełny adres.
         const left = config.locations[0];
         const right = config.locations[1];
-        const renderLoc = (loc: Location | undefined, showFull: boolean) => {
+        const renderLoc = (loc: Location | undefined) => {
           if (!loc) return "";
           return `
             <div>
-              ${!isCompany ? `<div class="bold">${escape(loc.company)}</div>` : ""}
               <div class="bold">${escape(loc.label)}</div>
-              ${showFull && loc.street ? `<div class="teal">${escape(loc.street)}</div>` : ""}
-              ${showFull && loc.zipCity ? `<div class="teal">${escape(loc.zipCity)}</div>` : ""}
+              ${loc.street ? `<div class="teal">${escape(loc.street)}</div>` : ""}
+              ${loc.zipCity ? `<div class="teal">${escape(loc.zipCity)}</div>` : ""}
             </div>`;
         };
         const lblPhone = "T";
@@ -440,8 +429,8 @@ export default function BusinessCardsPage() {
               ${p.email ? `<span class="lbl">${lblEmail}:</span><span>${escape(p.email)}</span>` : ""}
             </div>
             <div class="addr">
-              ${renderLoc(left, isCompany || p.primaryLocationIdx === 0)}
-              ${renderLoc(right, isCompany || p.primaryLocationIdx === 1)}
+              ${renderLoc(left)}
+              ${renderLoc(right)}
             </div>
           </div>
         </div>`;
@@ -648,7 +637,7 @@ export default function BusinessCardsPage() {
                 </div>
               </div>
               <p className="text-xs text-gray-400">
-                Die vollständige Adresse (Straße + PLZ) erscheint nur am beim Mitarbeiter gewählten &bdquo;Hauptstandort&rdquo;; die zweite Spalte zeigt nur Firmenname und Bezeichnung.
+                Diese Adresse erscheint im unteren Adressblock auf jeder Karte. Standort 1 wird links angezeigt, Standort 2 rechts.
               </p>
             </div>
           ))}
@@ -712,25 +701,9 @@ export default function BusinessCardsPage() {
                   <input value={person.email} onChange={(e) => updatePerson(person.id, "email", e.target.value)} className={inputClass} />
                 </div>
               </div>
-              {!isCompany && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">Hauptstandort (mit vollständiger Adresse)</label>
-                  <select
-                    value={person.primaryLocationIdx}
-                    onChange={(e) => updatePerson(person.id, "primaryLocationIdx", Number(e.target.value))}
-                    className={inputClass}
-                  >
-                    {config.locations.map((l, idx) => (
-                      <option key={idx} value={idx}>{l.label || `Standort ${idx + 1}`}</option>
-                    ))}
-                  </select>
-                </div>
-              )}
-              {isCompany && (
-                <p className="text-xs text-gray-400">
-                  Bei der allgemeinen Karte werden beide Standorte mit vollständiger Adresse angezeigt; der Firmenname erscheint nur einmal oben.
-                </p>
-              )}
+              <p className="text-xs text-gray-400">
+                Beide Standorte werden mit vollständiger Adresse (Bezeichnung + Straße + PLZ) im Adressblock angezeigt — entsprechend dem BS-Standardlayout.
+              </p>
             </div>
           );
           })}
