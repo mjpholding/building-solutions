@@ -970,8 +970,8 @@ export default function BusinessCardsPage() {
 
         {/* ── Prawa kolumna: podgląd ─────────────────────────────────── */}
         <div className="space-y-6">
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4">
+          <div className="bg-gray-900 rounded-xl border border-gray-800 p-6">
+            <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">
               Vorschau ({config.persons.length} {config.persons.length === 1 ? "Karte" : "Karten"} · {sizePx.w}×{sizePx.h} mm)
             </h2>
             <div className="space-y-5">
