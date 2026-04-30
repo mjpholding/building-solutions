@@ -13,6 +13,7 @@
     "@vercel/blob": "^2.3.1",
     "@vercel/kv": "^3.0.0",
     "framer-motion": "^12.36.0",
+    "html-to-image": "^1.11.13",
     "jsdom": "^29.0.0",
     "lucide-react": "^0.577.0",
     "next": "16.1.6",
