@@ -46,9 +46,9 @@ const SIZE_PRESETS: Record<CardSettings["size"], { w: number; h: number; label: 
 };
 
 const CORNER_PRESETS: Record<CardSettings["corner"], { radius: number; label: string }> = {
-  sharp: { radius: 0, label: "proste" },
-  soft: { radius: 2, label: "lekko zaokrąglone" },
-  round: { radius: 4, label: "mocno zaokrąglone" },
+  sharp: { radius: 0, label: "scharf" },
+  soft: { radius: 2, label: "leicht abgerundet" },
+  round: { radius: 4, label: "stark abgerundet" },
 };
 
 // ── Domyślne dane (na podstawie wizytówek BS) ───────────────────────────
@@ -315,6 +315,16 @@ export default function BusinessCardsPage() {
     a.click();
   };
 
+  // ── Eksport PNG (wszystkie karty — kolejne pliki) ─────────────────────
+  const exportAllPng = async () => {
+    // Sekwencyjnie, z lekkim opóźnieniem między pobraniami,
+    // żeby przeglądarka nie zablokowała wielokrotnych downloadów.
+    for (const person of config.persons) {
+      await exportPng(person.id);
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  };
+
   // ── Eksport PDF (wszystkie karty na A4, 2×5 = max 10/strona) ──────────
   const exportPdf = () => {
     const size = SIZE_PRESETS[config.settings.size];
@@ -421,24 +431,31 @@ export default function BusinessCardsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Visitenkarten</h1>
-          <p className="text-sm text-gray-500 mt-1">Generator wizytówek BS — czcionka, logo i kolory zgodne z drukiem</p>
+          <p className="text-sm text-gray-500 mt-1">Visitenkarten-Generator BS &mdash; Schriftart, Logo und Farben wie im Druck</p>
         </div>
-        <div className="flex items-center gap-2">
-          {savedAt && <span className="text-xs text-gray-400 mr-1">zapisano {new Date(savedAt).toLocaleTimeString()}</span>}
+        <div className="flex flex-wrap items-center gap-2">
+          {savedAt && <span className="text-xs text-gray-400 mr-1">gespeichert {new Date(savedAt).toLocaleTimeString()}</span>}
           <button
             onClick={save}
             disabled={saving}
             className="flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors disabled:opacity-50"
           >
             {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
-            Zapisz
+            Speichern
+          </button>
+          <button
+            onClick={exportAllPng}
+            className="flex items-center gap-2 bg-white border border-gray-300 hover:border-gray-400 text-gray-800 px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
+          >
+            <ImageIcon size={16} />
+            PNG (alle)
           </button>
           <button
             onClick={exportPdf}
             className="flex items-center gap-2 bg-bs-accent hover:bg-bs-accent-dark text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors"
           >
             <FileText size={16} />
-            PDF (wszystkie)
+            PDF (alle)
           </button>
         </div>
       </div>
@@ -451,7 +468,7 @@ export default function BusinessCardsPage() {
             <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">Format</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-600 mb-1">Wymiar</label>
+                <label className="block text-sm font-medium text-gray-600 mb-1">Größe</label>
                 <select
                   value={config.settings.size}
                   onChange={(e) => setConfig({ ...config, settings: { ...config.settings, size: e.target.value as CardSettings["size"] } })}
@@ -463,7 +480,7 @@ export default function BusinessCardsPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-600 mb-1">Krawędzie</label>
+                <label className="block text-sm font-medium text-gray-600 mb-1">Ecken</label>
                 <select
                   value={config.settings.corner}
                   onChange={(e) => setConfig({ ...config, settings: { ...config.settings, corner: e.target.value as CardSettings["corner"] } })}
@@ -480,29 +497,29 @@ export default function BusinessCardsPage() {
           {/* Lokalizacje firmy */}
           {config.locations.map((loc, idx) => (
             <div key={idx} className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
-              <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">Lokalizacja {idx + 1}</h2>
+              <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">Standort {idx + 1}</h2>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">Nazwa firmy</label>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">Firmenname</label>
                   <input value={loc.company} onChange={(e) => updateLocation(idx, "company", e.target.value)} className={inputClass} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">Etykieta (np. &bdquo;Hauptsitz Kerpen&rdquo;)</label>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">Bezeichnung (z.&nbsp;B. &bdquo;Hauptsitz Kerpen&rdquo;)</label>
                   <input value={loc.label} onChange={(e) => updateLocation(idx, "label", e.target.value)} className={inputClass} />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">Ulica</label>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">Straße</label>
                   <input value={loc.street} onChange={(e) => updateLocation(idx, "street", e.target.value)} className={inputClass} placeholder="Ottostraße 14" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">PLZ + miasto</label>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">PLZ + Stadt</label>
                   <input value={loc.zipCity} onChange={(e) => updateLocation(idx, "zipCity", e.target.value)} className={inputClass} placeholder="50170 Kerpen" />
                 </div>
               </div>
               <p className="text-xs text-gray-400">
-                Pełny adres (ulica + PLZ) pokazuje się tylko na wybranej u pracownika lokalizacji &bdquo;głównej&rdquo;; druga kolumna ma sam nagłówek.
+                Die vollständige Adresse (Straße + PLZ) erscheint nur am beim Mitarbeiter gewählten &bdquo;Hauptstandort&rdquo;; die zweite Spalte zeigt nur Firmenname und Bezeichnung.
               </p>
             </div>
           ))}
@@ -512,7 +529,7 @@ export default function BusinessCardsPage() {
             <div key={person.id} className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
               <div className="flex items-center justify-between">
                 <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                  Pracownik {config.persons.length > 1 ? `#${i + 1}` : ""}
+                  Mitarbeiter {config.persons.length > 1 ? `#${i + 1}` : ""}
                 </h2>
                 <div className="flex items-center gap-2">
                   <button
@@ -530,37 +547,37 @@ export default function BusinessCardsPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">Imię i nazwisko</label>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">Vor- und Nachname</label>
                   <input value={person.name} onChange={(e) => updatePerson(person.id, "name", e.target.value)} className={inputClass} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">Stanowisko</label>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">Position</label>
                   <input value={person.role} onChange={(e) => updatePerson(person.id, "role", e.target.value)} className={inputClass} placeholder="Projektleitung" />
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">T (telefon)</label>
-                  <input value={person.phone} onChange={(e) => updatePerson(person.id, "phone", e.target.value)} className={inputClass} placeholder="opcjonalnie" />
+                  <label className="block text-sm font-medium text-gray-600 mb-1">T (Telefon)</label>
+                  <input value={person.phone} onChange={(e) => updatePerson(person.id, "phone", e.target.value)} className={inputClass} placeholder="optional" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">M (mobil)</label>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">M (Mobil)</label>
                   <input value={person.mobile} onChange={(e) => updatePerson(person.id, "mobile", e.target.value)} className={inputClass} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">E (e-mail)</label>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">E (E-Mail)</label>
                   <input value={person.email} onChange={(e) => updatePerson(person.id, "email", e.target.value)} className={inputClass} />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-600 mb-1">Lokalizacja główna (z pełnym adresem)</label>
+                <label className="block text-sm font-medium text-gray-600 mb-1">Hauptstandort (mit vollständiger Adresse)</label>
                 <select
                   value={person.primaryLocationIdx}
                   onChange={(e) => updatePerson(person.id, "primaryLocationIdx", Number(e.target.value))}
                   className={inputClass}
                 >
                   {config.locations.map((l, idx) => (
-                    <option key={idx} value={idx}>{l.label || `Lokalizacja ${idx + 1}`}</option>
+                    <option key={idx} value={idx}>{l.label || `Standort ${idx + 1}`}</option>
                   ))}
                 </select>
               </div>
@@ -572,7 +589,7 @@ export default function BusinessCardsPage() {
             className="w-full flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 text-gray-600 py-3 rounded-xl text-sm font-medium transition-colors border border-dashed border-gray-300"
           >
             <Plus size={16} />
-            Dodaj kolejnego pracownika
+            Weiteren Mitarbeiter hinzufügen
           </button>
         </div>
 
@@ -580,7 +597,7 @@ export default function BusinessCardsPage() {
         <div className="space-y-6">
           <div className="bg-white rounded-xl border border-gray-200 p-6">
             <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4">
-              Podgląd ({config.persons.length} {config.persons.length === 1 ? "karta" : "karty"} · {sizePx.w}×{sizePx.h} mm)
+              Vorschau ({config.persons.length} {config.persons.length === 1 ? "Karte" : "Karten"} · {sizePx.w}×{sizePx.h} mm)
             </h2>
             <div className="space-y-5">
               {config.persons.map((person) => (
@@ -599,12 +616,13 @@ export default function BusinessCardsPage() {
           </div>
 
           <div className="bg-blue-50 rounded-xl border border-blue-100 p-5 text-sm text-blue-900">
-            <p className="font-medium mb-2">Eksport</p>
+            <p className="font-medium mb-2">Export</p>
             <ul className="space-y-1 list-disc list-inside text-blue-800">
-              <li><strong>PNG</strong> — pojedyncza karta, ~600 dpi (przycisk PNG przy każdej osobie)</li>
-              <li><strong>PDF</strong> — wszystkie karty, 2 sztuki na A4, gotowe do drukarni (przycisk u góry)</li>
-              <li>Format i krawędzie zmienisz globalnie w sekcji &bdquo;Format&rdquo;</li>
-              <li><Printer size={12} className="inline -mt-0.5" /> w oknie PDF wybierz &bdquo;Zapisz jako PDF&rdquo; lub drukuj bezpośrednio</li>
+              <li><strong>PNG (alle)</strong> &mdash; alle Karten als einzelne PNG-Dateien (~600 dpi), Schaltfläche oben</li>
+              <li><strong>PNG</strong> &mdash; nur eine Karte (Schaltfläche bei jedem Mitarbeiter)</li>
+              <li><strong>PDF (alle)</strong> &mdash; alle Karten auf A4, 2 Stück pro Seite, druckfertig</li>
+              <li>Format und Ecken werden global im Bereich &bdquo;Format&rdquo; geändert</li>
+              <li><Printer size={12} className="inline -mt-0.5" /> Im PDF-Fenster &bdquo;Als PDF speichern&rdquo; wählen oder direkt drucken</li>
             </ul>
           </div>
         </div>
