@@ -18,14 +18,20 @@ interface Location {
   zipCity: string;     // np. "50170 Kerpen"
 }
 
+// Rodzaj karty:
+//  - "person"  = wizytówka osobowa (imię + stanowisko, T/M/E, jeden adres pełny)
+//  - "company" = wizytówka firmowa „Allgemein" (nazwa firmy + slogan, T/F/E, oba adresy pełne)
+type CardKind = "person" | "company";
+
 interface CardPerson {
   id: string;
-  name: string;
-  role: string;
+  kind?: CardKind;     // domyślnie "person" (backward-compat)
+  name: string;        // dla person = Imię i nazwisko; dla company = Nazwa firmy
+  role: string;        // dla person = Stanowisko; dla company = Slogan/Tagline
   phone: string;       // T:
-  mobile: string;      // M:
+  mobile: string;      // dla person = M: (Mobil); dla company = F: (Fax)
   email: string;       // E:
-  primaryLocationIdx: number; // który adres ma być pełny (z ulicą + PLZ); drugi tylko nazwa
+  primaryLocationIdx: number; // ignorowane gdy kind === "company" (oba adresy pełne)
 }
 
 interface CardSettings {
@@ -94,7 +100,20 @@ function uid(): string {
 }
 
 function emptyPerson(): CardPerson {
-  return { id: uid(), name: "", role: "", phone: "", mobile: "", email: "", primaryLocationIdx: 0 };
+  return { id: uid(), kind: "person", name: "", role: "", phone: "", mobile: "", email: "", primaryLocationIdx: 0 };
+}
+
+function emptyCompany(): CardPerson {
+  return {
+    id: uid(),
+    kind: "company",
+    name: "Building Solutions GmbH",
+    role: "Elektro- und Gebäudetechnik",
+    phone: "+49 (0) 7352 6118 0",
+    mobile: "+49 (0) 7352 6118 99",
+    email: "info@buildingsolutions.de",
+    primaryLocationIdx: 0,
+  };
 }
 
 // ── Komponent wizytówki (wspólny: podgląd + canvas do PNG/PDF) ──────────
@@ -109,10 +128,17 @@ function BusinessCard({
 }) {
   const size = SIZE_PRESETS[settings.size];
   const corner = CORNER_PRESETS[settings.corner];
+  const kind: CardKind = person.kind || "person";
   // Pozycja jest stała: locations[0] zawsze po lewej, locations[1] zawsze po prawej.
-  // Pełny adres (ulica + PLZ) pokazuje się tylko na wybranej u pracownika lokalizacji „głównej".
+  // person  → pełny adres tylko na wybranej u pracownika lokalizacji „głównej",
+  //           pod każdym adresem prefiks z nazwą firmy
+  // company → oba adresy pełne, bez prefiksu z nazwą firmy (firma jest u góry karty)
   const left = locations[0];
   const right = locations[1];
+  const isCompany = kind === "company";
+  const labels = isCompany
+    ? { phone: "T", mobile: "F", email: "E" }
+    : { phone: "T", mobile: "M", email: "E" };
 
   return (
     <div
@@ -146,17 +172,17 @@ function BusinessCard({
         }}
       />
 
-      {/* Imię + stanowisko (lewy górny) */}
+      {/* Główka karty: person → imię + stanowisko, company → firma + tagline */}
       <div style={{ marginBottom: "2mm" }}>
         <div style={{ fontSize: "11pt", fontWeight: 500, lineHeight: 1.15, letterSpacing: "0.01em" }}>
-          {person.name || "Vor- Nachname"}
+          {person.name || (isCompany ? "Firmenname" : "Vor- Nachname")}
         </div>
         <div style={{ fontSize: "9.5pt", color: COLOR_TEAL, fontWeight: 400, marginTop: "0.5mm" }}>
-          {person.role || "Position"}
+          {person.role || (isCompany ? "Slogan" : "Position")}
         </div>
       </div>
 
-      {/* Kontakt T/M/E */}
+      {/* Kontakt: person → T/M/E, company → T/F/E */}
       <div
         style={{
           marginTop: "6mm",
@@ -171,26 +197,27 @@ function BusinessCard({
       >
         {person.phone && (
           <>
-            <span style={{ color: COLOR_TEAL, fontWeight: 500 }}>T:</span>
+            <span style={{ color: COLOR_TEAL, fontWeight: 500 }}>{labels.phone}:</span>
             <span>{person.phone}</span>
           </>
         )}
         {person.mobile && (
           <>
-            <span style={{ color: COLOR_TEAL, fontWeight: 500 }}>M:</span>
+            <span style={{ color: COLOR_TEAL, fontWeight: 500 }}>{labels.mobile}:</span>
             <span>{person.mobile}</span>
           </>
         )}
         {person.email && (
           <>
-            <span style={{ color: COLOR_TEAL, fontWeight: 500 }}>E:</span>
+            <span style={{ color: COLOR_TEAL, fontWeight: 500 }}>{labels.email}:</span>
             <span>{person.email}</span>
           </>
         )}
       </div>
 
       {/* Adresy: locations[0] zawsze po lewej, locations[1] zawsze po prawej.
-          Pełny adres (ulica + PLZ) pokazuje się tylko na lokalizacji wybranej jako „Hauptstandort". */}
+          person  → pełny adres tylko na lokalizacji wybranej jako „Hauptstandort", prefix z nazwą firmy
+          company → oba adresy pełne, bez prefiksu z nazwą firmy (firma jest u góry karty) */}
       <div
         style={{
           position: "absolute",
@@ -206,24 +233,24 @@ function BusinessCard({
       >
         {left && (
           <div>
-            <div style={{ fontWeight: 500 }}>{left.company}</div>
+            {!isCompany && <div style={{ fontWeight: 500 }}>{left.company}</div>}
             <div style={{ fontWeight: 500 }}>{left.label}</div>
-            {person.primaryLocationIdx === 0 && left.street && (
+            {(isCompany || person.primaryLocationIdx === 0) && left.street && (
               <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{left.street}</div>
             )}
-            {person.primaryLocationIdx === 0 && left.zipCity && (
+            {(isCompany || person.primaryLocationIdx === 0) && left.zipCity && (
               <div style={{ color: COLOR_TEAL }}>{left.zipCity}</div>
             )}
           </div>
         )}
         {right && (
           <div>
-            <div style={{ fontWeight: 500 }}>{right.company}</div>
+            {!isCompany && <div style={{ fontWeight: 500 }}>{right.company}</div>}
             <div style={{ fontWeight: 500 }}>{right.label}</div>
-            {person.primaryLocationIdx === 1 && right.street && (
+            {(isCompany || person.primaryLocationIdx === 1) && right.street && (
               <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{right.street}</div>
             )}
-            {person.primaryLocationIdx === 1 && right.zipCity && (
+            {(isCompany || person.primaryLocationIdx === 1) && right.zipCity && (
               <div style={{ color: COLOR_TEAL }}>{right.zipCity}</div>
             )}
           </div>
@@ -310,6 +337,8 @@ export default function BusinessCardsPage() {
 
   const addPerson = () => setConfig((c) => ({ ...c, persons: [...c.persons, emptyPerson()] }));
 
+  const addCompany = () => setConfig((c) => ({ ...c, persons: [...c.persons, emptyCompany()] }));
+
   const removePerson = (id: string) => {
     setConfig((c) => ({
       ...c,
@@ -365,20 +394,27 @@ export default function BusinessCardsPage() {
     // o wymiarze Endformatu. Schnittmarken — 8 linii w narożnikach Endformatu, w obszarze bleedu.
     const cardsHtml = config.persons
       .map((p) => {
+        const isCompany = (p.kind || "person") === "company";
         // Stała pozycja: locations[0] = lewa kolumna, locations[1] = prawa.
-        // Pełny adres pokazuje się tylko na wybranej u pracownika lokalizacji „głównej".
+        // person  → pełny adres tylko na primary; prefix z nazwą firmy
+        // company → oba pełne, bez prefiksu z nazwą firmy
         const left = config.locations[0];
         const right = config.locations[1];
-        const renderLoc = (loc: Location | undefined, isPrimary: boolean) => {
+        const renderLoc = (loc: Location | undefined, showFull: boolean) => {
           if (!loc) return "";
           return `
             <div>
-              <div class="bold">${escape(loc.company)}</div>
+              ${!isCompany ? `<div class="bold">${escape(loc.company)}</div>` : ""}
               <div class="bold">${escape(loc.label)}</div>
-              ${isPrimary && loc.street ? `<div class="teal">${escape(loc.street)}</div>` : ""}
-              ${isPrimary && loc.zipCity ? `<div class="teal">${escape(loc.zipCity)}</div>` : ""}
+              ${showFull && loc.street ? `<div class="teal">${escape(loc.street)}</div>` : ""}
+              ${showFull && loc.zipCity ? `<div class="teal">${escape(loc.zipCity)}</div>` : ""}
             </div>`;
         };
+        const lblPhone = "T";
+        const lblMobile = isCompany ? "F" : "M";
+        const lblEmail = "E";
+        const headName = escape(p.name) || (isCompany ? "Firmenname" : "Vor- Nachname");
+        const headRole = escape(p.role) || (isCompany ? "Slogan" : "Position");
         const cutMarksHtml = showCutMarks ? `
           <div class="mark mark-h" style="top:${bleed}mm; left:0; width:${bleed}mm;"></div>
           <div class="mark mark-v" style="top:0; left:${bleed}mm; height:${bleed}mm;"></div>
@@ -395,17 +431,17 @@ export default function BusinessCardsPage() {
           <div class="card">
             <img src="${LOGO_URL}" alt="" class="logo" />
             <div class="head">
-              <div class="name">${escape(p.name) || "Vor- Nachname"}</div>
-              <div class="role">${escape(p.role) || "Position"}</div>
+              <div class="name">${headName}</div>
+              <div class="role">${headRole}</div>
             </div>
             <div class="contact">
-              ${p.phone ? `<span class="lbl">T:</span><span>${escape(p.phone)}</span>` : ""}
-              ${p.mobile ? `<span class="lbl">M:</span><span>${escape(p.mobile)}</span>` : ""}
-              ${p.email ? `<span class="lbl">E:</span><span>${escape(p.email)}</span>` : ""}
+              ${p.phone ? `<span class="lbl">${lblPhone}:</span><span>${escape(p.phone)}</span>` : ""}
+              ${p.mobile ? `<span class="lbl">${lblMobile}:</span><span>${escape(p.mobile)}</span>` : ""}
+              ${p.email ? `<span class="lbl">${lblEmail}:</span><span>${escape(p.email)}</span>` : ""}
             </div>
             <div class="addr">
-              ${renderLoc(left, p.primaryLocationIdx === 0)}
-              ${renderLoc(right, p.primaryLocationIdx === 1)}
+              ${renderLoc(left, isCompany || p.primaryLocationIdx === 0)}
+              ${renderLoc(right, isCompany || p.primaryLocationIdx === 1)}
             </div>
           </div>
         </div>`;
@@ -617,12 +653,15 @@ export default function BusinessCardsPage() {
             </div>
           ))}
 
-          {/* Pracownicy */}
-          {config.persons.map((person, i) => (
+          {/* Karty (osobowe + firmowe) */}
+          {config.persons.map((person, i) => {
+            const kind: CardKind = person.kind || "person";
+            const isCompany = kind === "company";
+            return (
             <div key={person.id} className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
               <div className="flex items-center justify-between">
                 <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                  Mitarbeiter {config.persons.length > 1 ? `#${i + 1}` : ""}
+                  {isCompany ? "Allgemeine Karte" : "Mitarbeiter"} {config.persons.length > 1 ? `#${i + 1}` : ""}
                 </h2>
                 <div className="flex items-center gap-2">
                   <button
@@ -638,14 +677,25 @@ export default function BusinessCardsPage() {
                   )}
                 </div>
               </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-600 mb-1">Kartentyp</label>
+                <select
+                  value={kind}
+                  onChange={(e) => updatePerson(person.id, "kind", e.target.value as CardKind)}
+                  className={inputClass}
+                >
+                  <option value="person">Personenkarte (Mitarbeiter mit Name + Position)</option>
+                  <option value="company">Allgemeine Karte (Firmenname + Slogan, Fax statt Mobil)</option>
+                </select>
+              </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">Vor- und Nachname</label>
-                  <input value={person.name} onChange={(e) => updatePerson(person.id, "name", e.target.value)} className={inputClass} />
+                  <label className="block text-sm font-medium text-gray-600 mb-1">{isCompany ? "Firmenname" : "Vor- und Nachname"}</label>
+                  <input value={person.name} onChange={(e) => updatePerson(person.id, "name", e.target.value)} className={inputClass} placeholder={isCompany ? "Building Solutions GmbH" : ""} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">Position</label>
-                  <input value={person.role} onChange={(e) => updatePerson(person.id, "role", e.target.value)} className={inputClass} placeholder="Projektleitung" />
+                  <label className="block text-sm font-medium text-gray-600 mb-1">{isCompany ? "Slogan / Tagline" : "Position"}</label>
+                  <input value={person.role} onChange={(e) => updatePerson(person.id, "role", e.target.value)} className={inputClass} placeholder={isCompany ? "Elektro- und Gebäudetechnik" : "Projektleitung"} />
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-4">
@@ -654,7 +704,7 @@ export default function BusinessCardsPage() {
                   <input value={person.phone} onChange={(e) => updatePerson(person.id, "phone", e.target.value)} className={inputClass} placeholder="optional" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1">M (Mobil)</label>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">{isCompany ? "F (Fax)" : "M (Mobil)"}</label>
                   <input value={person.mobile} onChange={(e) => updatePerson(person.id, "mobile", e.target.value)} className={inputClass} />
                 </div>
                 <div>
@@ -662,28 +712,45 @@ export default function BusinessCardsPage() {
                   <input value={person.email} onChange={(e) => updatePerson(person.id, "email", e.target.value)} className={inputClass} />
                 </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-600 mb-1">Hauptstandort (mit vollständiger Adresse)</label>
-                <select
-                  value={person.primaryLocationIdx}
-                  onChange={(e) => updatePerson(person.id, "primaryLocationIdx", Number(e.target.value))}
-                  className={inputClass}
-                >
-                  {config.locations.map((l, idx) => (
-                    <option key={idx} value={idx}>{l.label || `Standort ${idx + 1}`}</option>
-                  ))}
-                </select>
-              </div>
+              {!isCompany && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 mb-1">Hauptstandort (mit vollständiger Adresse)</label>
+                  <select
+                    value={person.primaryLocationIdx}
+                    onChange={(e) => updatePerson(person.id, "primaryLocationIdx", Number(e.target.value))}
+                    className={inputClass}
+                  >
+                    {config.locations.map((l, idx) => (
+                      <option key={idx} value={idx}>{l.label || `Standort ${idx + 1}`}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+              {isCompany && (
+                <p className="text-xs text-gray-400">
+                  Bei der allgemeinen Karte werden beide Standorte mit vollständiger Adresse angezeigt; der Firmenname erscheint nur einmal oben.
+                </p>
+              )}
             </div>
-          ))}
+          );
+          })}
 
-          <button
-            onClick={addPerson}
-            className="w-full flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 text-gray-600 py-3 rounded-xl text-sm font-medium transition-colors border border-dashed border-gray-300"
-          >
-            <Plus size={16} />
-            Weiteren Mitarbeiter hinzufügen
-          </button>
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              onClick={addPerson}
+              className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 text-gray-600 py-3 rounded-xl text-sm font-medium transition-colors border border-dashed border-gray-300"
+            >
+              <Plus size={16} />
+              Mitarbeiter
+            </button>
+            <button
+              onClick={addCompany}
+              className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 text-gray-600 py-3 rounded-xl text-sm font-medium transition-colors border border-dashed border-gray-300"
+            >
+              <Plus size={16} />
+              Allgemeine Karte
+            </button>
+          </div>
         </div>
 
         {/* ── Prawa kolumna: podgląd ─────────────────────────────────── */}
