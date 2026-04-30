@@ -24,17 +24,39 @@ const BASE_PT = { name: 11, role: 9.5, contact: 8, address: 7.5 };
 // Bazowe line-height — przemnażane przez settings.lineHeightScale.
 const BASE_LH = { name: 1.15, contact: 1.5, address: 1.4 };
 
-// Wybierane fonty — wszystkie z Google Fonts (preload 1 link na wszystkie).
-const FONT_OPTIONS = [
-  { value: "Inter", label: "Inter" },
-  { value: "Manrope", label: "Manrope (am nächsten an Moderat)" },
-  { value: "Mulish", label: "Mulish" },
-  { value: "Roboto", label: "Roboto" },
-  { value: "Open Sans", label: "Open Sans" },
-  { value: "Lato", label: "Lato" },
+// Wybierane fonty: Google Fonts (online) + popularne system-fonty (Arial itd. — bez pobierania).
+type FontGroup = "google" | "system";
+interface FontOption {
+  value: string;        // właściwa nazwa rodziny CSS
+  label: string;        // etykieta w dropdownie
+  group: FontGroup;
+  fallback?: string;    // łańcuch fallbacków (dla system-fontów; google używa wspólnego stacku)
+}
+
+const FONT_OPTIONS: readonly FontOption[] = [
+  // — Google Fonts (preloadowane jednym <link>) —
+  { value: "Inter", label: "Inter (Google)", group: "google" },
+  { value: "Manrope", label: "Manrope — am nächsten an Moderat (Google)", group: "google" },
+  { value: "Mulish", label: "Mulish (Google)", group: "google" },
+  { value: "Roboto", label: "Roboto (Google)", group: "google" },
+  { value: "Open Sans", label: "Open Sans (Google)", group: "google" },
+  { value: "Lato", label: "Lato (Google)", group: "google" },
+  // — System-fonty (zawsze dostępne, bez pobierania) —
+  { value: "Arial", label: "Arial (System)", group: "system", fallback: "Helvetica, sans-serif" },
+  { value: "Helvetica", label: "Helvetica (System)", group: "system", fallback: "Arial, sans-serif" },
+  { value: "Verdana", label: "Verdana (System)", group: "system", fallback: "Geneva, sans-serif" },
+  { value: "Tahoma", label: "Tahoma (System)", group: "system", fallback: "Geneva, Verdana, sans-serif" },
+  { value: "Trebuchet MS", label: "Trebuchet MS (System)", group: "system", fallback: "'Lucida Grande', sans-serif" },
+  { value: "Calibri", label: "Calibri (System Windows/Office)", group: "system", fallback: "'Lucida Sans Unicode', sans-serif" },
+  { value: "Segoe UI", label: "Segoe UI (System Windows)", group: "system", fallback: "Tahoma, Geneva, sans-serif" },
+  { value: "Georgia", label: "Georgia — Serif (System)", group: "system", fallback: "'Times New Roman', serif" },
+  { value: "Times New Roman", label: "Times New Roman — Serif (System)", group: "system", fallback: "Times, serif" },
+  { value: "Courier New", label: "Courier New — Monospace (System)", group: "system", fallback: "Courier, monospace" },
 ] as const;
+
 type FontFamilyOption = typeof FONT_OPTIONS[number]["value"];
 
+// URL zasobu Google Fonts — ładuje wszystkie z `group: "google"`.
 const GOOGLE_FONTS_HREF =
   "https://fonts.googleapis.com/css2?" +
   "family=Inter:wght@400;500;600&" +
@@ -46,6 +68,10 @@ const GOOGLE_FONTS_HREF =
   "display=swap";
 
 function fontStack(name: FontFamilyOption): string {
+  const opt = FONT_OPTIONS.find((o) => o.value === name);
+  if (opt && opt.group === "system" && opt.fallback) {
+    return `'${name}', ${opt.fallback}`;
+  }
   return `'${name}', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif`;
 }
 
@@ -390,10 +416,36 @@ export default function BusinessCardsPage() {
         body: JSON.stringify(config),
       });
       setSavedAt(Date.now());
+      lastSavedSnapshotRef.current = JSON.stringify(config);
     } finally {
       setSaving(false);
     }
   }, [config]);
+
+  // Snapshot ostatniego zapisanego stanu — żeby debounced auto-save
+  // nie wystrzeliwał zapisu zaraz po wczytaniu danych z API.
+  const lastSavedSnapshotRef = useRef<string | null>(null);
+
+  // Po zakończeniu wczytywania ustaw snapshot na bieżący stan, aby auto-save
+  // nie traktował załadowanych z KV danych jako nowej zmiany.
+  useEffect(() => {
+    if (!loading && lastSavedSnapshotRef.current === null) {
+      lastSavedSnapshotRef.current = JSON.stringify(config);
+    }
+  }, [loading, config]);
+
+  // Auto-save z 1.5 s debounce — uruchamia się tylko gdy bieżący config
+  // różni się od ostatnio zapisanego snapshotu.
+  useEffect(() => {
+    if (loading) return;
+    const current = JSON.stringify(config);
+    if (current === lastSavedSnapshotRef.current) return;
+    const t = setTimeout(() => {
+      // setTimeout z fetch — wynik ignorujemy, save() aktualizuje snapshot.
+      save();
+    }, 1500);
+    return () => clearTimeout(t);
+  }, [config, loading, save]);
 
   const updateLocation = (idx: number, field: keyof Location, value: string) => {
     setConfig((c) => ({
@@ -605,10 +657,17 @@ export default function BusinessCardsPage() {
           <p className="text-sm text-gray-500 mt-1">Visitenkarten-Generator BS &mdash; Schriftart, Logo und Farben wie im Druck</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          {savedAt && <span className="text-xs text-gray-400 mr-1">gespeichert {new Date(savedAt).toLocaleTimeString()}</span>}
+          <span className="text-xs text-gray-400 mr-1">
+            {saving
+              ? "speichert…"
+              : savedAt
+                ? `automatisch gespeichert ${new Date(savedAt).toLocaleTimeString()}`
+                : "automatische Speicherung aktiv"}
+          </span>
           <button
             onClick={save}
             disabled={saving}
+            title="Sofort speichern (auto-save speichert ohnehin alle Änderungen nach 1,5 s)"
             className="flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors disabled:opacity-50"
           >
             {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
