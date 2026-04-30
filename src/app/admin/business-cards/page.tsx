@@ -31,6 +31,11 @@ interface CardPerson {
 interface CardSettings {
   size: "85x55" | "90x55" | "90x50";
   corner: "sharp" | "soft" | "round";
+  // Beschnittzugabe / spad (mm) — dodaje białe pole wokół karty w PDF.
+  // Flyeralarm i większość drukarni DE wymaga 1 mm.
+  bleedMm: number;
+  // Schnittmarken — krzyżyki cięcia w narożnikach poza Endformatem (tylko gdy bleed > 0).
+  cutMarks: boolean;
 }
 
 interface BusinessCardsConfig {
@@ -78,7 +83,7 @@ const defaultConfig: BusinessCardsConfig = {
       primaryLocationIdx: 1, // domyślnie Kerpen jako primary (z pełnym adresem)
     },
   ],
-  settings: { size: "90x55", corner: "sharp" },
+  settings: { size: "85x55", corner: "sharp", bleedMm: 1, cutMarks: false },
 };
 
 const inputClass =
@@ -245,10 +250,15 @@ export default function BusinessCardsPage() {
         const data = await r.json();
         if (cancelled) return;
         if (data && Array.isArray(data.locations) && Array.isArray(data.persons)) {
+          // Defensywnie scal z domyślnymi — starsze zapisy mogą nie mieć bleedMm/cutMarks.
+          const mergedSettings: CardSettings = {
+            ...defaultConfig.settings,
+            ...(data.settings || {}),
+          };
           setConfig({
             locations: data.locations,
             persons: data.persons.length ? data.persons : [emptyPerson()],
-            settings: data.settings || defaultConfig.settings,
+            settings: mergedSettings,
           });
         } else {
           // Brak zapisu — spróbuj zasiać z /api/admin/contact
@@ -344,10 +354,15 @@ export default function BusinessCardsPage() {
   const exportPdf = () => {
     const size = SIZE_PRESETS[config.settings.size];
     const corner = CORNER_PRESETS[config.settings.corner];
+    const bleed = Math.max(0, config.settings.bleedMm || 0);
+    const datW = size.w + 2 * bleed; // Datenformat
+    const datH = size.h + 2 * bleed;
+    const showCutMarks = bleed > 0 && config.settings.cutMarks;
     const w = window.open("", "_blank");
     if (!w) return;
 
-    // Renderuj HTML z osadzonym fontem Inter — aby wydruk wyglądał tak jak podgląd
+    // Karty zawijane w bleed-wrap o wymiarze Datenformatu, sama karta absolutnie wyśrodkowana
+    // o wymiarze Endformatu. Schnittmarken — 8 linii w narożnikach Endformatu, w obszarze bleedu.
     const cardsHtml = config.persons
       .map((p) => {
         // Stała pozycja: locations[0] = lewa kolumna, locations[1] = prawa.
@@ -364,31 +379,48 @@ export default function BusinessCardsPage() {
               ${isPrimary && loc.zipCity ? `<div class="teal">${escape(loc.zipCity)}</div>` : ""}
             </div>`;
         };
+        const cutMarksHtml = showCutMarks ? `
+          <div class="mark mark-h" style="top:${bleed}mm; left:0; width:${bleed}mm;"></div>
+          <div class="mark mark-v" style="top:0; left:${bleed}mm; height:${bleed}mm;"></div>
+          <div class="mark mark-h" style="top:${bleed}mm; left:${bleed + size.w}mm; width:${bleed}mm;"></div>
+          <div class="mark mark-v" style="top:0; left:${bleed + size.w}mm; height:${bleed}mm;"></div>
+          <div class="mark mark-h" style="top:${bleed + size.h}mm; left:0; width:${bleed}mm;"></div>
+          <div class="mark mark-v" style="top:${bleed + size.h}mm; left:${bleed}mm; height:${bleed}mm;"></div>
+          <div class="mark mark-h" style="top:${bleed + size.h}mm; left:${bleed + size.w}mm; width:${bleed}mm;"></div>
+          <div class="mark mark-v" style="top:${bleed + size.h}mm; left:${bleed + size.w}mm; height:${bleed}mm;"></div>
+        ` : "";
         return `
-        <div class="card">
-          <img src="${LOGO_URL}" alt="" class="logo" />
-          <div class="head">
-            <div class="name">${escape(p.name) || "Vor- Nachname"}</div>
-            <div class="role">${escape(p.role) || "Position"}</div>
-          </div>
-          <div class="contact">
-            ${p.phone ? `<span class="lbl">T:</span><span>${escape(p.phone)}</span>` : ""}
-            ${p.mobile ? `<span class="lbl">M:</span><span>${escape(p.mobile)}</span>` : ""}
-            ${p.email ? `<span class="lbl">E:</span><span>${escape(p.email)}</span>` : ""}
-          </div>
-          <div class="addr">
-            ${renderLoc(left, p.primaryLocationIdx === 0)}
-            ${renderLoc(right, p.primaryLocationIdx === 1)}
+        <div class="bleed">
+          ${cutMarksHtml}
+          <div class="card">
+            <img src="${LOGO_URL}" alt="" class="logo" />
+            <div class="head">
+              <div class="name">${escape(p.name) || "Vor- Nachname"}</div>
+              <div class="role">${escape(p.role) || "Position"}</div>
+            </div>
+            <div class="contact">
+              ${p.phone ? `<span class="lbl">T:</span><span>${escape(p.phone)}</span>` : ""}
+              ${p.mobile ? `<span class="lbl">M:</span><span>${escape(p.mobile)}</span>` : ""}
+              ${p.email ? `<span class="lbl">E:</span><span>${escape(p.email)}</span>` : ""}
+            </div>
+            <div class="addr">
+              ${renderLoc(left, p.primaryLocationIdx === 0)}
+              ${renderLoc(right, p.primaryLocationIdx === 1)}
+            </div>
           </div>
         </div>`;
       })
       .join("\n");
 
+    const formatInfo = bleed > 0
+      ? `Datenformat ${datW}×${datH} mm · Endformat ${size.w}×${size.h} mm · Beschnitt ${bleed} mm${showCutMarks ? " · mit Schnittmarken" : ""}`
+      : `Format ${size.w}×${size.h} mm · ohne Beschnitt`;
+
     w.document.write(`<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
-  <title>Visitenkarten — Building Solutions</title>
+  <title>Visitenkarten — Building Solutions (${formatInfo})</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -396,18 +428,29 @@ export default function BusinessCardsPage() {
     @page { size: A4; margin: 10mm; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: ${FONT_FAMILY}; color: ${COLOR_NAVY}; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+    .bleed {
+      position: relative;
+      width: ${datW}mm;
+      height: ${datH}mm;
+      background: #fff;
+      page-break-inside: avoid;
+    }
     .card {
+      position: absolute;
+      top: ${bleed}mm;
+      left: ${bleed}mm;
       width: ${size.w}mm;
       height: ${size.h}mm;
       background: #fff;
       border-radius: ${corner.radius}mm;
       padding: 5mm 6mm;
-      position: relative;
       overflow: hidden;
-      page-break-inside: avoid;
       border: 0.2mm dashed #d1d5db;
     }
+    .mark { position: absolute; background: #000; }
+    .mark-h { height: 0.15mm; }
+    .mark-v { width: 0.15mm; }
     .logo { position: absolute; top: 5mm; right: 6mm; height: 11mm; width: auto; }
     .head { margin-bottom: 2mm; }
     .name { font-size: 11pt; font-weight: 500; line-height: 1.15; letter-spacing: 0.01em; }
@@ -510,6 +553,38 @@ export default function BusinessCardsPage() {
                 </select>
               </div>
             </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-600 mb-1">Beschnittzugabe</label>
+                <select
+                  value={config.settings.bleedMm}
+                  onChange={(e) => setConfig({ ...config, settings: { ...config.settings, bleedMm: Number(e.target.value) } })}
+                  className={inputClass}
+                >
+                  <option value={0}>ohne (Endformat)</option>
+                  <option value={1}>1 mm (Flyeralarm, Standard DE)</option>
+                  <option value={2}>2 mm (Premium-Druckereien)</option>
+                  <option value={3}>3 mm (international)</option>
+                </select>
+              </div>
+              <div className="flex items-end">
+                <label className={`flex items-center gap-2 text-sm font-medium ${config.settings.bleedMm > 0 ? "text-gray-700 cursor-pointer" : "text-gray-400 cursor-not-allowed"}`}>
+                  <input
+                    type="checkbox"
+                    checked={config.settings.cutMarks}
+                    disabled={config.settings.bleedMm === 0}
+                    onChange={(e) => setConfig({ ...config, settings: { ...config.settings, cutMarks: e.target.checked } })}
+                    className="w-4 h-4 rounded border-gray-300"
+                  />
+                  Schnittmarken im PDF
+                </label>
+              </div>
+            </div>
+            {config.settings.bleedMm > 0 && (
+              <p className="text-xs text-gray-500">
+                Datenformat im PDF: <strong>{SIZE_PRESETS[config.settings.size].w + 2 * config.settings.bleedMm} × {SIZE_PRESETS[config.settings.size].h + 2 * config.settings.bleedMm} mm</strong> (Endformat {SIZE_PRESETS[config.settings.size].w}×{SIZE_PRESETS[config.settings.size].h} mm + {config.settings.bleedMm} mm Beschnitt rundum). Sicherheitsabstand für Inhalte: 3 mm zur Schnittkante.
+              </p>
+            )}
           </div>
 
           {/* Lokalizacje firmy */}
