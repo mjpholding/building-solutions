@@ -7,8 +7,47 @@ import { toPng } from "html-to-image";
 // ── Stałe brandowe (z drukowanych wizytówek BS) ──────────────────────────
 const COLOR_NAVY = "#1F2D4A"; // nazwiska, numery, "Building Solutions GmbH", "Hauptsitz/Standort"
 const COLOR_TEAL = "#3DBFA0"; // stanowisko, etykiety T:/M:/E:, ulica + PLZ, logo
-const FONT_FAMILY = "'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif";
 const LOGO_URL = "/logo-bs.png";
+
+// Logo siedzi w prawym górnym rogu na stałych odstępach — nie zmienia się
+// przy modyfikacji marginesów tekstu (zgodnie z wzorcem brandowym BS).
+const LOGO_TOP_MM = 5;
+const LOGO_RIGHT_MM = 6;
+const LOGO_HEIGHT_MM = 11;
+
+// Dystans między blokiem „imię/firma + stanowisko/slogan" a blokiem T/M/E.
+const HEAD_TO_CONTACT_GAP_MM = 6;
+
+// Bazowe wielkości fontu (pt) — przemnażane przez settings.fontScale.
+const BASE_PT = { name: 11, role: 9.5, contact: 8, address: 7.5 };
+
+// Bazowe line-height — przemnażane przez settings.lineHeightScale.
+const BASE_LH = { name: 1.15, contact: 1.5, address: 1.4 };
+
+// Wybierane fonty — wszystkie z Google Fonts (preload 1 link na wszystkie).
+const FONT_OPTIONS = [
+  { value: "Inter", label: "Inter" },
+  { value: "Manrope", label: "Manrope (am nächsten an Moderat)" },
+  { value: "Mulish", label: "Mulish" },
+  { value: "Roboto", label: "Roboto" },
+  { value: "Open Sans", label: "Open Sans" },
+  { value: "Lato", label: "Lato" },
+] as const;
+type FontFamilyOption = typeof FONT_OPTIONS[number]["value"];
+
+const GOOGLE_FONTS_HREF =
+  "https://fonts.googleapis.com/css2?" +
+  "family=Inter:wght@400;500;600&" +
+  "family=Manrope:wght@400;500;600&" +
+  "family=Mulish:wght@400;500;600&" +
+  "family=Roboto:wght@400;500;700&" +
+  "family=Open+Sans:wght@400;500;600&" +
+  "family=Lato:wght@400;700&" +
+  "display=swap";
+
+function fontStack(name: FontFamilyOption): string {
+  return `'${name}', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif`;
+}
 
 // ── Typy ────────────────────────────────────────────────────────────────
 interface Location {
@@ -42,7 +81,25 @@ interface CardSettings {
   bleedMm: number;
   // Schnittmarken — krzyżyki cięcia w narożnikach poza Endformatem (tylko gdy bleed > 0).
   cutMarks: boolean;
+  // Typografia i marginesy tekstu (logo zawsze stałe, nie podlega tym wartościom).
+  marginTopMm: number;     // 0–15, krok 0.1
+  marginRightMm: number;   // 0–15, krok 0.1
+  marginBottomMm: number;  // 0–15, krok 0.1
+  marginLeftMm: number;    // 0–15, krok 0.1
+  lineHeightScale: number; // 0.8–2.0, krok 0.05 (mnożnik domyślnych line-height)
+  fontScale: number;       // 0.7–1.5, krok 0.05 (mnożnik bazowych pt)
+  fontFamily: FontFamilyOption;
 }
+
+const TYPO_DEFAULTS = {
+  marginTopMm: 5,
+  marginRightMm: 6,
+  marginBottomMm: 5,
+  marginLeftMm: 6,
+  lineHeightScale: 1,
+  fontScale: 1,
+  fontFamily: "Inter" as FontFamilyOption,
+};
 
 interface BusinessCardsConfig {
   locations: Location[];
@@ -89,7 +146,13 @@ const defaultConfig: BusinessCardsConfig = {
       primaryLocationIdx: 1, // domyślnie Kerpen jako primary (z pełnym adresem)
     },
   ],
-  settings: { size: "85x55", corner: "sharp", bleedMm: 1, cutMarks: false },
+  settings: {
+    size: "85x55",
+    corner: "sharp",
+    bleedMm: 1,
+    cutMarks: false,
+    ...TYPO_DEFAULTS,
+  },
 };
 
 const inputClass =
@@ -130,15 +193,23 @@ function BusinessCard({
   const corner = CORNER_PRESETS[settings.corner];
   const kind: CardKind = person.kind || "person";
   // Pozycja jest stała: locations[0] zawsze po lewej, locations[1] zawsze po prawej.
-  // person  → pełny adres tylko na wybranej u pracownika lokalizacji „głównej",
-  //           pod każdym adresem prefiks z nazwą firmy
-  // company → oba adresy pełne, bez prefiksu z nazwą firmy (firma jest u góry karty)
   const left = locations[0];
   const right = locations[1];
   const isCompany = kind === "company";
   const labels = isCompany
     ? { phone: "T", mobile: "F", email: "E" }
     : { phone: "T", mobile: "M", email: "E" };
+
+  // Wyliczone wartości typograficzne (z mnożników w settings).
+  const fs = settings.fontScale;
+  const lh = settings.lineHeightScale;
+  const ptName = (BASE_PT.name * fs).toFixed(2);
+  const ptRole = (BASE_PT.role * fs).toFixed(2);
+  const ptContact = (BASE_PT.contact * fs).toFixed(2);
+  const ptAddress = (BASE_PT.address * fs).toFixed(2);
+  const lhName = (BASE_LH.name * lh).toFixed(2);
+  const lhContact = (BASE_LH.contact * lh).toFixed(2);
+  const lhAddress = (BASE_LH.address * lh).toFixed(2);
 
   return (
     <div
@@ -148,16 +219,21 @@ function BusinessCard({
         height: `${size.h}mm`,
         background: "#FFFFFF",
         borderRadius: `${corner.radius}mm`,
-        padding: "5mm 6mm",
+        // Padding wewnątrz karty: u góry/dołu marginesy z settings, po bokach też.
+        // Logo pozycjonowane absolutnie z własnymi stałymi — nie podlega marginesom.
+        paddingTop: `${settings.marginTopMm}mm`,
+        paddingRight: `${settings.marginRightMm}mm`,
+        paddingBottom: `${settings.marginBottomMm}mm`,
+        paddingLeft: `${settings.marginLeftMm}mm`,
         position: "relative",
         overflow: "hidden",
-        fontFamily: FONT_FAMILY,
+        fontFamily: fontStack(settings.fontFamily),
         color: COLOR_NAVY,
         boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
         boxSizing: "border-box",
       }}
     >
-      {/* Logo prawy górny róg */}
+      {/* Logo prawy górny róg — STAŁE pozycje, niezależne od marginesów tekstu */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={LOGO_URL}
@@ -165,19 +241,19 @@ function BusinessCard({
         crossOrigin="anonymous"
         style={{
           position: "absolute",
-          top: "5mm",
-          right: "6mm",
-          height: "11mm",
+          top: `${LOGO_TOP_MM}mm`,
+          right: `${LOGO_RIGHT_MM}mm`,
+          height: `${LOGO_HEIGHT_MM}mm`,
           width: "auto",
         }}
       />
 
       {/* Główka karty: person → imię + stanowisko, company → firma + tagline */}
       <div style={{ marginBottom: "2mm" }}>
-        <div style={{ fontSize: "11pt", fontWeight: 500, lineHeight: 1.15, letterSpacing: "0.01em" }}>
+        <div style={{ fontSize: `${ptName}pt`, fontWeight: 500, lineHeight: lhName, letterSpacing: "0.01em" }}>
           {person.name || (isCompany ? "Firmenname" : "Vor- Nachname")}
         </div>
-        <div style={{ fontSize: "9.5pt", color: COLOR_TEAL, fontWeight: 400, marginTop: "0.5mm" }}>
+        <div style={{ fontSize: `${ptRole}pt`, color: COLOR_TEAL, fontWeight: 400, marginTop: "0.5mm" }}>
           {person.role || (isCompany ? "Slogan" : "Position")}
         </div>
       </div>
@@ -185,9 +261,9 @@ function BusinessCard({
       {/* Kontakt: person → T/M/E, company → T/F/E */}
       <div
         style={{
-          marginTop: "6mm",
-          fontSize: "8pt",
-          lineHeight: 1.5,
+          marginTop: `${HEAD_TO_CONTACT_GAP_MM}mm`,
+          fontSize: `${ptContact}pt`,
+          lineHeight: lhContact,
           display: "grid",
           gridTemplateColumns: "auto 1fr",
           columnGap: "2mm",
@@ -222,14 +298,14 @@ function BusinessCard({
       <div
         style={{
           position: "absolute",
-          bottom: "5mm",
-          left: "6mm",
-          right: "6mm",
+          bottom: `${settings.marginBottomMm}mm`,
+          left: `${settings.marginLeftMm}mm`,
+          right: `${settings.marginRightMm}mm`,
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           columnGap: "3mm",
-          fontSize: "7.5pt",
-          lineHeight: 1.4,
+          fontSize: `${ptAddress}pt`,
+          lineHeight: lhAddress,
         }}
       >
         {left && (
@@ -372,12 +448,22 @@ export default function BusinessCardsPage() {
 
   // ── Eksport PDF (wszystkie karty na A4, 2×5 = max 10/strona) ──────────
   const exportPdf = () => {
-    const size = SIZE_PRESETS[config.settings.size];
-    const corner = CORNER_PRESETS[config.settings.corner];
-    const bleed = Math.max(0, config.settings.bleedMm || 0);
+    const s = config.settings;
+    const size = SIZE_PRESETS[s.size];
+    const corner = CORNER_PRESETS[s.corner];
+    const bleed = Math.max(0, s.bleedMm || 0);
     const datW = size.w + 2 * bleed; // Datenformat
     const datH = size.h + 2 * bleed;
-    const showCutMarks = bleed > 0 && config.settings.cutMarks;
+    const showCutMarks = bleed > 0 && s.cutMarks;
+    const fs = s.fontScale;
+    const lh = s.lineHeightScale;
+    const ptName = (BASE_PT.name * fs).toFixed(2);
+    const ptRole = (BASE_PT.role * fs).toFixed(2);
+    const ptContact = (BASE_PT.contact * fs).toFixed(2);
+    const ptAddress = (BASE_PT.address * fs).toFixed(2);
+    const lhName = (BASE_LH.name * lh).toFixed(2);
+    const lhContact = (BASE_LH.contact * lh).toFixed(2);
+    const lhAddress = (BASE_LH.address * lh).toFixed(2);
     const w = window.open("", "_blank");
     if (!w) return;
 
@@ -448,11 +534,11 @@ export default function BusinessCardsPage() {
   <title>Visitenkarten — Building Solutions (${formatInfo})</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="${GOOGLE_FONTS_HREF}" rel="stylesheet">
   <style>
     @page { size: A4; margin: 10mm; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: ${FONT_FAMILY}; color: ${COLOR_NAVY}; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { font-family: ${fontStack(s.fontFamily)}; color: ${COLOR_NAVY}; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
     .bleed {
       position: relative;
@@ -469,20 +555,20 @@ export default function BusinessCardsPage() {
       height: ${size.h}mm;
       background: #fff;
       border-radius: ${corner.radius}mm;
-      padding: 5mm 6mm;
+      padding: ${s.marginTopMm}mm ${s.marginRightMm}mm ${s.marginBottomMm}mm ${s.marginLeftMm}mm;
       overflow: hidden;
       border: 0.2mm dashed #d1d5db;
     }
     .mark { position: absolute; background: #000; }
     .mark-h { height: 0.15mm; }
     .mark-v { width: 0.15mm; }
-    .logo { position: absolute; top: 5mm; right: 6mm; height: 11mm; width: auto; }
+    .logo { position: absolute; top: ${LOGO_TOP_MM}mm; right: ${LOGO_RIGHT_MM}mm; height: ${LOGO_HEIGHT_MM}mm; width: auto; }
     .head { margin-bottom: 2mm; }
-    .name { font-size: 11pt; font-weight: 500; line-height: 1.15; letter-spacing: 0.01em; }
-    .role { font-size: 9.5pt; color: ${COLOR_TEAL}; margin-top: 0.5mm; }
-    .contact { margin-top: 6mm; font-size: 8pt; line-height: 1.5; display: grid; grid-template-columns: auto 1fr; column-gap: 2mm; row-gap: 0.3mm; max-width: 60%; }
+    .name { font-size: ${ptName}pt; font-weight: 500; line-height: ${lhName}; letter-spacing: 0.01em; }
+    .role { font-size: ${ptRole}pt; color: ${COLOR_TEAL}; margin-top: 0.5mm; }
+    .contact { margin-top: ${HEAD_TO_CONTACT_GAP_MM}mm; font-size: ${ptContact}pt; line-height: ${lhContact}; display: grid; grid-template-columns: auto 1fr; column-gap: 2mm; row-gap: 0.3mm; max-width: 60%; }
     .contact .lbl { color: ${COLOR_TEAL}; font-weight: 500; }
-    .addr { position: absolute; bottom: 5mm; left: 6mm; right: 6mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 3mm; font-size: 7.5pt; line-height: 1.4; }
+    .addr { position: absolute; bottom: ${s.marginBottomMm}mm; left: ${s.marginLeftMm}mm; right: ${s.marginRightMm}mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 3mm; font-size: ${ptAddress}pt; line-height: ${lhAddress}; }
     .addr .bold { font-weight: 500; }
     .addr .teal { color: ${COLOR_TEAL}; }
     @media print { .card { border: none; } }
@@ -510,9 +596,8 @@ export default function BusinessCardsPage() {
 
   return (
     <div>
-      {/* Osadzenie Inter dla podglądu (poza wydrukiem) */}
-      {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+      {/* Osadzenie wszystkich wybieralnych fontów dla podglądu (Inter, Manrope, Mulish, Roboto, Open Sans, Lato) */}
+      <link href={GOOGLE_FONTS_HREF} rel="stylesheet" />
 
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8">
         <div>
@@ -610,6 +695,104 @@ export default function BusinessCardsPage() {
                 Datenformat im PDF: <strong>{SIZE_PRESETS[config.settings.size].w + 2 * config.settings.bleedMm} × {SIZE_PRESETS[config.settings.size].h + 2 * config.settings.bleedMm} mm</strong> (Endformat {SIZE_PRESETS[config.settings.size].w}×{SIZE_PRESETS[config.settings.size].h} mm + {config.settings.bleedMm} mm Beschnitt rundum). Sicherheitsabstand für Inhalte: 3 mm zur Schnittkante.
               </p>
             )}
+          </div>
+
+          {/* Typografie & Ränder */}
+          <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">Typografie &amp; Ränder</h2>
+              <button
+                onClick={() => setConfig({ ...config, settings: { ...config.settings, ...TYPO_DEFAULTS } })}
+                className="text-xs text-gray-500 hover:text-gray-800 underline"
+                type="button"
+              >
+                Zurücksetzen
+              </button>
+            </div>
+
+            {/* Marginesy w mm (krok 0.1) */}
+            <div>
+              <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Ränder (Text — Logo bleibt fest)</p>
+              <div className="grid grid-cols-4 gap-3">
+                {([
+                  ["marginTopMm", "Oben"],
+                  ["marginRightMm", "Rechts"],
+                  ["marginBottomMm", "Unten"],
+                  ["marginLeftMm", "Links"],
+                ] as const).map(([key, label]) => (
+                  <div key={key}>
+                    <label className="block text-xs font-medium text-gray-600 mb-1">{label} (mm)</label>
+                    <input
+                      type="number"
+                      step="0.1"
+                      min={0}
+                      max={15}
+                      value={config.settings[key]}
+                      onChange={(e) => setConfig({ ...config, settings: { ...config.settings, [key]: Number(e.target.value) } })}
+                      className={inputClass}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Skale fontu i interlinii */}
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-600 mb-1">
+                  Schriftgröße — Skala ({Math.round(config.settings.fontScale * 100)}&nbsp;%)
+                </label>
+                <input
+                  type="range"
+                  step="0.05"
+                  min={0.7}
+                  max={1.5}
+                  value={config.settings.fontScale}
+                  onChange={(e) => setConfig({ ...config, settings: { ...config.settings, fontScale: Number(e.target.value) } })}
+                  className="w-full"
+                />
+                <p className="text-xs text-gray-400 mt-1">
+                  Basis: Name {BASE_PT.name} pt · Position {BASE_PT.role} pt · Kontakt {BASE_PT.contact} pt · Adresse {BASE_PT.address} pt
+                </p>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-600 mb-1">
+                  Zeilenabstand — Skala ({Math.round(config.settings.lineHeightScale * 100)}&nbsp;%)
+                </label>
+                <input
+                  type="range"
+                  step="0.05"
+                  min={0.8}
+                  max={2}
+                  value={config.settings.lineHeightScale}
+                  onChange={(e) => setConfig({ ...config, settings: { ...config.settings, lineHeightScale: Number(e.target.value) } })}
+                  className="w-full"
+                />
+                <p className="text-xs text-gray-400 mt-1">
+                  Basis: Name {BASE_LH.name} · Kontakt {BASE_LH.contact} · Adresse {BASE_LH.address}
+                </p>
+              </div>
+            </div>
+
+            {/* Font family */}
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">Schriftart</label>
+              <select
+                value={config.settings.fontFamily}
+                onChange={(e) => setConfig({ ...config, settings: { ...config.settings, fontFamily: e.target.value as FontFamilyOption } })}
+                className={inputClass}
+                style={{ fontFamily: fontStack(config.settings.fontFamily) }}
+              >
+                {FONT_OPTIONS.map((opt) => (
+                  <option key={opt.value} value={opt.value} style={{ fontFamily: fontStack(opt.value) }}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
+              <p className="text-xs text-gray-400 mt-1">
+                Original-Brandfont (Moderat) ist kostenpflichtig. Hier nur kostenlose Google Fonts als Alternative.
+              </p>
+            </div>
           </div>
 
           {/* Lokalizacje firmy */}
