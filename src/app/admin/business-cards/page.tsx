@@ -7,13 +7,15 @@ import { toPng } from "html-to-image";
 // ── Stałe brandowe (z drukowanych wizytówek BS) ──────────────────────────
 const COLOR_NAVY = "#1F2D4A"; // nazwiska, numery, "Building Solutions GmbH", "Hauptsitz/Standort"
 const COLOR_TEAL = "#3DBFA0"; // stanowisko, etykiety T:/M:/E:, ulica + PLZ, logo
-const LOGO_URL = "/logo-bs.png";
+const LOGO_URL = "/logo-bs-wide.png";
 
 // Logo siedzi w prawym górnym rogu na stałych odstępach — nie zmienia się
 // przy modyfikacji marginesów tekstu (zgodnie z wzorcem brandowym BS).
+// Wysokość regulowana suwakiem (settings.logoHeightMm) — domyślnie 6 mm
+// dobrane pod logo "wide" (znaczek + napis, ratio ≈ 8.65:1).
 const LOGO_TOP_MM = 5;
 const LOGO_RIGHT_MM = 6;
-const LOGO_HEIGHT_MM = 11;
+const LOGO_HEIGHT_DEFAULT_MM = 6;
 
 // Dystans między blokiem „imię/firma + stanowisko/slogan" a blokiem T/M/E.
 const HEAD_TO_CONTACT_GAP_MM = 6;
@@ -114,6 +116,7 @@ interface CardSettings {
   marginLeftMm: number;    // 0–15, krok 0.1
   lineHeightScale: number; // 0.8–2.0, krok 0.05 (mnożnik domyślnych line-height)
   fontScale: number;       // 0.7–1.5, krok 0.05 (mnożnik bazowych pt)
+  logoHeightMm: number;    // 3–14, krok 0.5 (wysokość logo w mm)
   fontFamily: FontFamilyOption;
 }
 
@@ -124,6 +127,7 @@ const TYPO_DEFAULTS = {
   marginLeftMm: 6,
   lineHeightScale: 1,
   fontScale: 1,
+  logoHeightMm: LOGO_HEIGHT_DEFAULT_MM,
   fontFamily: "Inter" as FontFamilyOption,
 };
 
@@ -269,7 +273,7 @@ function BusinessCard({
           position: "absolute",
           top: `${LOGO_TOP_MM}mm`,
           right: `${LOGO_RIGHT_MM}mm`,
-          height: `${LOGO_HEIGHT_MM}mm`,
+          height: `${settings.logoHeightMm}mm`,
           width: "auto",
         }}
       />
@@ -614,7 +618,7 @@ export default function BusinessCardsPage() {
     .mark { position: absolute; background: #000; }
     .mark-h { height: 0.15mm; }
     .mark-v { width: 0.15mm; }
-    .logo { position: absolute; top: ${LOGO_TOP_MM}mm; right: ${LOGO_RIGHT_MM}mm; height: ${LOGO_HEIGHT_MM}mm; width: auto; }
+    .logo { position: absolute; top: ${LOGO_TOP_MM}mm; right: ${LOGO_RIGHT_MM}mm; height: ${s.logoHeightMm}mm; width: auto; }
     .head { margin-bottom: 2mm; }
     .name { font-size: ${ptName}pt; font-weight: 500; line-height: ${lhName}; letter-spacing: 0.01em; }
     .role { font-size: ${ptRole}pt; color: ${COLOR_TEAL}; margin-top: 0.5mm; }
@@ -831,6 +835,25 @@ export default function BusinessCardsPage() {
                   Basis: Name {BASE_LH.name} · Kontakt {BASE_LH.contact} · Adresse {BASE_LH.address}
                 </p>
               </div>
+            </div>
+
+            {/* Wysokość logo */}
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Logo-Höhe ({config.settings.logoHeightMm.toFixed(1)}&nbsp;mm)
+              </label>
+              <input
+                type="range"
+                step="0.5"
+                min={3}
+                max={14}
+                value={config.settings.logoHeightMm}
+                onChange={(e) => setConfig({ ...config, settings: { ...config.settings, logoHeightMm: Number(e.target.value) } })}
+                className="w-full"
+              />
+              <p className="text-xs text-gray-400 mt-1">
+                Standard: {LOGO_HEIGHT_DEFAULT_MM} mm. Bei „logo-bs-wide“ (Verhältnis ≈ 8.65:1) ergibt 6 mm ≈ 52 mm Breite.
+              </p>
             </div>
 
             {/* Font family */}
