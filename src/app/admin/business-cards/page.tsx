@@ -1,18 +1,19 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Printer, Plus, Trash2, Save, Loader2, Image as ImageIcon, FileText } from "lucide-react";
+import { Printer, Plus, Trash2, Save, Loader2, Image as ImageIcon, FileText, Upload } from "lucide-react";
 import { toPng } from "html-to-image";
 
 // ── Stałe brandowe (z drukowanych wizytówek BS) ──────────────────────────
 const COLOR_NAVY = "#1F2D4A"; // nazwiska, numery, "Building Solutions GmbH", "Hauptsitz/Standort"
 const COLOR_TEAL = "#3DBFA0"; // stanowisko, etykiety T:/M:/E:, ulica + PLZ, logo
-const LOGO_URL = "/logo-bs-wide.png";
+// Domyślne logo BS — używane, dopóki użytkownik nie wgra własnego (settings.logoUrl).
+const DEFAULT_LOGO_URL = "/logo-bs-wide.png";
 
-// Logo siedzi w prawym górnym rogu na stałych odstępach — nie zmienia się
+// Logo siedzi w prawym górnym rogu na stałych odstępach — pozycja nie zmienia się
 // przy modyfikacji marginesów tekstu (zgodnie z wzorcem brandowym BS).
-// Wysokość regulowana suwakiem (settings.logoHeightMm) — domyślnie 6 mm
-// dobrane pod logo "wide" (znaczek + napis, ratio ≈ 8.65:1).
+// Źródło logo jest konfigurowalne (settings.logoUrl): domyślne BS, własny upload
+// albo brak. Wysokość regulowana suwakiem (settings.logoHeightMm) — domyślnie 6 mm.
 const LOGO_TOP_MM = 5;
 const LOGO_RIGHT_MM = 6;
 const LOGO_HEIGHT_DEFAULT_MM = 6;
@@ -118,6 +119,8 @@ interface CardSettings {
   fontScale: number;       // 0.7–1.5, krok 0.05 (mnożnik bazowych pt)
   logoHeightMm: number;    // 3–14, krok 0.5 (wysokość logo w mm)
   fontFamily: FontFamilyOption;
+  // Źródło logo: domyślne BS (DEFAULT_LOGO_URL), URL własnego uploadu, albo "" = bez logo.
+  logoUrl: string;
 }
 
 const TYPO_DEFAULTS = {
@@ -181,6 +184,8 @@ const defaultConfig: BusinessCardsConfig = {
     corner: "sharp",
     bleedMm: 1,
     cutMarks: false,
+    // logoUrl celowo poza TYPO_DEFAULTS — reset typografii nie ma kasować logo.
+    logoUrl: DEFAULT_LOGO_URL,
     ...TYPO_DEFAULTS,
   },
 };
@@ -263,20 +268,25 @@ function BusinessCard({
         boxSizing: "border-box",
       }}
     >
-      {/* Logo prawy górny róg — STAŁE pozycje, niezależne od marginesów tekstu */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={LOGO_URL}
-        alt=""
-        crossOrigin="anonymous"
-        style={{
-          position: "absolute",
-          top: `${LOGO_TOP_MM}mm`,
-          right: `${LOGO_RIGHT_MM}mm`,
-          height: `${settings.logoHeightMm}mm`,
-          width: "auto",
-        }}
-      />
+      {/* Logo prawy górny róg — STAŁE pozycje, niezależne od marginesów tekstu.
+          Źródło z settings.logoUrl; pusty string = karta bez logo. */}
+      {settings.logoUrl && (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={settings.logoUrl}
+            alt=""
+            crossOrigin="anonymous"
+            style={{
+              position: "absolute",
+              top: `${LOGO_TOP_MM}mm`,
+              right: `${LOGO_RIGHT_MM}mm`,
+              height: `${settings.logoHeightMm}mm`,
+              width: "auto",
+            }}
+          />
+        </>
+      )}
 
       {/* Główka karty: person → imię + stanowisko, company → firma + tagline */}
       <div style={{ marginBottom: "2mm" }}>
@@ -363,7 +373,10 @@ export default function BusinessCardsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<number | null>(null);
+  const [uploadingLogo, setUploadingLogo] = useState(false);
+  const [logoError, setLogoError] = useState("");
   const previewRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+  const logoInputRef = useRef<HTMLInputElement>(null);
 
   // Załaduj konfigurację z API; jeśli pusta — pobierz adres firmy z /api/admin/contact jako start
   useEffect(() => {
@@ -476,6 +489,42 @@ export default function BusinessCardsPage() {
     }));
   };
 
+  // ── Logo: upload własnego / reset do BS / usunięcie ───────────────────
+  const handleLogoUpload = async (file: File | undefined) => {
+    if (!file) return;
+    if (file.size > 4 * 1024 * 1024) {
+      setLogoError("Datei zu groß (max 4 MB)");
+      return;
+    }
+    setUploadingLogo(true);
+    setLogoError("");
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      // Stały slug — kolejny upload nadpisuje poprzednie logo wizytówek.
+      fd.append("slug", "business-card-logo");
+      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      if (!res.ok) {
+        let msg = "Upload fehlgeschlagen";
+        try { const data = await res.json(); msg = data.error || msg; } catch { /* odpowiedź nie była JSON-em */ }
+        setLogoError(msg);
+      } else {
+        const data = await res.json();
+        setConfig((c) => ({ ...c, settings: { ...c.settings, logoUrl: data.url } }));
+      }
+    } catch (err) {
+      setLogoError("Upload fehlgeschlagen: " + (err instanceof Error ? err.message : "Netzwerkfehler"));
+    }
+    setUploadingLogo(false);
+    if (logoInputRef.current) logoInputRef.current.value = "";
+  };
+
+  // Ustawia źródło logo: DEFAULT_LOGO_URL (reset BS) albo "" (bez logo).
+  const setLogo = (url: string) => {
+    setLogoError("");
+    setConfig((c) => ({ ...c, settings: { ...c.settings, logoUrl: url } }));
+  };
+
   // ── Eksport PNG (pojedyncza karta — wybrana osoba) ────────────────────
   const exportPng = async (personId: string) => {
     const node = previewRefs.current.get(personId);
@@ -560,7 +609,7 @@ export default function BusinessCardsPage() {
         <div class="bleed">
           ${cutMarksHtml}
           <div class="card">
-            <img src="${LOGO_URL}" alt="" class="logo" />
+            ${s.logoUrl ? `<img src="${escape(s.logoUrl)}" alt="" class="logo" />` : ""}
             <div class="head">
               <div class="name">${headName}</div>
               <div class="role">${headRole}</div>
@@ -852,7 +901,58 @@ export default function BusinessCardsPage() {
                 className="w-full"
               />
               <p className="text-xs text-gray-400 mt-1">
-                Standard: {LOGO_HEIGHT_DEFAULT_MM} mm. Bei „logo-bs-wide“ (Verhältnis ≈ 8.65:1) ergibt 6 mm ≈ 52 mm Breite.
+                Standard: {LOGO_HEIGHT_DEFAULT_MM} mm. Beim Standard-Logo „logo-bs-wide“ (Verhältnis ≈ 8.65:1) ergibt 6 mm ≈ 52 mm Breite.
+              </p>
+            </div>
+
+            {/* Logo-Quelle: eigenes Logo hochladen / Standard BS / kein Logo */}
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">Logo</label>
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="flex items-center justify-center h-12 w-28 rounded-lg border border-gray-200 bg-gray-50 overflow-hidden shrink-0">
+                  {config.settings.logoUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={config.settings.logoUrl} alt="Logo" className="max-h-10 max-w-[100px] object-contain" />
+                  ) : (
+                    <span className="text-xs text-gray-400">kein Logo</span>
+                  )}
+                </div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => logoInputRef.current?.click()}
+                    disabled={uploadingLogo}
+                    className="flex items-center gap-1.5 text-xs font-medium text-gray-700 hover:text-bs-accent px-3 py-2 border border-gray-200 rounded-lg transition-colors disabled:opacity-50"
+                  >
+                    {uploadingLogo ? <Loader2 size={14} className="animate-spin" /> : <Upload size={14} />}
+                    Logo hochladen
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLogo(DEFAULT_LOGO_URL)}
+                    className="text-xs font-medium text-gray-500 hover:text-gray-800 px-3 py-2 border border-gray-200 rounded-lg transition-colors"
+                  >
+                    Standard (BS)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLogo("")}
+                    className="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-red-500 px-3 py-2 border border-gray-200 rounded-lg transition-colors"
+                  >
+                    <Trash2 size={14} /> Kein Logo
+                  </button>
+                </div>
+                <input
+                  ref={logoInputRef}
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp,image/svg+xml"
+                  onChange={(e) => handleLogoUpload(e.target.files?.[0])}
+                  className="hidden"
+                />
+              </div>
+              {logoError && <p className="text-xs text-red-500 mt-1">{logoError}</p>}
+              <p className="text-xs text-gray-400 mt-1">
+                PNG, JPEG, WebP oder SVG · max. 4 MB. Höhe über den Regler „Logo-Höhe“, Breite automatisch.
               </p>
             </div>
 
