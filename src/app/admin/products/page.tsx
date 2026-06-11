@@ -30,6 +30,7 @@ export default function ProductsAdmin() {
   const [search, setSearch] = useState("");
   const [catFilter, setCatFilter] = useState("");
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [deletingAll, setDeletingAll] = useState(false);
   const [editingStock, setEditingStock] = useState<string | null>(null);
   const [stockInputs, setStockInputs] = useState<Record<string, string>>({});
   const [savingStock, setSavingStock] = useState(false);
@@ -64,6 +65,22 @@ export default function ProductsAdmin() {
     });
     setProducts((prev) => prev.filter((p) => p.slug !== slug));
     setDeleting(null);
+  };
+
+  // Masowe usunięcie wszystkich produktów — nadpisuje store pustą listą.
+  // Nieodwracalne: czyści produkty również w produkcyjnym Redisie.
+  const handleDeleteAll = async () => {
+    if (products.length === 0) return;
+    if (!confirm(`Wirklich ALLE ${products.length} Produkte unwiderruflich löschen?`)) return;
+    if (!confirm("Letzte Bestätigung: Alle Produkte werden gelöscht. Fortfahren?")) return;
+    setDeletingAll(true);
+    await fetch("/api/admin/products", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify([]),
+    });
+    setProducts([]);
+    setDeletingAll(false);
   };
 
   const openStockEditor = (slug: string, sizes: string[]) => {
@@ -114,13 +131,25 @@ export default function ProductsAdmin() {
           </h1>
           <p className="mt-1 text-sm text-gray-500">Produkte und Lagerbestand verwalten</p>
         </div>
-        <Link
-          href="/admin/products/new"
-          className="flex items-center gap-2 bg-bs-accent hover:bg-bs-accent-dark text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
-        >
-          <Plus size={16} />
-          Neues Produkt
-        </Link>
+        <div className="flex items-center gap-2">
+          {products.length > 0 && (
+            <button
+              onClick={handleDeleteAll}
+              disabled={deletingAll}
+              className="flex items-center gap-2 border border-red-200 text-red-600 hover:bg-red-50 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
+            >
+              {deletingAll ? <Loader2 size={16} className="animate-spin" /> : <Trash2 size={16} />}
+              Alle löschen
+            </button>
+          )}
+          <Link
+            href="/admin/products/new"
+            className="flex items-center gap-2 bg-bs-accent hover:bg-bs-accent-dark text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors"
+          >
+            <Plus size={16} />
+            Neues Produkt
+          </Link>
+        </div>
       </div>
 
       {/* Filters */}
