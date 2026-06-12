@@ -330,7 +330,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </aside>
 
           {/* Main */}
-          <main className={`flex-1 overflow-auto pt-14 lg:pt-0 ${isChat ? "h-full" : ""}`}>
+          {/* Chat: stała wysokość + własny scroll. Pozostałe strony: bez overflow-auto,
+              żeby przewijało się okno — to warunek działania sticky (np. podgląd wizytówki). */}
+          <main className={`flex-1 pt-14 lg:pt-0 ${isChat ? "h-full overflow-auto" : ""}`}>
             <div className={isChat ? "h-full" : "p-4 sm:p-6 lg:p-8"}>{children}</div>
           </main>
         </div>
