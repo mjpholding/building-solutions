@@ -119,6 +119,17 @@ function buildElementStyles(fontFamily: FontFamilyOption = "Inter", scale = 1): 
   };
 }
 
+// Dowolny wiersz tekstu na karcie (free-form): treść + własna typografia + kolor marki.
+interface TextLine {
+  id: string;
+  text: string;
+  style: TextStyle;
+  color: "navy" | "teal";
+}
+
+// Domyślny styl nowego wiersza.
+const DEFAULT_LINE_STYLE: TextStyle = { fontFamily: "Inter", sizePt: 8, bold: false, italic: false };
+
 // ── Typy ────────────────────────────────────────────────────────────────
 interface Location {
   label: string;       // np. "Hauptsitz Kerpen" / "Standort Lübbecke"
@@ -141,6 +152,8 @@ interface CardPerson {
   mobile: string;      // dla person = M: (Mobil); dla company = F: (Fax)
   email: string;       // E:
   primaryLocationIdx: number; // ignorowane gdy kind === "company" (oba adresy pełne)
+  // Dowolne dodatkowe wiersze tekstu (free-form), osobno dla każdej karty.
+  customLines?: TextLine[];
 }
 
 interface CardSettings {
@@ -156,6 +169,11 @@ interface CardSettings {
   marginRightMm: number;   // 0–15, krok 0.1
   marginBottomMm: number;  // 0–15, krok 0.1
   marginLeftMm: number;    // 0–15, krok 0.1
+  // Odstępy między akapitami (mm) — osobno dla każdego przejścia.
+  gapNameRoleMm: number;     // Name → Position
+  gapHeadContactMm: number;  // Kopf → Kontakt (dawniej stałe HEAD_TO_CONTACT_GAP_MM)
+  gapContactLinesMm: number; // Kontakt → eigene Zeilen
+  gapBetweenLinesMm: number; // między kolejnymi własnymi wierszami
   lineHeightScale: number; // 0.8–2.0, krok 0.05 (mnożnik domyślnych line-height)
   fontScale: number;       // (legacy) mnożnik bazowych pt — zachowane do migracji do elementStyles
   logoHeightMm: number;    // 3–25, krok 0.5 (wysokość logo w mm)
@@ -174,6 +192,10 @@ const TYPO_DEFAULTS = {
   marginRightMm: 6,
   marginBottomMm: 5,
   marginLeftMm: 6,
+  gapNameRoleMm: 0.5,
+  gapHeadContactMm: HEAD_TO_CONTACT_GAP_MM,
+  gapContactLinesMm: 2,
+  gapBetweenLinesMm: 1,
   lineHeightScale: 1,
   fontScale: 1,
   logoHeightMm: LOGO_HEIGHT_DEFAULT_MM,
@@ -250,6 +272,10 @@ function emptyPerson(): CardPerson {
   return { id: uid(), kind: "person", name: "", role: "", phone: "", mobile: "", email: "", primaryLocationIdx: 0 };
 }
 
+function emptyTextLine(): TextLine {
+  return { id: uid(), text: "", style: { ...DEFAULT_LINE_STYLE }, color: "navy" };
+}
+
 function emptyCompany(): CardPerson {
   return {
     id: uid(),
@@ -300,6 +326,16 @@ function BusinessCard({
   });
   const contactLabelWeight = es.contact.bold ? 700 : 500;
 
+  // Styl CSS pojedynczego własnego wiersza (free-form): czcionka/rozmiar/styl + kolor marki.
+  const lineStyle = (line: TextLine): CSSProperties => ({
+    fontFamily: fontStack(line.style.fontFamily),
+    fontSize: `${line.style.sizePt}pt`,
+    fontWeight: line.style.bold ? 700 : 400,
+    fontStyle: line.style.italic ? "italic" : "normal",
+    color: line.color === "teal" ? COLOR_TEAL : COLOR_NAVY,
+  });
+  const customLines = person.customLines ?? [];
+
   return (
     <div
       data-bs-card
@@ -343,11 +379,11 @@ function BusinessCard({
       )}
 
       {/* Główka karty: person → imię + stanowisko, company → firma + tagline */}
-      <div style={{ marginBottom: "2mm" }}>
+      <div>
         <div style={{ ...styleFor("name", 500), lineHeight: lhName, letterSpacing: "0.01em" }}>
           {person.name || (isCompany ? "Firmenname" : "Vor- Nachname")}
         </div>
-        <div style={{ ...styleFor("role", 400), color: COLOR_TEAL, marginTop: "0.5mm" }}>
+        <div style={{ ...styleFor("role", 400), color: COLOR_TEAL, marginTop: `${settings.gapNameRoleMm}mm` }}>
           {person.role || (isCompany ? "Slogan" : "Position")}
         </div>
       </div>
@@ -355,7 +391,7 @@ function BusinessCard({
       {/* Kontakt: person → T/M/E, company → T/F/E */}
       <div
         style={{
-          marginTop: `${HEAD_TO_CONTACT_GAP_MM}mm`,
+          marginTop: `${settings.gapHeadContactMm}mm`,
           ...styleFor("contact", 400),
           lineHeight: lhContact,
           display: "grid",
@@ -384,6 +420,20 @@ function BusinessCard({
           </>
         )}
       </div>
+
+      {/* Dowolne wiersze tekstu (free-form) — w przepływie pod kontaktem, nad adresem. */}
+      {customLines.length > 0 && (
+        <div style={{ marginTop: `${settings.gapContactLinesMm}mm`, lineHeight: lhContact }}>
+          {customLines.map((line, i) => (
+            <div
+              key={line.id}
+              style={{ ...lineStyle(line), marginTop: i === 0 ? 0 : `${settings.gapBetweenLinesMm}mm` }}
+            >
+              {line.text}
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Adresy: locations[0] zawsze po lewej, locations[1] zawsze po prawej.
           Wzorzec wg „BS_Visitenkarten_06_RZ (Allgemein).pdf":
@@ -548,6 +598,47 @@ export default function BusinessCardsPage() {
     }));
   };
 
+  // ── Własne wiersze tekstu (per karta) ─────────────────────────────────
+  const addLine = (personId: string) => {
+    setConfig((c) => ({
+      ...c,
+      persons: c.persons.map((p) =>
+        p.id === personId ? { ...p, customLines: [...(p.customLines ?? []), emptyTextLine()] } : p
+      ),
+    }));
+  };
+
+  const removeLine = (personId: string, lineId: string) => {
+    setConfig((c) => ({
+      ...c,
+      persons: c.persons.map((p) =>
+        p.id === personId ? { ...p, customLines: (p.customLines ?? []).filter((l) => l.id !== lineId) } : p
+      ),
+    }));
+  };
+
+  const updateLine = (personId: string, lineId: string, field: "text" | "color", value: string) => {
+    setConfig((c) => ({
+      ...c,
+      persons: c.persons.map((p) =>
+        p.id === personId
+          ? { ...p, customLines: (p.customLines ?? []).map((l) => (l.id === lineId ? { ...l, [field]: value } : l)) }
+          : p
+      ),
+    }));
+  };
+
+  const updateLineStyle = <K extends keyof TextStyle>(personId: string, lineId: string, field: K, value: TextStyle[K]) => {
+    setConfig((c) => ({
+      ...c,
+      persons: c.persons.map((p) =>
+        p.id === personId
+          ? { ...p, customLines: (p.customLines ?? []).map((l) => (l.id === lineId ? { ...l, style: { ...l.style, [field]: value } } : l)) }
+          : p
+      ),
+    }));
+  };
+
   // ── Logo: upload własnego / reset do BS / usunięcie ───────────────────
   const handleLogoUpload = async (file: File | undefined) => {
     if (!file) return;
@@ -662,6 +753,17 @@ export default function BusinessCardsPage() {
               ${loc.zipCity ? `<div class="teal">${escape(loc.zipCity)}</div>` : ""}
             </div>`;
         };
+        // Własne wiersze (free-form) — inline-style, bo każdy ma własną czcionkę/rozmiar/styl/kolor.
+        const renderLines = (lines: TextLine[] | undefined) =>
+          (lines ?? [])
+            .map((l, i) => {
+              const fw = l.style.bold ? 700 : 400;
+              const fst = l.style.italic ? "italic" : "normal";
+              const col = l.color === "teal" ? COLOR_TEAL : COLOR_NAVY;
+              const mt = i === 0 ? "" : `margin-top:${s.gapBetweenLinesMm}mm;`;
+              return `<div style="font-family:${fontStack(l.style.fontFamily)};font-size:${l.style.sizePt}pt;font-weight:${fw};font-style:${fst};color:${col};${mt}">${escape(l.text)}</div>`;
+            })
+            .join("");
         const lblPhone = "T";
         const lblMobile = isCompany ? "F" : "M";
         const lblEmail = "E";
@@ -691,6 +793,7 @@ export default function BusinessCardsPage() {
               ${p.mobile ? `<span class="lbl">${lblMobile}:</span><span>${escape(p.mobile)}</span>` : ""}
               ${p.email ? `<span class="lbl">${lblEmail}:</span><span>${escape(p.email)}</span>` : ""}
             </div>
+            ${(p.customLines && p.customLines.length) ? `<div class="lines">${renderLines(p.customLines)}</div>` : ""}
             <div class="addr">
               ${renderLoc(left, "addr1")}
               ${renderLoc(right, "addr2")}
@@ -740,11 +843,12 @@ export default function BusinessCardsPage() {
     .mark-h { height: 0.15mm; }
     .mark-v { width: 0.15mm; }
     .logo { position: absolute; top: ${s.logoTopMm}mm; right: ${s.logoRightMm}mm; height: ${s.logoHeightMm}mm; width: auto; }
-    .head { margin-bottom: 2mm; }
+    .head { margin-bottom: 0; }
     .name { ${cssFont("name", 500)} line-height: ${lhName}; letter-spacing: 0.01em; }
-    .role { ${cssFont("role", 400)} color: ${COLOR_TEAL}; margin-top: 0.5mm; }
-    .contact { margin-top: ${HEAD_TO_CONTACT_GAP_MM}mm; ${cssFont("contact", 400)} line-height: ${lhContact}; display: grid; grid-template-columns: auto 1fr; column-gap: 2mm; row-gap: 0.3mm; max-width: 60%; }
+    .role { ${cssFont("role", 400)} color: ${COLOR_TEAL}; margin-top: ${s.gapNameRoleMm}mm; }
+    .contact { margin-top: ${s.gapHeadContactMm}mm; ${cssFont("contact", 400)} line-height: ${lhContact}; display: grid; grid-template-columns: auto 1fr; column-gap: 2mm; row-gap: 0.3mm; max-width: 60%; }
     .contact .lbl { color: ${COLOR_TEAL}; font-weight: ${es.contact.bold ? 700 : 500}; }
+    .lines { margin-top: ${s.gapContactLinesMm}mm; line-height: ${lhContact}; }
     .addr { position: absolute; bottom: ${s.marginBottomMm}mm; left: ${s.marginLeftMm}mm; right: ${s.marginRightMm}mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 3mm; line-height: ${lhAddress}; }
     .addr1 { ${cssFont("address1", 400)} }
     .addr2 { ${cssFont("address2", 400)} }
@@ -939,6 +1043,35 @@ export default function BusinessCardsPage() {
               />
               <p className="text-xs text-gray-400 mt-1">
                 Basis: Name {BASE_LH.name} · Kontakt {BASE_LH.contact} · Adresse {BASE_LH.address}
+              </p>
+            </div>
+
+            {/* Absatzabstände — odstępy między blokami (mm), osobno per przejście */}
+            <div>
+              <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Absatzabstände (mm)</p>
+              <div className="grid grid-cols-4 gap-3">
+                {([
+                  ["gapNameRoleMm", "Name→Pos."],
+                  ["gapHeadContactMm", "Kopf→Kont."],
+                  ["gapContactLinesMm", "→ Zeilen"],
+                  ["gapBetweenLinesMm", "Zeilen"],
+                ] as const).map(([key, label]) => (
+                  <div key={key}>
+                    <label className="block text-xs font-medium text-gray-600 mb-1">{label}</label>
+                    <input
+                      type="number"
+                      step="0.5"
+                      min={0}
+                      max={30}
+                      value={config.settings[key]}
+                      onChange={(e) => setConfig({ ...config, settings: { ...config.settings, [key]: Number(e.target.value) } })}
+                      className={inputClass}
+                    />
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-gray-400 mt-1">
+                Abstände zwischen den Blöcken. „→ Zeilen“ und „Zeilen“ wirken nur bei eigenen Zeilen.
               </p>
             </div>
 
@@ -1188,6 +1321,90 @@ export default function BusinessCardsPage() {
                   <input value={person.email} onChange={(e) => updatePerson(person.id, "email", e.target.value)} className={inputClass} />
                 </div>
               </div>
+              {/* Eigene Zeilen (free-form) — beliebige Textzeilen mit eigenem Stil */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="block text-sm font-medium text-gray-600">Eigene Zeilen</label>
+                  <button
+                    type="button"
+                    onClick={() => addLine(person.id)}
+                    className="flex items-center gap-1 text-xs font-medium text-gray-600 hover:text-bs-accent px-2 py-1 border border-gray-200 rounded-lg transition-colors"
+                  >
+                    <Plus size={13} /> Zeile
+                  </button>
+                </div>
+                {(person.customLines ?? []).length > 0 && (
+                  <div className="space-y-2">
+                    {(person.customLines ?? []).map((line) => (
+                      <div key={line.id} className="flex items-center gap-1.5">
+                        <input
+                          value={line.text}
+                          onChange={(e) => updateLine(person.id, line.id, "text", e.target.value)}
+                          placeholder="Text…"
+                          className="flex-1 min-w-0 px-2 py-1.5 rounded-lg border border-gray-200 text-xs outline-none focus:border-bs-accent500"
+                        />
+                        <select
+                          value={line.style.fontFamily}
+                          onChange={(e) => updateLineStyle(person.id, line.id, "fontFamily", e.target.value as FontFamilyOption)}
+                          className="w-20 px-1.5 py-1.5 rounded-lg border border-gray-200 text-xs outline-none focus:border-bs-accent500"
+                          style={{ fontFamily: fontStack(line.style.fontFamily) }}
+                          title="Schriftart"
+                        >
+                          {FONT_OPTIONS.map((opt) => (
+                            <option key={opt.value} value={opt.value} style={{ fontFamily: fontStack(opt.value) }}>{opt.label}</option>
+                          ))}
+                        </select>
+                        <input
+                          type="number"
+                          step="0.5"
+                          min={4}
+                          max={40}
+                          value={line.style.sizePt}
+                          onChange={(e) => updateLineStyle(person.id, line.id, "sizePt", Number(e.target.value))}
+                          className="w-14 px-1.5 py-1.5 rounded-lg border border-gray-200 text-xs text-center outline-none focus:border-bs-accent500"
+                          title="Größe in pt"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => updateLineStyle(person.id, line.id, "bold", !line.style.bold)}
+                          className={`w-7 h-7 rounded-lg border text-xs font-bold shrink-0 transition-colors ${line.style.bold ? "bg-gray-900 text-white border-gray-900" : "border-gray-200 text-gray-600 hover:bg-gray-50"}`}
+                          title="Fett"
+                        >
+                          B
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => updateLineStyle(person.id, line.id, "italic", !line.style.italic)}
+                          className={`w-7 h-7 rounded-lg border text-xs italic shrink-0 transition-colors ${line.style.italic ? "bg-gray-900 text-white border-gray-900" : "border-gray-200 text-gray-600 hover:bg-gray-50"}`}
+                          title="Kursiv"
+                        >
+                          I
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => updateLine(person.id, line.id, "color", line.color === "teal" ? "navy" : "teal")}
+                          className="w-7 h-7 rounded-lg border border-gray-200 shrink-0 flex items-center justify-center hover:bg-gray-50"
+                          title="Farbe (Navy / Türkis)"
+                        >
+                          <span className="w-3.5 h-3.5 rounded-full" style={{ background: line.color === "teal" ? COLOR_TEAL : COLOR_NAVY }} />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => removeLine(person.id, line.id)}
+                          className="text-gray-400 hover:text-red-500 transition-colors p-1 shrink-0"
+                          title="Zeile löschen"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <p className="text-xs text-gray-400 mt-1">
+                  Beliebige Zeilen unter dem Kontaktblock. Schriftart, Größe, Fett/Kursiv und Farbe (Navy/Türkis) je Zeile. Abstände unter „Absatzabstände“.
+                </p>
+              </div>
+
               <p className="text-xs text-gray-400">
                 Beide Standorte werden mit vollständiger Adresse (Bezeichnung + Straße + PLZ) im Adressblock angezeigt — entsprechend dem BS-Standardlayout.
               </p>
