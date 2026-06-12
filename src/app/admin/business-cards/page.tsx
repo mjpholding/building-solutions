@@ -453,14 +453,16 @@ function BusinessCard({
       >
         {left && (
           <div style={styleFor("address1", 400)}>
-            <div style={{ fontWeight: es.address1.bold ? 700 : 500 }}>{left.label}</div>
+            {left.company && <div style={{ fontWeight: es.address1.bold ? 700 : 500 }}>{left.company}</div>}
+            {left.label && <div style={{ color: COLOR_TEAL }}>{left.label}</div>}
             {left.street && <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{left.street}</div>}
             {left.zipCity && <div style={{ color: COLOR_TEAL }}>{left.zipCity}</div>}
           </div>
         )}
         {right && (
           <div style={styleFor("address2", 400)}>
-            <div style={{ fontWeight: es.address2.bold ? 700 : 500 }}>{right.label}</div>
+            {right.company && <div style={{ fontWeight: es.address2.bold ? 700 : 500 }}>{right.company}</div>}
+            {right.label && <div style={{ color: COLOR_TEAL }}>{right.label}</div>}
             {right.street && <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{right.street}</div>}
             {right.zipCity && <div style={{ color: COLOR_TEAL }}>{right.zipCity}</div>}
           </div>
@@ -748,8 +750,9 @@ export default function BusinessCardsPage() {
           if (!loc) return "";
           return `
             <div class="${cls}">
-              <div class="bold">${escape(loc.label)}</div>
-              ${loc.street ? `<div class="teal">${escape(loc.street)}</div>` : ""}
+              ${loc.company ? `<div class="bold">${escape(loc.company)}</div>` : ""}
+              ${loc.label ? `<div class="teal">${escape(loc.label)}</div>` : ""}
+              ${loc.street ? `<div class="teal" style="margin-top:0.5mm">${escape(loc.street)}</div>` : ""}
               ${loc.zipCity ? `<div class="teal">${escape(loc.zipCity)}</div>` : ""}
             </div>`;
         };
@@ -924,9 +927,12 @@ export default function BusinessCardsPage() {
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
         {/* ── Lewa kolumna: formularze ─────────────────────────────────── */}
-        <div className="space-y-6">
+        {/* flex + order-*: kolejność wizualna od góry to Mitarbeiter (order-1) →
+            Standorte (order-2) → Format (order-3) → Typografie (order-4),
+            bez przenoszenia bloków JSX. */}
+        <div className="flex flex-col gap-6">
           {/* Ustawienia karty */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
+          <div className="order-3 bg-white rounded-xl border border-gray-200 p-6 space-y-4">
             <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">Format</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
@@ -989,7 +995,7 @@ export default function BusinessCardsPage() {
           </div>
 
           {/* Typografie & Ränder */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
+          <div className="order-4 bg-white rounded-xl border border-gray-200 p-6 space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">Typografie &amp; Ränder</h2>
               <button
@@ -1234,7 +1240,7 @@ export default function BusinessCardsPage() {
 
           {/* Lokalizacje firmy */}
           {config.locations.map((loc, idx) => (
-            <div key={idx} className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
+            <div key={idx} className="order-2 bg-white rounded-xl border border-gray-200 p-6 space-y-4">
               <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">Standort {idx + 1}</h2>
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -1267,7 +1273,7 @@ export default function BusinessCardsPage() {
             const kind: CardKind = person.kind || "person";
             const isCompany = kind === "company";
             return (
-            <div key={person.id} className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
+            <div key={person.id} className="order-1 bg-white rounded-xl border border-gray-200 p-6 space-y-4">
               <div className="flex items-center justify-between">
                 <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
                   {isCompany ? "Allgemeine Karte" : "Mitarbeiter"} {config.persons.length > 1 ? `#${i + 1}` : ""}
@@ -1406,13 +1412,13 @@ export default function BusinessCardsPage() {
               </div>
 
               <p className="text-xs text-gray-400">
-                Beide Standorte werden mit vollständiger Adresse (Bezeichnung + Straße + PLZ) im Adressblock angezeigt — entsprechend dem BS-Standardlayout.
+                Beide Standorte erscheinen im Adressblock: Firmenname (fett), darunter die Bezeichnung (falls ausgefüllt), dann Straße und PLZ. Standort 1 links, Standort 2 rechts.
               </p>
             </div>
           );
           })}
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="order-1 grid grid-cols-2 gap-3">
             <button
               onClick={addPerson}
               className="flex items-center justify-center gap-2 bg-gray-50 hover:bg-gray-100 text-gray-600 py-3 rounded-xl text-sm font-medium transition-colors border border-dashed border-gray-300"
