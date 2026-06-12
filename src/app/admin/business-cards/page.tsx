@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, type CSSProperties } from "react";
 import { Printer, Plus, Trash2, Save, Loader2, Image as ImageIcon, FileText, Upload } from "lucide-react";
 import { toPng } from "html-to-image";
 
@@ -21,7 +21,7 @@ const LOGO_HEIGHT_DEFAULT_MM = 6;
 // Dystans między blokiem „imię/firma + stanowisko/slogan" a blokiem T/M/E.
 const HEAD_TO_CONTACT_GAP_MM = 6;
 
-// Bazowe wielkości fontu (pt) — przemnażane przez settings.fontScale.
+// Bazowe wielkości fontu (pt) — domyślne rozmiary per element (settings.elementStyles).
 const BASE_PT = { name: 11, role: 9.5, contact: 8, address: 7.5 };
 
 // Bazowe line-height — przemnażane przez settings.lineHeightScale.
@@ -78,6 +78,47 @@ function fontStack(name: FontFamilyOption): string {
   return `'${name}', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif`;
 }
 
+// ── Typografia per element (styl jak w edytorze tekstu) ─────────────────
+// Każdy element tekstowy karty ma własną czcionkę, rozmiar (pt), pogrubienie i kursywę.
+type CardTextElement = "name" | "role" | "contact" | "address1" | "address2";
+
+interface TextStyle {
+  fontFamily: FontFamilyOption;
+  sizePt: number;
+  bold: boolean;
+  italic: boolean;
+}
+
+type ElementStyles = Record<CardTextElement, TextStyle>;
+
+// Definicje elementów: etykieta w UI + bazowy rozmiar pt (jak w dotychczasowym layoucie BS).
+const ELEMENT_DEFS: { key: CardTextElement; label: string }[] = [
+  { key: "name", label: "Name / Firma" },
+  { key: "role", label: "Position / Slogan" },
+  { key: "contact", label: "Kontakt (T/M/E)" },
+  { key: "address1", label: "Standort 1 (Adresse)" },
+  { key: "address2", label: "Standort 2 (Adresse)" },
+];
+
+// Buduje style elementów z (opcjonalnej) globalnej czcionki i skali. Służy jako domyślne
+// oraz do migracji starszych zapisów (które miały tylko globalne fontFamily + fontScale),
+// tak by karta wyglądała po aktualizacji identycznie.
+function buildElementStyles(fontFamily: FontFamilyOption = "Inter", scale = 1): ElementStyles {
+  const mk = (basePt: number): TextStyle => ({
+    fontFamily,
+    sizePt: Math.round(basePt * scale * 10) / 10,
+    bold: false,
+    italic: false,
+  });
+  return {
+    name: mk(BASE_PT.name),
+    role: mk(BASE_PT.role),
+    contact: mk(BASE_PT.contact),
+    address1: mk(BASE_PT.address),
+    address2: mk(BASE_PT.address),
+  };
+}
+
 // ── Typy ────────────────────────────────────────────────────────────────
 interface Location {
   label: string;       // np. "Hauptsitz Kerpen" / "Standort Lübbecke"
@@ -116,9 +157,14 @@ interface CardSettings {
   marginBottomMm: number;  // 0–15, krok 0.1
   marginLeftMm: number;    // 0–15, krok 0.1
   lineHeightScale: number; // 0.8–2.0, krok 0.05 (mnożnik domyślnych line-height)
-  fontScale: number;       // 0.7–1.5, krok 0.05 (mnożnik bazowych pt)
-  logoHeightMm: number;    // 3–14, krok 0.5 (wysokość logo w mm)
-  fontFamily: FontFamilyOption;
+  fontScale: number;       // (legacy) mnożnik bazowych pt — zachowane do migracji do elementStyles
+  logoHeightMm: number;    // 3–25, krok 0.5 (wysokość logo w mm)
+  // Pozycja logo (mm): góra-dół i prawy margines. Dawniej stałe LOGO_TOP_MM / LOGO_RIGHT_MM.
+  logoTopMm: number;
+  logoRightMm: number;
+  fontFamily: FontFamilyOption; // (legacy) globalna czcionka — zachowane do migracji
+  // Per-element typografia (czcionka/rozmiar/pogrubienie/kursywa) — niezależnie dla każdego elementu.
+  elementStyles: ElementStyles;
   // Źródło logo: domyślne BS (DEFAULT_LOGO_URL), URL własnego uploadu, albo "" = bez logo.
   logoUrl: string;
 }
@@ -131,7 +177,10 @@ const TYPO_DEFAULTS = {
   lineHeightScale: 1,
   fontScale: 1,
   logoHeightMm: LOGO_HEIGHT_DEFAULT_MM,
+  logoTopMm: LOGO_TOP_MM,
+  logoRightMm: LOGO_RIGHT_MM,
   fontFamily: "Inter" as FontFamilyOption,
+  elementStyles: buildElementStyles("Inter", 1),
 };
 
 interface BusinessCardsConfig {
@@ -235,16 +284,21 @@ function BusinessCard({
     ? { phone: "T", mobile: "F", email: "E" }
     : { phone: "T", mobile: "M", email: "E" };
 
-  // Wyliczone wartości typograficzne (z mnożników w settings).
-  const fs = settings.fontScale;
+  // Interlinia nadal globalna (mnożnik); rozmiary, czcionki i styl — per element.
   const lh = settings.lineHeightScale;
-  const ptName = (BASE_PT.name * fs).toFixed(2);
-  const ptRole = (BASE_PT.role * fs).toFixed(2);
-  const ptContact = (BASE_PT.contact * fs).toFixed(2);
-  const ptAddress = (BASE_PT.address * fs).toFixed(2);
   const lhName = (BASE_LH.name * lh).toFixed(2);
   const lhContact = (BASE_LH.contact * lh).toFixed(2);
   const lhAddress = (BASE_LH.address * lh).toFixed(2);
+
+  // Styl CSS danego elementu tekstu: czcionka + rozmiar + kursywa; waga: bold→700, inaczej baza.
+  const es = settings.elementStyles;
+  const styleFor = (el: CardTextElement, baseWeight: number): CSSProperties => ({
+    fontFamily: fontStack(es[el].fontFamily),
+    fontSize: `${es[el].sizePt}pt`,
+    fontWeight: es[el].bold ? 700 : baseWeight,
+    fontStyle: es[el].italic ? "italic" : "normal",
+  });
+  const contactLabelWeight = es.contact.bold ? 700 : 500;
 
   return (
     <div
@@ -262,7 +316,7 @@ function BusinessCard({
         paddingLeft: `${settings.marginLeftMm}mm`,
         position: "relative",
         overflow: "hidden",
-        fontFamily: fontStack(settings.fontFamily),
+        fontFamily: fontStack(es.name.fontFamily),
         color: COLOR_NAVY,
         boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
         boxSizing: "border-box",
@@ -279,8 +333,8 @@ function BusinessCard({
             crossOrigin="anonymous"
             style={{
               position: "absolute",
-              top: `${LOGO_TOP_MM}mm`,
-              right: `${LOGO_RIGHT_MM}mm`,
+              top: `${settings.logoTopMm}mm`,
+              right: `${settings.logoRightMm}mm`,
               height: `${settings.logoHeightMm}mm`,
               width: "auto",
             }}
@@ -290,10 +344,10 @@ function BusinessCard({
 
       {/* Główka karty: person → imię + stanowisko, company → firma + tagline */}
       <div style={{ marginBottom: "2mm" }}>
-        <div style={{ fontSize: `${ptName}pt`, fontWeight: 500, lineHeight: lhName, letterSpacing: "0.01em" }}>
+        <div style={{ ...styleFor("name", 500), lineHeight: lhName, letterSpacing: "0.01em" }}>
           {person.name || (isCompany ? "Firmenname" : "Vor- Nachname")}
         </div>
-        <div style={{ fontSize: `${ptRole}pt`, color: COLOR_TEAL, fontWeight: 400, marginTop: "0.5mm" }}>
+        <div style={{ ...styleFor("role", 400), color: COLOR_TEAL, marginTop: "0.5mm" }}>
           {person.role || (isCompany ? "Slogan" : "Position")}
         </div>
       </div>
@@ -302,7 +356,7 @@ function BusinessCard({
       <div
         style={{
           marginTop: `${HEAD_TO_CONTACT_GAP_MM}mm`,
-          fontSize: `${ptContact}pt`,
+          ...styleFor("contact", 400),
           lineHeight: lhContact,
           display: "grid",
           gridTemplateColumns: "auto 1fr",
@@ -313,19 +367,19 @@ function BusinessCard({
       >
         {person.phone && (
           <>
-            <span style={{ color: COLOR_TEAL, fontWeight: 500 }}>{labels.phone}:</span>
+            <span style={{ color: COLOR_TEAL, fontWeight: contactLabelWeight }}>{labels.phone}:</span>
             <span>{person.phone}</span>
           </>
         )}
         {person.mobile && (
           <>
-            <span style={{ color: COLOR_TEAL, fontWeight: 500 }}>{labels.mobile}:</span>
+            <span style={{ color: COLOR_TEAL, fontWeight: contactLabelWeight }}>{labels.mobile}:</span>
             <span>{person.mobile}</span>
           </>
         )}
         {person.email && (
           <>
-            <span style={{ color: COLOR_TEAL, fontWeight: 500 }}>{labels.email}:</span>
+            <span style={{ color: COLOR_TEAL, fontWeight: contactLabelWeight }}>{labels.email}:</span>
             <span>{person.email}</span>
           </>
         )}
@@ -344,20 +398,19 @@ function BusinessCard({
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           columnGap: "3mm",
-          fontSize: `${ptAddress}pt`,
           lineHeight: lhAddress,
         }}
       >
         {left && (
-          <div>
-            <div style={{ fontWeight: 500 }}>{left.label}</div>
+          <div style={styleFor("address1", 400)}>
+            <div style={{ fontWeight: es.address1.bold ? 700 : 500 }}>{left.label}</div>
             {left.street && <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{left.street}</div>}
             {left.zipCity && <div style={{ color: COLOR_TEAL }}>{left.zipCity}</div>}
           </div>
         )}
         {right && (
-          <div>
-            <div style={{ fontWeight: 500 }}>{right.label}</div>
+          <div style={styleFor("address2", 400)}>
+            <div style={{ fontWeight: es.address2.bold ? 700 : 500 }}>{right.label}</div>
             {right.street && <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{right.street}</div>}
             {right.zipCity && <div style={{ color: COLOR_TEAL }}>{right.zipCity}</div>}
           </div>
@@ -388,9 +441,15 @@ export default function BusinessCardsPage() {
         if (cancelled) return;
         if (data && Array.isArray(data.locations) && Array.isArray(data.persons)) {
           // Defensywnie scal z domyślnymi — starsze zapisy mogą nie mieć bleedMm/cutMarks.
+          const incoming = (data.settings || {}) as Partial<CardSettings>;
           const mergedSettings: CardSettings = {
             ...defaultConfig.settings,
-            ...(data.settings || {}),
+            ...incoming,
+            // Migracja: brak elementStyles → odtwórz z dawnej globalnej czcionki + skali (identyczny wygląd).
+            // Jeśli istnieją, dopełnij brakujące elementy domyślnymi.
+            elementStyles: incoming.elementStyles
+              ? { ...buildElementStyles("Inter", 1), ...incoming.elementStyles }
+              : buildElementStyles(incoming.fontFamily ?? "Inter", incoming.fontScale ?? 1),
           };
           setConfig({
             locations: data.locations,
@@ -525,6 +584,20 @@ export default function BusinessCardsPage() {
     setConfig((c) => ({ ...c, settings: { ...c.settings, logoUrl: url } }));
   };
 
+  // Zmiana pojedynczej właściwości stylu danego elementu tekstu (czcionka/rozmiar/bold/italic).
+  const updateElementStyle = <K extends keyof TextStyle>(el: CardTextElement, field: K, value: TextStyle[K]) => {
+    setConfig((c) => ({
+      ...c,
+      settings: {
+        ...c.settings,
+        elementStyles: {
+          ...c.settings.elementStyles,
+          [el]: { ...c.settings.elementStyles[el], [field]: value },
+        },
+      },
+    }));
+  };
+
   // ── Eksport PNG (pojedyncza karta — wybrana osoba) ────────────────────
   const exportPng = async (personId: string) => {
     const node = previewRefs.current.get(personId);
@@ -560,15 +633,14 @@ export default function BusinessCardsPage() {
     const datW = size.w + 2 * bleed; // Datenformat
     const datH = size.h + 2 * bleed;
     const showCutMarks = bleed > 0 && s.cutMarks;
-    const fs = s.fontScale;
     const lh = s.lineHeightScale;
-    const ptName = (BASE_PT.name * fs).toFixed(2);
-    const ptRole = (BASE_PT.role * fs).toFixed(2);
-    const ptContact = (BASE_PT.contact * fs).toFixed(2);
-    const ptAddress = (BASE_PT.address * fs).toFixed(2);
     const lhName = (BASE_LH.name * lh).toFixed(2);
     const lhContact = (BASE_LH.contact * lh).toFixed(2);
     const lhAddress = (BASE_LH.address * lh).toFixed(2);
+    // Per-element typografia — identyczna logika jak w podglądzie (czcionka/rozmiar/styl).
+    const es = s.elementStyles;
+    const cssFont = (el: CardTextElement, baseWeight: number) =>
+      `font-family: ${fontStack(es[el].fontFamily)}; font-size: ${es[el].sizePt}pt; font-weight: ${es[el].bold ? 700 : baseWeight}; font-style: ${es[el].italic ? "italic" : "normal"};`;
     const w = window.open("", "_blank");
     if (!w) return;
 
@@ -581,10 +653,10 @@ export default function BusinessCardsPage() {
         // Wzorzec PDF Allgemein: bez prefiksu z nazwą firmy, zawsze pełny adres.
         const left = config.locations[0];
         const right = config.locations[1];
-        const renderLoc = (loc: Location | undefined) => {
+        const renderLoc = (loc: Location | undefined, cls: string) => {
           if (!loc) return "";
           return `
-            <div>
+            <div class="${cls}">
               <div class="bold">${escape(loc.label)}</div>
               ${loc.street ? `<div class="teal">${escape(loc.street)}</div>` : ""}
               ${loc.zipCity ? `<div class="teal">${escape(loc.zipCity)}</div>` : ""}
@@ -620,8 +692,8 @@ export default function BusinessCardsPage() {
               ${p.email ? `<span class="lbl">${lblEmail}:</span><span>${escape(p.email)}</span>` : ""}
             </div>
             <div class="addr">
-              ${renderLoc(left)}
-              ${renderLoc(right)}
+              ${renderLoc(left, "addr1")}
+              ${renderLoc(right, "addr2")}
             </div>
           </div>
         </div>`;
@@ -643,7 +715,7 @@ export default function BusinessCardsPage() {
   <style>
     @page { size: A4; margin: 10mm; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: ${fontStack(s.fontFamily)}; color: ${COLOR_NAVY}; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { font-family: ${fontStack(es.name.fontFamily)}; color: ${COLOR_NAVY}; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
     .bleed {
       position: relative;
@@ -667,14 +739,17 @@ export default function BusinessCardsPage() {
     .mark { position: absolute; background: #000; }
     .mark-h { height: 0.15mm; }
     .mark-v { width: 0.15mm; }
-    .logo { position: absolute; top: ${LOGO_TOP_MM}mm; right: ${LOGO_RIGHT_MM}mm; height: ${s.logoHeightMm}mm; width: auto; }
+    .logo { position: absolute; top: ${s.logoTopMm}mm; right: ${s.logoRightMm}mm; height: ${s.logoHeightMm}mm; width: auto; }
     .head { margin-bottom: 2mm; }
-    .name { font-size: ${ptName}pt; font-weight: 500; line-height: ${lhName}; letter-spacing: 0.01em; }
-    .role { font-size: ${ptRole}pt; color: ${COLOR_TEAL}; margin-top: 0.5mm; }
-    .contact { margin-top: ${HEAD_TO_CONTACT_GAP_MM}mm; font-size: ${ptContact}pt; line-height: ${lhContact}; display: grid; grid-template-columns: auto 1fr; column-gap: 2mm; row-gap: 0.3mm; max-width: 60%; }
-    .contact .lbl { color: ${COLOR_TEAL}; font-weight: 500; }
-    .addr { position: absolute; bottom: ${s.marginBottomMm}mm; left: ${s.marginLeftMm}mm; right: ${s.marginRightMm}mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 3mm; font-size: ${ptAddress}pt; line-height: ${lhAddress}; }
-    .addr .bold { font-weight: 500; }
+    .name { ${cssFont("name", 500)} line-height: ${lhName}; letter-spacing: 0.01em; }
+    .role { ${cssFont("role", 400)} color: ${COLOR_TEAL}; margin-top: 0.5mm; }
+    .contact { margin-top: ${HEAD_TO_CONTACT_GAP_MM}mm; ${cssFont("contact", 400)} line-height: ${lhContact}; display: grid; grid-template-columns: auto 1fr; column-gap: 2mm; row-gap: 0.3mm; max-width: 60%; }
+    .contact .lbl { color: ${COLOR_TEAL}; font-weight: ${es.contact.bold ? 700 : 500}; }
+    .addr { position: absolute; bottom: ${s.marginBottomMm}mm; left: ${s.marginLeftMm}mm; right: ${s.marginRightMm}mm; display: grid; grid-template-columns: 1fr 1fr; column-gap: 3mm; line-height: ${lhAddress}; }
+    .addr1 { ${cssFont("address1", 400)} }
+    .addr2 { ${cssFont("address2", 400)} }
+    .addr1 .bold { font-weight: ${es.address1.bold ? 700 : 500}; }
+    .addr2 .bold { font-weight: ${es.address2.bold ? 700 : 500}; }
     .addr .teal { color: ${COLOR_TEAL}; }
     @media print { .card { border: none; } }
   </style>
@@ -848,45 +923,26 @@ export default function BusinessCardsPage() {
               </div>
             </div>
 
-            {/* Skale fontu i interlinii */}
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-600 mb-1">
-                  Schriftgröße — Skala ({Math.round(config.settings.fontScale * 100)}&nbsp;%)
-                </label>
-                <input
-                  type="range"
-                  step="0.05"
-                  min={0.7}
-                  max={1.5}
-                  value={config.settings.fontScale}
-                  onChange={(e) => setConfig({ ...config, settings: { ...config.settings, fontScale: Number(e.target.value) } })}
-                  className="w-full"
-                />
-                <p className="text-xs text-gray-400 mt-1">
-                  Basis: Name {BASE_PT.name} pt · Position {BASE_PT.role} pt · Kontakt {BASE_PT.contact} pt · Adresse {BASE_PT.address} pt
-                </p>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-600 mb-1">
-                  Zeilenabstand — Skala ({Math.round(config.settings.lineHeightScale * 100)}&nbsp;%)
-                </label>
-                <input
-                  type="range"
-                  step="0.05"
-                  min={0.8}
-                  max={2}
-                  value={config.settings.lineHeightScale}
-                  onChange={(e) => setConfig({ ...config, settings: { ...config.settings, lineHeightScale: Number(e.target.value) } })}
-                  className="w-full"
-                />
-                <p className="text-xs text-gray-400 mt-1">
-                  Basis: Name {BASE_LH.name} · Kontakt {BASE_LH.contact} · Adresse {BASE_LH.address}
-                </p>
-              </div>
+            {/* Zeilenabstand (global) — rozmiary czcionek są teraz per element */}
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-1">
+                Zeilenabstand — Skala ({Math.round(config.settings.lineHeightScale * 100)}&nbsp;%)
+              </label>
+              <input
+                type="range"
+                step="0.05"
+                min={0.8}
+                max={2}
+                value={config.settings.lineHeightScale}
+                onChange={(e) => setConfig({ ...config, settings: { ...config.settings, lineHeightScale: Number(e.target.value) } })}
+                className="w-full"
+              />
+              <p className="text-xs text-gray-400 mt-1">
+                Basis: Name {BASE_LH.name} · Kontakt {BASE_LH.contact} · Adresse {BASE_LH.address}
+              </p>
             </div>
 
-            {/* Wysokość logo */}
+            {/* Logo — Größe und Position (Höhe, oben-unten, links-rechts) */}
             <div>
               <label className="block text-sm font-medium text-gray-600 mb-1">
                 Logo-Höhe ({config.settings.logoHeightMm.toFixed(1)}&nbsp;mm)
@@ -895,13 +951,43 @@ export default function BusinessCardsPage() {
                 type="range"
                 step="0.5"
                 min={3}
-                max={14}
+                max={25}
                 value={config.settings.logoHeightMm}
                 onChange={(e) => setConfig({ ...config, settings: { ...config.settings, logoHeightMm: Number(e.target.value) } })}
                 className="w-full"
               />
+              <div className="grid grid-cols-2 gap-4 mt-3">
+                <div>
+                  <label className="block text-xs font-medium text-gray-600 mb-1">
+                    Position oben ({config.settings.logoTopMm.toFixed(1)}&nbsp;mm)
+                  </label>
+                  <input
+                    type="range"
+                    step="0.5"
+                    min={0}
+                    max={Math.max(1, SIZE_PRESETS[config.settings.size].h - 3)}
+                    value={config.settings.logoTopMm}
+                    onChange={(e) => setConfig({ ...config, settings: { ...config.settings, logoTopMm: Number(e.target.value) } })}
+                    className="w-full"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-600 mb-1">
+                    Position rechts ({config.settings.logoRightMm.toFixed(1)}&nbsp;mm)
+                  </label>
+                  <input
+                    type="range"
+                    step="0.5"
+                    min={0}
+                    max={Math.max(1, SIZE_PRESETS[config.settings.size].w - 5)}
+                    value={config.settings.logoRightMm}
+                    onChange={(e) => setConfig({ ...config, settings: { ...config.settings, logoRightMm: Number(e.target.value) } })}
+                    className="w-full"
+                  />
+                </div>
+              </div>
               <p className="text-xs text-gray-400 mt-1">
-                Standard: {LOGO_HEIGHT_DEFAULT_MM} mm. Beim Standard-Logo „logo-bs-wide“ (Verhältnis ≈ 8.65:1) ergibt 6 mm ≈ 52 mm Breite.
+                Höhe 3–25 mm. „Oben“ verschiebt das Logo nach unten, „Rechts“ vom rechten Rand weg. Standard: {LOGO_HEIGHT_DEFAULT_MM} mm / {LOGO_TOP_MM} mm / {LOGO_RIGHT_MM} mm.
               </p>
             </div>
 
@@ -956,23 +1042,59 @@ export default function BusinessCardsPage() {
               </p>
             </div>
 
-            {/* Font family */}
+            {/* Schrift pro Textelement — Schriftart, Größe (pt), Fett, Kursiv (wie im Editor) */}
             <div>
-              <label className="block text-sm font-medium text-gray-600 mb-1">Schriftart</label>
-              <select
-                value={config.settings.fontFamily}
-                onChange={(e) => setConfig({ ...config, settings: { ...config.settings, fontFamily: e.target.value as FontFamilyOption } })}
-                className={inputClass}
-                style={{ fontFamily: fontStack(config.settings.fontFamily) }}
-              >
-                {FONT_OPTIONS.map((opt) => (
-                  <option key={opt.value} value={opt.value} style={{ fontFamily: fontStack(opt.value) }}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
-              <p className="text-xs text-gray-400 mt-1">
-                Original-Brandfont (Moderat) ist kostenpflichtig. Hier nur kostenlose Google Fonts als Alternative.
+              <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">Schrift pro Element</p>
+              <div className="space-y-2">
+                {ELEMENT_DEFS.map(({ key, label }) => {
+                  const st = config.settings.elementStyles[key];
+                  return (
+                    <div key={key} className="flex items-center gap-2">
+                      <span className="text-xs text-gray-600 w-24 shrink-0">{label}</span>
+                      <select
+                        value={st.fontFamily}
+                        onChange={(e) => updateElementStyle(key, "fontFamily", e.target.value as FontFamilyOption)}
+                        className="flex-1 min-w-0 px-2 py-1.5 rounded-lg border border-gray-200 text-xs outline-none focus:border-bs-accent500"
+                        style={{ fontFamily: fontStack(st.fontFamily) }}
+                      >
+                        {FONT_OPTIONS.map((opt) => (
+                          <option key={opt.value} value={opt.value} style={{ fontFamily: fontStack(opt.value) }}>
+                            {opt.label}
+                          </option>
+                        ))}
+                      </select>
+                      <input
+                        type="number"
+                        step="0.5"
+                        min={4}
+                        max={40}
+                        value={st.sizePt}
+                        onChange={(e) => updateElementStyle(key, "sizePt", Number(e.target.value))}
+                        className="w-16 px-2 py-1.5 rounded-lg border border-gray-200 text-xs text-center outline-none focus:border-bs-accent500"
+                        title="Größe in pt"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => updateElementStyle(key, "bold", !st.bold)}
+                        className={`w-8 h-8 rounded-lg border text-xs font-bold transition-colors shrink-0 ${st.bold ? "bg-gray-900 text-white border-gray-900" : "border-gray-200 text-gray-600 hover:bg-gray-50"}`}
+                        title="Fett"
+                      >
+                        B
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => updateElementStyle(key, "italic", !st.italic)}
+                        className={`w-8 h-8 rounded-lg border text-xs italic transition-colors shrink-0 ${st.italic ? "bg-gray-900 text-white border-gray-900" : "border-gray-200 text-gray-600 hover:bg-gray-50"}`}
+                        title="Kursiv"
+                      >
+                        I
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="text-xs text-gray-400 mt-2">
+                Schriftart, Größe (pt) und Stil je Element frei wählbar — unabhängig voneinander. Markenfarben (Navy/Türkis) bleiben fest. Original-Brandfont (Moderat) ist kostenpflichtig; hier nur kostenlose Google Fonts.
               </p>
             </div>
           </div>
@@ -1092,7 +1214,11 @@ export default function BusinessCardsPage() {
         </div>
 
         {/* ── Prawa kolumna: podgląd ─────────────────────────────────── */}
-        <div className="space-y-6">
+        {/* Sticky na xl: podgląd edytowanej wizytówki zostaje widoczny mimo
+            zjeżdżania w dół po formularzu. self-start, by element nie rozciągał
+            się na całą wysokość siatki (warunek działania sticky); max-h +
+            overflow, by przy wielu kartach móc je przewinąć w przyklejonym panelu. */}
+        <div className="space-y-6 xl:sticky xl:top-6 xl:self-start xl:max-h-[calc(100vh-3rem)] xl:overflow-y-auto">
           <div className="bg-gray-900 rounded-xl border border-gray-800 p-6">
             <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4">
               Vorschau ({config.persons.length} {config.persons.length === 1 ? "Karte" : "Karten"} · {sizePx.w}×{sizePx.h} mm)
