@@ -454,7 +454,7 @@ function BusinessCard({
         {left && (
           <div style={styleFor("address1", 400)}>
             {left.company && <div style={{ fontWeight: es.address1.bold ? 700 : 500 }}>{left.company}</div>}
-            {left.label && <div style={{ color: COLOR_TEAL }}>{left.label}</div>}
+            {left.label && <div style={{ color: COLOR_NAVY }}>{left.label}</div>}
             {left.street && <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{left.street}</div>}
             {left.zipCity && <div style={{ color: COLOR_TEAL }}>{left.zipCity}</div>}
           </div>
@@ -462,7 +462,7 @@ function BusinessCard({
         {right && (
           <div style={styleFor("address2", 400)}>
             {right.company && <div style={{ fontWeight: es.address2.bold ? 700 : 500 }}>{right.company}</div>}
-            {right.label && <div style={{ color: COLOR_TEAL }}>{right.label}</div>}
+            {right.label && <div style={{ color: COLOR_NAVY }}>{right.label}</div>}
             {right.street && <div style={{ color: COLOR_TEAL, marginTop: "0.5mm" }}>{right.street}</div>}
             {right.zipCity && <div style={{ color: COLOR_TEAL }}>{right.zipCity}</div>}
           </div>
@@ -751,7 +751,7 @@ export default function BusinessCardsPage() {
           return `
             <div class="${cls}">
               ${loc.company ? `<div class="bold">${escape(loc.company)}</div>` : ""}
-              ${loc.label ? `<div class="teal">${escape(loc.label)}</div>` : ""}
+              ${loc.label ? `<div>${escape(loc.label)}</div>` : ""}
               ${loc.street ? `<div class="teal" style="margin-top:0.5mm">${escape(loc.street)}</div>` : ""}
               ${loc.zipCity ? `<div class="teal">${escape(loc.zipCity)}</div>` : ""}
             </div>`;
