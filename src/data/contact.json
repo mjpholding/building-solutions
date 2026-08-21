@@ -4,10 +4,13 @@
   "zip": "50170",
   "city": "Kerpen",
   "country": "Deutschland",
+  "registeredSeat": "Kerpen",
   "phone": "+49 (0) 2273 951 55 0",
   "fax": "",
   "email": "info@buildingsolutions.de",
   "website": "www.buildingsolutions.de",
-  "taxId": "",
-  "managingDirector": ""
+  "registerCourt": "Amtsgericht Köln",
+  "registerNumber": "HRB 118047",
+  "taxId": "DE298315425",
+  "managingDirector": "Patrick Wientzek"
 }

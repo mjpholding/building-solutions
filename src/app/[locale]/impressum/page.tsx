@@ -29,19 +29,22 @@ export default async function ImpressumPage() {
         ) : (
           <div className="prose prose-gray max-w-none space-y-10 text-bs-gray-700 text-[15px] leading-relaxed">
             <section>
-              <h2 className="text-xl font-semibold text-bs-gray-900 mb-3">Angaben gemäß § 5 TMG</h2>
+              <h2 className="text-xl font-semibold text-bs-gray-900 mb-3">Angaben gemäß § 5 DDG</h2>
               <p>
                 <strong>{contactData.company}</strong><br />
                 {contactData.address}<br />
                 {contactData.zip} {contactData.city}<br />
                 {contactData.country}
               </p>
+              {contactData.registeredSeat && (
+                <p className="mt-4">Sitz der Gesellschaft: {contactData.registeredSeat}</p>
+              )}
             </section>
 
             {contactData.managingDirector && (
               <section>
                 <h2 className="text-xl font-semibold text-bs-gray-900 mb-3">Vertreten durch</h2>
-                <p>Geschäftsführer: {contactData.managingDirector}</p>
+                <p>Vertreten durch den Geschäftsführer:<br />{contactData.managingDirector}</p>
               </section>
             )}
 
@@ -54,6 +57,17 @@ export default async function ImpressumPage() {
                 Web: <a href={`https://${contactData.website}`} className="text-bs-accent hover:underline">{contactData.website}</a>
               </p>
             </section>
+
+            {contactData.registerNumber && (
+              <section>
+                <h2 className="text-xl font-semibold text-bs-gray-900 mb-3">Handelsregister</h2>
+                <p>
+                  Eingetragen im Handelsregister des {contactData.registerCourt}.<br />
+                  Registergericht: {contactData.registerCourt}<br />
+                  Handelsregisternummer: {contactData.registerNumber}
+                </p>
+              </section>
+            )}
 
             {contactData.taxId && (
               <section>
@@ -78,8 +92,8 @@ export default async function ImpressumPage() {
             <section>
               <h2 className="text-xl font-semibold text-bs-gray-900 mb-3">Haftung für Inhalte</h2>
               <p>
-                Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den
-                allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht
+                Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den
+                allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht
                 verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.
               </p>
             </section>

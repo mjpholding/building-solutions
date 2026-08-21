@@ -8,31 +8,30 @@ export interface LegalPages {
   agb: string;
 }
 
-const DEFAULT_IMPRESSUM = `<h2>Impressum</h2>
+const DEFAULT_IMPRESSUM = `<h2>Angaben gemäß § 5 DDG</h2>
 <p><strong>Building Solutions GmbH</strong><br/>
-Musterstraße 1<br/>
-12345 Musterstadt<br/>
+Ottostraße 14<br/>
+50170 Kerpen<br/>
 Deutschland</p>
 
-<p><strong>Vertreten durch:</strong><br/>
-Max Mustermann</p>
+<p>Sitz der Gesellschaft: Kerpen</p>
 
-<p><strong>Kontakt:</strong><br/>
-Telefon: +49 (0) 123 456789<br/>
-E-Mail: info@buildingsolutions.de</p>
+<p><strong>Vertreten durch den Geschäftsführer:</strong><br/>
+Patrick Wientzek</p>
 
-<p><strong>Handelsregister:</strong><br/>
-Registergericht: Amtsgericht Musterstadt<br/>
-Registernummer: HRB 12345</p>
+<h3>Kontakt</h3>
+<p>Telefon: +49 (0) 2273 951 55 0<br/>
+E-Mail: info@buildingsolutions.de<br/>
+Web: www.buildingsolutions.de</p>
 
-<p><strong>Umsatzsteuer-ID:</strong><br/>
-Umsatzsteuer-Identifikationsnummer gemäß §27a Umsatzsteuergesetz:<br/>
-DE123456789</p>
+<h3>Handelsregister</h3>
+<p>Eingetragen im Handelsregister des Amtsgerichts Köln.<br/>
+Registergericht: Amtsgericht Köln<br/>
+Handelsregisternummer: HRB 118047</p>
 
-<p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br/>
-Max Mustermann<br/>
-Musterstraße 1<br/>
-12345 Musterstadt</p>`;
+<h3>Umsatzsteuer-Identifikationsnummer</h3>
+<p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:<br/>
+DE298315425</p>`;
 
 const DEFAULT_DATENSCHUTZ = `<h2>Datenschutzerklärung</h2>
 
